@@ -1,4 +1,4 @@
-package com.application.controller;
+package applicationcontroller;
 
 public class SampleController {
 	
