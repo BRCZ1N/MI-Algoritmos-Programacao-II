@@ -2,6 +2,6 @@
 	
 <?import javafx.scene.layout.VBox?>
 	
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.application.controller.SampleController">
 	<!-- TODO Add Nodes -->
 </VBox>
