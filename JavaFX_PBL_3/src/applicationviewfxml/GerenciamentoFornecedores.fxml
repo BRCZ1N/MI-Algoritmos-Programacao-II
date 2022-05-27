@@ -37,6 +37,8 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -53,31 +55,75 @@
                      <children>
                         <AnchorPane>
                            <children>
-                              <Button id="EditFuncionarios" fx:id="EditFuncionarios" layoutY="-1.0" mnemonicParsing="false" prefHeight="80.8" prefWidth="142.0" style="-fx-background-color: OrangeRed;" text="Editar" translateX="5.0" translateY="1.0" />
-                              <Label layoutX="57.0" layoutY="14.0" text="Menu" translateX="-5.0" translateY="-45.0" />
-                              <Button fx:id="VoltarMenu" layoutX="5.0" layoutY="2.0" mnemonicParsing="false" style="-fx-background-image: /background/SETA-LARANJA.png;" text="&lt;----" textAlignment="CENTER" translateY="-37.0">
-                                 <font>
-                                    <Font name="Impact" size="12.0" />
-                                 </font>
-                              </Button>
+                              <Button id="EditFuncionarios" fx:id="EditFuncionarios" layoutY="-1.0" mnemonicParsing="false" prefHeight="80.8" prefWidth="142.0" style="-fx-background-color: OrangeRed;" text="Editar" translateX="5.0" translateY="1.0">
+                                 <graphic>
+                                    <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@Downloads/352547_edit_mode_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Label layoutX="57.0" layoutY="14.0" text="Menu" translateX="-30.0" translateY="-47.0">
+                                 <graphic>
+                                    <Button fx:id="VoltarMenu" mnemonicParsing="false" style="-fx-background-color: transparent;" textAlignment="CENTER">
+                                       <font>
+                                          <Font name="Impact" size="12.0" />
+                                       </font>
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@Downloads/352020_arrow_back_icon.png" />
+                                             </image></ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </graphic>
+                              </Label>
                            </children>
                         </AnchorPane>
-                        <Button fx:id="DeleteFuncionarios" mnemonicParsing="false" prefHeight="80.8" prefWidth="141.0" style="-fx-background-color: OrangeRed;" text="Excluir" translateX="5.0" translateY="1.0" />
-                        <Button fx:id="RelatoryGenerate" mnemonicParsing="false" prefHeight="80.8" prefWidth="140.0" style="-fx-background-color: OrangeRed;" text="Gerar Relatorio" translateX="5.0" translateY="1.0" />
+                        <Button fx:id="DeleteFuncionarios" alignment="CENTER" layoutY="-1.0" mnemonicParsing="false" prefHeight="80.8" prefWidth="142.0" style="-fx-background-color: OrangeRed;" text="Excluir" translateX="5.0" translateY="1.0">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Downloads/3669361_delete_ic_icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="RelatoryGenerate" alignment="CENTER" mnemonicParsing="false" prefHeight="80.8" prefWidth="140.0" style="-fx-background-color: OrangeRed;" text="Relatorio" translateX="5.0" translateY="1.0">
+                           <graphic>
+                              <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Downloads/4308030_business_data_financial_graph_paper_icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </VBox>
                </left>
                <top>
-                  <Label prefHeight="42.0" prefWidth="290.0" text="Gerenciamento de Fornecedores " translateX="20.0" BorderPane.alignment="CENTER">
+                  <Label prefHeight="42.0" prefWidth="381.0" text="Gerenciamento de Fornecedores " translateX="20.0" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="Impact" size="20.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Downloads/45019_cap_male_man_man%20with%20cap_provider_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Label>
                </top>
                <bottom>
                   <HBox prefHeight="61.0" prefWidth="640.0" BorderPane.alignment="CENTER">
                      <children>
-                        <Button fx:id="NewFuncionario" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" text="Novo" translateX="495.0" translateY="10.0" />
+                        <Button fx:id="NewFuncionario" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" style="-fx-background-color: OrangeRed;" text="Novo" translateX="495.0" translateY="10.0">
+                           <graphic>
+                              <ImageView fitHeight="7.0" fitWidth="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@Downloads/134224_add_plus_new_icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                </bottom>
