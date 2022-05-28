@@ -3,11 +3,8 @@ package applicationcontroller;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.Button;
-
 import javafx.event.ActionEvent;
-
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 
 public class PaginaPrincipalController {
 	@FXML
@@ -34,6 +31,7 @@ public class PaginaPrincipalController {
 	@FXML
 	public void alterarCorBotaoEntered(MouseEvent event) {
 		
+	
 //		Button botaoPress = (Button)event.getSource();
 //		botaoPress.setTextFill(Color.RED);
 		
