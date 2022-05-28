@@ -132,12 +132,13 @@
                     <content>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="502.0">
                            <children>
-                              <TableView fx:id="TableFuncionario" layoutY="-2.0" prefHeight="290.0" prefWidth="496.0">
+                              <TableView fx:id="TableFuncionario" layoutY="-2.0" prefHeight="300.0" prefWidth="502.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                 <columns>
                                   <TableColumn prefWidth="75.0" text="Id" />
                                   <TableColumn prefWidth="75.0" text="Cnpj" />
                                     <TableColumn prefWidth="75.0" text="Nome" />
                                     <TableColumn id="TabelaFuncionarios" prefWidth="75.0" text="Endereço" />
+                                    <TableColumn id="TabelaFuncionarios" prefWidth="182.0" text="IdProdutosFornecidos" />
                                 </columns>
                               </TableView>
                            </children>
