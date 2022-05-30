@@ -5,123 +5,97 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-         <children>
-            <BorderPane layoutY="-1.0" prefHeight="400.0" prefWidth="640.0">
-               <left>
-                  <VBox prefHeight="348.0" prefWidth="142.0" BorderPane.alignment="CENTER">
+      <BorderPane prefHeight="300.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="231.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane prefHeight="327.0" prefWidth="700.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="700.0" minWidth="10.0" prefWidth="700.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="345.0" minWidth="0.0" prefWidth="0.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <AnchorPane>
+                        <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #00b4cc;">
                            <children>
-                              <Button id="EditFuncionarios" fx:id="EditFuncionarios" layoutY="-1.0" mnemonicParsing="false" prefHeight="80.8" prefWidth="142.0" style="-fx-background-color: OrangeRed;" text="Editar" translateX="5.0" translateY="1.0">
-                                 <graphic>
-                                    <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@352547_edit_mode_icon.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Label layoutX="57.0" layoutY="14.0" text="Menu" translateX="-30.0" translateY="-47.0">
-                                 <graphic>
-                                    <Button fx:id="VoltarMenu" mnemonicParsing="false" style="-fx-background-color: transparent;" textAlignment="CENTER">
-                                       <font>
-                                          <Font name="Impact" size="12.0" />
-                                       </font>
-                                       <graphic>
-                                          <ImageView fitHeight="16.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                                             <image>
-                                                <Image url="@352020_arrow_back_icon.png" />
-                                             </image>
-                                          </ImageView>
-                                       </graphic>
-                                    </Button>
-                                 </graphic>
-                              </Label>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <TextField prefHeight="25.0" prefWidth="292.0" promptText="Id da venda" />
                            </children>
-                        </AnchorPane>
-                        <Button fx:id="DeleteFuncionarios" alignment="CENTER" layoutY="-1.0" mnemonicParsing="false" prefHeight="80.8" prefWidth="142.0" style="-fx-background-color: OrangeRed;" text="Excluir" translateX="5.0" translateY="1.0">
-                           <graphic>
-                              <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@3669361_delete_ic_icon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
-                        <Button fx:id="RelatoryGenerate" alignment="CENTER" mnemonicParsing="false" prefHeight="80.8" prefWidth="140.0" style="-fx-background-color: OrangeRed;" text="Relatorio" translateX="5.0" translateY="1.0">
-                           <graphic>
-                              <ImageView fitHeight="33.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@4308030_business_data_financial_graph_paper_icon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
+                        </HBox>
+                        <ScrollPane prefHeight="327.0" prefWidth="705.0" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
+                          <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="701.0">
+                                 <children>
+                                    <TableView fx:id="tabelaProdutos" layoutY="-1.0" prefHeight="295.0" prefWidth="686.0" style="-fx-background-color: #343838;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                                       <columns>
+                                          <TableColumn id="columnId" prefWidth="64.0" text="Id" />
+                                          <TableColumn id="columnNome" prefWidth="140.0" text="Dia/horário" />
+                                          <TableColumn id="columnPreco" prefWidth="75.0" text="Valor da venda(R$)" />
+                                          <TableColumn id="columnQuantidade" prefWidth="96.0" text="Tipo de pagamento" />
+                                          <TableColumn id="columnAcoes" prefWidth="96.0" text="Ações" />
+                                       </columns>
+                                       <columnResizePolicy>
+                                          <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                       </columnResizePolicy>
+                                    </TableView>
+                                 </children>
+                              </AnchorPane>
+                          </content>
+                        </ScrollPane>
                      </children>
-                  </VBox>
-               </left>
-               <top>
-                  <Label prefHeight="42.0" prefWidth="381.0" text="Gerenciamento de Vendas " translateX="20.0" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font name="Impact" size="20.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@387523_$_character_dollar_math_sign_icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Label>
-               </top>
-               <bottom>
-                  <HBox prefHeight="61.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <AnchorPane prefHeight="41.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutY="-1.0" prefHeight="36.0" prefWidth="700.0">
                      <children>
-                        <Button fx:id="NewFuncionario" mnemonicParsing="false" prefHeight="39.0" prefWidth="104.0" style="-fx-background-color: OrangeRed;" text="Novo" translateX="495.0" translateY="10.0">
-                           <graphic>
-                              <ImageView fitHeight="7.0" fitWidth="7.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@134224_add_plus_new_icon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
+                        <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
+                           <children>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="55.0" style="-fx-background-color: -transparent;" text="Voltar" textFill="WHITE" />
+                           </children>
+                        </Pane>
+                        <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" text="Gerenciamento de venda" textFill="WHITE" />
                      </children>
                   </HBox>
-               </bottom>
-               <center>
-                  <ScrollPane prefHeight="297.0" prefWidth="349.0" BorderPane.alignment="CENTER">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="502.0">
+                  <Pane layoutY="35.0" prefHeight="15.0" prefWidth="700.0" />
+               </children>
+            </AnchorPane>
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="38.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutY="-1.0" prefHeight="49.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Pane prefHeight="38.0" prefWidth="646.0" style="-fx-background-color: #00b4cc;" />
+                        <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
-                              <TableView fx:id="TableFuncionario" layoutY="-2.0" prefHeight="300.0" prefWidth="502.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="Id" />
-                                    <TableColumn prefWidth="97.0" text="Dia&amp;Horario" />
-                                    <TableColumn prefWidth="101.0" text="ListaItens" />
-                                    <TableColumn id="TabelaFuncionarios" prefWidth="99.0" text="PreçoTotal" />
-                                    <TableColumn id="TabelaFuncionarios" prefWidth="119.0" text="TipoDePagamento" />
-                                 </columns>
-                              </TableView>
+                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="55.0" style="-fx-background-color: -transparent;" text="Novo" textFill="WHITE" />
                            </children>
-                        </AnchorPane>
-                     </content>
-                  </ScrollPane>
-               </center>
-            </BorderPane>
-         </children>
-      </AnchorPane>
-      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                        </Pane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
    </children>
-</VBox>
+</AnchorPane>
