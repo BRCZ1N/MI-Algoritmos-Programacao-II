@@ -10,26 +10,24 @@ import javafx.scene.control.TableView;
 
 import javafx.scene.control.TableColumn;
 
-public class GerenciamentoClienteController {
+public class GerenciamentoVendasController {
 	@FXML
-	private TextField pesquisarCliente;
+	private TextField pesquisarVenda;
 	@FXML
 	private TableView tabelaProdutos;
 	@FXML
 	private TableColumn columnId;
 	@FXML
-	private TableColumn columnNome;
+	private TableColumn columnDHorario;
 	@FXML
-	private TableColumn columnTelefone;
+	private TableColumn columnPrecoV;
 	@FXML
-	private TableColumn columnEmail;
-	@FXML
-	private TableColumn columnCpf;
+	private TableColumn columnTPagamento;
 	@FXML
 	private TableColumn columnAcoes;
 	@FXML
 	private Button voltarMenu;
 	@FXML
-	private Button novoCliente;
+	private Button novaVenda;
 
 }

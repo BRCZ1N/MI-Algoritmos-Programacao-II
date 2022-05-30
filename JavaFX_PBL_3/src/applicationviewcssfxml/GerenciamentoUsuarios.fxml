@@ -35,7 +35,7 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #00b4cc;">
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
-                              <TextField prefHeight="25.0" prefWidth="292.0" promptText="Nome do usuario" />
+                              <TextField fx:id="pesquisarUsuario" prefHeight="25.0" prefWidth="292.0" promptText="Nome do usuario" />
                            </children>
                         </HBox>
                         <ScrollPane prefHeight="327.0" prefWidth="705.0" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
@@ -44,11 +44,11 @@
                                  <children>
                                     <TableView fx:id="tabelaProdutos" layoutY="-1.0" prefHeight="295.0" prefWidth="686.0" style="-fx-background-color: #343838;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
                                        <columns>
-                                          <TableColumn id="columnId" prefWidth="64.0" text="Id" />
-                                          <TableColumn id="columnNome" prefWidth="140.0" text="Nome" />
-                                          <TableColumn id="columnPreco" prefWidth="75.0" text="Login" />
-                                          <TableColumn id="columnQuantidade" prefWidth="96.0" text="Senha" />
-                                          <TableColumn id="columnAcoes" prefWidth="96.0" text="Ações" />
+                                          <TableColumn id="columnId" fx:id="columnId" prefWidth="64.0" text="Id" />
+                                          <TableColumn id="columnNome" fx:id="columnNome" prefWidth="140.0" text="Nome" />
+                                          <TableColumn id="columnPreco" fx:id="columnLogin" prefWidth="75.0" text="Login" />
+                                          <TableColumn id="columnQuantidade" fx:id="columnSenha" prefWidth="96.0" text="Senha" />
+                                          <TableColumn id="columnAcoes" fx:id="columnAcoes" prefWidth="96.0" text="Ações" />
                                        </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -70,7 +70,7 @@
                      <children>
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="55.0" style="-fx-background-color: -transparent;" text="Voltar" textFill="WHITE" />
+                              <Button fx:id="voltarMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="55.0" style="-fx-background-color: -transparent;" text="Voltar" textFill="WHITE" />
                            </children>
                         </Pane>
                         <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" text="Gerenciamento de Usuários" textFill="WHITE" />
@@ -88,7 +88,7 @@
                         <Pane prefHeight="38.0" prefWidth="646.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="55.0" style="-fx-background-color: -transparent;" text="Novo" textFill="WHITE" />
+                              <Button fx:id="novoUsuario" alignment="CENTER" mnemonicParsing="false" prefHeight="39.0" prefWidth="55.0" style="-fx-background-color: -transparent;" text="Novo" textFill="WHITE" />
                            </children>
                         </Pane>
                      </children>

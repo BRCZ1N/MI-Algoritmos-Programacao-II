@@ -24,7 +24,7 @@
                                     <Font name="System Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label layoutX="64.0" layoutY="126.0" textFill="WHITE">
+                              <Label fx:id="nomeUsuarioLabel" layoutX="64.0" layoutY="126.0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -41,7 +41,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" prefHeight="359.0" prefWidth="144.0">
                      <children>
-                      <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="142.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Fornecedores" textAlignment="JUSTIFY" textFill="WHITE">
+                      <Button fx:id="menuFornecedores" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="142.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Fornecedores" textAlignment="JUSTIFY" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -49,7 +49,7 @@
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="49.0" prefWidth="173.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Clientes" textAlignment="JUSTIFY" textFill="WHITE">
+                        <Button fx:id="menuClientes" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="49.0" prefWidth="173.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Clientes" textAlignment="JUSTIFY" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -57,7 +57,7 @@
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Usuarios" textAlignment="JUSTIFY" textFill="WHITE">
+                        <Button fx:id="menuUsuarios" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Usuarios" textAlignment="JUSTIFY" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -65,7 +65,7 @@
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Produtos" textAlignment="JUSTIFY" textFill="WHITE">
+                        <Button fx:id="menuProdutos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Produtos" textAlignment="JUSTIFY" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -73,7 +73,7 @@
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Pratos" textAlignment="JUSTIFY" textFill="WHITE">
+                        <Button fx:id="menuPratos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Pratos" textAlignment="JUSTIFY" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -81,7 +81,7 @@
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="151.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Vendas" textAlignment="JUSTIFY" textFill="WHITE">
+                        <Button fx:id="menuVendas" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="151.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Vendas" textAlignment="JUSTIFY" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -89,7 +89,7 @@
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                            </graphic>
                         </Button>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="150.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Sair" textAlignment="JUSTIFY" textFill="WHITE">
+                        <Button fx:id="menuSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="150.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Sair" textAlignment="JUSTIFY" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>

@@ -49,19 +49,19 @@
                <children>
                   <VBox alignment="CENTER" layoutX="-15.0" layoutY="-23.0" prefHeight="173.0" prefWidth="102.0" style="-fx-background-color: #00b4cc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TextField alignment="CENTER" prefHeight="25.0" prefWidth="207.0" promptText="Login">
+                        <TextField fx:id="loginUsuario" alignment="CENTER" prefHeight="25.0" prefWidth="207.0" promptText="Login">
                            <VBox.margin>
                               <Insets bottom="50.0" />
                            </VBox.margin>
                         </TextField>
-                        <PasswordField alignment="CENTER" prefHeight="25.0" prefWidth="204.0" promptText="Senha">
+                        <PasswordField fx:id="senhaUsuario" alignment="CENTER" prefHeight="25.0" prefWidth="204.0" promptText="Senha">
                            <VBox.margin>
                               <Insets bottom="50.0" />
                            </VBox.margin>
                         </PasswordField>
                         <Button mnemonicParsing="false" style="-fx-background-color: -transparent;">
                            <graphic>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="logarUsuario" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../applicationviewimages/enter-2.png" />
                                  </image>
