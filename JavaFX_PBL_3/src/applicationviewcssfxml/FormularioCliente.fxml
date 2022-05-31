@@ -67,7 +67,7 @@
                      <children>
                         <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="voltarMenu" mnemonicParsing="false" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: -transparent;" text="Voltar" textFill="WHITE">
+                              <Button fx:id="voltarMenu" mnemonicParsing="false" prefHeight="36.0" prefWidth="86.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -101,7 +101,7 @@
                         <Pane prefHeight="38.0" prefWidth="646.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="novoCliente" alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="57.0" style="-fx-background-color: -transparent;" text="Add" textFill="WHITE" />
+                              <Button fx:id="novoCliente" alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="57.0" styleClass="button2" stylesheets="@EfeitosAnimacoes.css" text="Add" textFill="WHITE" />
                            </children>
                         </Pane>
                      </children>
