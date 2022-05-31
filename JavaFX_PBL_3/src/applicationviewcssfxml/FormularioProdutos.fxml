@@ -92,15 +92,28 @@
                               </Button>
                            </children>
                         </Pane>
-                        <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" text="Novo Produto " textFill="WHITE">
-                           <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imageClientes">
-                                 <image>
-                                    <Image url="@../applicationviewimages/2849824_store_shopping_market_buy_shop_icon.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Label>
+                        <Pane prefHeight="36.0" prefWidth="588.0" style="-fx-background-color: #00b4cc;">
+                           <children>
+                              <Label fx:id="labelNovoProduto" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="618.0" style="-fx-background-color: #00b4cc;" text="Novo Produto " textFill="WHITE" visible="false">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imageClientes">
+                                       <image>
+                                          <Image url="@../applicationviewimages/2849824_store_shopping_market_buy_shop_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                              <Label fx:id="labelEditarProduto" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="618.0" style="-fx-background-color: #00b4cc;" text="Editar Produto " textFill="WHITE" visible="false">
+                                 <graphic>
+                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imageClientes">
+                                       <image>
+                                          <Image url="@../applicationviewimages/2849824_store_shopping_market_buy_shop_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Label>
+                           </children>
+                        </Pane>
                      </children>
                   </HBox>
                   <Pane layoutY="35.0" prefHeight="15.0" prefWidth="700.0" />
@@ -115,7 +128,8 @@
                         <Pane prefHeight="38.0" prefWidth="646.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="novoProduto" alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" onAction="#acaoAddProduto" prefHeight="39.0" prefWidth="57.0" stylesheets="@EfeitosAnimacoes.css" text="Add" textFill="WHITE" />
+                              <Button fx:id="novoProduto" alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" onAction="#acaoAddProduto" prefHeight="39.0" prefWidth="57.0" stylesheets="@EfeitosAnimacoes.css" text="Add" textFill="WHITE" visible="false" />
+                              <Button fx:id="editarProduto" alignment="CENTER" layoutX="-1.0" mnemonicParsing="false" onAction="#acaoEditProduto" prefHeight="39.0" prefWidth="57.0" stylesheets="@EfeitosAnimacoes.css" text="Editar" textFill="WHITE" visible="false" />
                            </children>
                         </Pane>
                      </children>
