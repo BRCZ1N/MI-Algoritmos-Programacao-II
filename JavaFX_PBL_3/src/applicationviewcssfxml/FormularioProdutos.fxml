@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.GerenciamentoClienteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.GerenciamentoClienteController">
    <children>
       <BorderPane prefHeight="300.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -33,9 +33,9 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField promptText="Nome" GridPane.columnIndex="1" />
-                        <TextField promptText="Preço" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField promptText="Quantidade" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textFNome" promptText="Nome" GridPane.columnIndex="1" />
+                        <TextField fx:id="textFPreco" promptText="Preço" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textFQtd" promptText="Quantidade" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <image>
                               <Image url="@../applicationviewimages/372903_username_name_full_user_round_icon.png" />
@@ -68,7 +68,7 @@
                               <Insets />
                            </GridPane.margin>
                         </ImageView>
-                        <DatePicker prefHeight="25.0" prefWidth="303.0" promptText="Validade" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <DatePicker fx:id="datePickerProduto" prefHeight="25.0" prefWidth="303.0" promptText="Validade" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                      </children>
                   </GridPane>
                </children>
@@ -81,7 +81,7 @@
                      <children>
                         <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="voltarMenu" mnemonicParsing="false" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: -transparent;" text="Voltar" textFill="WHITE">
+                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#acaoVoltarMenu" prefHeight="36.0" prefWidth="86.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -115,7 +115,7 @@
                         <Pane prefHeight="38.0" prefWidth="646.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="novoCliente" alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="57.0" style="-fx-background-color: -transparent;" text="Add" textFill="WHITE" />
+                              <Button fx:id="novoProduto" alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" onAction="#acaoAddProduto" prefHeight="39.0" prefWidth="57.0" stylesheets="@EfeitosAnimacoes.css" text="Add" textFill="WHITE" />
                            </children>
                         </Pane>
                      </children>

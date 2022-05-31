@@ -30,32 +30,33 @@ public class Main extends Application {
 			Parent root;
 			
 			root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/LoginMenu.fxml"));
-			Scene telaLogin = new Scene(root,700,400);
+			telaLogin = new Scene(root);
 			
 			root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/PaginaPrincipal.fxml"));
-			Scene telaInicial = new Scene(root,700,400);
+			telaInicial = new Scene(root);
 			
 			root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoCliente.fxml"));
-			Scene telaGerenciamentoC = new Scene(root,700,400);
+			telaGerenciamentoC = new Scene(root);
 			
 			root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoFornecedores.fxml"));
-			Scene telaGerenciamentoF = new Scene(root,700,400);
+			telaGerenciamentoF = new Scene(root);
 			
 			root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoPratos.fxml"));
-			Scene telaGerenciamentoPrt = new Scene(root,700,400);
+			telaGerenciamentoPrt = new Scene(root);
 			
 			root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoProdutos.fxml"));
-			Scene telaGerenciamentoPrd = new Scene(root,700,400);
+			telaGerenciamentoPrd = new Scene(root);
 			
 			root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
-			Scene telaGerenciamentoU = new Scene(root,700,400);
+			telaGerenciamentoU = new Scene(root);
 			
 			root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoVendas.fxml"));
-			Scene telaGerenciamentoV = new Scene(root,700,400);
+			telaGerenciamentoV = new Scene(root);
 			
-			primaryStage.setScene(telaGerenciamentoC);
+			Main.mudarTela("telaLogin");
 			primaryStage.show();
 			primaryStage.setResizable(false);
+			
 			
 		} catch(Exception e) {
 			

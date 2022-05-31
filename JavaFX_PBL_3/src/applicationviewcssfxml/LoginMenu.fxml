@@ -59,7 +59,7 @@
                               <Insets bottom="50.0" />
                            </VBox.margin>
                         </PasswordField>
-                        <Button mnemonicParsing="false" style="-fx-background-color: -transparent;">
+                        <Button mnemonicParsing="false" stylesheets="@EfeitosAnimacoes.css">
                            <graphic>
                               <ImageView fx:id="logarUsuario" fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
