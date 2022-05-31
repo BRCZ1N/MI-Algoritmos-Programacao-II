@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.GerenciamentoClienteController">
+   <children>
+      <BorderPane prefHeight="300.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="231.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+               <children>
+                  <VBox alignment="CENTER_RIGHT" layoutX="215.0" layoutY="56.0" prefHeight="200.0" prefWidth="270.0">
+                     <children>
+                        <TextField promptText="Nome">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField promptText="Telefone">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField promptText="Email">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <TextField promptText="CPF">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                        </TextField>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_RIGHT" layoutX="115.0" layoutY="67.0" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-4.0">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                           <image>
+                              <Image url="@../applicationviewimages/372903_username_name_full_user_round_icon.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="-7.0">
+                           <image>
+                              <Image url="@../applicationviewimages/phone-solid.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="6.0">
+                           <image>
+                              <Image url="@../applicationviewimages/envelope-solid.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" translateX="-5.0" translateY="21.0">
+                           <image>
+                              <Image url="@../applicationviewimages/id-card-solid.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <padding>
+                        <Insets bottom="20.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <AnchorPane prefHeight="41.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutY="-1.0" prefHeight="36.0" prefWidth="700.0">
+                     <children>
+                        <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
+                           <children>
+                              <Button fx:id="voltarMenu" mnemonicParsing="false" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: -transparent;" text="Voltar" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../applicationviewimages/352020_arrow_back_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" text="Novo Cliente" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imageClientes">
+                                 <image>
+                                    <Image url="@../applicationviewimages/211872_person_add_icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Pane layoutY="35.0" prefHeight="15.0" prefWidth="700.0" />
+               </children>
+            </AnchorPane>
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="38.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutY="-1.0" prefHeight="49.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Pane prefHeight="38.0" prefWidth="646.0" style="-fx-background-color: #00b4cc;" />
+                        <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
+                           <children>
+                              <Button fx:id="novoCliente" alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="57.0" style="-fx-background-color: -transparent;" text="Add" textFill="WHITE" />
+                           </children>
+                        </Pane>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
