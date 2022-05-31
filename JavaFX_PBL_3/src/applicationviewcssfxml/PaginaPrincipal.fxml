@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -46,7 +47,10 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../applicationviewimages/45019_cap_male_man_man_with_cap_provider_icon.png" />
+                                 </image></ImageView>
                            </graphic>
                         </Button>
                         <Button fx:id="menuClientes" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="49.0" prefWidth="173.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Clientes" textAlignment="JUSTIFY" textFill="WHITE">
@@ -54,7 +58,10 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../applicationviewimages/1370025_client_customer_human_man_member_icon.png" />
+                                 </image></ImageView>
                            </graphic>
                         </Button>
                         <Button fx:id="menuUsuarios" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="51.0" prefWidth="148.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Usuarios" textAlignment="JUSTIFY" textFill="WHITE">
@@ -62,7 +69,10 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../applicationviewimages/2530821_business%20man_employee_general_human_member_icon.png" />
+                                 </image></ImageView>
                            </graphic>
                         </Button>
                         <Button fx:id="menuProdutos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="154.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Produtos" textAlignment="JUSTIFY" textFill="WHITE">
@@ -70,7 +80,10 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../applicationviewimages/4172394_goods_merchandise_stock_supply_vendibles_icon.png" />
+                                 </image></ImageView>
                            </graphic>
                         </Button>
                         <Button fx:id="menuPratos" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="146.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Pratos" textAlignment="JUSTIFY" textFill="WHITE">
@@ -78,7 +91,10 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../applicationviewimages/5481161_dinner_dish_plate_restaurant_icon.png" />
+                                 </image></ImageView>
                            </graphic>
                         </Button>
                         <Button fx:id="menuVendas" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="151.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Vendas" textAlignment="JUSTIFY" textFill="WHITE">
@@ -86,7 +102,11 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../applicationviewimages/387523_$_character_dollar_math_sign_icon.png" />
+                                 </image>
+                              </ImageView>
                            </graphic>
                         </Button>
                         <Button fx:id="menuSair" alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="52.0" prefWidth="150.0" style="-fx-background-color: -transparent;" stylesheets="@PaginaPrincipal.css" text="Sair" textAlignment="JUSTIFY" textFill="WHITE">
@@ -94,7 +114,10 @@
                               <Font name="System Bold" size="14.0" />
                            </font>
                            <graphic>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../applicationviewimages/352020_arrow_back_icon.png" />
+                                 </image></ImageView>
                            </graphic>
                         </Button>
                      </children>

@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -34,7 +35,10 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #00b4cc;">
                            <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../applicationviewimages/511943_find_loupe_magnifying%20glass_search_icon.png" />
+                                 </image></ImageView>
                               <TextField fx:id="pesquisaFornecedor" prefHeight="25.0" prefWidth="292.0" promptText="Nome do fornecedor" />
                            </children>
                         </HBox>
@@ -68,12 +72,26 @@
                <children>
                   <HBox layoutY="-1.0" prefHeight="36.0" prefWidth="700.0">
                      <children>
-                        <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
+                        <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="voltarMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="55.0" style="-fx-background-color: -transparent;" text="Voltar" textFill="WHITE" />
+                              <Button fx:id="voltarMenu" alignment="CENTER" mnemonicParsing="false" prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: -transparent;" text="Voltar" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../applicationviewimages/352020_arrow_back_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                         </Pane>
-                        <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" text="Gerenciamento de Fornecedores" textFill="WHITE" />
+                        <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" text="Gerenciamento de Fornecedores" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../applicationviewimages/45019_cap_male_man_man_with_cap_provider_icon.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Label>
                      </children>
                   </HBox>
                   <Pane layoutY="35.0" prefHeight="15.0" prefWidth="700.0" />
