@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.GerenciamentoClienteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.FormularioClienteController">
    <children>
       <BorderPane prefHeight="300.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -67,7 +67,7 @@
                      <children>
                         <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#acaoVoltarMenu" prefHeight="36.0" prefWidth="86.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
+                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#acaoVoltarMenu" prefHeight="36.0" prefWidth="103.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
