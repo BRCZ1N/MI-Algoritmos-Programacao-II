@@ -35,18 +35,46 @@ public class GerenciamentoUsuariosController implements Initializable {
 	private Button voltarMenu;
 	@FXML
 	private Button novoUsuario;
-
-	// Event Listener on Button[#voltarMenu].onAction
-	@FXML
-	public void acaoVoltarMenu(ActionEvent event) {
-		
-		Main.mudarPrimeiraTela("telaInicial");
-		
-	}
-
+	
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	// Event Listener on Button[#voltarMenu].onAction
+		@FXML
+		public void acaoVoltarMenu(ActionEvent event) {
+			
+			Main.mudarPrimeiraTela("telaInicial");
+			
+		}
+	
+	@FXML
+	public void formularioAcaoAdd(ActionEvent event) {
+		
+		
+		
+		
+	}
+	
+	@FXML
+	public void formularioAcaoEdit(ActionEvent event) {
+		
+		
+		
+		
+	}
+	
+	@FXML
+	public void formularioAcaoExcluir(ActionEvent event) {
+		
+		
+		
+		
+	}
+
+	
+	
 }
