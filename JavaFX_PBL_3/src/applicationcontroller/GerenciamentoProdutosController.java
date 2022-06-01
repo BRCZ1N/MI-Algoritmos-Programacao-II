@@ -17,19 +17,19 @@ public class GerenciamentoProdutosController implements Initializable {
 	@FXML
 	private TextField pesquisarProduto;
 	@FXML
-	private TableView tabelaProdutos;
+	private TableView<?> tabelaProdutos;
 	@FXML
-	private TableColumn columnId;
+	private TableColumn<?, ?> columnId;
 	@FXML
-	private TableColumn columnNome;
+	private TableColumn<?, ?> columnNome;
 	@FXML
-	private TableColumn columnPreco;
+	private TableColumn<?, ?> columnPreco;
 	@FXML
-	private TableColumn columnQtd;
+	private TableColumn<?, ?> columnQtd;
 	@FXML
-	private TableColumn columnValidade;
+	private TableColumn<?, ?> columnValidade;
 	@FXML
-	private TableColumn columnAcoes;
+	private TableColumn<?, ?> columnAcoes;
 	@FXML
 	private Button voltarMenu;
 	@FXML

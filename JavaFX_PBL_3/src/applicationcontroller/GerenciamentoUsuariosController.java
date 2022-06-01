@@ -17,17 +17,17 @@ public class GerenciamentoUsuariosController implements Initializable {
 	@FXML
 	private TextField pesquisarUsuario;
 	@FXML
-	private TableView tabelaProdutos;
+	private TableView<?> tabelaProdutos;
 	@FXML
-	private TableColumn columnId;
+	private TableColumn<?, ?> columnId;
 	@FXML
-	private TableColumn columnNome;
+	private TableColumn<?, ?> columnNome;
 	@FXML
-	private TableColumn columnLogin;
+	private TableColumn<?, ?> columnLogin;
 	@FXML
-	private TableColumn columnSenha;
+	private TableColumn<?, ?> columnSenha;
 	@FXML
-	private TableColumn columnAcoes;
+	private TableColumn<?, ?> columnAcoes;
 	@FXML
 	private Button voltarMenu;
 	@FXML

@@ -17,23 +17,24 @@ public class GerenciamentoClienteController implements Initializable{
 	@FXML
 	private TextField pesquisarCliente;
 	@FXML
-	private TableView tabelaProdutos;
+	private TableView<?> tabelaProdutos;
 	@FXML
-	private TableColumn columnId;
+	private TableColumn<?, ?> columnId;
 	@FXML
-	private TableColumn columnNome;
+	private TableColumn<?, ?> columnNome;
 	@FXML
-	private TableColumn columnTelefone;
+	private TableColumn<?, ?> columnTelefone;
 	@FXML
-	private TableColumn columnEmail;
+	private TableColumn<?, ?> columnEmail;
 	@FXML
-	private TableColumn columnCpf;
+	private TableColumn<?, ?> columnCpf;
 	@FXML
-	private TableColumn columnAcoes;
+	private TableColumn<?, ?> columnAcoes;
 	@FXML
 	private Button voltarMenu;
 	@FXML
 	private Button novoCliente;
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
