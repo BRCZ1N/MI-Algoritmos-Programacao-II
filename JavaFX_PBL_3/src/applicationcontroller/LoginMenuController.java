@@ -29,6 +29,7 @@ public class LoginMenuController {
 		if(DaoUsuarios.buscaUsuarioLS(loginUsuario.getText(), senhaUsuario.getText())!= null) {
 			
 			Main.mudarPrimeiraTela("telaInicial");
+			limparTextPassField();
 			
 		}else {
 			
@@ -36,9 +37,17 @@ public class LoginMenuController {
 			alert.setTitle("ERRO!");
 			alert.setContentText("Login ou senha inválidos, tente novamente");
 			alert.show();
+			limparTextPassField();
 			
 		}
 		
+		
+	}
+	
+	public void limparTextPassField() {
+		
+		loginUsuario.clear();
+		senhaUsuario.clear();
 		
 	}
 }

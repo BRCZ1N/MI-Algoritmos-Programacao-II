@@ -42,54 +42,6 @@ public class Main extends Application {
 		}
 	}
 
-	public void setarCenas() throws IOException {
-
-		Parent root;
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/LoginMenu.fxml"));
-		telaLogin = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/PaginaPrincipal.fxml"));
-		telaInicial = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoCliente.fxml"));
-		telaGerenciamentoC = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoFornecedores.fxml"));
-		telaGerenciamentoF = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoPratos.fxml"));
-		telaGerenciamentoPrt = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoProdutos.fxml"));
-		telaGerenciamentoPrd = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
-		telaGerenciamentoU = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoVendas.fxml"));
-		telaGerenciamentoV = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioCliente.fxml"));
-		formularioC = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioFornecedores.fxml"));
-		formularioF = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioPratos.fxml"));
-		formularioPrt = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioProdutos.fxml"));
-		formularioPrd = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioUsuarios.fxml"));
-		formularioU = new Scene(root);
-
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioVendas.fxml"));
-		formularioV = new Scene(root);
-
-	}
-
 	public static void mudarPrimeiraTela(String nomeTela) {
 
 		switch (nomeTela) {
@@ -173,6 +125,54 @@ public class Main extends Application {
 			break;
 
 		}
+
+	}
+	
+	public void setarCenas() throws IOException {
+
+		Parent root;
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/LoginMenu.fxml"));
+		telaLogin = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/PaginaPrincipal.fxml"));
+		telaInicial = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoCliente.fxml"));
+		telaGerenciamentoC = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoFornecedores.fxml"));
+		telaGerenciamentoF = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoPratos.fxml"));
+		telaGerenciamentoPrt = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoProdutos.fxml"));
+		telaGerenciamentoPrd = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
+		telaGerenciamentoU = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoVendas.fxml"));
+		telaGerenciamentoV = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioCliente.fxml"));
+		formularioC = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioFornecedores.fxml"));
+		formularioF = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioPratos.fxml"));
+		formularioPrt = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioProdutos.fxml"));
+		formularioPrd = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioUsuarios.fxml"));
+		formularioU = new Scene(root);
+
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioVendas.fxml"));
+		formularioV = new Scene(root);
 
 	}
 
