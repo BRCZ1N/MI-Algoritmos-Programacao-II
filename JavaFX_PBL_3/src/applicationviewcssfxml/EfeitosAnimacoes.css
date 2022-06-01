@@ -20,7 +20,8 @@
 
 .textfieldMenu{
 
-	-fx-background-color: #343838;
+	-fx-background-color: white;
+	-fx-border-color:  #343838;
 	-fx-border-width: 0px 0px 2px 0px;
 
 }

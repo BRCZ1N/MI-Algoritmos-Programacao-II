@@ -15,7 +15,7 @@
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane prefHeight="69.0" prefWidth="800.0" style="-fx-background-color: #343838;" />
-            <Label alignment="CENTER" prefHeight="55.0" prefWidth="800.0" style="-fx-background-color: #00b4cc;" text="Deseja realmente excluir esse dado ?" textFill="WHITE" />
+            <Label alignment="CENTER" prefHeight="55.0" prefWidth="800.0" style="-fx-background-color: #00b4cc;" text="Deseja realmente realização essa ação?" textFill="WHITE" />
             <Pane prefHeight="63.0" prefWidth="784.0" style="-fx-background-color: #343838;">
                <children>
                   <HBox alignment="CENTER" layoutY="-3.0" prefHeight="69.0" prefWidth="800.0">
