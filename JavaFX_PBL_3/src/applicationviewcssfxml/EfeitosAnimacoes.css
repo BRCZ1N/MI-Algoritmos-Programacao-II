@@ -9,3 +9,26 @@
      -fx-background-color: #00008B;
 
 }
+
+.textfield{
+
+	-fx-background-color: transparent;
+	-fx-border-color:  #00b4cc;
+	-fx-border-width: 0px 0px 2px 0px;
+
+}
+
+.textfieldMenu{
+
+	-fx-background-color: #343838;
+	-fx-border-width: 0px 0px 2px 0px;
+
+}
+
+.textfieldGerenciamento{
+
+	-fx-border-color:  #343838;
+	-fx-background-color: transparent;
+	-fx-border-width: 0px 0px 2px 0px;
+
+}

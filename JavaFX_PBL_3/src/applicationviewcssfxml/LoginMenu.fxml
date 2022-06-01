@@ -49,12 +49,12 @@
                <children>
                   <VBox alignment="CENTER" layoutX="-15.0" layoutY="-23.0" prefHeight="173.0" prefWidth="102.0" style="-fx-background-color: #00b4cc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <TextField fx:id="loginUsuario" alignment="CENTER" prefHeight="25.0" prefWidth="207.0" promptText="Login">
+                        <TextField fx:id="loginUsuario" alignment="CENTER" prefHeight="25.0" prefWidth="207.0" promptText="Login" styleClass="textfieldMenu" stylesheets="@EfeitosAnimacoes.css">
                            <VBox.margin>
                               <Insets bottom="50.0" />
                            </VBox.margin>
                         </TextField>
-                        <PasswordField fx:id="senhaUsuario" alignment="CENTER" prefHeight="25.0" prefWidth="204.0" promptText="Senha">
+                        <PasswordField fx:id="senhaUsuario" alignment="CENTER" prefHeight="25.0" prefWidth="204.0" promptText="Senha" styleClass="textfieldMenu" stylesheets="@EfeitosAnimacoes.css">
                            <VBox.margin>
                               <Insets bottom="50.0" />
                            </VBox.margin>

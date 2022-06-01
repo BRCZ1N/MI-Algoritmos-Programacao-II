@@ -39,7 +39,7 @@
                                  <image>
                                     <Image url="@../applicationviewimages/511943_find_loupe_magnifying%20glass_search_icon.png" />
                                  </image></ImageView>
-                              <TextField fx:id="pesquisaFornecedor" prefHeight="25.0" prefWidth="292.0" promptText="Nome do fornecedor" />
+                              <TextField fx:id="pesquisaFornecedor" prefHeight="25.0" prefWidth="292.0" promptText="Nome do fornecedor" styleClass="textfieldMenu" stylesheets="@EfeitosAnimacoes.css" />
                            </children>
                         </HBox>
                         <ScrollPane prefHeight="327.0" prefWidth="705.0" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">

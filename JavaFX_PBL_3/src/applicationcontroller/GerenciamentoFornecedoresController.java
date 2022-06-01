@@ -1,7 +1,9 @@
 package applicationcontroller;
 
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
@@ -10,7 +12,7 @@ import javafx.scene.control.TableView;
 
 import javafx.scene.control.TableColumn;
 
-public class GerenciamentoFornecedoresController {
+public class GerenciamentoFornecedoresController implements Initializable {
 	@FXML
 	private TextField pesquisaFornecedor;
 	@FXML
@@ -29,5 +31,10 @@ public class GerenciamentoFornecedoresController {
 	private Button voltarMenu;
 	@FXML
 	private Button novoFornecedor;
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

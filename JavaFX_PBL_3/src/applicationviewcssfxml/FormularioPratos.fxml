@@ -31,9 +31,9 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <TextField fx:id="textFNome" promptText="Nome" GridPane.columnIndex="1" />
-                        <TextField fx:id="textFPreco" promptText="Preço" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="textFCategoria" promptText="Categoria " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textFNome" promptText="Nome" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" />
+                        <TextField fx:id="textFPreco" promptText="Preço" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textFCategoria" promptText="Categoria " styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <image>
                               <Image url="@../applicationviewimages/372903_username_name_full_user_round_icon.png" />
