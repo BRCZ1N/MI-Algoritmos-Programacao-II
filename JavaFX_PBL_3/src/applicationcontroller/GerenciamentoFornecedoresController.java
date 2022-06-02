@@ -36,13 +36,35 @@ public class GerenciamentoFornecedoresController implements Initializable{
 	@FXML
 	private Button novoFornecedor;
 
-
 	
 	// Event Listener on Button[#voltarMenu].onAction
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) {
 		
-		Main.mudarPrimeiraTela("telaInicial");
+		Main.mudarPrimeiraTela("PaginaPrincipal");
+	}
+	
+	@FXML
+	public void abrirAcaoAdd(ActionEvent event) {
+		
+			Main.mudarPrimeiraTela("FormularioFornecedores");
+		
+	}
+	
+	@FXML
+	public void abrirAcaoEdit(ActionEvent event) {
+		
+			Main.mudarPrimeiraTela("FormularioFornecedores");
+		
+		
+	}
+	
+	@FXML
+	public void abrirAcaoExcluir(ActionEvent event) {
+		
+		
+		
+		
 	}
 
 

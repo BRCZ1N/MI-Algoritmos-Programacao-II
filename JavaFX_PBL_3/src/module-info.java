@@ -6,6 +6,7 @@ module JavaFX_PBL_3 {
 	requires javafx.base;
 	requires java.desktop;
 	
+	opens applicationmodel to javafx.base;
 	opens applicationcontroller to javafx.fxml;
 	opens applicationmain to javafx.graphics;
 }

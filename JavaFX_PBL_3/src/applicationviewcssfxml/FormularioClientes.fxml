@@ -65,9 +65,9 @@
                <children>
                   <HBox layoutY="-1.0" prefHeight="36.0" prefWidth="700.0">
                      <children>
-                        <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
+                        <Pane prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#acaoVoltarMenu" prefHeight="36.0" prefWidth="103.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
+                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#acaoVoltarMenu" prefHeight="36.0" prefWidth="86.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -78,7 +78,7 @@
                               </Button>
                            </children>
                         </Pane>
-                        <Pane prefHeight="36.0" prefWidth="606.0" style="-fx-background-color: #00b4cc;">
+                        <Pane prefHeight="36.0" prefWidth="614.0" style="-fx-background-color: #00b4cc;">
                            <children>
                               <Label fx:id="labelNovoCliente" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="616.0" style="-fx-background-color: #00b4cc;" text="Novo Cliente" textFill="WHITE" visible="false">
                                  <graphic>

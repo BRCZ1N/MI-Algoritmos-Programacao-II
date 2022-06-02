@@ -79,7 +79,7 @@
                <children>
                   <HBox layoutY="-1.0" prefHeight="36.0" prefWidth="700.0">
                      <children>
-                        <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
+                        <Pane prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #343838;">
                            <children>
                               <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#acaoVoltarMenu" prefHeight="36.0" prefWidth="86.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
                                  <graphic>
@@ -92,7 +92,7 @@
                               </Button>
                            </children>
                         </Pane>
-                        <Pane prefHeight="36.0" prefWidth="588.0" style="-fx-background-color: #00b4cc;">
+                        <Pane prefHeight="36.0" prefWidth="614.0" style="-fx-background-color: #00b4cc;">
                            <children>
                               <Label fx:id="labelNovoProduto" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="618.0" style="-fx-background-color: #00b4cc;" text="Novo Produto " textFill="WHITE" visible="false">
                                  <graphic>

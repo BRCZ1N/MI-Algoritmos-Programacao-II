@@ -19,16 +19,13 @@ public class LoginMenuController {
 	@FXML
 	private ImageView logarUsuario;
 	
-	DaoUsuarios daoUsuarios = new DaoUsuarios();
-	
-
 	// Event Listener on Button.onAction
 	@FXML
 	public void acaoBotaoLogin(ActionEvent event) {
 		
 		if(DaoUsuarios.buscaUsuarioLS(loginUsuario.getText(), senhaUsuario.getText())!= null) {
 			
-			Main.mudarPrimeiraTela("telaInicial");
+			Main.mudarPrimeiraTela("PaginaPrincipal");
 			limparTextPassField();
 			
 		}else {

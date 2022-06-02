@@ -40,7 +40,30 @@ public class GerenciamentoPratosController implements Initializable {
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) {
 		
-		Main.mudarPrimeiraTela("telaInicial");
+		Main.mudarPrimeiraTela("PaginaPrincipal");
+		
+	}
+	
+	@FXML
+	public void abrirAcaoAdd(ActionEvent event) {
+		
+			Main.mudarPrimeiraTela("FormularioPratos");
+		
+	}
+	
+	@FXML
+	public void abrirAcaoEdit(ActionEvent event) {
+		
+			Main.mudarPrimeiraTela("FormularioPratos");
+		
+		
+	}
+	
+	@FXML
+	public void abrirAcaoExcluir(ActionEvent event) {
+		
+		
+		
 		
 	}
 

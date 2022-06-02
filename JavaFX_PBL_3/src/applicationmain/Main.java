@@ -1,7 +1,10 @@
 package applicationmain;
 
 import java.io.IOException;
+
+import applicationdao.DaoUsuarios;
 import javafx.application.Application;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,17 +26,31 @@ public class Main extends Application {
 	private static Scene formularioPrd;
 	private static Scene formularioU;
 	private static Scene formularioV;
+	private static Scene alertaAcao;
 	private static Stage stagePrincipal;
+	private static Stage stageSecundario;
+	
+
+	public static Stage getStagePrincipal() {
+		return stagePrincipal;
+	}
+
+	public static void setStagePrincipal(Stage stagePrincipal) {
+		Main.stagePrincipal = stagePrincipal;
+	}
 
 	@Override
 	public void start(Stage primaryStage) {
 
 		try {
+			
+			DaoUsuarios daoUsuarios = new DaoUsuarios();
 			setarCenas();
 			stagePrincipal = primaryStage;
-			Main.mudarPrimeiraTela("telaLogin");
+			Main.mudarPrimeiraTela("LoginMenu");
 			primaryStage.show();
 			primaryStage.setResizable(false);
+			stageSecundario = new Stage();
 
 		} catch (Exception e) {
 
@@ -46,55 +63,47 @@ public class Main extends Application {
 
 		switch (nomeTela) {
 
-		case "telaLogin":
+		case "LoginMenu":
 
 			stagePrincipal.setScene(telaLogin);
 			break;
 
-		case "telaInicial":
+		case "PaginaPrincipal":
 
 			stagePrincipal.setScene(telaInicial);
 			break;
 
-		case "telaGerenciamentoC":
+		case "GerenciamentoClientes":
 
 			stagePrincipal.setScene(telaGerenciamentoC);
 			break;
 
-		case "telaGerenciamentoF":
+		case "GerenciamentoFornecedores":
 
 			stagePrincipal.setScene(telaGerenciamentoF);
 			break;
 
-		case "telaGerenciamentoPrt":
+		case "GerenciamentoPratos":
 
 			stagePrincipal.setScene(telaGerenciamentoPrt);
 			break;
 
-		case "telaGerenciamentoPrd":
+		case "GerenciamentoProdutos":
 
 			stagePrincipal.setScene(telaGerenciamentoPrd);
 			break;
 
-		case "telaGerenciamentoU":
+		case "GerenciamentoUsuarios":
 
 			stagePrincipal.setScene(telaGerenciamentoU);
 			break;
 
-		case "telaGerenciamentoV":
+		case "GerenciamentoVendas":
 
 			stagePrincipal.setScene(telaGerenciamentoV);
 			break;
-
-		}
-
-	}
-
-	public static void mudarSegundaTela(String nomeTela) {
-
-		switch (nomeTela) {
 		
-		case "FormularioCliente":
+		case "FormularioClientes":
 
 			stagePrincipal.setScene(formularioC);
 			break;
@@ -122,9 +131,16 @@ public class Main extends Application {
 		case "FormularioVendas":
 
 			stagePrincipal.setScene(formularioV);
-			break;
-
+			break;	
 		}
+
+	}
+
+	public static void ativarAlertaAcao() {
+
+		stageSecundario.setScene(alertaAcao);
+		stageSecundario.initModality(Modality.APPLICATION_MODAL);
+		stageSecundario.show();
 
 	}
 	
@@ -156,7 +172,7 @@ public class Main extends Application {
 		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/GerenciamentoVendas.fxml"));
 		telaGerenciamentoV = new Scene(root);
 
-		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioCliente.fxml"));
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioClientes.fxml"));
 		formularioC = new Scene(root);
 
 		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioFornecedores.fxml"));
@@ -173,7 +189,11 @@ public class Main extends Application {
 
 		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/FormularioVendas.fxml"));
 		formularioV = new Scene(root);
-
+		
+		root = FXMLLoader.load(getClass().getResource("/applicationviewcssfxml/AlertaAcao.fxml"));
+		alertaAcao = new Scene(root);
+		
+		
 	}
 
 	public static void main(String[] args) {

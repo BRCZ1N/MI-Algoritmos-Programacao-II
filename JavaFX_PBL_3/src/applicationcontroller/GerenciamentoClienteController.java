@@ -41,14 +41,34 @@ public class GerenciamentoClienteController implements Initializable {
 	// Event Listener on Button[#voltarMenu].onAction
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) {
-		
-		Main.mudarPrimeiraTela("telaInicial");
-		
+
+		Main.mudarPrimeiraTela("PaginaPrincipal");
+
+	}
+
+	@FXML
+	public void abrirAcaoAdd(ActionEvent event) {
+
+		Main.mudarPrimeiraTela("FormularioClientes");
+
+	}
+
+	@FXML
+	public void abrirAcaoEdit(ActionEvent event) {
+
+		Main.mudarPrimeiraTela("FormularioClientes");
+
+	}
+
+	@FXML
+	public void abrirAcaoExcluir(ActionEvent event) {
+
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 }

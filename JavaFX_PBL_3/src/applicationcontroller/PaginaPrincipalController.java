@@ -30,49 +30,49 @@ public class PaginaPrincipalController {
 	@FXML
 	public void menuFornecedoresAcao(ActionEvent event) {
 		
-		Main.mudarPrimeiraTela("telaGerenciamentoF");
+		Main.mudarPrimeiraTela("GerenciamentoFornecedores");
 		
 	}
 	// Event Listener on Button[#menuClientes].onAction
 	@FXML
 	public void menuClientesAcao(ActionEvent event) {
 		
-		Main.mudarPrimeiraTela("telaGerenciamentoC");
+		Main.mudarPrimeiraTela("GerenciamentoClientes");
 		
 	}
 	// Event Listener on Button[#menuUsuarios].onAction
 	@FXML
 	public void menuUsuariosAcao(ActionEvent event) {
 		
-		Main.mudarPrimeiraTela("telaGerenciamentoU");
+		Main.mudarPrimeiraTela("GerenciamentoUsuarios");
 		
 	}
 	// Event Listener on Button[#menuProdutos].onAction
 	@FXML
 	public void menuProdutosAcao(ActionEvent event) {
 		
-		Main.mudarPrimeiraTela("telaGerenciamentoPrd");
+		Main.mudarPrimeiraTela("GerenciamentoProdutos");
 		
 	}
 	// Event Listener on Button[#menuPratos].onAction
 	@FXML
 	public void menuPratosAcao(ActionEvent event) {
 		
-		Main.mudarPrimeiraTela("telaGerenciamentoPrt");
+		Main.mudarPrimeiraTela("GerenciamentoPratos");
 		
 	}
 	// Event Listener on Button[#menuVendas].onAction
 	@FXML
 	public void menuVendasAcao(ActionEvent event) {
 		
-		Main.mudarPrimeiraTela("telaGerenciamentoV");
+		Main.mudarPrimeiraTela("GerenciamentoVendas");
 		
 	}
 	// Event Listener on Button[#menuSair].onAction
 	@FXML
 	public void menuSairAcao(ActionEvent event) {
 		
-		Main.mudarPrimeiraTela("telaLogin");
+		Main.mudarPrimeiraTela("LoginMenu");
 		
 	}
 }
