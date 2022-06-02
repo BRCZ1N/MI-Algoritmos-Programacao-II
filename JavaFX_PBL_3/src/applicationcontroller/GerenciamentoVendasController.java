@@ -20,7 +20,7 @@ public class GerenciamentoVendasController implements Initializable {
 	@FXML
 	private TextField pesquisarVenda;
 	@FXML
-	private TableView<?> tabelaProdutos;
+	private TableView<?> tabelaVendas;
 	@FXML
 	private TableColumn<?, ?> columnId;
 	@FXML

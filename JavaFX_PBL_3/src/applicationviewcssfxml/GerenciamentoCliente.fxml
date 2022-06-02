@@ -46,7 +46,7 @@
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="701.0">
                                  <children>
-                                    <TableView fx:id="tabelaProdutos" layoutY="-1.0" prefHeight="295.0" prefWidth="701.0" style="-fx-background-color: #343838;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                    <TableView fx:id="tabelaClientes" layoutY="-1.0" prefHeight="295.0" prefWidth="701.0" style="-fx-background-color: #343838;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                        <columns>
                                           <TableColumn id="columnId" fx:id="columnId" prefWidth="64.0" text="Id" />
                                           <TableColumn id="columnNome" fx:id="columnNome" prefWidth="140.0" text="Nome" />

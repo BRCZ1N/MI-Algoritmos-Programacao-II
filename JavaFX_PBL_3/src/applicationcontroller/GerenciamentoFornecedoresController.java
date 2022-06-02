@@ -20,7 +20,7 @@ public class GerenciamentoFornecedoresController implements Initializable{
 	@FXML
 	private TextField pesquisaFornecedor;
 	@FXML
-	private TableView<?> tabelaProdutos;
+	private TableView<?> tabelaFornecedores;
 	@FXML
 	private TableColumn<?, ?> columnId;
 	@FXML

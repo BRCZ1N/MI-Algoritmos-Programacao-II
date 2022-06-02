@@ -20,7 +20,7 @@ public class GerenciamentoPratosController implements Initializable {
 	@FXML
 	private TextField pesquisarPrato;
 	@FXML
-	private TableView<?> tabelaProdutos;
+	private TableView<?> tabelaPratos;
 	@FXML
 	private TableColumn<?, ?> columnId;
 	@FXML
