@@ -30,6 +30,14 @@ public class Main extends Application {
 	private static Stage stagePrincipal;
 	private static Stage stageSecundario;
 	
+	public static Scene getFormularioU() {
+		return formularioU;
+	}
+
+	public static void setFormularioU(Scene formularioU) {
+		Main.formularioU = formularioU;
+	}
+	
 
 	public static Stage getStagePrincipal() {
 		return stagePrincipal;

@@ -16,13 +16,13 @@ import applicationexeceptions.VendaComPratoInvalidoException;
  * @version 1.0
  * @since 2022
  */
-public interface DaoGenerico<T> {
-
-	public void addEditDados(T dado, String chaveId) throws EntidadeComValoresNegativoException, CnpjJaExisteException,
-			IdInvalidoException, FornecedorComProdutoInvalidoException, PratoComProdutoInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException, LoginExistenteException;
-
-	public void removerDados(String chaveId) throws IdInvalidoException;
-
-	public void listarDados();
-
-}
+//public interface DaoGenerico<T> {
+//
+//	public void addEditDados(T dado, String chaveId) throws EntidadeComValoresNegativoException, CnpjJaExisteException,
+//			IdInvalidoException, FornecedorComProdutoInvalidoException, PratoComProdutoInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException, LoginExistenteException;
+//
+//	public void removerDados(String chaveId) throws IdInvalidoException;
+//
+//	public void listarDados();
+//
+//}

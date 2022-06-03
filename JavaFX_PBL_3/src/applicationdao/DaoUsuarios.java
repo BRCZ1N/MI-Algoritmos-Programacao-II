@@ -18,7 +18,7 @@ import applicationmodel.Usuarios;
  * @since 2022
  */
 
-public class DaoUsuarios implements DaoGenerico<Usuarios> {
+public class DaoUsuarios {
 
 	private static ArrayList<Usuarios> listaUsuarios = new ArrayList<Usuarios>();
 	private static int idSeq = 0;
@@ -89,8 +89,8 @@ public class DaoUsuarios implements DaoGenerico<Usuarios> {
 	 * @throws IdInvalidoException
 	 * @throws LoginExistenteException
 	 */
-	@Override
-	public void addEditDados(Usuarios usuario, String chaveId) throws IdInvalidoException, LoginExistenteException {
+	
+	public static void addEditDados(Usuarios usuario, String chaveId) throws IdInvalidoException, LoginExistenteException {
 
 		if (chaveId == null) {
 
@@ -111,7 +111,7 @@ public class DaoUsuarios implements DaoGenerico<Usuarios> {
 	 * @throws LoginExistenteException
 	 */
 
-	private void addDados(Usuarios usuario) throws LoginExistenteException {
+	private static void addDados(Usuarios usuario) throws LoginExistenteException {
 
 		boolean loginExiste = buscarLogin(0, listaUsuarios.size() - 1, usuario.getLoginUsuario());
 		if (!loginExiste) {
@@ -136,8 +136,7 @@ public class DaoUsuarios implements DaoGenerico<Usuarios> {
 	 * 
 	 */
 
-	@Override
-	public void removerDados(String chaveId) throws IdInvalidoException {
+	public static void removerDados(String chaveId) throws IdInvalidoException {
 
 		int idExiste = buscarDado(0, listaUsuarios.size() - 1, chaveId);
 		if (idExiste != -1) {
@@ -162,7 +161,7 @@ public class DaoUsuarios implements DaoGenerico<Usuarios> {
 	 * @throws LoginExistenteException
 	 */
 
-	private void editarDados(Usuarios usuarioEditado, String chaveId)
+	private static void editarDados(Usuarios usuarioEditado, String chaveId)
 			throws IdInvalidoException, LoginExistenteException {
 
 		int idExiste = buscarDado(0, listaUsuarios.size() - 1, chaveId);
@@ -196,7 +195,6 @@ public class DaoUsuarios implements DaoGenerico<Usuarios> {
 	 * M�todo para exibir a lista de usu�rios.
 	 */
 
-	@Override
 	public void listarDados() {
 
 		if (!listaUsuarios.isEmpty()) {
@@ -286,7 +284,7 @@ public class DaoUsuarios implements DaoGenerico<Usuarios> {
 	 *         <code>false</code> Se o login não existir na lista de fornecedores
 	 */
 
-	public boolean buscarLogin(int inicio, int fim, String loginUsuario) {
+	public static boolean buscarLogin(int inicio, int fim, String loginUsuario) {
 
 		if (inicio <= fim) {
 
