@@ -1,5 +1,7 @@
 package applicationmodel;
 
+import javafx.scene.control.Button;
+
 /**
  * Classe para objetos do tipo Usuarios.
  * @author Bruno Campos de Oliveira Rocha 
@@ -14,6 +16,8 @@ public class Usuarios {
 	private String nomeUsuario;
 	private String loginUsuario;
 	private String senhaUsuario;
+	private Button botaoEdit;
+	private Button botaoRemove;
 	
 	public Usuarios() {
 		
@@ -31,6 +35,8 @@ public class Usuarios {
 		this.loginUsuario = loginUsuario;
 		this.senhaUsuario = senhaUsuario;
 		this.nomeUsuario = nomeUsuario;
+		this.botaoEdit = new Button("Editar");
+		this.botaoRemove = new Button ("Remover");
 		
 	}
 	
@@ -105,5 +111,22 @@ public class Usuarios {
 	public void setNomeUsuario(String nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
+
+	public Button getBotaoEdit() {
+		return botaoEdit;
+	}
+
+	public void setBotaoEdit(Button botaoEdit) {
+		this.botaoEdit = botaoEdit;
+	}
+
+	public Button getBotaoRemove() {
+		return botaoRemove;
+	}
+
+	public void setBotaoRemove(Button botaoRemove) {
+		this.botaoRemove = botaoRemove;
+	}
+	
 	
 }

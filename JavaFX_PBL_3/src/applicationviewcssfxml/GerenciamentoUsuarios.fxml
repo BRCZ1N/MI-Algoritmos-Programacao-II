@@ -51,8 +51,9 @@
                                           <TableColumn id="columnId" fx:id="columnId" prefWidth="64.0" text="Id" />
                                           <TableColumn id="columnNome" fx:id="columnNome" prefWidth="140.0" text="Nome" />
                                           <TableColumn id="columnPreco" fx:id="columnLogin" prefWidth="75.0" text="Login" />
-                                          <TableColumn id="columnQuantidade" fx:id="columnSenha" prefWidth="96.0" text="Senha" />
-                                          <TableColumn id="columnAcoes" fx:id="columnAcoes" prefWidth="96.0" text="Ações" />
+                                          <TableColumn id="columnQuantidade" fx:id="columnSenha" prefWidth="169.0" text="Senha" />
+                                          <TableColumn id="columnAcoes" fx:id="columnAcoesEditar" prefWidth="64.0" text="Editar" />
+                                          <TableColumn id="columnAcoes" fx:id="columnAcoesRemover" prefWidth="96.0" text="Remover" />
                                        </columns>
                                        <columnResizePolicy>
                                           <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

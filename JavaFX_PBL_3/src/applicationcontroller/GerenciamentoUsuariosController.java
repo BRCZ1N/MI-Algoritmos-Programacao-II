@@ -39,7 +39,9 @@ public class GerenciamentoUsuariosController implements Initializable {
 	@FXML
 	private TableColumn<Usuarios, String> columnSenha;
 	@FXML
-	private TableColumn<Usuarios, Button> columnAcoes;
+	private TableColumn<Usuarios, Button> columnAcoesEditar;
+	@FXML
+	private TableColumn<Usuarios, Button> columnAcoesRemover;
 	@FXML
 	private Button voltarMenu;
 	@FXML
@@ -64,7 +66,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 
 	public static boolean isVisibilidadeLabelButtonEditar() {
 		return visibilidadeLabelButtonEditar;
-	}
+	}	
 
 	public static void setVisibilidadeLabelButtonEditar(boolean visibilidadeLabelButtonEditar) {
 		GerenciamentoUsuariosController.visibilidadeLabelButtonEditar = visibilidadeLabelButtonEditar;
@@ -94,7 +96,9 @@ public class GerenciamentoUsuariosController implements Initializable {
 		columnNome.setCellValueFactory(new PropertyValueFactory<>("nomeUsuario"));
 		columnLogin.setCellValueFactory(new PropertyValueFactory<>("loginUsuario"));
 		columnSenha.setCellValueFactory(new PropertyValueFactory<>("senhaUsuario"));
-
+		columnAcoesEditar.setCellValueFactory(new PropertyValueFactory<>("botaoEdit"));
+		columnAcoesRemover.setCellValueFactory(new PropertyValueFactory<>("botaoRemove"));
+	
 	}
 
 	// Event Listener on Button[#voltarMenu].onAction
