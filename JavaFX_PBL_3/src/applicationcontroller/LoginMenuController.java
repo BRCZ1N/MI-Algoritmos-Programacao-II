@@ -36,8 +36,6 @@ public class LoginMenuController {
 		LoginMenuController.usuarioLogado = usuarioLogado;
 	}
 
-	DaoUsuarios daoUsuarios = new DaoUsuarios();
-
 	// Event Listener on Button.onAction
 	@FXML
 	public void acaoBotaoLogin(ActionEvent event) throws IOException {
@@ -74,6 +72,7 @@ public class LoginMenuController {
 		Scene scene = new Scene(root);
 		Stage stage = new Stage();
 		stage.setScene(scene);
+		stage.setResizable(false);
 
 		return stage;
 

@@ -128,9 +128,12 @@ public class GerenciamentoUsuariosController implements Initializable {
 	}
 
 	@FXML
-	public void abrirAcaoExcluir(ActionEvent event) {
+	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 		
-
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/AlertaAcao.fxml"));
+		Main.getStage().show();
+		
 	}
 
 	public Stage novoStage(String urlScene) throws IOException {

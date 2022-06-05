@@ -10,17 +10,17 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.AlertaAcaoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.AlertaAcaoController">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Pane prefHeight="69.0" prefWidth="800.0" style="-fx-background-color: #343838;" />
+            <Pane prefHeight="62.0" prefWidth="250.0" style="-fx-background-color: #343838;" />
             <Label alignment="CENTER" prefHeight="55.0" prefWidth="800.0" style="-fx-background-color: #00b4cc;" text="Deseja realmente realizar essa ação?" textFill="WHITE" />
             <Pane prefHeight="63.0" prefWidth="784.0" style="-fx-background-color: #343838;">
                <children>
-                  <HBox alignment="CENTER" layoutY="-3.0" prefHeight="69.0" prefWidth="800.0">
+                  <HBox alignment="CENTER" layoutY="-3.0" prefHeight="69.0" prefWidth="250.0">
                      <children>
-                        <Button fx:id="botaoConfirmar" mnemonicParsing="false" onAction="#botaoConfirmarAcao" stylesheets="@EfeitosAnimacoes.css" text="Continuar" textFill="WHITE">
+                        <Button fx:id="botaoConfirmar" mnemonicParsing="false" onAction="#botaoConfirmarAcao" stylesheets="@EfeitosAnimacoes.css" text="Confirmar" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

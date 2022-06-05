@@ -2,6 +2,7 @@ package applicationmain;
 
 import java.io.IOException;
 
+import applicationdao.DaoUsuarios;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -12,14 +13,26 @@ public class Main extends Application {
 
 
 	private static Stage stage;
+	private static Stage stage2;
 	
+	 DaoUsuarios daoUsuarios = new DaoUsuarios();
 
+	
 	public static Stage getStage() {
+		
 		return stage;
 	}
 
 	public static void setStage(Stage stage) {
 		Main.stage = stage;
+	}
+	
+	public static Stage getStage2() {
+		return stage2;
+	}
+
+	public static void setStage2(Stage stage2) {
+		Main.stage2 = stage2;
 	}
 
 	@Override
@@ -30,6 +43,7 @@ public class Main extends Application {
 		Parent root = fxml.load();
 		Scene scene = new Scene(root);
 		primaryStage.setScene(scene);
+		primaryStage.setResizable(false);
 		primaryStage.show();
 		Main.setStage(primaryStage);
 		

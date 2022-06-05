@@ -114,6 +114,12 @@
                </children>
             </AnchorPane>
          </bottom>
+         <left>
+            <AnchorPane prefHeight="327.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <AnchorPane prefHeight="327.0" prefWidth="0.0" BorderPane.alignment="CENTER" />
+         </right>
       </BorderPane>
    </children>
 </AnchorPane>
