@@ -1,16 +1,17 @@
 package applicationcontroller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-
+import javafx.stage.Stage;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import applicationdao.DaoUsuarios;
-import applicationexeceptions.IdInvalidoException;
-import applicationexeceptions.LoginExistenteException;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
 import javafx.event.ActionEvent;
@@ -29,7 +30,7 @@ public class FormularioUsuariosController implements Initializable {
 	@FXML
 	private Label labelNovoUsuario;
 	@FXML
-	private Label labelEditarUsuario;
+	private	Label labelEditarUsuario;
 	@FXML
 	private Button novoUsuario;
 	@FXML
@@ -46,27 +47,22 @@ public class FormularioUsuariosController implements Initializable {
 		FormularioUsuariosController.usuarioAtual = usuarioAtual;
 	}
 	
+
 	// Event Listener on Button[#voltarMenu].onAction
 	@FXML
-	public void acaoVoltarMenu(ActionEvent event) {
+	public void acaoVoltarMenu(ActionEvent event) throws IOException {
 		
-		Main.mudarPrimeiraTela("GerenciamentoUsuarios");
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
+		Main.getStage().show();
 		
 	}
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
 	public void acaoAddUsuario(ActionEvent event) {
 	
-		setUsuarioAtual(new Usuarios(textFLogin.getText(),textFSenha.getText(),textFNome.getText()));
-		try {
-			
-			DaoUsuarios.addEditDados(usuarioAtual, null);
-			
-		} catch (IdInvalidoException | LoginExistenteException e) {
-			
-			e.printStackTrace();
-			
-		}
+		
+		
 	
 	}
 	
@@ -74,28 +70,34 @@ public class FormularioUsuariosController implements Initializable {
 	@FXML
 	public void acaoEditUsuario(ActionEvent event) {
 		
-		Main.ativarAlertaAcao();
+		
+		
+	}
+	
+	
+	
+	
+	public Stage novoStage(String urlScene) throws IOException {
+
+		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
+		Parent root = fxml.load();
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.setScene(scene);
+
+		return stage;
 
 	}
 
 	@Override
-	public void initialize(URL arg0, ResourceBundle rb) {	
+	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		rb = GerenciamentoUsuariosController.getRbGerenciamento();
-		
-		if(rb.getString("acao").equals("add")) {
-			
-			labelNovoUsuario.setVisible(true);
-			novoUsuario.setVisible(true);
-			
-		}else {
-			
-			labelEditarUsuario.setVisible(true);
-			editarUsuario.setVisible(true);
-			
-		}
-		
+		labelNovoUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonNovo());
+		labelEditarUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonEditar());
+		novoUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonNovo());
+		editarUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonEditar());
 		
 	}
+
 
 }

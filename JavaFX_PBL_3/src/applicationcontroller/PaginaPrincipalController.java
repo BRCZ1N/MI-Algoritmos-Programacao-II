@@ -1,12 +1,17 @@
 package applicationcontroller;
 
 import javafx.fxml.FXML;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import java.io.IOException;
+
 import applicationmain.Main;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
 public class PaginaPrincipalController {
 	@FXML
@@ -28,51 +33,81 @@ public class PaginaPrincipalController {
 
 	// Event Listener on Button[#menuFornecedores].onAction
 	@FXML
-	public void menuFornecedoresAcao(ActionEvent event) {
+	public void menuFornecedoresAcao(ActionEvent event) throws IOException {
 		
-		Main.mudarPrimeiraTela("GerenciamentoFornecedores");
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoFornecedores.fxml"));
+		Main.getStage().show();
 		
 	}
 	// Event Listener on Button[#menuClientes].onAction
 	@FXML
-	public void menuClientesAcao(ActionEvent event) {
+	public void menuClientesAcao(ActionEvent event) throws IOException {
 		
-		Main.mudarPrimeiraTela("GerenciamentoClientes");
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoCliente.fxml"));
+		Main.getStage().show();
 		
 	}
 	// Event Listener on Button[#menuUsuarios].onAction
 	@FXML
-	public void menuUsuariosAcao(ActionEvent event) {
+	public void menuUsuariosAcao(ActionEvent event) throws IOException {
 		
-		Main.mudarPrimeiraTela("GerenciamentoUsuarios");
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
+		Main.getStage().show();
 		
 	}
 	// Event Listener on Button[#menuProdutos].onAction
 	@FXML
-	public void menuProdutosAcao(ActionEvent event) {
+	public void menuProdutosAcao(ActionEvent event) throws IOException {
 		
-		Main.mudarPrimeiraTela("GerenciamentoProdutos");
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoProdutos.fxml"));
+		Main.getStage().show();
 		
 	}
 	// Event Listener on Button[#menuPratos].onAction
 	@FXML
-	public void menuPratosAcao(ActionEvent event) {
+	public void menuPratosAcao(ActionEvent event) throws IOException {
 		
-		Main.mudarPrimeiraTela("GerenciamentoPratos");
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoPratos.fxml"));
+		Main.getStage().show();
 		
 	}
 	// Event Listener on Button[#menuVendas].onAction
 	@FXML
-	public void menuVendasAcao(ActionEvent event) {
+	public void menuVendasAcao(ActionEvent event) throws IOException {
 		
-		Main.mudarPrimeiraTela("GerenciamentoVendas");
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoVendas.fxml"));
+		Main.getStage().show();
 		
 	}
 	// Event Listener on Button[#menuSair].onAction
 	@FXML
-	public void menuSairAcao(ActionEvent event) {
+	public void menuSairAcao(ActionEvent event) throws IOException {
 		
-		Main.mudarPrimeiraTela("LoginMenu");
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/LoginMenu.fxml"));
+		Main.getStage().show();
 		
 	}
+	
+	public Stage novoStage(String urlScene) throws IOException {
+
+		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
+		Parent root = fxml.load();
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.setScene(scene);
+
+		return stage;
+
+	}
+	
+	
+	
+	
 }

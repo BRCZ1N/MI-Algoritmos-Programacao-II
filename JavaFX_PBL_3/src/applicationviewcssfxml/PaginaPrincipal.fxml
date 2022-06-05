@@ -16,16 +16,11 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <Pane prefHeight="359.0" prefWidth="497.0" style="-fx-background-color: #00dffc;">
+                  <Pane prefHeight="359.0" prefWidth="497.0" style="-fx-background-color: #00dffc;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
                         <Pane layoutX="123.0" layoutY="71.0" prefHeight="217.0" prefWidth="252.0" style="-fx-background-color: #00b4cc;">
                            <children>
                               <Label layoutX="64.0" layoutY="91.0" text="Bem-vindo" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="nomeUsuarioLabel" layoutX="64.0" layoutY="126.0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>

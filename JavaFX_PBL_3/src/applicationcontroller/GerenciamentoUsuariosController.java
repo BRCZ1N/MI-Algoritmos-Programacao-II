@@ -1,14 +1,17 @@
 package applicationcontroller;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
-import java.util.Enumeration;
 import java.util.ResourceBundle;
 
 import applicationdao.DaoUsuarios;
@@ -41,67 +44,39 @@ public class GerenciamentoUsuariosController implements Initializable {
 	private Button voltarMenu;
 	@FXML
 	private Button novoUsuario;
+	
+	private static boolean visibilidadeLabelButtonNovo;
+	
+	private static boolean visibilidadeLabelButtonEditar;
 
 	private ObservableList<Usuarios> observableListaUsuarios;
 
-	private static String acaoIndicador = "semAcao";
+	private static Usuarios usuarioAtual;
 
-	public static String getAcaoIndicador() {
-		return acaoIndicador;
+	
+	public static boolean isVisibilidadeLabelButtonNovo() {
+		return visibilidadeLabelButtonNovo;
 	}
 
-	public static void setAcaoIndicador(String acaoIndicador) {
-		GerenciamentoUsuariosController.acaoIndicador = acaoIndicador;
+	public static void setVisibilidadeLabelButtonNovo(boolean visibilidadeLabelButtonNovo) {
+		GerenciamentoUsuariosController.visibilidadeLabelButtonNovo = visibilidadeLabelButtonNovo;
 	}
 
-	public static ResourceBundle getRbGerenciamento() {
-		return rbGerenciamento;
+	public static boolean isVisibilidadeLabelButtonEditar() {
+		return visibilidadeLabelButtonEditar;
 	}
 
-	public static void setRbGerenciamento(ResourceBundle rbGerenciamento) {
-		GerenciamentoUsuariosController.rbGerenciamento = rbGerenciamento;
+	public static void setVisibilidadeLabelButtonEditar(boolean visibilidadeLabelButtonEditar) {
+		GerenciamentoUsuariosController.visibilidadeLabelButtonEditar = visibilidadeLabelButtonEditar;
 	}
 
-	static ResourceBundle rbGerenciamento = new ResourceBundle() {
-		
-		@Override
-		protected Object handleGetObject(String key) {
-			
-			if(key.contains("acao") && acaoIndicador.equals("add")) {
-					
-				return "add";
-					
-					
-			}else if(key.contains("acao") && acaoIndicador.equals("edit")) {
-				
-				return "edit";
-				
-			}else {
-				
-				return "Sem Ação";
-				
-			}
-			
-		}
+	public static Usuarios getUsuarioAtual() {
+		return usuarioAtual;
+	}
 
-		@Override
-		public Enumeration<String> getKeys() {
-
-		throw new UnsupportedOperationException("Not supported yet.");
-
-		}
-
-	};
-
-//	private static Usuarios usuarioAtual;
-//	
-//	public static Usuarios getUsuarioAtual() {
-//		return usuarioAtual;
-//	}
-//
-//	public static void setUsuarioAtual(Usuarios usuarioAtual) {
-//		GerenciamentoUsuariosController.usuarioAtual = usuarioAtual;
-//	}
+	public static void setUsuarioAtual(Usuarios usuarioAtual) {
+		GerenciamentoUsuariosController.usuarioAtual = usuarioAtual;
+	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -124,31 +99,50 @@ public class GerenciamentoUsuariosController implements Initializable {
 
 	// Event Listener on Button[#voltarMenu].onAction
 	@FXML
-	public void acaoVoltarMenu(ActionEvent event) {
+	public void acaoVoltarMenu(ActionEvent event) throws IOException {
 
-		GerenciamentoUsuariosController.setAcaoIndicador("add");
-		Main.mudarPrimeiraTela("PaginaPrincipal");
-
-	}
-
-	@FXML
-	public void abrirAcaoAdd(ActionEvent event) {
-		
-		GerenciamentoUsuariosController.setAcaoIndicador("edit");
-		Main.mudarPrimeiraTela("FormularioUsuarios");
+		Main.getStage().close();
+		Main.setStage(novoStage("/applicationviewcssfxml/LoginMenu.fxml"));
+		Main.getStage().show();
 
 	}
 
 	@FXML
-	public void abrirAcaoEdit(ActionEvent event) {
+	public void abrirAcaoAdd(ActionEvent event) throws IOException {
 
-		Main.mudarPrimeiraTela("FormularioUsuarios");
+		Main.getStage().close();
+		setVisibilidadeLabelButtonNovo(true);
+		Main.setStage(novoStage("/applicationviewcssfxml/FormularioUsuarios.fxml"));
+		Main.getStage().show();
+
+	}
+
+	@FXML
+	public void abrirAcaoEdit(ActionEvent event) throws IOException {
+
+		Main.getStage().close();
+		setVisibilidadeLabelButtonEditar(true);
+		Main.setStage(novoStage("/applicationviewcssfxml/FormularioUsuarios.fxml"));
+		Main.getStage().show();
 
 	}
 
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) {
+		
 
 	}
+
+	public Stage novoStage(String urlScene) throws IOException {
+
+		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
+		Parent root = fxml.load();
+		Scene scene = new Scene(root);
+		Stage stage = new Stage();
+		stage.setScene(scene);
+		return stage;
+
+	}
+
 
 }
