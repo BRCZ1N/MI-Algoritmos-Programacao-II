@@ -2,7 +2,7 @@ package applicationmain;
 
 import java.io.IOException;
 
-import applicationdao.DaoUsuarios;
+import applicationmodeldao.DaoUsuarios;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
@@ -15,7 +15,7 @@ public class Main extends Application {
 	private static Stage stage;
 	private static Stage stage2;
 	
-	 DaoUsuarios daoUsuarios = new DaoUsuarios();
+	private DaoUsuarios daoUsuarios = new DaoUsuarios();
 
 	
 	public static Stage getStage() {

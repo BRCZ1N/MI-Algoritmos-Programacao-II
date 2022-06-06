@@ -1,6 +1,17 @@
 package applicationmodel;
 
+import java.io.IOException;
+
+import applicationcontroller.FormularioUsuariosController;
+import applicationcontroller.GerenciamentoUsuariosController;
+import applicationexeceptions.IdInvalidoException;
+import applicationmain.Main;
+import applicationmodeldao.DaoUsuarios;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 /**
  * Classe para objetos do tipo Usuarios.
@@ -37,6 +48,78 @@ public class Usuarios {
 		this.nomeUsuario = nomeUsuario;
 		this.botaoEdit = new Button("Editar");
 		this.botaoRemove = new Button ("Remover");
+		
+		
+		botaoEdit.setOnAction(e ->{
+			
+			for(Usuarios usuario: GerenciamentoUsuariosController.getObservableListaUsuarios()) {
+				
+				if(usuario.getBotaoEdit() == botaoEdit) {
+					
+					Parent root = null;
+					
+					try {
+						FormularioUsuariosController.setUsuarioAtual(usuario);
+						GerenciamentoUsuariosController.setVisibilidadeLabelButtonEditar(true);
+						root = FXMLLoader.load(getClass().getResource(("/applicationviewcssfxml/FormularioUsuarios.fxml")));
+						
+					} catch (IOException e1) {
+						
+						e1.printStackTrace();
+					}
+					Scene novaScene = new Scene(root);
+					Stage novoStage = new Stage();
+					novoStage.setScene(novaScene);
+					Main.getStage().close();
+					Main.setStage(novoStage);
+					Main.getStage().show();
+					
+					
+				}
+				
+			}
+			
+		});
+		
+		
+		botaoRemove.setOnAction(e ->{
+			
+			for(Usuarios usuario: GerenciamentoUsuariosController.getObservableListaUsuarios()) {
+				
+				if(usuario.getBotaoRemove() == botaoRemove) {
+		
+					try {
+						
+						DaoUsuarios.removerDados(usuario.getId());
+						GerenciamentoUsuariosController.alterarObservableList();
+						
+					} catch (IdInvalidoException e1) {
+						
+						e1.printStackTrace();
+						
+					}
+					
+					Parent root = null;
+					try {
+						
+						root = FXMLLoader.load(getClass().getResource(("/applicationviewcssfxml/GerenciamentoUsuarios.fxml")));
+						
+					} catch (IOException e1) {
+						
+						e1.printStackTrace();
+					}
+					Scene novaScene = new Scene(root);
+					Stage novoStage = new Stage();
+					novoStage.setScene(novaScene);
+					Main.getStage().close();
+					Main.setStage(novoStage);
+					Main.getStage().show();
+					
+				}
+				
+			}
+			
+		});
 		
 	}
 	

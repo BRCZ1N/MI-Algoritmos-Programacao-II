@@ -1,4 +1,4 @@
-package applicationdao;
+package applicationmodeldao;
 
 import applicationexeceptions.CnpjJaExisteException;
 import applicationexeceptions.EntidadeComValoresNegativoException;

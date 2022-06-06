@@ -6,9 +6,9 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-import applicationdao.DaoUsuarios;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
+import applicationmodeldao.DaoUsuarios;
 import javafx.event.ActionEvent;
 
 import javafx.scene.image.ImageView;

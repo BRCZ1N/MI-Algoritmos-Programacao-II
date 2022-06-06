@@ -14,9 +14,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import applicationdao.DaoUsuarios;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
+import applicationmodeldao.DaoUsuarios;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -29,7 +29,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 	@FXML
 	private TextField pesquisarUsuario;
 	@FXML
-	private TableView<Usuarios> tabelaUsuarios;
+	private  TableView<Usuarios> tabelaUsuarios;
 	@FXML
 	private TableColumn<Usuarios, String> columnId;
 	@FXML
@@ -50,12 +50,17 @@ public class GerenciamentoUsuariosController implements Initializable {
 	private static boolean visibilidadeLabelButtonNovo;
 	
 	private static boolean visibilidadeLabelButtonEditar;
-
-	private ObservableList<Usuarios> observableListaUsuarios;
-
-	private static Usuarios usuarioAtual;
-
 	
+	private static ObservableList<Usuarios> observableListaUsuarios;
+
+	public static ObservableList<Usuarios> getObservableListaUsuarios() {
+		return observableListaUsuarios;
+	}
+
+	public static void setObservableListaUsuarios(ObservableList<Usuarios> observableListaUsuarios) {
+		GerenciamentoUsuariosController.observableListaUsuarios = observableListaUsuarios;
+	}
+
 	public static boolean isVisibilidadeLabelButtonNovo() {
 		return visibilidadeLabelButtonNovo;
 	}
@@ -72,13 +77,6 @@ public class GerenciamentoUsuariosController implements Initializable {
 		GerenciamentoUsuariosController.visibilidadeLabelButtonEditar = visibilidadeLabelButtonEditar;
 	}
 
-	public static Usuarios getUsuarioAtual() {
-		return usuarioAtual;
-	}
-
-	public static void setUsuarioAtual(Usuarios usuarioAtual) {
-		GerenciamentoUsuariosController.usuarioAtual = usuarioAtual;
-	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -98,6 +96,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 		columnSenha.setCellValueFactory(new PropertyValueFactory<>("senhaUsuario"));
 		columnAcoesEditar.setCellValueFactory(new PropertyValueFactory<>("botaoEdit"));
 		columnAcoesRemover.setCellValueFactory(new PropertyValueFactory<>("botaoRemove"));
+		
 	
 	}
 
@@ -108,6 +107,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 		Main.getStage().close();
 		Main.setStage(novoStage("/applicationviewcssfxml/LoginMenu.fxml"));
 		Main.getStage().show();
+
 
 	}
 
@@ -120,25 +120,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 		Main.getStage().show();
 
 	}
-
-	@FXML
-	public void abrirAcaoEdit(ActionEvent event) throws IOException {
-
-		Main.getStage().close();
-		setVisibilidadeLabelButtonEditar(true);
-		Main.setStage(novoStage("/applicationviewcssfxml/FormularioUsuarios.fxml"));
-		Main.getStage().show();
-
-	}
-
-	@FXML
-	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-		
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/AlertaAcao.fxml"));
-		Main.getStage().show();
-		
-	}
+	
 
 	public Stage novoStage(String urlScene) throws IOException {
 
@@ -150,6 +132,13 @@ public class GerenciamentoUsuariosController implements Initializable {
 		return stage;
 
 	}
+	
+	public static void alterarObservableList() {
+		
+		observableListaUsuarios = FXCollections.observableArrayList(DaoUsuarios.getListaUsuarios());
+		
+	}
+
 
 
 }

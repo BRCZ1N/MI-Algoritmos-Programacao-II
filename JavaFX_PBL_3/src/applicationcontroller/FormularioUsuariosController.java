@@ -13,11 +13,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import applicationdao.DaoUsuarios;
 import applicationexeceptions.IdInvalidoException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
+import applicationmodeldao.DaoUsuarios;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -64,6 +64,7 @@ public class FormularioUsuariosController implements Initializable {
 	@FXML
 	public void acaoAddUsuario(ActionEvent event) throws IOException {
 
+		
 		usuarioAtual = new Usuarios(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
 		try {
 
@@ -75,12 +76,16 @@ public class FormularioUsuariosController implements Initializable {
 
 				DaoUsuarios.addEditDados(usuarioAtual, null);
 				
+				
+				
 			}
+			
 		} catch (IdInvalidoException | LoginExistenteException e) {
 
 			e.getMessage();
 		}
 
+		Main.getStage2().close();
 		Main.getStage().close();
 		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
 		Main.getStage().show();
@@ -90,6 +95,33 @@ public class FormularioUsuariosController implements Initializable {
 	// Event Listener on Button[#editarUsuario].onAction
 	@FXML
 	public void acaoEditUsuario(ActionEvent event) throws IOException {
+		
+		Usuarios usuario = new Usuarios(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
+		
+		try {
+
+			Stage novoStage = novoStage("/applicationviewcssfxml/AlertaAcao.fxml");
+			novoStage.initModality(Modality.APPLICATION_MODAL);
+			Main.setStage2(novoStage);
+			Main.getStage2().showAndWait();
+			if (AlertaAcaoController.isRespostaAlerta()) {
+
+				DaoUsuarios.addEditDados(usuario, usuarioAtual.getId());
+				Main.getStage2().close();
+				Main.getStage().close();
+				
+			}
+		} catch (IdInvalidoException | LoginExistenteException e) {
+
+			e.getMessage();
+		}
+		
+		Main.getStage2().close();
+		Main.getStage().close();
+		limparUsuario();
+		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
+		Main.getStage().show();
+		
 
 	}
 
@@ -108,11 +140,29 @@ public class FormularioUsuariosController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		
 		labelNovoUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonNovo());
 		labelEditarUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonEditar());
 		novoUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonNovo());
 		editarUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonEditar());
-
+		
+		if(GerenciamentoUsuariosController.isVisibilidadeLabelButtonEditar()) {
+			
+			textFLogin.setText(usuarioAtual.getLoginUsuario());
+			textFNome.setText(usuarioAtual.getNomeUsuario());
+			textFSenha.setText(usuarioAtual.getSenhaUsuario());
+			
+		}
+		
+		GerenciamentoUsuariosController.setVisibilidadeLabelButtonNovo(false);
+		GerenciamentoUsuariosController.setVisibilidadeLabelButtonEditar(false);
+	
+	}
+	
+	public void limparUsuario() {
+		
+		usuarioAtual = new Usuarios();
+		
 	}
 
 }

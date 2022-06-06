@@ -1,4 +1,4 @@
-package applicationdao;
+package applicationmodeldao;
 
 import java.util.ArrayList;
 
