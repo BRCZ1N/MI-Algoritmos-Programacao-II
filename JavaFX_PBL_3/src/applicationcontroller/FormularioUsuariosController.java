@@ -54,76 +54,57 @@ public class FormularioUsuariosController implements Initializable {
 	@FXML
 	public void acaoVoltarMenu(ActionEvent event) throws IOException {
 
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
-		Main.getStage().show();
-
+		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
+		limparTextField();
+		limparUsuario();
+		
 	}
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void acaoAddUsuario(ActionEvent event) throws IOException {
+	public void acaoSalvarUsuario(ActionEvent event) throws IOException {
 
-		
+		System.out.println(FormularioUsuariosController.getUsuarioAtual().getNomeUsuario());
 		usuarioAtual = new Usuarios(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
+		
 		try {
 
 			Stage novoStage = novoStage("/applicationviewcssfxml/AlertaAcao.fxml");
 			novoStage.initModality(Modality.APPLICATION_MODAL);
 			Main.setStage2(novoStage);
 			Main.getStage2().showAndWait();
-			if (AlertaAcaoController.isRespostaAlerta()) {
+			
+			if(usuarioAtual.equals(null)) {
+				
+				if (AlertaAcaoController.isRespostaAlerta()) {
 
-				DaoUsuarios.addEditDados(usuarioAtual, null);
+					DaoUsuarios.addEditDados(usuarioAtual, null);
+
+				}
 				
+			}else {
 				
+				if (AlertaAcaoController.isRespostaAlerta()) {
+
+					DaoUsuarios.addEditDados(usuarioAtual, usuarioAtual.getId());
+
+				}
 				
 			}
 			
+
 		} catch (IdInvalidoException | LoginExistenteException e) {
 
 			e.getMessage();
 		}
 
 		Main.getStage2().close();
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
-		Main.getStage().show();
-
-	}
-
-	// Event Listener on Button[#editarUsuario].onAction
-	@FXML
-	public void acaoEditUsuario(ActionEvent event) throws IOException {
-		
-		Usuarios usuario = new Usuarios(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
-		
-		try {
-
-			Stage novoStage = novoStage("/applicationviewcssfxml/AlertaAcao.fxml");
-			novoStage.initModality(Modality.APPLICATION_MODAL);
-			Main.setStage2(novoStage);
-			Main.getStage2().showAndWait();
-			if (AlertaAcaoController.isRespostaAlerta()) {
-
-				DaoUsuarios.addEditDados(usuario, usuarioAtual.getId());
-				Main.getStage2().close();
-				Main.getStage().close();
-				
-			}
-		} catch (IdInvalidoException | LoginExistenteException e) {
-
-			e.getMessage();
-		}
-		
-		Main.getStage2().close();
-		Main.getStage().close();
+		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
+		limparTextField();
 		limparUsuario();
-		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
-		Main.getStage().show();
-		
 
 	}
+
 
 	public Stage novoStage(String urlScene) throws IOException {
 
@@ -140,29 +121,36 @@ public class FormularioUsuariosController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		
-		labelNovoUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonNovo());
-		labelEditarUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonEditar());
-		novoUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonNovo());
-		editarUsuario.setVisible(GerenciamentoUsuariosController.isVisibilidadeLabelButtonEditar());
-		
-		if(GerenciamentoUsuariosController.isVisibilidadeLabelButtonEditar()) {
+		if(!(usuarioAtual.equals(null))) {
 			
 			textFLogin.setText(usuarioAtual.getLoginUsuario());
 			textFNome.setText(usuarioAtual.getNomeUsuario());
 			textFSenha.setText(usuarioAtual.getSenhaUsuario());
 			
 		}
-		
-		GerenciamentoUsuariosController.setVisibilidadeLabelButtonNovo(false);
-		GerenciamentoUsuariosController.setVisibilidadeLabelButtonEditar(false);
-	
+
+	}
+
+	public void limparTextField() {
+
+		textFLogin.clear();
+		textFNome.clear();
+		textFSenha.clear();
+
 	}
 	
 	public void limparUsuario() {
-		
+
 		usuarioAtual = new Usuarios();
-		
+
+	}
+
+	public void abrirNovaJanela(String urlScene) throws IOException {
+
+		Main.getStage().close();
+		Main.setStage(novoStage(urlScene));
+		Main.getStage().show();
+
 	}
 
 }

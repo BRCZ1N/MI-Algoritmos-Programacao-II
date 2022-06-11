@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import applicationexeceptions.IdInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
 import applicationmodeldao.DaoUsuarios;
@@ -29,7 +30,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 	@FXML
 	private TextField pesquisarUsuario;
 	@FXML
-	private  TableView<Usuarios> tabelaUsuarios;
+	private TableView<Usuarios> tabelaUsuarios;
 	@FXML
 	private TableColumn<Usuarios, String> columnId;
 	@FXML
@@ -39,50 +40,32 @@ public class GerenciamentoUsuariosController implements Initializable {
 	@FXML
 	private TableColumn<Usuarios, String> columnSenha;
 	@FXML
-	private TableColumn<Usuarios, Button> columnAcoesEditar;
-	@FXML
-	private TableColumn<Usuarios, Button> columnAcoesRemover;
-	@FXML
 	private Button voltarMenu;
 	@FXML
-	private Button novoUsuario;
-	
-	private static boolean visibilidadeLabelButtonNovo;
-	
-	private static boolean visibilidadeLabelButtonEditar;
-	
+	private Button botaoAdicionar;
+	@FXML
+	private Button botaoEditar;
+	@FXML
+	private Button botaoExcluir;
+
 	private static ObservableList<Usuarios> observableListaUsuarios;
-
-	public static ObservableList<Usuarios> getObservableListaUsuarios() {
-		return observableListaUsuarios;
-	}
-
-	public static void setObservableListaUsuarios(ObservableList<Usuarios> observableListaUsuarios) {
-		GerenciamentoUsuariosController.observableListaUsuarios = observableListaUsuarios;
-	}
-
-	public static boolean isVisibilidadeLabelButtonNovo() {
-		return visibilidadeLabelButtonNovo;
-	}
-
-	public static void setVisibilidadeLabelButtonNovo(boolean visibilidadeLabelButtonNovo) {
-		GerenciamentoUsuariosController.visibilidadeLabelButtonNovo = visibilidadeLabelButtonNovo;
-	}
-
-	public static boolean isVisibilidadeLabelButtonEditar() {
-		return visibilidadeLabelButtonEditar;
-	}	
-
-	public static void setVisibilidadeLabelButtonEditar(boolean visibilidadeLabelButtonEditar) {
-		GerenciamentoUsuariosController.visibilidadeLabelButtonEditar = visibilidadeLabelButtonEditar;
-	}
-
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		carregarListaUsuarios();
-
+		
+		tabelaUsuarios.setOnMouseClicked (e ->{
+			
+			if(!tabelaUsuarios.getSelectionModel().isEmpty()) {
+				
+				botaoEditar.setDisable(false);
+				botaoExcluir.setDisable(false);
+				
+			}
+			
+		});	
+			
 	}
 
 	public void carregarListaUsuarios() {
@@ -94,31 +77,39 @@ public class GerenciamentoUsuariosController implements Initializable {
 		columnNome.setCellValueFactory(new PropertyValueFactory<>("nomeUsuario"));
 		columnLogin.setCellValueFactory(new PropertyValueFactory<>("loginUsuario"));
 		columnSenha.setCellValueFactory(new PropertyValueFactory<>("senhaUsuario"));
-		columnAcoesEditar.setCellValueFactory(new PropertyValueFactory<>("botaoEdit"));
-		columnAcoesRemover.setCellValueFactory(new PropertyValueFactory<>("botaoRemove"));
 		
-	
 	}
 
-	// Event Listener on Button[#voltarMenu].onAction
+
 	@FXML
 	public void acaoVoltarMenu(ActionEvent event) throws IOException {
-
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/LoginMenu.fxml"));
-		Main.getStage().show();
-
-
+		
+		abrirNovaJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
+		
 	}
 
 	@FXML
 	public void abrirAcaoAdd(ActionEvent event) throws IOException {
 
-		Main.getStage().close();
-		setVisibilidadeLabelButtonNovo(true);
-		Main.setStage(novoStage("/applicationviewcssfxml/FormularioUsuarios.fxml"));
-		Main.getStage().show();
+		abrirNovaJanela("/applicationviewcssfxml/FormularioUsuarios.fxml");
+	
+	}
+	
+	@FXML
+	public void abrirAcaoEditar(ActionEvent event) throws IOException {
 
+		FormularioUsuariosController.setUsuarioAtual(tabelaUsuarios.getSelectionModel().getSelectedItem());
+		abrirNovaJanela("/applicationviewcssfxml/FormularioUsuarios.fxml");
+	
+	}
+	
+	
+	@FXML
+	public void abrirAcaoExcluir(ActionEvent event) throws IOException, IdInvalidoException {
+
+		DaoUsuarios.removerDados(tabelaUsuarios.getSelectionModel().getSelectedItem().getId());
+		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
+		
 	}
 	
 
@@ -132,13 +123,14 @@ public class GerenciamentoUsuariosController implements Initializable {
 		return stage;
 
 	}
-	
-	public static void alterarObservableList() {
-		
-		observableListaUsuarios = FXCollections.observableArrayList(DaoUsuarios.getListaUsuarios());
-		
+
+	public void abrirNovaJanela(String urlScene) throws IOException {
+
+		Main.getStage().close();
+		Main.setStage(novoStage(urlScene));
+		Main.getStage().show();
+
 	}
-
-
+	
 
 }

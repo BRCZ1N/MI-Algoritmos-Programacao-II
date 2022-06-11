@@ -11,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 
 public class Main extends Application {
 
-
 	private static Stage stage;
 	private static Stage stage2;
 	

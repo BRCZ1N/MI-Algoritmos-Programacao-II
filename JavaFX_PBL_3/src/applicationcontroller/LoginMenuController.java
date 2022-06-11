@@ -44,9 +44,7 @@ public class LoginMenuController {
 		
 		if (usuarioLogado != null) {
 
-			Main.getStage().close();
-			Main.setStage(novoStage("/applicationviewcssfxml/PaginaPrincipal.fxml"));
-			Main.getStage().show();
+			abrirNovaJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
 
 		} else {
 
@@ -56,12 +54,6 @@ public class LoginMenuController {
 			alert.show();
 
 		}
-
-	}
-
-	public void fecharTela() {
-
-		Main.getStage().close();
 
 	}
 
@@ -75,6 +67,14 @@ public class LoginMenuController {
 		stage.setResizable(false);
 
 		return stage;
+
+	}
+	
+	public void abrirNovaJanela(String urlScene) throws IOException {
+
+		Main.getStage().close();
+		Main.setStage(novoStage(urlScene));
+		Main.getStage().show();
 
 	}
 

@@ -6,10 +6,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import java.io.IOException;
-
 import applicationmain.Main;
 import javafx.event.ActionEvent;
-
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
@@ -35,63 +33,49 @@ public class PaginaPrincipalController {
 	@FXML
 	public void menuFornecedoresAcao(ActionEvent event) throws IOException {
 		
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoFornecedores.fxml"));
-		Main.getStage().show();
+		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
 		
 	}
 	// Event Listener on Button[#menuClientes].onAction
 	@FXML
 	public void menuClientesAcao(ActionEvent event) throws IOException {
 		
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoCliente.fxml"));
-		Main.getStage().show();
+		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 		
 	}
 	// Event Listener on Button[#menuUsuarios].onAction
 	@FXML
 	public void menuUsuariosAcao(ActionEvent event) throws IOException {
 		
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoUsuarios.fxml"));
-		Main.getStage().show();
+		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		
 	}
 	// Event Listener on Button[#menuProdutos].onAction
 	@FXML
 	public void menuProdutosAcao(ActionEvent event) throws IOException {
 		
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoProdutos.fxml"));
-		Main.getStage().show();
+		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
 		
 	}
 	// Event Listener on Button[#menuPratos].onAction
 	@FXML
 	public void menuPratosAcao(ActionEvent event) throws IOException {
 		
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoPratos.fxml"));
-		Main.getStage().show();
+		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
 		
 	}
 	// Event Listener on Button[#menuVendas].onAction
 	@FXML
 	public void menuVendasAcao(ActionEvent event) throws IOException {
 		
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/GerenciamentoVendas.fxml"));
-		Main.getStage().show();
+		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
 		
 	}
 	// Event Listener on Button[#menuSair].onAction
 	@FXML
 	public void menuSairAcao(ActionEvent event) throws IOException {
 		
-		Main.getStage().close();
-		Main.setStage(novoStage("/applicationviewcssfxml/LoginMenu.fxml"));
-		Main.getStage().show();
+		abrirNovaJanela("/applicationviewcssfxml/LoginMenu.fxml");
 		
 	}
 	
@@ -107,7 +91,13 @@ public class PaginaPrincipalController {
 
 	}
 	
-	
-	
+	public void abrirNovaJanela(String urlScene) throws IOException {
+		
+		Main.getStage().close();
+		Main.setStage(novoStage(urlScene));
+		Main.getStage().show();
+		
+	}
+
 	
 }
