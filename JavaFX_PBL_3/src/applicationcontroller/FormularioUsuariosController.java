@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
-import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -54,8 +53,7 @@ public class FormularioUsuariosController implements Initializable {
 	@FXML
 	public void acaoVoltarMenu(ActionEvent event) throws IOException {
 
-		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
-		limparTextField();
+		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		limparUsuario();
 		
 	}
@@ -69,10 +67,7 @@ public class FormularioUsuariosController implements Initializable {
 		
 		try {
 
-			Stage novoStage = novoStage("/applicationviewcssfxml/AlertaAcao.fxml");
-			novoStage.initModality(Modality.APPLICATION_MODAL);
-			Main.setStage2(novoStage);
-			Main.getStage2().showAndWait();
+			ativarJanelaSecundaria("/applicationviewcssfxml/AlertaAcao.fxml");
 			
 			if(usuarioAtual.equals(null)) {
 				
@@ -99,43 +94,21 @@ public class FormularioUsuariosController implements Initializable {
 		}
 
 		Main.getStage2().close();
-		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
-		limparTextField();
+		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		limparUsuario();
-
-	}
-
-
-	public Stage novoStage(String urlScene) throws IOException {
-
-		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
-		Parent root = fxml.load();
-		Scene scene = new Scene(root);
-		Stage stage = new Stage();
-		stage.setScene(scene);
-
-		return stage;
 
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		if(!(usuarioAtual.equals(null))) {
+		if(usuarioAtual != null) {
 			
 			textFLogin.setText(usuarioAtual.getLoginUsuario());
 			textFNome.setText(usuarioAtual.getNomeUsuario());
 			textFSenha.setText(usuarioAtual.getSenhaUsuario());
 			
 		}
-
-	}
-
-	public void limparTextField() {
-
-		textFLogin.clear();
-		textFNome.clear();
-		textFSenha.clear();
 
 	}
 	
@@ -145,11 +118,25 @@ public class FormularioUsuariosController implements Initializable {
 
 	}
 
-	public void abrirNovaJanela(String urlScene) throws IOException {
+	public void mudarJanela(String urlScene) throws IOException {
 
-		Main.getStage().close();
-		Main.setStage(novoStage(urlScene));
-		Main.getStage().show();
+		Main.getStage().setScene(novaCena(urlScene));;
+	}
+	
+	public void ativarJanelaSecundaria(String urlScene) throws IOException {
+
+		Main.getStage2().setScene(novaCena(urlScene));
+		Main.getStage2().initModality(Modality.APPLICATION_MODAL);
+		Main.getStage2().showAndWait();
+	}
+	
+	public Scene novaCena(String urlScene) throws IOException {
+
+		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
+		Parent root = fxml.load();
+		Scene scene = new Scene(root);
+
+		return scene;
 
 	}
 

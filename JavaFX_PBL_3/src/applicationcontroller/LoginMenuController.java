@@ -12,7 +12,6 @@ import applicationmodeldao.DaoUsuarios;
 import javafx.event.ActionEvent;
 
 import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -44,7 +43,7 @@ public class LoginMenuController {
 		
 		if (usuarioLogado != null) {
 
-			abrirNovaJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
+			mudarJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
 
 		} else {
 
@@ -57,24 +56,19 @@ public class LoginMenuController {
 
 	}
 
-	public Stage novoStage(String urlScene) throws IOException {
+	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
 		Parent root = fxml.load();
 		Scene scene = new Scene(root);
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		stage.setResizable(false);
 
-		return stage;
+		return scene;
 
 	}
 	
-	public void abrirNovaJanela(String urlScene) throws IOException {
+	public void mudarJanela(String urlScene) throws IOException {
 
-		Main.getStage().close();
-		Main.setStage(novoStage(urlScene));
-		Main.getStage().show();
+		Main.getStage().setScene(novaCena(urlScene));
 
 	}
 

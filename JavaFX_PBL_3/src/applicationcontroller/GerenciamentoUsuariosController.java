@@ -84,14 +84,14 @@ public class GerenciamentoUsuariosController implements Initializable {
 	@FXML
 	public void acaoVoltarMenu(ActionEvent event) throws IOException {
 		
-		abrirNovaJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
+		mudarJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
 		
 	}
 
 	@FXML
 	public void abrirAcaoAdd(ActionEvent event) throws IOException {
 
-		abrirNovaJanela("/applicationviewcssfxml/FormularioUsuarios.fxml");
+		mudarJanela("/applicationviewcssfxml/FormularioUsuarios.fxml");
 	
 	}
 	
@@ -99,7 +99,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 	public void abrirAcaoEditar(ActionEvent event) throws IOException {
 
 		FormularioUsuariosController.setUsuarioAtual(tabelaUsuarios.getSelectionModel().getSelectedItem());
-		abrirNovaJanela("/applicationviewcssfxml/FormularioUsuarios.fxml");
+		mudarJanela("/applicationviewcssfxml/FormularioUsuarios.fxml");
 	
 	}
 	
@@ -108,27 +108,24 @@ public class GerenciamentoUsuariosController implements Initializable {
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException, IdInvalidoException {
 
 		DaoUsuarios.removerDados(tabelaUsuarios.getSelectionModel().getSelectedItem().getId());
-		abrirNovaJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
+		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		
 	}
 	
 
-	public Stage novoStage(String urlScene) throws IOException {
+	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
 		Parent root = fxml.load();
 		Scene scene = new Scene(root);
-		Stage stage = new Stage();
-		stage.setScene(scene);
-		return stage;
+
+		return scene;
 
 	}
 
-	public void abrirNovaJanela(String urlScene) throws IOException {
+	public void mudarJanela(String urlScene) throws IOException {
 
-		Main.getStage().close();
-		Main.setStage(novoStage(urlScene));
-		Main.getStage().show();
+		Main.getStage().setScene(novaCena(urlScene));
 
 	}
 	
