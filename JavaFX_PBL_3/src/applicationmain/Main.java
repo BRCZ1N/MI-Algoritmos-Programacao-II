@@ -1,7 +1,7 @@
 package applicationmain;
 
 import java.io.IOException;
-
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoUsuarios;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -15,8 +15,7 @@ public class Main extends Application {
 	private static Stage stage2;
 	
 	private DaoUsuarios daoUsuarios = new DaoUsuarios();
-
-	
+	private DaoFacade  daoFacade = new DaoFacade();	
 	public static Stage getStage() {
 		
 		return stage;
@@ -36,7 +35,7 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-
+		daoFacade.daoInicializar();
 		String url = "/applicationviewcssfxml/LoginMenu.fxml";
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(url));
 		Parent root = fxml.load();
