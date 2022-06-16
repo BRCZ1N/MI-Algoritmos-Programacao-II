@@ -7,7 +7,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -51,48 +50,30 @@ public class FormularioUsuariosController implements Initializable {
 
 	// Event Listener on Button[#voltarMenu].onAction
 	@FXML
-	public void voltarMenuAcao(ActionEvent event) throws IOException {
+	public void acaoVoltarMenu(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		limparUsuario();
-		
+
 	}
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void acaoSalvarUsuario(ActionEvent event) throws IOException {
+	public void salvarUsuarioAcao(ActionEvent event) throws IOException, IdInvalidoException, LoginExistenteException {
 
-		usuarioAtual = new Usuarios(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
-		
-		try {
-
-			ativarJanelaSecundaria("/applicationviewcssfxml/AlertaAcao.fxml");
+		Usuarios usuarioNovo = new Usuarios(textFLogin.getText(), textFSenha.getText(), textFNome.getText());
+	
 			
-			if(usuarioAtual.equals(null)) {
+			if(usuarioAtual == null) {
 				
-				if (AlertaAcaoController.isRespostaAlerta()) {
-
-					DaoUsuarios.addEditDados(usuarioAtual, null);
-
-				}
+					DaoUsuarios.addEditDados(usuarioNovo, null);
 				
-			}else {
-				
-				if (AlertaAcaoController.isRespostaAlerta()) {
+			}else{
 
-					DaoUsuarios.addEditDados(usuarioAtual, usuarioAtual.getId());
-
-				}
-				
+					DaoUsuarios.addEditDados(usuarioNovo, usuarioAtual.getId());
+					
 			}
-			
 
-		} catch (IdInvalidoException | LoginExistenteException e) {
-
-			e.getMessage();
-		}
-
-		Main.getStage2().close();
 		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		limparUsuario();
 
@@ -101,34 +82,28 @@ public class FormularioUsuariosController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		if(usuarioAtual != null) {
-			
+		if (usuarioAtual != null) {
+
 			textFLogin.setText(usuarioAtual.getLoginUsuario());
 			textFNome.setText(usuarioAtual.getNomeUsuario());
 			textFSenha.setText(usuarioAtual.getSenhaUsuario());
-			
+
 		}
 
 	}
-	
+
 	public void limparUsuario() {
 
-		usuarioAtual = new Usuarios();
+		usuarioAtual = null;
 
 	}
 
 	public void mudarJanela(String urlScene) throws IOException {
 
-		Main.getStage().setScene(novaCena(urlScene));;
+		Main.getStage().setScene(novaCena(urlScene));
+		;
 	}
-	
-	public void ativarJanelaSecundaria(String urlScene) throws IOException {
 
-		Main.getStage2().setScene(novaCena(urlScene));
-		Main.getStage2().initModality(Modality.APPLICATION_MODAL);
-		Main.getStage2().showAndWait();
-	}
-	
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));

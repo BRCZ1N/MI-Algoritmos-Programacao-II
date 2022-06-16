@@ -38,15 +38,15 @@ public class FormularioFornecedoresController implements Initializable {
 	private static Fornecedores fornecedorAtual;
 
 	public static Fornecedores getFornecedorAtual() {
-		
+
 		return fornecedorAtual;
-		
+
 	}
 
 	public static void setFornecedorAtual(Fornecedores fornecedorAtual) {
-		
+
 		FormularioFornecedoresController.fornecedorAtual = fornecedorAtual;
-		
+
 	}
 
 	// Event Listener on Button[#voltarMenu].onAction
@@ -55,44 +55,27 @@ public class FormularioFornecedoresController implements Initializable {
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
 		limparUsuario();
-		
+
 	}
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
 	public void acaoSalvarUsuario(ActionEvent event) throws IOException {
 
-		fornecedorAtual = new Fornecedores(textFNome.getText(), textFEndereco.getText(), textFCnpj.getText());
-		
-		try {
+		Fornecedores fornecedorNovo = new Fornecedores(textFNome.getText(), textFEndereco.getText(),textFCnpj.getText());
 
-			ativarJanelaSecundaria("/applicationviewcssfxml/AlertaAcao.fxml");
-			
-			if(fornecedorAtual.equals(null)) {
-				
-				if (AlertaAcaoController.isRespostaAlerta()) {
+		if (fornecedorAtual.equals(null)) {
 
-					DaoFornecedores.addEditDados(fornecedorAtual, null);
+			DaoFornecedores.addEditDados(fornecedorAtual, null);
 
-				} 
-				
-			}else {
-				
-				if (AlertaAcaoController.isRespostaAlerta()) {
+		} else {
 
-					DaoFornecedores.addEditDados(fornecedorAtual, fornecedorAtual.getId());
+			DaoFornecedores.addEditDados(fornecedorNovo, fornecedorAtual.getId());
 
-				}
-				
-			}
-			
-
-		} catch (IdInvalidoException | LoginExistenteException e) {
-
-			e.getMessage();
 		}
 
 		Main.getStage2().close();
+
 		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
 		limparUsuario();
 
@@ -101,16 +84,16 @@ public class FormularioFornecedoresController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		if(fornecedorAtual != null) {
-			
+		if (fornecedorAtual != null) {
+
 			textFLogin.setText(fornecedorAtual.getLoginUsuario());
 			textFNome.setText(fornecedorAtual.getNomeUsuario());
 			textFSenha.setText(fornecedorAtual.getSenhaUsuario());
-			
+
 		}
 
 	}
-	
+
 	public void limparUsuario() {
 
 		fornecedorAtual = new Fornecedores();
@@ -119,16 +102,10 @@ public class FormularioFornecedoresController implements Initializable {
 
 	public void mudarJanela(String urlScene) throws IOException {
 
-		Main.getStage().setScene(novaCena(urlScene));;
+		Main.getStage().setScene(novaCena(urlScene));
 	}
-	
-	public void ativarJanelaSecundaria(String urlScene) throws IOException {
 
-		Main.getStage2().setScene(novaCena(urlScene));
-		Main.getStage2().initModality(Modality.APPLICATION_MODAL);
-		Main.getStage2().showAndWait();
-	}
-	
+
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));

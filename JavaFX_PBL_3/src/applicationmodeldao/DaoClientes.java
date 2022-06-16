@@ -30,15 +30,19 @@ public class DaoClientes {
 
 		ArrayList<String> idHistoricoCompras = new ArrayList<String>();
 		
-		Clientes clienteA = new Clientes("Robenilson","018.236.120/0001-58","RobenilsonPatriota@yahoo.com","4002-8922",idHistoricoCompras);
-		Clientes clienteB = new Clientes("Carlos","018.236.120/0001-58","robinPat@yahoo.com","4002-8922", idHistoricoCompras);
-		Clientes clienteC = new Clientes("Claudinho","018.236.120/0001-58","CocadaPreta@yahoo.com","4002-8922", idHistoricoCompras);
+		idHistoricoCompras.add("0");
+		idHistoricoCompras.add("1");
 		
+		Clientes clienteA = new Clientes("Robenilson","018.236.120/0001-58","RobenilsonPatriota@yahoo.com","4002-8922",idHistoricoCompras);
+		Clientes clienteB = new Clientes("Carlos","018.232.120/0001-58","robinPat@yahoo.com","4002-8922", idHistoricoCompras);
+		Clientes clienteC = new Clientes("Claudinho","018.231.120/0001-58","Cocada@yahoo.com","4002-8922", idHistoricoCompras);
 		
 		try {
+			
 			addEditDados(clienteA, null);
 			addEditDados(clienteB, null);
 			addEditDados(clienteC, null);
+			
 		} catch (CpfJaExisteException | IdInvalidoException | VendaInexistenteException e) {
 
 			e.getMessage();
@@ -117,8 +121,6 @@ public class DaoClientes {
 
 		
 	}
-	
-
 
 	/**
 	 * M�todo para adicionar um cliente na lista de cliente
@@ -128,14 +130,18 @@ public class DaoClientes {
 	 * @throws IdInvalidoException 
 	 */
 	private static void addDados(Clientes cliente) throws CpfJaExisteException,  IdInvalidoException  {
+		
 		boolean cpfExiste = buscarCpf(0, listaClientes.size() - 1, cliente.getCpf());
+		
 		if(!cpfExiste) {
 			cliente.setId(Integer.toString(idSeq));
 			listaClientes.add(cliente);
 			idSeq++;
+			
 		} else {
 			
 			throw new CpfJaExisteException(cliente.getCpf());
+			
 		}
 	}
 	

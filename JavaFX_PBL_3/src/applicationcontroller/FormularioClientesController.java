@@ -23,7 +23,7 @@ import applicationmodeldao.DaoClientes;
 import applicationmodeldao.DaoUsuarios;
 import javafx.event.ActionEvent;
 
-public class FormularioClientesController implements Initializable{
+public class FormularioClientesController implements Initializable {
 	@FXML
 	private TextField textFNome;
 	@FXML
@@ -53,44 +53,32 @@ public class FormularioClientesController implements Initializable{
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 		limparUsuario();
-		
+
 	}
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
 	public void acaoSalvarUsuario(ActionEvent event) throws IOException {
 
-		clienteAtual = new Clientes(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
-		
+		Clientes clienteAtual = new Clientes(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
+
 		try {
 
-			ativarJanelaSecundaria("/applicationviewcssfxml/AlertaAcao.fxml");
-			
-			if(clienteAtual.equals(null)) {
-				
-				if (AlertaAcaoController.isRespostaAlerta()) {
+			if (clienteAtual.equals(null)) {
 
-					DaoClientes.addEditDados(clienteAtual, null);
+				DaoClientes.addEditDados(clienteAtual, null);
 
-				}
-				
-			}else {
-				
-				if (AlertaAcaoController.isRespostaAlerta()) {
+			} else {
 
-					DaoClientes.addEditDados(clienteAtual, clienteAtual.getId());
+				DaoClientes.addEditDados(clienteAtual, clienteAtual.getId());
 
-				}
-				
 			}
-			
 
 		} catch (IdInvalidoException | LoginExistenteException e) {
 
 			e.getMessage();
 		}
 
-		Main.getStage2().close();
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 		limparUsuario();
 
@@ -99,16 +87,16 @@ public class FormularioClientesController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		if(clienteAtual != null) {
-			
+		if (clienteAtual != null) {
+
 			textFLogin.setText(clienteAtual.getLoginUsuario());
 			textFNome.setText(clienteAtual.getNomeUsuario());
 			textFSenha.setText(clienteAtual.getSenhaUsuario());
-			
+
 		}
 
 	}
-	
+
 	public void limparUsuario() {
 
 		clienteAtual = new Clientes();
@@ -117,16 +105,10 @@ public class FormularioClientesController implements Initializable{
 
 	public void mudarJanela(String urlScene) throws IOException {
 
-		Main.getStage().setScene(novaCena(urlScene));;
+		Main.getStage().setScene(novaCena(urlScene));
+		
 	}
-	
-	public void ativarJanelaSecundaria(String urlScene) throws IOException {
 
-		Main.getStage2().setScene(novaCena(urlScene));
-		Main.getStage2().initModality(Modality.APPLICATION_MODAL);
-		Main.getStage2().showAndWait();
-	}
-	
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));

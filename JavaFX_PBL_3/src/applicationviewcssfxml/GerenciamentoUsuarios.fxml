@@ -73,7 +73,7 @@
                      <children>
                         <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="voltarMenu" alignment="CENTER" mnemonicParsing="false" onAction="#acaoVoltarMenu" prefHeight="36.0" prefWidth="86.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
+                              <Button fx:id="voltarMenu" alignment="CENTER" mnemonicParsing="false" onAction="#voltarMenuAcao" prefHeight="36.0" prefWidth="86.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

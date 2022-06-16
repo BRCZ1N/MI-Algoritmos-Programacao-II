@@ -102,7 +102,11 @@ public class FormularioVendasController implements Initializable {
 	@FXML
 	void acaoRemoverItemVenda(ActionEvent event) {
 		
-		listaPratosCarrinho.removeAll(tabelaCarrinho.getSelectionModel().getSelectedItems());
+		for(Pratos pratoExcluir:tabelaCarrinho.getSelectionModel().getSelectedItems()){
+			
+			listaPratosCarrinho.remove(pratoExcluir);
+			
+		}
 		refreshCarrinho();
 
 	}
@@ -134,18 +138,18 @@ public class FormularioVendasController implements Initializable {
 	@FXML
 	public void salvarVendaAcao(ActionEvent event) throws IOException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
 
-		vendaAtual = new Vendas(DaoPratos.listaIdPratos(listaPratosCarrinho),comboBoxPagamento.getValue());
+		Vendas novaVenda = new Vendas(DaoPratos.listaIdPratos(listaPratosCarrinho),comboBoxPagamento.getValue());
 
 		try {
 
-			if (vendaAtual.equals(null)) {
+			if (vendaAtual == null) {
 				
-				DaoVendas.addEditDados(vendaAtual, null);
+				DaoVendas.addEditDados(novaVenda, null);
 
 
 			} else {
 
-				DaoVendas.addEditDados(vendaAtual, vendaAtual.getId());
+				DaoVendas.addEditDados(novaVenda, vendaAtual.getId());
 
 			}
 

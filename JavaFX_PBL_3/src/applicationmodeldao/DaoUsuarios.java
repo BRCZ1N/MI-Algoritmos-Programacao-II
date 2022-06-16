@@ -195,7 +195,7 @@ public class DaoUsuarios {
 	 * M�todo para exibir a lista de usu�rios.
 	 */
 
-	public void listarDados() {
+	public static void listarDados() {
 
 		if (!listaUsuarios.isEmpty()) {
 
