@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -83,22 +82,9 @@
                               </Button>
                            </children>
                         </Pane>
-                        <Pane prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;">
-                           <children>
-                              <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="618.0" style="-fx-background-color: #00b4cc;" text="Preencha esses dados" textFill="WHITE">
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imageClientes">
-                                       <image>
-                                          <Image url="@../applicationviewimages/211872_person_add_icon.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Label>
-                           </children>
-                        </Pane>
+                        <Pane prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" />
                      </children>
                   </HBox>
-                  <Pane layoutY="35.0" prefHeight="15.0" prefWidth="700.0" />
                </children>
             </AnchorPane>
          </top>
@@ -110,7 +96,7 @@
                         <Pane prefHeight="38.0" prefWidth="646.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" onAction="#acaoSalvarUsuario" prefHeight="39.0" prefWidth="57.0" stylesheets="@EfeitosAnimacoes.css" text="Salvar" textFill="WHITE" />
+                              <Button fx:id="salvarUsuarioBotao" alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" onAction="#salvarUsuarioAcao" prefHeight="39.0" prefWidth="57.0" stylesheets="@EfeitosAnimacoes.css" text="Salvar" textFill="WHITE" />
                            </children>
                         </Pane>
                      </children>

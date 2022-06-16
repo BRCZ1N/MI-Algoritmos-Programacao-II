@@ -6,8 +6,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,45 +17,41 @@ import java.util.ResourceBundle;
 import applicationexeceptions.IdInvalidoException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmain.Main;
+import applicationmodel.Clientes;
 import applicationmodel.Usuarios;
+import applicationmodeldao.DaoClientes;
 import applicationmodeldao.DaoUsuarios;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 
-public class FormularioUsuariosController implements Initializable {
+public class FormularioClientesController implements Initializable{
 	@FXML
 	private TextField textFNome;
 	@FXML
-	private TextField textFLogin;
+	private TextField textFTelefone;
 	@FXML
-	private PasswordField textFSenha;
+	private TextField textFEmail;
+	@FXML
+	private TextField textFCpf;
 	@FXML
 	private Button voltarMenu;
 	@FXML
-	private Label labelNovoUsuario;
-	@FXML
-	private Label labelEditarUsuario;
-	@FXML
-	private Button novoUsuario;
-	@FXML
-	private Button editarUsuario;
+	private Button salvarClienteBotao;
 
-	private static Usuarios usuarioAtual;
+	private static Clientes clienteAtual;
 
-	public static Usuarios getUsuarioAtual() {
-		return usuarioAtual;
+	public static Clientes getUsuarioAtual() {
+		return clienteAtual;
 	}
 
-	public static void setUsuarioAtual(Usuarios usuarioAtual) {
-		FormularioUsuariosController.usuarioAtual = usuarioAtual;
+	public static void setUsuarioAtual(Clientes clienteAtual) {
+		FormularioClientesController.clienteAtual = clienteAtual;
 	}
 
 	// Event Listener on Button[#voltarMenu].onAction
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
-		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
+		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 		limparUsuario();
 		
 	}
@@ -62,17 +60,17 @@ public class FormularioUsuariosController implements Initializable {
 	@FXML
 	public void acaoSalvarUsuario(ActionEvent event) throws IOException {
 
-		usuarioAtual = new Usuarios(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
+		clienteAtual = new Clientes(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
 		
 		try {
 
 			ativarJanelaSecundaria("/applicationviewcssfxml/AlertaAcao.fxml");
 			
-			if(usuarioAtual.equals(null)) {
+			if(clienteAtual.equals(null)) {
 				
 				if (AlertaAcaoController.isRespostaAlerta()) {
 
-					DaoUsuarios.addEditDados(usuarioAtual, null);
+					DaoClientes.addEditDados(clienteAtual, null);
 
 				}
 				
@@ -80,7 +78,7 @@ public class FormularioUsuariosController implements Initializable {
 				
 				if (AlertaAcaoController.isRespostaAlerta()) {
 
-					DaoUsuarios.addEditDados(usuarioAtual, usuarioAtual.getId());
+					DaoClientes.addEditDados(clienteAtual, clienteAtual.getId());
 
 				}
 				
@@ -93,7 +91,7 @@ public class FormularioUsuariosController implements Initializable {
 		}
 
 		Main.getStage2().close();
-		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
+		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 		limparUsuario();
 
 	}
@@ -101,11 +99,11 @@ public class FormularioUsuariosController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		if(usuarioAtual != null) {
+		if(clienteAtual != null) {
 			
-			textFLogin.setText(usuarioAtual.getLoginUsuario());
-			textFNome.setText(usuarioAtual.getNomeUsuario());
-			textFSenha.setText(usuarioAtual.getSenhaUsuario());
+			textFLogin.setText(clienteAtual.getLoginUsuario());
+			textFNome.setText(clienteAtual.getNomeUsuario());
+			textFSenha.setText(clienteAtual.getSenhaUsuario());
 			
 		}
 
@@ -113,7 +111,7 @@ public class FormularioUsuariosController implements Initializable {
 	
 	public void limparUsuario() {
 
-		usuarioAtual = new Usuarios();
+		clienteAtual = new Clientes();
 
 	}
 
@@ -138,5 +136,4 @@ public class FormularioUsuariosController implements Initializable {
 		return scene;
 
 	}
-
 }

@@ -8,7 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -42,7 +41,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 	@FXML
 	private Button voltarMenu;
 	@FXML
-	private Button botaoAdicionar;
+	private Button botaoNovo;
 	@FXML
 	private Button botaoEditar;
 	@FXML
@@ -82,7 +81,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 
 
 	@FXML
-	public void acaoVoltarMenu(ActionEvent event) throws IOException {
+	public void voltarMenuAcao(ActionEvent event) throws IOException {
 		
 		mudarJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
 		

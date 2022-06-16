@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -78,31 +77,9 @@
                               </Button>
                            </children>
                         </Pane>
-                        <Pane prefHeight="36.0" prefWidth="614.0" style="-fx-background-color: #00b4cc;">
-                           <children>
-                              <Label fx:id="labelNovoCliente" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="616.0" style="-fx-background-color: #00b4cc;" text="Novo Cliente" textFill="WHITE" visible="false">
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imageClientes">
-                                       <image>
-                                          <Image url="@../applicationviewimages/211872_person_add_icon.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Label>
-                              <Label fx:id="labelEditarCliente" alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="616.0" style="-fx-background-color: #00b4cc;" text="Editar Cliente" textFill="WHITE" visible="false">
-                                 <graphic>
-                                    <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" styleClass="imageClientes">
-                                       <image>
-                                          <Image url="@../applicationviewimages/211872_person_add_icon.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Label>
-                           </children>
-                        </Pane>
+                        <Pane prefHeight="36.0" prefWidth="614.0" style="-fx-background-color: #00b4cc;" />
                      </children>
                   </HBox>
-                  <Pane layoutY="35.0" prefHeight="15.0" prefWidth="700.0" />
                </children>
             </AnchorPane>
          </top>
@@ -114,8 +91,7 @@
                         <Pane prefHeight="38.0" prefWidth="646.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="novoCliente" alignment="CENTER" disable="true" layoutX="-2.0" mnemonicParsing="false" onAction="#acaoAddCliente" prefHeight="39.0" prefWidth="57.0" styleClass="button2" stylesheets="@EfeitosAnimacoes.css" text="Add" textFill="WHITE" visible="false" />
-                              <Button fx:id="editarCliente" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#acaoEditCliente" prefHeight="39.0" prefWidth="57.0" styleClass="button2" stylesheets="@EfeitosAnimacoes.css" text="Editar" textFill="WHITE" visible="false" />
+                              <Button fx:id="salvarClienteBotao" alignment="CENTER" layoutX="-2.0" mnemonicParsing="false" onAction="#salvarClienteAcao" prefHeight="39.0" prefWidth="57.0" styleClass="button2" stylesheets="@EfeitosAnimacoes.css" text="Salvar" textFill="WHITE" />
                            </children>
                         </Pane>
                      </children>
