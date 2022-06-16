@@ -33,8 +33,7 @@ public class DaoFornecedores {
 		idProdutosFornecedor.add("1");
 		idProdutosFornecedor.add("2");
 
-		Fornecedores fornecedorA = new Fornecedores("018.236.120/0001-58", "EmpresaATest", "Rua UEFSA",
-				idProdutosFornecedor);
+		Fornecedores fornecedorA = new Fornecedores("018.236.120/0001-58", "EmpresaATest", "Rua UEFSA",idProdutosFornecedor);
 		Fornecedores fornecedorA2 = new Fornecedores("Sem CNPJ", "EmpresaATest", "Rua UEFSA", idProdutosFornecedor);
 		Fornecedores fornecedorB = new Fornecedores("Sem CNPJ", "EmpresaBTest", "Rua UEFSB", idProdutosFornecedor);
 		Fornecedores fornecedorC = new Fornecedores("019.579.305/0001-79", "EmpresaCTest", "Rua UEFSC",
