@@ -62,12 +62,19 @@
                                 <buttons>
                                   <Button fx:id="adicionarItemVenda" mnemonicParsing="false" onAction="#acaoAdicionarItemVenda" text="Adicionar">
                                        <graphic>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../applicationviewimages/134139_down_arrow_icon.png" />
+                                             </image></ImageView>
                                        </graphic>
                                     </Button>
                                     <Button fx:id="removerItemVenda" mnemonicParsing="false" onAction="#acaoRemoverItemVenda" text="Remover ">
                                        <graphic>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../applicationviewimages/134118_up_arrow_icon.png" />
+                                             </image>
+                                          </ImageView>
                                        </graphic>
                                     </Button>
                                 </buttons>
@@ -78,7 +85,7 @@
                                     <Insets right="90.0" />
                                  </padding>
                               </ButtonBar>
-                              <TableView fx:id="tabelaCarrinho" prefHeight="153.0" prefWidth="406.0">
+                              <TableView fx:id="tabelaCarrinho" prefHeight="156.0" prefWidth="406.0">
                                 <columns>
                                   <TableColumn fx:id="columnCarrinhoPratoId" prefWidth="75.0" text="Id" />
                                   <TableColumn fx:id="columnCarrinhoPratoNome" prefWidth="75.0" text="Nome" />
