@@ -63,7 +63,7 @@
                            <children>
                               <TableView fx:id="tabelaProdutos" prefHeight="156.0" prefWidth="406.0">
                                 <columns>
-                                  <TableColumn fx:id="columnSistemaProdutoId" prefWidth="75.0" text="Id" />
+                                  <TableColumn fx:id="columnSistemaProdutoId" prefWidth="75.0" text="ID" />
                                   <TableColumn fx:id="columnSistemaProdutoNome" prefWidth="75.0" text="Nome" />
                                     <TableColumn fx:id="columnSistemaProdutoQtd" prefWidth="75.0" text="Quantidade" />
                                 </columns>
@@ -75,12 +75,18 @@
                                 <buttons>
                                   <Button fx:id="adicionarProdutoPrato" mnemonicParsing="false" onAction="#acaoAdicionarProdutoPrato" text="Adicionar">
                                        <graphic>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../applicationviewimages/134139_down_arrow_icon.png" />
+                                             </image></ImageView>
                                        </graphic>
                                     </Button>
                                     <Button fx:id="removerProdutoPrato" mnemonicParsing="false" onAction="#acaoRemoverProdutoPrato" text="Remover">
                                        <graphic>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../applicationviewimages/134118_up_arrow_icon.png" />
+                                             </image></ImageView>
                                        </graphic>
                                     </Button>
                                 </buttons>
@@ -90,7 +96,7 @@
                               </ButtonBar>
                               <TableView fx:id="tabelaCarrinho" prefHeight="156.0" prefWidth="406.0">
                                 <columns>
-                                  <TableColumn fx:id="columnCarrinhoProdutoId" prefWidth="75.0" text="Id" />
+                                  <TableColumn fx:id="columnCarrinhoProdutoId" prefWidth="75.0" text="ID" />
                                     <TableColumn fx:id="columnCarrinhoProdutoQtd" prefWidth="75.0" text="Quantidade" />
                                 </columns>
                                  <columnResizePolicy>
