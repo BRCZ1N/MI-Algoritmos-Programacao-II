@@ -55,7 +55,7 @@ public class FormularioClientesController implements Initializable {
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void salvarUsuarioAcao(ActionEvent event) throws IOException, CpfJaExisteException, LoginExistenteException {
+	public void salvarClienteAcao(ActionEvent event) throws IOException, CpfJaExisteException, LoginExistenteException {
 
 		Clientes clienteAtual = new Clientes(textFNome.getText(), textFCpf.getText(), textFEmail.getText(),
 				textFTelefone.getText(), historicoCompras);

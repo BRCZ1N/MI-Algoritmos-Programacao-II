@@ -78,7 +78,7 @@ public class FormularioVendasController implements Initializable {
 
 	// Event Listener on Button[#voltarMenu].onAction
 	@FXML
-	public void acaoVoltarMenu(ActionEvent event) throws IOException {
+	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
 		limparUsuario();
