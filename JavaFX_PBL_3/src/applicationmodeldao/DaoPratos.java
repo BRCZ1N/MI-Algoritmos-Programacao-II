@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
 import applicationexeceptions.EntidadeComValoresNegativoException;
-import applicationexeceptions.IdInvalidoException;
-import applicationexeceptions.PratoComProdutoInvalidoException;
+
 
 /**
  * Classe para gerenciamento de objetos do tipo Pratos.
@@ -45,7 +44,7 @@ public class DaoPratos  {
 			addEditDados(pratoA, null);
 			addEditDados(pratoB, null);
 			addEditDados(pratoC, null);
-		} catch (EntidadeComValoresNegativoException | IdInvalidoException | PratoComProdutoInvalidoException e) {
+		} catch (EntidadeComValoresNegativoException e) {
 
 			e.getMessage();
 		}
@@ -103,7 +102,7 @@ public class DaoPratos  {
 	 * @throws PratoComProdutoInvalidoException
 	 */
 	public static void addEditDados(Pratos prato, String chaveId)
-			throws EntidadeComValoresNegativoException, IdInvalidoException, PratoComProdutoInvalidoException {
+			throws EntidadeComValoresNegativoException {
 
 		if (chaveId == null) {
 
@@ -125,7 +124,7 @@ public class DaoPratos  {
 	 * @throws PratoComProdutoInvalidoException
 	 */
 
-	private static void addDados(Pratos prato) throws EntidadeComValoresNegativoException, PratoComProdutoInvalidoException {
+	private static void addDados(Pratos prato) throws EntidadeComValoresNegativoException {
 
 		if (prato.getPreco() > 0 && !verificaProdutoInexistente(prato.getComposicaoPrato())) {
 
@@ -137,11 +136,7 @@ public class DaoPratos  {
 
 			throw new EntidadeComValoresNegativoException();
 
-		} else {
-
-			throw new PratoComProdutoInvalidoException();
-
-		}
+		} 
 	}
 
 	/**
@@ -151,18 +146,14 @@ public class DaoPratos  {
 	 * @throws IdInvalidoException
 	 */
 
-	public static void removerDados(String chaveId) throws IdInvalidoException {
+	public static void removerDados(String chaveId) {
 
 		int idExiste = buscarDado(0, listaPratos.size() - 1, chaveId, listaPratos);
 		if (idExiste != -1) {
 
 			listaPratos.remove(idExiste);
 
-		} else {
-
-			throw new IdInvalidoException(chaveId);
-
-		}
+		} 
 
 	}
 
@@ -177,7 +168,7 @@ public class DaoPratos  {
 	 */
 
 	private static void editarDados(Pratos pratoEditado, String chaveId)
-			throws EntidadeComValoresNegativoException, IdInvalidoException, PratoComProdutoInvalidoException {
+			throws EntidadeComValoresNegativoException {
 
 		int idExiste = buscarDado(0, listaPratos.size() - 1, chaveId, listaPratos);
 
@@ -188,20 +179,12 @@ public class DaoPratos  {
 			removerDados(Integer.toString(idExiste));
 			listaPratos.add(idExiste, pratoEditado);
 
-		} else if (idExiste == -1 && pratoEditado.getPreco() > 0
-				&& !verificaProdutoInexistente(pratoEditado.getComposicaoPrato())) {
-
-			throw new IdInvalidoException(chaveId);
-
 		} else if (idExiste != -1 && pratoEditado.getPreco() < 0
 				&& !verificaProdutoInexistente(pratoEditado.getComposicaoPrato())) {
 
 			throw new EntidadeComValoresNegativoException();
 
-		} else {
-
-			throw new PratoComProdutoInvalidoException();
-		}
+		} 
 
 	}
 

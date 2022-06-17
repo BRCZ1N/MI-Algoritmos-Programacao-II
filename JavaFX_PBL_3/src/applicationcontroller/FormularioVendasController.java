@@ -13,7 +13,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import applicationexeceptions.EstoqueInsuficienteException;
-import applicationexeceptions.IdInvalidoException;
 import applicationexeceptions.VendaComPratoInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Pratos;
@@ -29,7 +28,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 public class FormularioVendasController implements Initializable {
-	
+
 	@FXML
 	private Button voltarMenu;
 	@FXML
@@ -40,19 +39,14 @@ public class FormularioVendasController implements Initializable {
 	private Button removerItemVenda;
 	@FXML
 	private TableColumn<Pratos, String> columnCarrinhoPratoId;
-
 	@FXML
 	private TableColumn<Pratos, String> columnCarrinhoPratoNome;
-
 	@FXML
 	private TableColumn<Pratos, Double> columnCarrinhoPratoPreco;
-
 	@FXML
 	private TableColumn<Pratos, String> columnSistemaPratoId;
-
 	@FXML
 	private TableColumn<Pratos, String> columnSistemaPratoNome;
-
 	@FXML
 	private TableColumn<Pratos, Double> columnSistemaPratoPreco;
 	@FXML
@@ -67,10 +61,10 @@ public class FormularioVendasController implements Initializable {
 	private ObservableList<Pratos> observablePratoCarrinho;
 
 	private ArrayList<Pratos> listaPratosCarrinho = new ArrayList<Pratos>();
-	
+
 	private ArrayList<String> arrayListComboBox = new ArrayList<String>();
-	
-	private ObservableList<String> observableComboBox ;
+
+	private ObservableList<String> observableComboBox;
 
 	private static Vendas vendaAtual;
 
@@ -93,7 +87,7 @@ public class FormularioVendasController implements Initializable {
 
 	@FXML
 	void acaoAdicionarItemVenda(ActionEvent event) {
-		
+
 		listaPratosCarrinho.addAll(tabelaPratos.getSelectionModel().getSelectedItems());
 		refreshCarrinho();
 
@@ -101,11 +95,11 @@ public class FormularioVendasController implements Initializable {
 
 	@FXML
 	void acaoRemoverItemVenda(ActionEvent event) {
-		
-		for(Pratos pratoExcluir:tabelaCarrinho.getSelectionModel().getSelectedItems()){
-			
+
+		for (Pratos pratoExcluir : tabelaCarrinho.getSelectionModel().getSelectedItems()) {
+
 			listaPratosCarrinho.remove(pratoExcluir);
-			
+
 		}
 		refreshCarrinho();
 
@@ -115,7 +109,7 @@ public class FormularioVendasController implements Initializable {
 
 		observablePratoCarrinho = FXCollections.observableArrayList(listaPratosCarrinho);
 		tabelaCarrinho.setItems(observablePratoCarrinho);
-		
+
 		columnCarrinhoPratoId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnCarrinhoPratoNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		columnCarrinhoPratoPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
@@ -130,35 +124,26 @@ public class FormularioVendasController implements Initializable {
 		columnSistemaPratoId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnSistemaPratoNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		columnSistemaPratoPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
-		
-		
+
 	}
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void salvarVendaAcao(ActionEvent event) throws IOException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+	public void salvarVendaAcao(ActionEvent event)
+			throws IOException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
 
-		Vendas novaVenda = new Vendas(DaoPratos.listaIdPratos(listaPratosCarrinho),comboBoxPagamento.getValue());
+		Vendas novaVenda = new Vendas(DaoPratos.listaIdPratos(listaPratosCarrinho), comboBoxPagamento.getValue());
 
-		try {
+		if (vendaAtual == null) {
 
-			if (vendaAtual == null) {
-				
-				DaoVendas.addEditDados(novaVenda, null);
+			DaoVendas.addEditDados(novaVenda, null);
 
+		} else {
 
-			} else {
+			DaoVendas.addEditDados(novaVenda, vendaAtual.getId());
 
-				DaoVendas.addEditDados(novaVenda, vendaAtual.getId());
-
-			}
-
-		} catch (IdInvalidoException e) {
-
-			e.getMessage();
 		}
 
-		
 		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
 		limparUsuario();
 
@@ -174,12 +159,11 @@ public class FormularioVendasController implements Initializable {
 			refreshCarrinho();
 
 		}
-		
+
 		refreshSistema();
 		inicializarComboBox();
 		tabelaPratos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		tabelaCarrinho.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		
 
 	}
 
@@ -204,19 +188,18 @@ public class FormularioVendasController implements Initializable {
 		return scene;
 
 	}
-	
+
 	public void inicializarComboBox() {
-		
+
 		arrayListComboBox.add(TipoPagamento.getTipoDePagamento1());
 		arrayListComboBox.add(TipoPagamento.getTipoDePagamento2());
 		arrayListComboBox.add(TipoPagamento.getTipoDePagamento3());
 		arrayListComboBox.add(TipoPagamento.getTipoDePagamento4());
-		
+
 		observableComboBox = FXCollections.observableArrayList(arrayListComboBox);
-	
+
 		comboBoxPagamento.setItems(observableComboBox);
-		
-		
+
 	}
 
 }

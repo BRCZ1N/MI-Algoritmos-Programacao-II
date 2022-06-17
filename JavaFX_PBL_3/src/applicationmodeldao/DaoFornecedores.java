@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import applicationexeceptions.CnpjJaExisteException;
 import applicationexeceptions.FornecedorComProdutoInvalidoException;
-import applicationexeceptions.IdInvalidoException;
 import applicationmodel.Fornecedores;
 
 /**
@@ -36,15 +35,14 @@ public class DaoFornecedores {
 		Fornecedores fornecedorA = new Fornecedores("018.236.120/0001-58", "EmpresaATest", "Rua UEFSA",idProdutosFornecedor);
 		Fornecedores fornecedorA2 = new Fornecedores("Sem CNPJ", "EmpresaATest", "Rua UEFSA", idProdutosFornecedor);
 		Fornecedores fornecedorB = new Fornecedores("Sem CNPJ", "EmpresaBTest", "Rua UEFSB", idProdutosFornecedor);
-		Fornecedores fornecedorC = new Fornecedores("019.579.305/0001-79", "EmpresaCTest", "Rua UEFSC",
-				idProdutosFornecedor);
+		Fornecedores fornecedorC = new Fornecedores("019.579.305/0001-79", "EmpresaCTest", "Rua UEFSC",idProdutosFornecedor);
 
 		try {
 			addEditDados(fornecedorA, null);
 			addEditDados(fornecedorA2, null);
 			addEditDados(fornecedorB, null);
 			addEditDados(fornecedorC, null);
-		} catch (CnpjJaExisteException | IdInvalidoException | FornecedorComProdutoInvalidoException e) {
+		} catch (CnpjJaExisteException | FornecedorComProdutoInvalidoException e) {
 
 			e.printStackTrace();
 		}
@@ -99,7 +97,7 @@ public class DaoFornecedores {
 	 * @throws FornecedorComProdutoInvalidoException
 	 */
 	public static void addEditDados(Fornecedores fornecedor, String chaveId)
-			throws CnpjJaExisteException, IdInvalidoException, FornecedorComProdutoInvalidoException {
+			throws CnpjJaExisteException, FornecedorComProdutoInvalidoException {
 
 		if (chaveId == null) {
 
@@ -151,16 +149,12 @@ public class DaoFornecedores {
 	 *
 	 */
 
-	public static void removerDados(String chaveId) throws IdInvalidoException {
+	public static void removerDados(String chaveId) {
 
 		int idExiste = buscarDado(0, listaFornecedores.size() - 1, chaveId, listaFornecedores);
 		if (idExiste != -1) {
 
 			listaFornecedores.remove(idExiste);
-
-		} else {
-
-			throw new IdInvalidoException(chaveId);
 
 		}
 
@@ -177,7 +171,7 @@ public class DaoFornecedores {
 	 */
 
 	private static void editarDados(Fornecedores fornecedorEditado, String chaveId)
-			throws CnpjJaExisteException, IdInvalidoException, FornecedorComProdutoInvalidoException {
+			throws CnpjJaExisteException, FornecedorComProdutoInvalidoException {
 
 		boolean cnpjExiste = buscarCnpj(0, listaFornecedores.size() - 1, fornecedorEditado.getCnpj());
 		int idExiste = buscarDado(0, listaFornecedores.size() - 1, chaveId, listaFornecedores);
@@ -189,11 +183,7 @@ public class DaoFornecedores {
 			removerDados(Integer.toString(idExiste));
 			listaFornecedores.add(idExiste, fornecedorEditado);
 
-		} else if (idExiste == -1) {
-
-			throw new IdInvalidoException(chaveId);
-
-		} else if (cnpjExiste && !fornecedorEditado.getCnpj().equals("Sem CNPJ")) {
+		}else if (cnpjExiste && !fornecedorEditado.getCnpj().equals("Sem CNPJ")) {
 
 			throw new CnpjJaExisteException(fornecedorEditado.getCnpj());
 

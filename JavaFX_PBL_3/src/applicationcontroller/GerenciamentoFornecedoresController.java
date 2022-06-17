@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import applicationexeceptions.IdInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
 import applicationmodeldao.DaoFornecedores;
@@ -100,7 +99,7 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	
 	
 	@FXML
-	public void abrirAcaoExcluir(ActionEvent event) throws IOException, IdInvalidoException {
+	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 
 		DaoFornecedores.removerDados(tabelaFornecedores.getSelectionModel().getSelectedItem().getId());
 		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");

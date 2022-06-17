@@ -1,28 +1,19 @@
 package applicationcontroller;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Calendar;
 import java.util.ResourceBundle;
-
-import applicationexeceptions.IdInvalidoException;
-import applicationexeceptions.LoginExistenteException;
+import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationmain.Main;
-import applicationmodel.Pratos;
 import applicationmodel.Produtos;
-import applicationmodel.Usuarios;
 import applicationmodeldao.DaoProdutos;
-import applicationmodeldao.DaoUsuarios;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.DatePicker;
@@ -57,44 +48,37 @@ public class FormularioProdutosController implements Initializable {
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
 		limparUsuario();
-		
+
 	}
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void acaoSalvarUsuario(ActionEvent event) throws IOException {
+	public void salvarProdutoAcao(ActionEvent event) throws IOException {
 
-		produtoAtual = new Produtos(textFNome.getText(), Calendar.getInstance(), Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()),"Kg"));
-		
-		try {
+		Produtos produtoNovo = new Produtos(textFNome.getText(), Calendar.getInstance(),Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()), "Kg");
 
-			ativarJanelaSecundaria("/applicationviewcssfxml/AlertaAcao.fxml");
-			
-			if(produtoAtual.equals(null)) {
-				
-				if (AlertaAcaoController.isRespostaAlerta()) {
+		if (produtoAtual.equals(null)) {
 
-					DaoProdutos.addEditDados(produtoAtual, null);
+			try {
+				DaoProdutos.addEditDados(produtoNovo, null);
 
-				}
-				
-			}else {
-				
-				if (AlertaAcaoController.isRespostaAlerta()) {
+			} catch (EntidadeComValoresNegativoException e) {
 
-					DaoProdutos.addEditDados(produtoAtual, produtoAtual.getId());
-
-				}
-				
+				e.printStackTrace();
 			}
-			
 
-		} catch (IdInvalidoException | LoginExistenteException e) {
+		} else {
 
-			e.getMessage();
+			try {
+				DaoProdutos.addEditDados(produtoNovo, produtoAtual.getId());
+
+			} catch (EntidadeComValoresNegativoException e) {
+
+				e.printStackTrace();
+			}
+
 		}
 
-		Main.getStage2().close();
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
 		limparUsuario();
 
@@ -103,16 +87,16 @@ public class FormularioProdutosController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		if(produtoAtual != null) {
-			
-			textFLogin.setText(produtoAtual.getLoginUsuario());
-			textFNome.setText(produtoAtual.getNomeUsuario());
-			textFSenha.setText(produtoAtual.getSenhaUsuario());
-			
+		if (produtoAtual != null) {
+
+//			textFLogin.setText(produtoAtual.getLoginUsuario());
+//			textFNome.setText(produtoAtual.getNomeUsuario());
+//			textFSenha.setText(produtoAtual.getSenhaUsuario());
+
 		}
 
 	}
-	
+
 	public void limparUsuario() {
 
 		produtoAtual = new Produtos();
@@ -121,16 +105,10 @@ public class FormularioProdutosController implements Initializable {
 
 	public void mudarJanela(String urlScene) throws IOException {
 
-		Main.getStage().setScene(novaCena(urlScene));;
-	}
-	
-	public void ativarJanelaSecundaria(String urlScene) throws IOException {
+		Main.getStage().setScene(novaCena(urlScene));
 
-		Main.getStage2().setScene(novaCena(urlScene));
-		Main.getStage2().initModality(Modality.APPLICATION_MODAL);
-		Main.getStage2().showAndWait();
 	}
-	
+
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));

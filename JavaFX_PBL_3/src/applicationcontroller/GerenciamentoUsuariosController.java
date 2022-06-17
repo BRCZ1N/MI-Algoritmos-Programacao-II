@@ -8,12 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import applicationexeceptions.IdInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
 import applicationmodeldao.DaoUsuarios;
@@ -104,7 +101,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 	
 	
 	@FXML
-	public void abrirAcaoExcluir(ActionEvent event) throws IOException, IdInvalidoException {
+	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 
 		DaoUsuarios.removerDados(tabelaUsuarios.getSelectionModel().getSelectedItem().getId());
 		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");

@@ -10,8 +10,6 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import applicationexeceptions.IdInvalidoException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
@@ -59,20 +57,19 @@ public class FormularioUsuariosController implements Initializable {
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void salvarUsuarioAcao(ActionEvent event) throws IOException, IdInvalidoException, LoginExistenteException {
+	public void salvarUsuarioAcao(ActionEvent event) throws IOException, LoginExistenteException {
 
 		Usuarios usuarioNovo = new Usuarios(textFLogin.getText(), textFSenha.getText(), textFNome.getText());
-	
-			
-			if(usuarioAtual == null) {
-				
-					DaoUsuarios.addEditDados(usuarioNovo, null);
-				
-			}else{
 
-					DaoUsuarios.addEditDados(usuarioNovo, usuarioAtual.getId());
-					
-			}
+		if (usuarioAtual == null) {
+
+			DaoUsuarios.addEditDados(usuarioNovo, null);
+
+		} else {
+
+			DaoUsuarios.addEditDados(usuarioNovo, usuarioAtual.getId());
+
+		}
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		limparUsuario();

@@ -3,7 +3,6 @@ package applicationmodeldao;
 import java.util.ArrayList;
 
 import applicationexeceptions.EstoqueInsuficienteException;
-import applicationexeceptions.IdInvalidoException;
 import applicationexeceptions.VendaComPratoInvalidoException;
 import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
@@ -45,7 +44,7 @@ public class DaoVendas {
 			addEditDados(vendaB, null);
 			addEditDados(vendaC, null);
 
-		} catch (IdInvalidoException | EstoqueInsuficienteException | VendaComPratoInvalidoException e) {
+		} catch ( EstoqueInsuficienteException | VendaComPratoInvalidoException e) {
 
 			e.getMessage();
 		}
@@ -99,7 +98,7 @@ public class DaoVendas {
 	 * @throws VendaComPratoInvalidoException
 	 */
 	public static void addEditDados(Vendas venda, String chaveId)
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+			throws EstoqueInsuficienteException, VendaComPratoInvalidoException {
 
 		if (chaveId == null) {
 
@@ -146,18 +145,14 @@ public class DaoVendas {
 	 * @throws IdInvalidoException
 	 */
 
-	public static void removerDados(String chaveId) throws IdInvalidoException {
+	public static void removerDados(String chaveId) {
 
 		int idExiste = buscarDado(0, listaVendas.size() - 1, chaveId, listaVendas);
 		if (idExiste != -1) {
 
 			listaVendas.remove(idExiste);
 
-		} else {
-
-			throw new IdInvalidoException(chaveId);
-
-		}
+		} 
 
 	}
 
@@ -169,7 +164,7 @@ public class DaoVendas {
 	 * @throws IdInvalidoException
 	 */
 
-	private static void editarDados(Vendas vendaEditada, String chaveId) throws IdInvalidoException {
+	private static void editarDados(Vendas vendaEditada, String chaveId) {
 
 		int idExiste = buscarDado(0, listaVendas.size() - 1, chaveId, listaVendas);
 		if (idExiste != -1) {
@@ -178,11 +173,7 @@ public class DaoVendas {
 			removerDados(Integer.toString(idExiste));
 			listaVendas.add(idExiste, vendaEditada);
 
-		} else {
-
-			throw new IdInvalidoException(chaveId);
-
-		}
+		} 
 
 	}
 

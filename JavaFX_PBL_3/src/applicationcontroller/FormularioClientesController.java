@@ -6,21 +6,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import applicationexeceptions.IdInvalidoException;
+import applicationexeceptions.CpfJaExisteException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmain.Main;
 import applicationmodel.Clientes;
-import applicationmodel.Usuarios;
 import applicationmodeldao.DaoClientes;
-import applicationmodeldao.DaoUsuarios;
 import javafx.event.ActionEvent;
 
 public class FormularioClientesController implements Initializable {
@@ -36,6 +31,8 @@ public class FormularioClientesController implements Initializable {
 	private Button voltarMenu;
 	@FXML
 	private Button salvarClienteBotao;
+
+	private ArrayList<String> historicoCompras;
 
 	private static Clientes clienteAtual;
 
@@ -58,25 +55,19 @@ public class FormularioClientesController implements Initializable {
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void acaoSalvarUsuario(ActionEvent event) throws IOException {
+	public void salvarUsuarioAcao(ActionEvent event) throws IOException, CpfJaExisteException, LoginExistenteException {
 
-		Clientes clienteAtual = new Clientes(textFLogin.getText(), textFNome.getText(), textFSenha.getText());
+		Clientes clienteAtual = new Clientes(textFNome.getText(), textFCpf.getText(), textFEmail.getText(),
+				textFTelefone.getText(), historicoCompras);
 
-		try {
+		if (clienteAtual.equals(null)) {
 
-			if (clienteAtual.equals(null)) {
+			DaoClientes.addEditDados(clienteAtual, null);
 
-				DaoClientes.addEditDados(clienteAtual, null);
+		} else {
 
-			} else {
+			DaoClientes.addEditDados(clienteAtual, clienteAtual.getId());
 
-				DaoClientes.addEditDados(clienteAtual, clienteAtual.getId());
-
-			}
-
-		} catch (IdInvalidoException | LoginExistenteException e) {
-
-			e.getMessage();
 		}
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
@@ -89,10 +80,12 @@ public class FormularioClientesController implements Initializable {
 
 		if (clienteAtual != null) {
 
-			textFLogin.setText(clienteAtual.getLoginUsuario());
-			textFNome.setText(clienteAtual.getNomeUsuario());
-			textFSenha.setText(clienteAtual.getSenhaUsuario());
-
+			textFNome.setText(clienteAtual.getNome());
+			textFCpf.setText(clienteAtual.getCpf());
+			textFEmail.setText(clienteAtual.getEmail());
+			textFTelefone.setText(clienteAtual.getTelefone());
+			// historicoCompras
+			// refreshCarrinho();
 		}
 
 	}
@@ -106,7 +99,7 @@ public class FormularioClientesController implements Initializable {
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
-		
+
 	}
 
 	public Scene novaCena(String urlScene) throws IOException {

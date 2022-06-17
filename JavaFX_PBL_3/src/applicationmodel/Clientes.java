@@ -20,13 +20,13 @@ public class Clientes {
 	private String telefone;
 	private ArrayList<String> idHistoricoCompras;
 
-	public Clientes(String nome, String cpf, String email, String telefone, ArrayList<String> idHistoricoCompras2) {
+	public Clientes(String nome, String cpf, String email, String telefone, ArrayList<String> idHistoricoCompras) {
 
 		this.nome = nome;
 		this.cpf = cpf;
 		this.email = email;
 		this.telefone = telefone;
-		this.idHistoricoCompras = idHistoricoCompras2;
+		this.idHistoricoCompras = idHistoricoCompras;
 
 	}
 

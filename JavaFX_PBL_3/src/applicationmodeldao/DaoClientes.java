@@ -4,7 +4,6 @@ package applicationmodeldao;
 import java.util.ArrayList;
 
 import applicationexeceptions.CpfJaExisteException;
-import applicationexeceptions.IdInvalidoException;
 import applicationexeceptions.VendaInexistenteException;
 import applicationmodel.Clientes;
 
@@ -43,7 +42,7 @@ public class DaoClientes {
 			addEditDados(clienteB, null);
 			addEditDados(clienteC, null);
 			
-		} catch (CpfJaExisteException | IdInvalidoException | VendaInexistenteException e) {
+		} catch (CpfJaExisteException e) {
 
 			e.getMessage();
 		}
@@ -107,7 +106,7 @@ public class DaoClientes {
 	 * @throws VendaInexistenteException 
 	 */
 	public static void addEditDados(Clientes cliente, String chaveId)
-			throws CpfJaExisteException,  IdInvalidoException, VendaInexistenteException {
+			throws CpfJaExisteException {
 
 		if (chaveId == null) {
 
@@ -129,7 +128,7 @@ public class DaoClientes {
 	 * @throws CpfJaExisteException
 	 * @throws IdInvalidoException 
 	 */
-	private static void addDados(Clientes cliente) throws CpfJaExisteException,  IdInvalidoException  {
+	private static void addDados(Clientes cliente) throws CpfJaExisteException  {
 		
 		boolean cpfExiste = buscarCpf(0, listaClientes.size() - 1, cliente.getCpf());
 		
@@ -157,7 +156,7 @@ public class DaoClientes {
 	
 	
 	
-	private static void editarDados(Clientes clienteEditado, String chaveId) throws CpfJaExisteException,  IdInvalidoException, VendaInexistenteException  {
+	private static void editarDados(Clientes clienteEditado, String chaveId) throws CpfJaExisteException  {
 		
 		int idExiste = buscarDado(0, listaClientes.size() - 1, chaveId);
 		if (idExiste != -1) {
@@ -177,9 +176,6 @@ public class DaoClientes {
 	
 			}
 
-		} else {
-
-			throw new IdInvalidoException(chaveId);
 		}
 	}
 
@@ -194,18 +190,14 @@ public class DaoClientes {
 
 
 
-	public static void removerDados(String chaveId) throws IdInvalidoException {
+	public static void removerDados(String chaveId)  {
 		
 		int idExiste = buscarDado(0, listaClientes.size() - 1, chaveId);
 		if (idExiste != -1) {
 
 			listaClientes.remove(idExiste);
 
-		} else {
-
-			throw new IdInvalidoException(chaveId);
-
-		}
+		} 
 
 	}
 	/**

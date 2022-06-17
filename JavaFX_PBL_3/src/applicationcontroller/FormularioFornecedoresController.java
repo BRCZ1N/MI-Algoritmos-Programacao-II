@@ -6,21 +6,16 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
-
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import applicationexeceptions.IdInvalidoException;
-import applicationexeceptions.LoginExistenteException;
+import applicationexeceptions.CnpjJaExisteException;
+import applicationexeceptions.FornecedorComProdutoInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
-import applicationmodel.Usuarios;
 import applicationmodeldao.DaoFornecedores;
-import applicationmodeldao.DaoUsuarios;
 import javafx.event.ActionEvent;
 
 public class FormularioFornecedoresController implements Initializable {
@@ -35,6 +30,8 @@ public class FormularioFornecedoresController implements Initializable {
 	@FXML
 	private Button salvarFornecedorBotao;
 
+	private ArrayList<String> listaProdutos = new ArrayList<String>();
+	
 	private static Fornecedores fornecedorAtual;
 
 	public static Fornecedores getFornecedorAtual() {
@@ -60,13 +57,13 @@ public class FormularioFornecedoresController implements Initializable {
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void acaoSalvarUsuario(ActionEvent event) throws IOException {
+	public void salvarFornecedorAcao(ActionEvent event) throws IOException, CnpjJaExisteException, FornecedorComProdutoInvalidoException {
 
-		Fornecedores fornecedorNovo = new Fornecedores(textFNome.getText(), textFEndereco.getText(),textFCnpj.getText());
+		Fornecedores fornecedorNovo = new Fornecedores(textFCnpj.getText(),textFNome.getText(), textFEndereco.getText(), listaProdutos);
 
 		if (fornecedorAtual.equals(null)) {
 
-			DaoFornecedores.addEditDados(fornecedorAtual, null);
+			DaoFornecedores.addEditDados(fornecedorNovo, null);
 
 		} else {
 
@@ -85,10 +82,13 @@ public class FormularioFornecedoresController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		if (fornecedorAtual != null) {
-
-			textFLogin.setText(fornecedorAtual.getLoginUsuario());
-			textFNome.setText(fornecedorAtual.getNomeUsuario());
-			textFSenha.setText(fornecedorAtual.getSenhaUsuario());
+			
+			
+			textFCnpj.setText(fornecedorAtual.getCnpj());
+			textFNome.setText(fornecedorAtual.getNome()); 
+			textFEndereco.setText(fornecedorAtual.getEndereco()); 
+			//listaProdutos
+			//refreshCarrinho();
 
 		}
 

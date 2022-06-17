@@ -11,7 +11,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import applicationexeceptions.IdInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Vendas;
 import applicationmodeldao.DaoVendas;
@@ -100,7 +99,7 @@ public class GerenciamentoVendasController implements Initializable{
 	
 	
 	@FXML
-	public void abrirAcaoExcluir(ActionEvent event) throws IOException, IdInvalidoException {
+	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 
 		DaoVendas.removerDados(tabelaVendas.getSelectionModel().getSelectedItem().getId());
 		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");

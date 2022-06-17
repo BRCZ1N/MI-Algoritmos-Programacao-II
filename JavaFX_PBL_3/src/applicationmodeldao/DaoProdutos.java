@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationexeceptions.EstoqueInsuficienteException;
-import applicationexeceptions.IdInvalidoException;
+import applicationmodel.Ingredientes;
 import applicationmodel.Produtos;
 
 /**
@@ -42,7 +42,7 @@ public class DaoProdutos {
 			addEditDados(produtoB, null);
 			addEditDados(produtoC, null);
 
-		} catch (EntidadeComValoresNegativoException | IdInvalidoException e) {
+		} catch (EntidadeComValoresNegativoException e) {
 
 			e.getMessage();
 		}
@@ -99,7 +99,7 @@ public class DaoProdutos {
 	 * @throws IdInvalidoException
 	 */
 	public static void addEditDados(Produtos produto, String chaveId)
-			throws EntidadeComValoresNegativoException, IdInvalidoException {
+			throws EntidadeComValoresNegativoException {
 
 		if (chaveId == null) {
 
@@ -144,16 +144,12 @@ public class DaoProdutos {
 	 * @throws IdInvalidoException
 	 */
 
-	public static void removerDados(String chaveId) throws IdInvalidoException {
+	public static void removerDados(String chaveId) {
 
 		int idExiste = buscarDado(0, listaProdutos.size() - 1, chaveId, listaProdutos);
 		if (idExiste != -1) {
 
 			listaProdutos.remove(idExiste);
-
-		} else {
-
-			throw new IdInvalidoException(chaveId);
 
 		}
 
@@ -169,7 +165,7 @@ public class DaoProdutos {
 	 */
 
 	private static void editarDados(Produtos produtoEditado, String chaveId)
-			throws EntidadeComValoresNegativoException, IdInvalidoException {
+			throws EntidadeComValoresNegativoException {
 
 		int idExiste = buscarDado(0, listaProdutos.size() - 1, chaveId, listaProdutos);
 		if (idExiste != -1 && (produtoEditado.getPreco() > 0 && produtoEditado.getQtdProduto() > 0)) {
@@ -177,10 +173,6 @@ public class DaoProdutos {
 			produtoEditado.setId(listaProdutos.get(idExiste).getId());
 			removerDados(Integer.toString(idExiste));
 			listaProdutos.add(idExiste, produtoEditado);
-
-		} else if (idExiste == -1) {
-
-			throw new IdInvalidoException(chaveId);
 
 		} else {
 
@@ -352,6 +344,23 @@ public class DaoProdutos {
 
 		}
 
+	}
+	
+	
+	public static ArrayList<Ingredientes> converterProdutosIngredientes(ArrayList<Produtos> listaProdutos) {
+		
+		ArrayList<Ingredientes> listaIngredientes = new ArrayList<Ingredientes>();
+		Ingredientes ingrediente;
+		
+		for(Produtos produto:listaProdutos) {
+			
+			ingrediente = new Ingredientes(produto.getId(), produto.getQtdProduto());
+			listaIngredientes.add(ingrediente);
+			
+		}
+	
+		return listaIngredientes;
+		
 	}
 
 }

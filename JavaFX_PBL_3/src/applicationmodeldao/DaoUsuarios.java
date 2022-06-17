@@ -2,7 +2,6 @@ package applicationmodeldao;
 
 import java.util.ArrayList;
 
-import applicationexeceptions.IdInvalidoException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmodel.Funcionario;
 import applicationmodel.Gerente;
@@ -37,7 +36,7 @@ public class DaoUsuarios {
 			addEditDados(gerente, null);
 			addEditDados(funcionario, null);
 			addEditDados(funcionarioB, null);
-		} catch (IdInvalidoException | LoginExistenteException e) {
+		} catch ( LoginExistenteException e) {
 
 			e.getMessage();
 		}
@@ -90,7 +89,7 @@ public class DaoUsuarios {
 	 * @throws LoginExistenteException
 	 */
 	
-	public static void addEditDados(Usuarios usuario, String chaveId) throws IdInvalidoException, LoginExistenteException {
+	public static void addEditDados(Usuarios usuario, String chaveId) throws LoginExistenteException {
 
 		if (chaveId == null) {
 
@@ -136,18 +135,14 @@ public class DaoUsuarios {
 	 * 
 	 */
 
-	public static void removerDados(String chaveId) throws IdInvalidoException {
+	public static void removerDados(String chaveId)  {
 
 		int idExiste = buscarDado(0, listaUsuarios.size() - 1, chaveId);
 		if (idExiste != -1) {
 
 			listaUsuarios.remove(idExiste);
 
-		} else {
-
-			throw new IdInvalidoException(chaveId);
-
-		}
+		} 
 
 	}
 
@@ -162,7 +157,7 @@ public class DaoUsuarios {
 	 */
 
 	private static void editarDados(Usuarios usuarioEditado, String chaveId)
-			throws IdInvalidoException, LoginExistenteException {
+			throws  LoginExistenteException {
 
 		int idExiste = buscarDado(0, listaUsuarios.size() - 1, chaveId);
 
@@ -184,10 +179,7 @@ public class DaoUsuarios {
 
 			}
 
-		} else {
-
-			throw new IdInvalidoException(chaveId);
-		}
+		} 
 
 	}
 
