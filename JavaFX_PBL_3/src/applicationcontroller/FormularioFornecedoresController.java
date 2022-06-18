@@ -6,7 +6,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -15,7 +19,12 @@ import applicationexeceptions.CnpjJaExisteException;
 import applicationexeceptions.FornecedorComProdutoInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
+import applicationmodel.Ingredientes;
+import applicationmodel.Produtos;
 import applicationmodeldao.DaoFornecedores;
+import applicationmodeldao.DaoProdutos;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 public class FormularioFornecedoresController implements Initializable {
@@ -29,6 +38,28 @@ public class FormularioFornecedoresController implements Initializable {
 	private Button voltarMenu;
 	@FXML
 	private Button salvarFornecedorBotao;
+	@FXML
+	private TableView<Produtos> tabelaProdutos;
+	@FXML
+	private TableView<Produtos> tabelaProdutosFornecedor;
+	@FXML
+	private TableColumn<Produtos, Double> columnSistemaProdutoId;
+
+	@FXML
+	private TableColumn<Produtos, String> columnSistemaProdutoNome;
+
+	@FXML
+	private TableColumn<Produtos, String> columnProdutosFornecidosId;
+
+	@FXML
+	private TableColumn<Produtos, Double> columnProdutosFornecidosNome;
+
+	private ObservableList<Produtos> observableProdutoSistema;
+
+	private ObservableList<Produtos> observableProdutoFornecido;
+
+	private ArrayList<Produtos> listaProdutosFornecidos = new ArrayList<Produtos>();
+
 
 	private ArrayList<String> listaProdutos = new ArrayList<String>();
 	
@@ -113,6 +144,48 @@ public class FormularioFornecedoresController implements Initializable {
 		Scene scene = new Scene(root);
 
 		return scene;
+
+	}
+	@FXML
+	void acaoAdicionarProdutoFornecedor(ActionEvent event) {
+
+		ArrayList<Produtos> listaProdutos = new ArrayList<Produtos>();
+		listaProdutos.addAll(tabelaProdutos.getSelectionModel().getSelectedItems());
+		observableProdutoFornecido = FXCollections.observableArrayList(listaProdutos);
+		listaProdutosFornecidos.addAll(observableProdutoFornecido);
+		refreshCarrinho();
+
+	}
+
+	public void refreshCarrinho() {
+
+		observableProdutoFornecido = FXCollections.observableArrayList(listaProdutosFornecidos);
+		tabelaProdutosFornecedor.setItems(observableProdutoFornecido);
+
+		columnProdutosFornecidosId.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		columnProdutosFornecidosNome.setCellValueFactory(new PropertyValueFactory<>("Produto"));
+
+	}
+	
+	public void refreshSistema() {
+
+		observableProdutoSistema = FXCollections.observableArrayList(DaoProdutos.getListaProdutos());
+		tabelaProdutos.setItems(observableProdutoSistema);
+
+		 columnSistemaProdutoId.setCellValueFactory(new PropertyValueFactory<>("ID"));
+		columnSistemaProdutoNome.setCellValueFactory(new PropertyValueFactory<>("Produto"));
+
+	}
+
+	@FXML
+	void acaoRemoverProdutoPrato(ActionEvent event) {
+
+		for (Produtos produtoExcluir : tabelaProdutos.getSelectionModel().getSelectedItems()) {
+
+			listaProdutosFornecidos.removeIf(i -> (i.getId().equals(produtoExcluir.getId())));
+
+		}
+		refreshCarrinho();
 
 	}
 }
