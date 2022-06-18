@@ -96,8 +96,8 @@
                               </ButtonBar>
                               <TableView fx:id="tabelaProdutosFornecedor" prefHeight="156.0" prefWidth="406.0">
                                 <columns>
-                                  <TableColumn fx:id="columnProdutoFornecidosId" prefWidth="75.0" text="ID" />
-                                  <TableColumn fx:id="columnProdutoFornecidosNome" prefWidth="75.0" text="Produto" />
+                                  <TableColumn fx:id="columnProdutosFornecidosId" prefWidth="75.0" text="ID" />
+                                  <TableColumn fx:id="columnProdutosFornecidosNome" prefWidth="75.0" text="Produto" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
