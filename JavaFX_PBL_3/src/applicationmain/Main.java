@@ -34,7 +34,9 @@ public class Main extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
+		
 		daoFacade.daoInicializar();
+		stage2 = new Stage();
 		String url = "/applicationviewcssfxml/LoginMenu.fxml";
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(url));
 		Parent root = fxml.load();

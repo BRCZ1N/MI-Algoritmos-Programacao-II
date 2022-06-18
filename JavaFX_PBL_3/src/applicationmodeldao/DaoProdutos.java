@@ -2,10 +2,8 @@ package applicationmodeldao;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationexeceptions.EstoqueInsuficienteException;
-import applicationmodel.Ingredientes;
 import applicationmodel.Produtos;
 
 /**
@@ -209,12 +207,12 @@ public class DaoProdutos {
 	}
 
 	/**
-	 * M�todo para busca do id de um produto
+	 * M�todo para busca do index de um produto na lista de produtos
 	 * 
 	 * @param idProduto String - Id do produto que devera ser buscado
-	 * @return int idExiste - retornar caso o id exista
+	 * @return int idExiste - retornar caso o index exista
 	 */
-	public static Integer getIdProduto(String idProduto) {
+	public static Integer getIndexProduto(String idProduto) {
 
 		int idExiste = buscarDado(0, listaProdutos.size() - 1, idProduto, listaProdutos);
 		if (idExiste != -1) {
@@ -333,7 +331,7 @@ public class DaoProdutos {
 	 */
 	public static void reduzirEstoque(String id, double qtdProduto) throws EstoqueInsuficienteException {
 
-		if (listaProdutos.get(Integer.parseInt(id)).getQtdProduto() > qtdProduto) {
+		if (listaProdutos.get(Integer.parseInt(id)).getQtdProduto() >= qtdProduto) {
 
 			DaoProdutos.listaProdutos.get(Integer.parseInt(id))
 					.setQtdProduto(listaProdutos.get(Integer.parseInt(id)).getQtdProduto() - qtdProduto);
@@ -347,20 +345,20 @@ public class DaoProdutos {
 	}
 	
 	
-	public static ArrayList<Ingredientes> converterProdutosIngredientes(ArrayList<Produtos> listaProdutos) {
-		
-		ArrayList<Ingredientes> listaIngredientes = new ArrayList<Ingredientes>();
-		Ingredientes ingrediente;
-		
-		for(Produtos produto:listaProdutos) {
-			
-			ingrediente = new Ingredientes(produto.getId(), produto.getQtdProduto());
-			listaIngredientes.add(ingrediente);
-			
-		}
-	
-		return listaIngredientes;
-		
-	}
+//	public static ArrayList<Ingredientes> converterProdutosIngredientes(ArrayList<Produtos> listaProdutos) {
+//		
+//		ArrayList<Ingredientes> listaIngredientes = new ArrayList<Ingredientes>();
+//		Ingredientes ingrediente;
+//		
+//		for(Produtos produto:listaProdutos) {
+//			
+//			ingrediente = new Ingredientes(produto.getId());
+//			listaIngredientes.add(ingrediente);
+//			
+//		}
+//	
+//		return listaIngredientes;
+//		
+//	}
 
 }

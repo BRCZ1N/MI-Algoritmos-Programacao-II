@@ -50,16 +50,12 @@ public class FormularioPratosController implements Initializable {
 	private TextField textFDescricao;
 	@FXML
 	private TableColumn<Ingredientes, String> columnCarrinhoProdutoId;
-
 	@FXML
 	private TableColumn<Ingredientes, Double> columnCarrinhoProdutoQtd;
-
 	@FXML
 	private TableColumn<Produtos, String> columnSistemaProdutoId;
-
 	@FXML
 	private TableColumn<Produtos, String> columnSistemaProdutoNome;
-
 	@FXML
 	private TableColumn<Produtos, Double> columnSistemaProdutoQtd;
 
@@ -89,13 +85,12 @@ public class FormularioPratosController implements Initializable {
 	}
 
 	@FXML
-	void acaoAdicionarProdutoPrato(ActionEvent event) {
-
-		ArrayList<Produtos> listaProdutos = new ArrayList<Produtos>();
-		listaProdutos.addAll(tabelaProdutos.getSelectionModel().getSelectedItems());
-		ArrayList<Ingredientes> listaIngredientes = DaoProdutos.converterProdutosIngredientes(listaProdutos);
-		observableProdutoCarrinho = FXCollections.observableArrayList(listaIngredientes);
-		listaProdutosCarrinho.addAll(observableProdutoCarrinho);
+	void acaoAdicionarProdutoPrato(ActionEvent event) throws IOException {
+		
+		abrirJanelaSecundaria("/applicationviewcssfxml/QuantidadeProduto.fxml");
+		Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),QuantidadeProdutoController.getQuantidade());
+		listaProdutosCarrinho.add(ingrediente);
+		observableProdutoCarrinho = FXCollections.observableArrayList(listaProdutosCarrinho);
 		refreshCarrinho();
 
 	}
@@ -126,7 +121,7 @@ public class FormularioPratosController implements Initializable {
 
 		for (Ingredientes produtoExcluir : tabelaCarrinho.getSelectionModel().getSelectedItems()) {
 
-			listaProdutosCarrinho.removeIf(i -> (i.getId().equals(produtoExcluir.getId())));
+			listaProdutosCarrinho.remove(produtoExcluir);
 
 		}
 		refreshCarrinho();
@@ -140,7 +135,7 @@ public class FormularioPratosController implements Initializable {
 		Pratos pratoNovo = new Pratos(textFNome.getText(), textFDescricao.getText(),
 				Double.parseDouble(textFPreco.getText()), textFCategoria.getText(), listaProdutosCarrinho);
 
-		if (pratoAtual.equals(null)) {
+		if (pratoAtual == null) {
 
 			DaoPratos.addEditDados(pratoNovo, null);
 
@@ -170,21 +165,27 @@ public class FormularioPratosController implements Initializable {
 		}
 
 		refreshSistema();
-		tabelaProdutos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		tabelaCarrinho.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 	}
 
 	public void limparUsuario() {
 
-		pratoAtual = new Pratos();
+		pratoAtual = null;
 
 	}
 
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
-		;
+
+	}
+	
+	public void abrirJanelaSecundaria(String urlScene) throws IOException {
+
+		Main.getStage2().setScene(novaCena(urlScene));
+		Main.getStage2().showAndWait();
+
 	}
 
 	public Scene novaCena(String urlScene) throws IOException {
