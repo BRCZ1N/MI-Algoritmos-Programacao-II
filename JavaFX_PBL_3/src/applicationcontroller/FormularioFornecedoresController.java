@@ -19,7 +19,6 @@ import applicationexeceptions.CnpjJaExisteException;
 import applicationexeceptions.FornecedorComProdutoInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
-import applicationmodel.Ingredientes;
 import applicationmodel.Produtos;
 import applicationmodeldao.DaoFornecedores;
 import applicationmodeldao.DaoProdutos;
@@ -60,9 +59,6 @@ public class FormularioFornecedoresController implements Initializable {
 
 	private ArrayList<Produtos> listaProdutosFornecidos = new ArrayList<Produtos>();
 
-
-	private ArrayList<String> listaProdutos = new ArrayList<String>();
-	
 	private static Fornecedores fornecedorAtual;
 
 	public static Fornecedores getFornecedorAtual() {
@@ -88,9 +84,11 @@ public class FormularioFornecedoresController implements Initializable {
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void salvarFornecedorAcao(ActionEvent event) throws IOException, CnpjJaExisteException, FornecedorComProdutoInvalidoException {
+	public void salvarFornecedorAcao(ActionEvent event)
+			throws IOException, CnpjJaExisteException, FornecedorComProdutoInvalidoException {
 
-		Fornecedores fornecedorNovo = new Fornecedores(textFCnpj.getText(),textFNome.getText(), textFEndereco.getText(), listaProdutos);
+		Fornecedores fornecedorNovo = new Fornecedores(textFCnpj.getText(), textFNome.getText(),
+				textFEndereco.getText(), DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));
 
 		if (fornecedorAtual.equals(null)) {
 
@@ -113,15 +111,15 @@ public class FormularioFornecedoresController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		if (fornecedorAtual != null) {
-			
-			
+
 			textFCnpj.setText(fornecedorAtual.getCnpj());
-			textFNome.setText(fornecedorAtual.getNome()); 
-			textFEndereco.setText(fornecedorAtual.getEndereco()); 
-			//listaProdutos
-			//refreshCarrinho();
+			textFNome.setText(fornecedorAtual.getNome());
+			textFEndereco.setText(fornecedorAtual.getEndereco());
+			listaProdutosFornecidos.addAll(DaoProdutos.gerarListaProdutos(fornecedorAtual.getIdProdutosFornecedor()));
+			refreshCarrinho();
 
 		}
+		refreshSistema();
 
 	}
 
@@ -136,7 +134,6 @@ public class FormularioFornecedoresController implements Initializable {
 		Main.getStage().setScene(novaCena(urlScene));
 	}
 
-
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -146,6 +143,7 @@ public class FormularioFornecedoresController implements Initializable {
 		return scene;
 
 	}
+
 	@FXML
 	void acaoAdicionarProdutoFornecedor(ActionEvent event) {
 
@@ -156,36 +154,37 @@ public class FormularioFornecedoresController implements Initializable {
 		refreshCarrinho();
 
 	}
+	
+	@FXML
+	void acaoRemoverProdutoFornecedor(ActionEvent event) {
+
+		for (Produtos produtoExcluir : tabelaProdutosFornecedor.getSelectionModel().getSelectedItems()) {
+
+			listaProdutosFornecidos.remove(produtoExcluir);
+
+		}
+		refreshCarrinho();
+
+	}
 
 	public void refreshCarrinho() {
 
 		observableProdutoFornecido = FXCollections.observableArrayList(listaProdutosFornecidos);
 		tabelaProdutosFornecedor.setItems(observableProdutoFornecido);
 
-		columnProdutosFornecidosId.setCellValueFactory(new PropertyValueFactory<>("ID"));
-		columnProdutosFornecidosNome.setCellValueFactory(new PropertyValueFactory<>("Produto"));
+		columnProdutosFornecidosId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		columnProdutosFornecidosNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
 	}
-	
+
 	public void refreshSistema() {
 
 		observableProdutoSistema = FXCollections.observableArrayList(DaoProdutos.getListaProdutos());
 		tabelaProdutos.setItems(observableProdutoSistema);
 
-		 columnSistemaProdutoId.setCellValueFactory(new PropertyValueFactory<>("ID"));
-		columnSistemaProdutoNome.setCellValueFactory(new PropertyValueFactory<>("Produto"));
+		columnSistemaProdutoId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		columnSistemaProdutoNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 
 	}
 
-	@FXML
-	void acaoRemoverProdutoPrato(ActionEvent event) {
-
-		for (Produtos produtoExcluir : tabelaProdutos.getSelectionModel().getSelectedItems()) {
-
-			listaProdutosFornecidos.removeIf(i -> (i.getId().equals(produtoExcluir.getId())));
-
-		}
-		refreshCarrinho();
-
-	}
 }

@@ -5,6 +5,7 @@ import java.util.Calendar;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationexeceptions.EstoqueInsuficienteException;
 import applicationmodel.Produtos;
+import applicationmodel.UnidadeMedida;
 
 /**
  * Classe para gerenciamento de objetos do tipo Produtos.
@@ -30,9 +31,9 @@ public class DaoProdutos {
 		Calendar validade2 = Calendar.getInstance();
 		Calendar validade3 = Calendar.getInstance();
 
-		Produtos produtoA = new Produtos("ProdutoA", validade1, 140.0, 128.88, "Kg");
-		Produtos produtoB = new Produtos("ProdutoB", validade2, 80.2, 90.1, "L");
-		Produtos produtoC = new Produtos("ProdutoC", validade3, 80.2, 180.3, "Kg");
+		Produtos produtoA = new Produtos("ProdutoA", validade1, 140.0, 128.88, UnidadeMedida.getTipoDeUnidade1());
+		Produtos produtoB = new Produtos("ProdutoB", validade2, 80.2, 90.1, UnidadeMedida.getTipoDeUnidade2());
+		Produtos produtoC = new Produtos("ProdutoC", validade3, 80.2, 180.3, UnidadeMedida.getTipoDeUnidade1());
 
 		try {
 
@@ -88,16 +89,15 @@ public class DaoProdutos {
 	}
 
 	/**
-	 * Metodo para acessar o m�todo de editar caso exista um produto a ser
-	 * editado, ou ent�o para adicionar um novo produto.
+	 * Metodo para acessar o m�todo de editar caso exista um produto a ser editado,
+	 * ou ent�o para adicionar um novo produto.
 	 * 
 	 * @param produto Produtos
 	 * @param chaveId String
 	 * @throws EntidadeComValoresNegativoException
 	 * @throws IdInvalidoException
 	 */
-	public static void addEditDados(Produtos produto, String chaveId)
-			throws EntidadeComValoresNegativoException {
+	public static void addEditDados(Produtos produto, String chaveId) throws EntidadeComValoresNegativoException {
 
 		if (chaveId == null) {
 
@@ -286,8 +286,8 @@ public class DaoProdutos {
 	}
 
 	/**
-	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do
-	 * objeto caso exista na lista.
+	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do objeto
+	 * caso exista na lista.
 	 * 
 	 * @param inicio        Integer - Index inicial da lista
 	 * @param fim           Integer - Index final da lista
@@ -343,20 +343,46 @@ public class DaoProdutos {
 		}
 
 	}
-	
-	
-//	public static ArrayList<Ingredientes> converterProdutosIngredientes(ArrayList<Produtos> listaProdutos) {
+
+	public static ArrayList<String> gerarListaIdProdutos(ArrayList<Produtos> listaProdutos) {
+
+		ArrayList<String> listaIdProdutos = new ArrayList<String>();
+
+		for (Produtos produto : listaProdutos) {
+
+			listaIdProdutos.add(produto.getId());
+
+		}
+
+		return listaIdProdutos;
+
+	}
+
+	public static ArrayList<Produtos> gerarListaProdutos(ArrayList<String> listaIdProdutos) {
+
+		ArrayList<Produtos> listaProdutos = new ArrayList<Produtos>();
+		for (String produtoId : listaIdProdutos) {
+
+			listaProdutos.add(DaoProdutos.getListaProdutos().get(getIndexProduto(produtoId)));
+
+		}
+
+		return listaProdutos;
+
+	}
+
+//	public static ArrayList<Ingredientes> gerarListaIngredientes(ArrayList<Produtos> listaProdutos){
+//		
 //		
 //		ArrayList<Ingredientes> listaIngredientes = new ArrayList<Ingredientes>();
-//		Ingredientes ingrediente;
 //		
 //		for(Produtos produto:listaProdutos) {
 //			
-//			ingrediente = new Ingredientes(produto.getId());
+//			Ingredientes ingrediente = new Ingredientes(produto.getId(),produto.getQtdProduto());
 //			listaIngredientes.add(ingrediente);
 //			
 //		}
-//	
+//		
 //		return listaIngredientes;
 //		
 //	}

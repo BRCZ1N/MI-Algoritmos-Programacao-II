@@ -52,21 +52,21 @@ public class FormularioClientesController implements Initializable {
 		limparUsuario();
 
 	}
-
+	
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
 	public void salvarClienteAcao(ActionEvent event) throws IOException, CpfJaExisteException, LoginExistenteException {
 
-		Clientes clienteAtual = new Clientes(textFNome.getText(), textFCpf.getText(), textFEmail.getText(),
+		Clientes clienteNovo = new Clientes(textFNome.getText(), textFCpf.getText(), textFEmail.getText(),
 				textFTelefone.getText(), historicoCompras);
 
-		if (clienteAtual.equals(null)) {
+		if (clienteAtual == null) {
 
-			DaoClientes.addEditDados(clienteAtual, null);
+			DaoClientes.addEditDados(clienteNovo, null);
 
 		} else {
 
-			DaoClientes.addEditDados(clienteAtual, clienteAtual.getId());
+			DaoClientes.addEditDados(clienteNovo, clienteAtual.getId());
 
 		}
 
@@ -85,14 +85,15 @@ public class FormularioClientesController implements Initializable {
 			textFEmail.setText(clienteAtual.getEmail());
 			textFTelefone.setText(clienteAtual.getTelefone());
 			// historicoCompras
-			// refreshCarrinho();
+			//refreshCarrinho();
+			
 		}
 
 	}
 
 	public void limparUsuario() {
 
-		clienteAtual = new Clientes();
+		clienteAtual = null;
 
 	}
 

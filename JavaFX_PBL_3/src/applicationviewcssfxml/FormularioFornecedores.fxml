@@ -71,7 +71,7 @@
                               </TableView>
                               <ButtonBar prefHeight="48.0" prefWidth="325.0">
                                  <buttons>
-                                    <Button fx:id="adicionarProdutoPrato" mnemonicParsing="false" onAction="#acaoAdicionarProdutoPrato" text="Adicionar">
+                                    <Button fx:id="adicionarProdutoFornecedor" mnemonicParsing="false" onAction="#acaoAdicionarProdutoFornecedor" text="Adicionar">
                                        <graphic>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -80,7 +80,7 @@
                                           </ImageView>
                                        </graphic>
                                     </Button>
-                                    <Button fx:id="removerProdutoPrato" mnemonicParsing="false" onAction="#acaoRemoverProdutoPrato" text="Remover">
+                                    <Button fx:id="removerProdutoFornecedor" mnemonicParsing="false" onAction="#acaoRemoverProdutoFornecedor" text="Remover">
                                        <graphic>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
