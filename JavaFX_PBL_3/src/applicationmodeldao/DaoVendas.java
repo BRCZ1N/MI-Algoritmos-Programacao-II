@@ -357,6 +357,7 @@ public class DaoVendas {
 		}
 
 	}
-	
-	
+	private static void convertString(ArrayList()) {
+		
+	} 
 }

@@ -89,6 +89,7 @@ public class FormularioVendasController implements Initializable {
 	void acaoAdicionarItemVenda(ActionEvent event) {
 
 		listaPratosCarrinho.addAll(tabelaPratos.getSelectionModel().getSelectedItems());
+		
 		refreshCarrinho();
 
 	}
