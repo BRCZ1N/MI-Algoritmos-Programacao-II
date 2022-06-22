@@ -1,7 +1,5 @@
 package applicationmodel;
-
-import java.text.DateFormat;
-import java.util.Calendar;
+import java.time.LocalDate;
 
 /**
  * Classe para objetos do tipo Produtos.
@@ -15,7 +13,7 @@ public class Produtos {
 	
 	private String id;
 	private String nome;
-	private Calendar validade;
+	private LocalDate validade;
 	private double qtdProduto;
 	private String tipoQtd;
 	private double preco;
@@ -29,7 +27,7 @@ public class Produtos {
 	 *@param tipoQtd String - Unidade de medida do produto
 	 */
 	
-	public Produtos(String nome, Calendar validade, double preco, double qtdProduto, String tipoQtd){
+	public Produtos(String nome, LocalDate validade, double preco, double qtdProduto, String tipoQtd){
 		
 		this.nome = nome;
 		this.validade = validade;
@@ -117,27 +115,27 @@ public class Produtos {
 	 *@return Calendar validade
 	 */
 	
-	public Calendar getValidade() {
+	public LocalDate getValidade() {
 		return validade;
 	}
-	/**
-	 *M�todo para formatar a data de validade
-	 *@return String validade
-	 */
-	public String getValidadeString() {
-		
-		DateFormat f = DateFormat.getDateInstance(DateFormat.FULL);
-		String validade = f.format(this.validade.getTime());
-		return validade;
-		
-	}
+//	/**
+//	 *M�todo para formatar a data de validade
+//	 *@return String validade
+//	 */
+//	public String getValidadeString() {
+//		
+//		DateFormat f = DateFormat.getDateInstance(DateFormat.FULL);
+//		String validade = f.format(this.validade.getTime());
+//		return validade;
+//		
+//	}
 	
 	/**
 	 *M�todo para setar a validade do produto.
 	 *@param validade Calendar
 	 */
 	
-	public void setValidade(Calendar validade) {
+	public void setValidade(LocalDate validade) {
 		this.validade = validade;
 	}
 	

@@ -90,7 +90,7 @@ public class FormularioFornecedoresController implements Initializable {
 		Fornecedores fornecedorNovo = new Fornecedores(textFCnpj.getText(), textFNome.getText(),
 				textFEndereco.getText(), DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));
 
-		if (fornecedorAtual.equals(null)) {
+		if (fornecedorAtual == null) {
 
 			DaoFornecedores.addEditDados(fornecedorNovo, null);
 
@@ -125,7 +125,7 @@ public class FormularioFornecedoresController implements Initializable {
 
 	public void limparUsuario() {
 
-		fornecedorAtual = new Fornecedores();
+		fornecedorAtual = null;
 
 	}
 

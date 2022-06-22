@@ -1,9 +1,6 @@
 package applicationmodel;
-
-import java.text.DateFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-
 import applicationmodeldao.DaoPratos;
 
 
@@ -19,7 +16,7 @@ import applicationmodeldao.DaoPratos;
 public class Vendas {
 
 	private String id;
-	private Calendar diaHorario;
+	private LocalDateTime diaHorario;
 	private ArrayList<String> listaIdItens;
 	private double precoTotal;
 	private String tipoPagamento;
@@ -38,7 +35,7 @@ public class Vendas {
 		this.listaIdItens = listaIdItens;
 		this.tipoPagamento = tipoPagamento;
 		this.precoTotal = adicaoPrecoTotalVenda();
-		this.diaHorario = Calendar.getInstance();
+		this.diaHorario = LocalDateTime.now();
 
 	}
 
@@ -72,22 +69,22 @@ public class Vendas {
 	 * @return Calendar diaHorario
 	 */
 
-	public Calendar getDiaHorario() {
+	public LocalDateTime getDiaHorario() {
 		return diaHorario;
 	}
 
-	/**
-	 * M�todo para formatar a data de vendas
-	 * 
-	 * @return String diaHString
-	 */
-	public String getDiaHorarioString() {
-
-		DateFormat dataH = DateFormat.getInstance();
-		String diaHString = dataH.format(this.diaHorario.getTime());
-		return diaHString;
-
-	}
+//	/**
+//	 * M�todo para formatar a data de vendas
+//	 * 
+//	 * @return String diaHString
+//	 */
+//	public String getDiaHorarioString() {
+//
+//		DateFormat dataH = DateFormat.getInstance();
+//		String diaHString = dataH.format(this.diaHorario.getTime());
+//		return diaHString;
+//
+//	}
 
 	/**
 	 * M�todo para retorno da lista de itens da venda.

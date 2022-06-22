@@ -6,11 +6,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Calendar;
+import java.time.LocalDate;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Produtos;
@@ -27,17 +28,17 @@ public class GerenciamentoProdutosController implements Initializable {
 	@FXML
 	private TableView<Produtos> tabelaProdutos;
 	@FXML
-	private TableColumn<Produtos,String> columnId;
+	private TableColumn<Produtos, String> columnId;
 	@FXML
-	private TableColumn<Produtos,String> columnNome;
+	private TableColumn<Produtos, String> columnNome;
 	@FXML
-	private TableColumn<Produtos,Double> columnPreco;
+	private TableColumn<Produtos, Double> columnPreco;
 	@FXML
-	private TableColumn<Produtos,Double> columnQtd;
+	private TableColumn<Produtos, Double> columnQtd;
 	@FXML
-	private TableColumn<Produtos,Double> columnTipoQtd;
+	private TableColumn<Produtos, Double> columnTipoQtd;
 	@FXML
-	private TableColumn<Produtos,Calendar> columnValidade;
+	private TableColumn<Produtos, LocalDate> columnValidade;
 	@FXML
 	private Button voltarMenu;
 	@FXML
@@ -53,65 +54,78 @@ public class GerenciamentoProdutosController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		carregarListaProdutos();
-		
-		tabelaProdutos.setOnMouseClicked (e ->{
-			
-			if(!tabelaProdutos.getSelectionModel().isEmpty()) {
-				
+
+		tabelaProdutos.setOnMouseClicked(e -> {
+
+			if (!tabelaProdutos.getSelectionModel().isEmpty()) {
+
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
-				
+
 			}
-			
-		});	
-			
+
+		});
+
 	}
 
 	public void carregarListaProdutos() {
 
 		observableListaProdutos = FXCollections.observableArrayList(DaoProdutos.getListaProdutos());
 		tabelaProdutos.setItems(observableListaProdutos);
-		
+
 		columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		columnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));;
+		columnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
 		columnQtd.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
-		columnTipoQtd.setCellValueFactory(new PropertyValueFactory<>("tipoQtd"));
-		columnValidade.setCellValueFactory(new PropertyValueFactory<>("validade"));;
-	}
+		columnQtd.setCellFactory(column -> {
+			return new TableCell<Produtos, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
 
+			};
+
+		});
+		columnTipoQtd.setCellValueFactory(new PropertyValueFactory<>("tipoQtd"));
+		columnValidade.setCellValueFactory(new PropertyValueFactory<>("validade"));
+
+	}
 
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
-		
+
 		mudarJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
-		
+
 	}
 
 	@FXML
 	public void abrirAcaoAdd(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/FormularioProdutos.fxml");
-	
+
 	}
-	
+
 	@FXML
 	public void abrirAcaoEditar(ActionEvent event) throws IOException {
 
 		FormularioProdutosController.setProdutoAtual(tabelaProdutos.getSelectionModel().getSelectedItem());
 		mudarJanela("/applicationviewcssfxml/FormularioProdutos.fxml");
-	
+
 	}
-	
-	
+
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 
 		DaoProdutos.removerDados(tabelaProdutos.getSelectionModel().getSelectedItem().getId());
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
-		
+
 	}
-	
 
 	public Scene novaCena(String urlScene) throws IOException {
 
@@ -128,5 +142,5 @@ public class GerenciamentoProdutosController implements Initializable {
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
-	
+
 }

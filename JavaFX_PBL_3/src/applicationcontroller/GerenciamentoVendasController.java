@@ -6,10 +6,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Vendas;
@@ -28,7 +31,7 @@ public class GerenciamentoVendasController implements Initializable{
 	@FXML
 	private TableColumn<Vendas,String> columnId;
 	@FXML
-	private TableColumn<Vendas,String> columnDHorario;
+	private TableColumn<Vendas,LocalDateTime> columnDHorario;
 	@FXML
 	private TableColumn<Vendas,Double> columnPrecoV;
 	@FXML
@@ -47,7 +50,7 @@ public class GerenciamentoVendasController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
-		carregarListaVendaas();
+		carregarListaVendas();
 		
 		tabelaVendas.setOnMouseClicked (e ->{
 			
@@ -62,15 +65,48 @@ public class GerenciamentoVendasController implements Initializable{
 			
 	}
 
-	public void carregarListaVendaas() {
+	public void carregarListaVendas() {
 
 		observableListaVendas = FXCollections.observableArrayList(DaoVendas.getListaVendas());
 		tabelaVendas.setItems(observableListaVendas);
 
 		columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		columnDHorario.setCellValueFactory(new PropertyValueFactory<>("diaHorario"));
 		columnPrecoV.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
+		columnPrecoV.setCellFactory(column -> {
+			return new TableCell<Vendas, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
+
+			};
+
+		});
 		columnTPagamento.setCellValueFactory(new PropertyValueFactory<>("tipoPagamento"));
+		columnDHorario.setCellValueFactory(new PropertyValueFactory<>("diaHorario"));
+		DateTimeFormatter formatarDHorario = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+		columnDHorario.setCellFactory(column -> {
+
+			return new TableCell<Vendas, LocalDateTime>() {
+
+				@Override
+				public void updateItem(LocalDateTime item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(formatarDHorario.format(item));
+					}
+				}
+
+			};
+
+		});
 		
 	}
 

@@ -1,24 +1,32 @@
 package applicationcontroller;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationmain.Main;
 import applicationmodel.Produtos;
+import applicationmodel.UnidadeMedida;
 import applicationmodeldao.DaoProdutos;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import javafx.scene.control.DatePicker;
 
 public class FormularioProdutosController implements Initializable {
+
+	@FXML
+	private ComboBox<String> comboBoxUMedida;
 	@FXML
 	private TextField textFNome;
 	@FXML
@@ -31,6 +39,10 @@ public class FormularioProdutosController implements Initializable {
 	private Button voltarMenu;
 	@FXML
 	private Button salvarProdutoBotao;
+
+	private ArrayList<String> arrayListComboBox = new ArrayList<String>();
+
+	private ObservableList<String> observableComboBox;
 
 	private static Produtos produtoAtual;
 
@@ -55,28 +67,23 @@ public class FormularioProdutosController implements Initializable {
 	@FXML
 	public void salvarProdutoAcao(ActionEvent event) throws IOException {
 
-		Produtos produtoNovo = new Produtos(textFNome.getText(), Calendar.getInstance(),Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()), "Kg");
+		Produtos produtoNovo = new Produtos(textFNome.getText(), datePickerProduto.getValue(),
+				Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()), comboBoxUMedida.getValue());
 
-		if (produtoAtual.equals(null)) {
+		try {
 
-			try {
+			if (produtoAtual == null) {
+
 				DaoProdutos.addEditDados(produtoNovo, null);
 
-			} catch (EntidadeComValoresNegativoException e) {
+			} else {
 
-				e.printStackTrace();
-			}
-
-		} else {
-
-			try {
 				DaoProdutos.addEditDados(produtoNovo, produtoAtual.getId());
 
-			} catch (EntidadeComValoresNegativoException e) {
-
-				e.printStackTrace();
 			}
+		} catch (EntidadeComValoresNegativoException e) {
 
+			e.printStackTrace();
 		}
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
@@ -89,17 +96,32 @@ public class FormularioProdutosController implements Initializable {
 
 		if (produtoAtual != null) {
 
-//			textFLogin.setText(produtoAtual.getLoginUsuario());
-//			textFNome.setText(produtoAtual.getNomeUsuario());
-//			textFSenha.setText(produtoAtual.getSenhaUsuario());
+			textFNome.setText(produtoAtual.getNome());
+			textFPreco.setText(Double.toString(produtoAtual.getPreco()));
+			textFQtd.setText(Double.toString(produtoAtual.getQtdProduto()));
+			comboBoxUMedida.setValue(produtoAtual.getTipoQtd());
+			datePickerProduto.setValue(produtoAtual.getValidade());
 
 		}
+		
+		
+		inicializarComboBox();
+
+	}
+
+	public void inicializarComboBox() {
+
+		arrayListComboBox.add(UnidadeMedida.getTipoDeUnidade1());
+		arrayListComboBox.add(UnidadeMedida.getTipoDeUnidade2());
+		observableComboBox = FXCollections.observableArrayList(arrayListComboBox);
+
+		comboBoxUMedida.setItems(observableComboBox);
 
 	}
 
 	public void limparUsuario() {
 
-		produtoAtual = new Produtos();
+		produtoAtual = null;
 
 	}
 

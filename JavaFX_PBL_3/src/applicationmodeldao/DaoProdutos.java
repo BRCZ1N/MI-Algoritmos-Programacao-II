@@ -1,7 +1,7 @@
 package applicationmodeldao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationexeceptions.EstoqueInsuficienteException;
 import applicationmodel.Produtos;
@@ -27,9 +27,9 @@ public class DaoProdutos {
 
 	public DaoProdutos() {
 
-		Calendar validade1 = Calendar.getInstance();
-		Calendar validade2 = Calendar.getInstance();
-		Calendar validade3 = Calendar.getInstance();
+		LocalDate validade1 = LocalDate.now();
+		LocalDate validade2 = LocalDate.now();
+		LocalDate validade3 = LocalDate.now();
 
 		Produtos produtoA = new Produtos("ProdutoA", validade1, 140.0, 128.88, UnidadeMedida.getTipoDeUnidade1());
 		Produtos produtoB = new Produtos("ProdutoB", validade2, 80.2, 90.1, UnidadeMedida.getTipoDeUnidade2());
@@ -193,7 +193,7 @@ public class DaoProdutos {
 
 				System.out.println("Id do produto:" + dadoProduto.getId());
 				System.out.println("Nome do produto:" + dadoProduto.getNome());
-				System.out.println("Validade do produto:" + dadoProduto.getValidadeString());
+				System.out.println("Validade do produto:" + dadoProduto.getValidade());
 				System.out.println("Preco do produto:" + dadoProduto.getPreco());
 
 			}

@@ -50,7 +50,7 @@
                                        <columns>
                                           <TableColumn id="columnId" fx:id="columnId" prefWidth="64.0" text="Id" />
                                           <TableColumn id="columnNome" fx:id="columnNome" prefWidth="140.0" text="Nome" />
-                                          <TableColumn id="columnPreco" fx:id="columnPreco" prefWidth="75.0" text="Preço" />
+                                          <TableColumn id="columnPreco" fx:id="columnPreco" prefWidth="75.0" text="Preço(R$)" />
                                           <TableColumn id="columnQuantidade" fx:id="columnQtd" prefWidth="96.0" text="Quantidade" />
                                           <TableColumn id="columnValidade" fx:id="columnValidade" prefWidth="96.0" text="Validade" />
                                           <TableColumn id="columnValidade" fx:id="columnTipoQtd" prefWidth="96.0" text="Unidade Medida" />

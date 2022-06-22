@@ -89,7 +89,6 @@ public class FormularioVendasController implements Initializable {
 	void acaoAdicionarItemVenda(ActionEvent event) {
 
 		listaPratosCarrinho.addAll(tabelaPratos.getSelectionModel().getSelectedItems());
-		
 		refreshCarrinho();
 
 	}
@@ -102,6 +101,7 @@ public class FormularioVendasController implements Initializable {
 			listaPratosCarrinho.remove(pratoExcluir);
 
 		}
+		
 		refreshCarrinho();
 
 	}
@@ -133,7 +133,7 @@ public class FormularioVendasController implements Initializable {
 	public void salvarVendaAcao(ActionEvent event)
 			throws IOException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
 
-		Vendas novaVenda = new Vendas(DaoPratos.listaIdPratos(listaPratosCarrinho), comboBoxPagamento.getValue());
+		Vendas novaVenda = new Vendas(DaoPratos.getListaIdPratos(listaPratosCarrinho), comboBoxPagamento.getValue());
 
 		if (vendaAtual == null) {
 
@@ -156,7 +156,7 @@ public class FormularioVendasController implements Initializable {
 		if (vendaAtual != null) {
 
 			comboBoxPagamento.setValue(vendaAtual.getTipoPagamento());
-			listaPratosCarrinho.addAll(DaoPratos.getListaPratosVenda(vendaAtual.getListaIdItens()));
+			listaPratosCarrinho.addAll(DaoPratos.getListaPratos(vendaAtual.getListaIdItens()));
 			refreshCarrinho();
 
 		}

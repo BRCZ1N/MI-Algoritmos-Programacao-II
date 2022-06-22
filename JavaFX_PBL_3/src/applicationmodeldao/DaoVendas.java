@@ -188,7 +188,7 @@ public class DaoVendas {
 			for (Vendas dadoVenda : listaVendas) {
 
 				System.out.println("Id da Venda:" + dadoVenda.getId());
-				System.out.println("A data e o horario da venda sao:" + dadoVenda.getDiaHorarioString());
+				System.out.println("A data e o horario da venda sao:" + dadoVenda.getDiaHorario());
 				System.out.println("Preco total da venda:" + dadoVenda.getPrecoTotal());
 				System.out.println("Forma de pagamento da venda:" + dadoVenda.getTipoPagamento());
 				System.out.println("Id's dos itens da venda:");
@@ -344,7 +344,7 @@ public class DaoVendas {
 	 */
 	private static void alterarEstoque(Vendas venda) throws EstoqueInsuficienteException {
 
-		ArrayList<Pratos> pratosVenda = DaoPratos.getListaPratosVenda(venda.getListaIdItens());
+		ArrayList<Pratos> pratosVenda = DaoPratos.getListaPratos(venda.getListaIdItens());
 
 		for (Pratos prato : pratosVenda) {
 
@@ -357,7 +357,53 @@ public class DaoVendas {
 		}
 
 	}
-	private static void convertString(ArrayList()) {
+	
+	public static ArrayList<Vendas> getListaVenda(ArrayList<String> idVenda) {
+
+		ArrayList<Vendas> vendas = new ArrayList<Vendas>();
+
+		for (String vendaId : idVenda) {
+
+			vendas.add(getVenda(vendaId));
+
+		}
+
+		return vendas;
+
+	}
+	
+	
+	public static ArrayList<String> getListaIdVenda(ArrayList<Vendas> listaVenda){
 		
-	} 
+		
+		ArrayList<String> vendas = new ArrayList<String>();
+
+		for (Vendas venda : listaVenda) {
+
+			vendas.add(venda.getId());
+
+		}
+
+		return vendas;
+		
+	}
+	
+	
+	public static Vendas getVenda(String idVenda) {
+		
+		Vendas venda =  new Vendas();
+		
+		int idExiste = DaoVendas.buscarDado(0, DaoVendas.getListaVendas().size() - 1, idVenda,DaoVendas.getListaVendas());
+	
+		if(idExiste != -1) {
+				
+			venda = DaoVendas.getListaVendas().get(idExiste);
+			
+		}
+		
+		return venda;
+		
+	}
+	
+
 }

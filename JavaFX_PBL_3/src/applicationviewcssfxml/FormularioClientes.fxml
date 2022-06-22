@@ -69,7 +69,7 @@
                               <TableView fx:id="tabelaVendas" prefHeight="156.0" prefWidth="406.0">
                                 <columns>
                                   <TableColumn fx:id="columnSistemaVendaId" prefWidth="75.0" text="ID" />
-                                  <TableColumn fx:id="columnSistemaVendaPreco" prefWidth="75.0" text="Valor" />
+                                  <TableColumn fx:id="columnSistemaVendaValor" prefWidth="75.0" text="Valor" />
                                     <TableColumn fx:id="columnSistemaVendaDHorario" prefWidth="75.0" text="Dia/horário" />
                                 </columns>
                                  <columnResizePolicy>
@@ -78,12 +78,12 @@
                               </TableView>
                               <ButtonBar prefHeight="55.0" prefWidth="399.0">
                                 <buttons>
-                                  <Button mnemonicParsing="false" text="Adicionar">
+                                  <Button fx:id="adicionarVendaCliente" mnemonicParsing="false" onAction="#acaoAdicionarVendaCliente" text="Adicionar">
                                        <graphic>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                                        </graphic>
                                     </Button>
-                                    <Button mnemonicParsing="false" text="Remover">
+                                    <Button fx:id="removerVendaCliente" mnemonicParsing="false" onAction="#acaoRemoverVendaCliente" text="Remover">
                                        <graphic>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
                                        </graphic>

@@ -232,52 +232,6 @@ public class DaoPratos  {
 	}
 
 	/**
-	 * Metodo para obter as informações de um prato caso ele exista na lista de
-	 * pratos
-	 * 
-	 * @param chaveId int - chave que sera buscada na lista de pratos
-	 * 
-	 * @return Pratos listaPratos.get(idExiste) - Objeto do tipo Prato
-	 */
-
-	public static Pratos getPrato(String chaveId) {
-
-		int idExiste = buscarDado(0, listaPratos.size() - 1, chaveId, listaPratos);
-		if (idExiste != -1) {
-
-			return listaPratos.get(idExiste);
-
-		}
-
-		return null;
-
-	}
-
-	/**
-	 * M�todo para obter a lista de pratos da venda
-	 * 
-	 * idPratoVenda
-	 * 
-	 * @param idPratoVenda ArrayList<String> - lista de id's de pratos da venda
-	 * 
-	 * @return ArrayList<Pratos> pratosVenda - lista de pratos da venda
-	 */
-
-	public static ArrayList<Pratos> getListaPratosVenda(ArrayList<String> idPratoVenda) {
-
-		ArrayList<Pratos> pratosVenda = new ArrayList<Pratos>();
-
-		for (String pratoId : idPratoVenda) {
-
-			pratosVenda.add(listaPratos.get(Integer.parseInt(pratoId)));
-
-		}
-
-		return pratosVenda;
-
-	}
-
-	/**
 	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do
 	 * objeto caso exista na lista.
 	 * 
@@ -339,21 +293,97 @@ public class DaoPratos  {
 
 	}
 	
-	public static ArrayList<String> listaIdPratos(ArrayList<Pratos> listaPratosCarrinho){
-		
-		
-		ArrayList<String> listaIdPratos = new ArrayList<String>();
-		
-		for(Pratos prato:listaPratosCarrinho) {
+	/**
+	 * M�todo para obter a lista de pratos da venda
+	 * 
+	 * idPratoVenda
+	 * 
+	 * @param idPratoVenda ArrayList<String> - lista de id's de pratos da venda
+	 * 
+	 * @return ArrayList<Pratos> pratosVenda - lista de pratos da venda
+	 */
+								
+//	public static ArrayList<Pratos> getListaPratosVenda(ArrayList<String> idPratoVenda) {
+//
+//		ArrayList<Pratos> pratosVenda = new ArrayList<Pratos>();
+//
+//		for (String pratoId : idPratoVenda) {
+//
+//			pratosVenda.add(listaPratos.get(Integer.parseInt(pratoId)));
+//
+//		}
+//
+//		return pratosVenda;
+//
+//	}
+//	
+//	
+//	public static ArrayList<String> listaIdPratos(ArrayList<Pratos> listaPratosCarrinho){
+//		
+//		ArrayList<String> listaIdPratos = new ArrayList<String>();
+//		
+//		for(Pratos prato:listaPratosCarrinho) {
+//	
+//			listaIdPratos.add(prato.getId());
+//			
+//		}
+//		
+//		return listaIdPratos;
+//		
+//	}
 	
-			listaIdPratos.add(prato.getId());
-			
+	
+	public static ArrayList<Pratos> getListaPratos(ArrayList<String> listaIdPratos) {
+
+		ArrayList<Pratos> pratos = new ArrayList<Pratos>();
+
+		for (String pratoId : listaIdPratos) {
+
+			pratos.add(getPrato(pratoId));
+
 		}
+
+		return pratos;
+
+	}
+	
+	
+	public static ArrayList<String> getListaIdPratos(ArrayList<Pratos> listaPratos){
 		
-		return listaIdPratos;
+		
+		ArrayList<String> pratosId = new ArrayList<String>();
+
+		for (Pratos prato : listaPratos) {
+
+			pratosId.add(prato.getId());
+
+		}
+
+		return pratosId;
 		
 	}
 	
+	/**
+	 * Metodo para obter as informações de um prato caso ele exista na lista de
+	 * pratos
+	 * 
+	 * @param chaveId int - chave que sera buscada na lista de pratos
+	 * 
+	 * @return Pratos listaPratos.get(idExiste) - Objeto do tipo Prato
+	 */
+	
+	public static Pratos getPrato(String chaveId) {
+
+		int idExiste = buscarDado(0, listaPratos.size() - 1, chaveId, listaPratos);
+		if (idExiste != -1) {
+
+			return listaPratos.get(idExiste);
+
+		}
+
+		return null;
+
+	}
 	
 
 }

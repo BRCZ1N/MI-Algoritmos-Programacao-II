@@ -20,16 +20,19 @@ import applicationexeceptions.CpfJaExisteException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmain.Main;
 import applicationmodel.Clientes;
-import applicationmodel.Pratos;
 import applicationmodel.Vendas;
 import applicationmodeldao.DaoClientes;
-import applicationmodeldao.DaoPratos;
 import applicationmodeldao.DaoVendas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 public class FormularioClientesController implements Initializable {
+
+	@FXML
+	private Button adicionarVendaCliente;
+	@FXML
+	private Button removerVendaCliente;
 	@FXML
 	private TextField textFNome;
 	@FXML
@@ -42,13 +45,10 @@ public class FormularioClientesController implements Initializable {
 	private Button voltarMenu;
 	@FXML
 	private Button salvarClienteBotao;
-
-	private ArrayList<String> historicoCompras;
-	
 	@FXML
-	private TableColumn<Vendas, String> columnCarrinhoPratoId;
+	private TableColumn<Vendas, String> columnCarrinhoVendaId;
 	@FXML
-	private TableColumn<Vendas, Double> columnCarrinhoPratoValor;
+	private TableColumn<Vendas, Double> columnCarrinhoVendaValor;
 	@FXML
 	private TableColumn<Vendas, Calendar> columnCarrinhoVendaDHorario;
 	@FXML
@@ -57,20 +57,18 @@ public class FormularioClientesController implements Initializable {
 	private TableColumn<Vendas, Double> columnSistemaVendaValor;
 	@FXML
 	private TableColumn<Vendas, Calendar> columnSistemaVendaDHorario;
-	
 	@FXML
 	private TableView<Vendas> tabelaVendas;
 	@FXML
 	private TableView<Vendas> tabelaCompraCliente;
+	
+	private ArrayList<String> historicoCompras;
 
 	private ObservableList<Vendas> observableVendaSistema;
 
 	private ObservableList<Vendas> observableVendaCarrinho;
 
 	private ArrayList<Vendas> listaVendasCarrinho = new ArrayList<Vendas>();
-
-
-	
 
 	private static Clientes clienteAtual;
 
@@ -90,7 +88,7 @@ public class FormularioClientesController implements Initializable {
 		limparUsuario();
 
 	}
-	
+
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
 	public void salvarClienteAcao(ActionEvent event) throws IOException, CpfJaExisteException, LoginExistenteException {
@@ -122,10 +120,12 @@ public class FormularioClientesController implements Initializable {
 			textFCpf.setText(clienteAtual.getCpf());
 			textFEmail.setText(clienteAtual.getEmail());
 			textFTelefone.setText(clienteAtual.getTelefone());
-			// historicoCompras
-			//refreshCarrinho();
-			
+			listaVendasCarrinho.addAll(DaoVendas.getListaVenda(clienteAtual.getidHistoricoCompras()));
+
 		}
+
+		refreshSistema();
+		refreshCarrinho();
 
 	}
 
@@ -150,8 +150,9 @@ public class FormularioClientesController implements Initializable {
 		return scene;
 
 	}
+
 	@FXML
-	void acaoAdicionarItemVenda(ActionEvent event) {
+	void acaoAdicionarVendaCliente(ActionEvent event) {
 
 		listaVendasCarrinho.addAll(tabelaVendas.getSelectionModel().getSelectedItems());
 		refreshCarrinho();
@@ -159,11 +160,11 @@ public class FormularioClientesController implements Initializable {
 	}
 
 	@FXML
-	void acaoRemoverItemVenda(ActionEvent event) {
+	void acaoRemoverVendaCliente(ActionEvent event) {
 
-		for (Vendas pratoExcluir : tabelaCompraCliente.getSelectionModel().getSelectedItems()) {
+		for (Vendas vendaExcluir : tabelaCompraCliente.getSelectionModel().getSelectedItems()) {
 
-			listaVendasCarrinho.remove(pratoExcluir);
+			listaVendasCarrinho.remove(vendaExcluir);
 
 		}
 		refreshCarrinho();
@@ -175,8 +176,8 @@ public class FormularioClientesController implements Initializable {
 		observableVendaCarrinho = FXCollections.observableArrayList(listaVendasCarrinho);
 		tabelaCompraCliente.setItems(observableVendaCarrinho);
 
-		columnCarrinhoPratoId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		columnCarrinhoPratoValor.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
+		columnCarrinhoVendaId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		columnCarrinhoVendaValor.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
 		columnCarrinhoVendaDHorario.setCellValueFactory(new PropertyValueFactory<>("diaHorario"));
 
 	}
@@ -187,7 +188,7 @@ public class FormularioClientesController implements Initializable {
 		tabelaVendas.setItems(observableVendaSistema);
 
 		columnSistemaVendaId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		columnSistemaVendaValor.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		columnSistemaVendaValor.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
 		columnSistemaVendaDHorario.setCellValueFactory(new PropertyValueFactory<>("diaHorario"));
 
 	}
