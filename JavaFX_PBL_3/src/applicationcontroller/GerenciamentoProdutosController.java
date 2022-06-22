@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Produtos;
+import applicationmodel.Relatorio;
 import applicationmodeldao.DaoProdutos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -47,6 +48,8 @@ public class GerenciamentoProdutosController implements Initializable {
 	private Button botaoEditar;
 	@FXML
 	private Button botaoExcluir;
+	@FXML
+    private Button gerarRelatorioBtn;
 
 	private static ObservableList<Produtos> observableListaProdutos;
 
@@ -126,6 +129,13 @@ public class GerenciamentoProdutosController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
 
 	}
+	
+	@FXML
+    public void gerarRelatorioAcao(ActionEvent event) {
+		
+		Relatorio.criarPdfProdutos();
+
+    }
 
 	public Scene novaCena(String urlScene) throws IOException {
 

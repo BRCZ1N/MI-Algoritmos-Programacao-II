@@ -16,7 +16,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import applicationexeceptions.CnpjJaExisteException;
-import applicationexeceptions.FornecedorComProdutoInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
 import applicationmodel.Produtos;
@@ -85,7 +84,7 @@ public class FormularioFornecedoresController implements Initializable {
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
 	public void salvarFornecedorAcao(ActionEvent event)
-			throws IOException, CnpjJaExisteException, FornecedorComProdutoInvalidoException {
+			throws IOException, CnpjJaExisteException {
 
 		Fornecedores fornecedorNovo = new Fornecedores(textFCnpj.getText(), textFNome.getText(),
 				textFEndereco.getText(), DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));

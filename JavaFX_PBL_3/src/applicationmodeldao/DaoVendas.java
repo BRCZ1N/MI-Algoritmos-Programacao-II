@@ -3,7 +3,6 @@ package applicationmodeldao;
 import java.util.ArrayList;
 
 import applicationexeceptions.EstoqueInsuficienteException;
-import applicationexeceptions.VendaComPratoInvalidoException;
 import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
 import applicationmodel.TipoPagamento;
@@ -44,7 +43,7 @@ public class DaoVendas {
 			addEditDados(vendaB, null);
 			addEditDados(vendaC, null);
 
-		} catch ( EstoqueInsuficienteException | VendaComPratoInvalidoException e) {
+		} catch ( EstoqueInsuficienteException  e) {
 
 			e.getMessage();
 		}
@@ -98,7 +97,7 @@ public class DaoVendas {
 	 * @throws VendaComPratoInvalidoException
 	 */
 	public static void addEditDados(Vendas venda, String chaveId)
-			throws EstoqueInsuficienteException, VendaComPratoInvalidoException {
+			throws EstoqueInsuficienteException {
 
 		if (chaveId == null) {
 
@@ -120,7 +119,7 @@ public class DaoVendas {
 	 * @throws VendaComPratoInvalidoException
 	 */
 
-	private static void addDados(Vendas venda) throws EstoqueInsuficienteException, VendaComPratoInvalidoException {
+	private static void addDados(Vendas venda) throws EstoqueInsuficienteException {
 
 		if (!verificaPratoInexistente(venda.getListaIdItens())) {
 
@@ -129,11 +128,7 @@ public class DaoVendas {
 			listaVendas.add(venda);
 			idSeq++;
 
-		} else {
-
-			throw new VendaComPratoInvalidoException();
-
-		}
+		} 
 
 	}
 

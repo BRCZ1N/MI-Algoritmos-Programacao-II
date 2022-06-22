@@ -4,7 +4,6 @@ package applicationmodeldao;
 import java.util.ArrayList;
 
 import applicationexeceptions.CpfJaExisteException;
-import applicationexeceptions.VendaInexistenteException;
 import applicationmodel.Clientes;
 
 /**

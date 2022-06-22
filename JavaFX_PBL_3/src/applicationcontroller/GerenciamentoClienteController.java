@@ -43,6 +43,8 @@ public class GerenciamentoClienteController implements Initializable {
 	private Button botaoEditar;
 	@FXML
 	private Button botaoExcluir;
+	@FXML
+    private Button gerarRelatorioBtn;
 
 	private static ObservableList<Clientes> observableListaClientes;
 
@@ -106,6 +108,11 @@ public class GerenciamentoClienteController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 
 	}
+	
+	@FXML
+    void gerarRelatorioAcao(ActionEvent event) {
+
+    }
 
 	public Scene novaCena(String urlScene) throws IOException {
 

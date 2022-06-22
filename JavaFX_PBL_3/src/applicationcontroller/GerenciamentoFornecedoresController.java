@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
+import applicationmodel.Relatorio;
 import applicationmodeldao.DaoFornecedores;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +42,8 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	private Button botaoEditar;
 	@FXML
 	private Button botaoExcluir;
+	@FXML
+    private Button gerarRelatorioBtn;
 
 	private static ObservableList<Fornecedores> observableListaFornecedores;
 
@@ -105,6 +108,13 @@ public class GerenciamentoFornecedoresController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
 		
 	}
+	
+	@FXML
+    public void gerarRelatorioAcao(ActionEvent event) {
+
+		Relatorio.criarPdfFornecedores();
+		
+    }
 	
 
 	public Scene novaCena(String urlScene) throws IOException {

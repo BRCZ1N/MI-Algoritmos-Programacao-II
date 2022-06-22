@@ -11,9 +11,9 @@ package applicationmodel;
 
 public class TipoPagamento {
 
-	private static final String TIPO_DE_PAGAMENTO1 = "Cartao de debito";
-	private static final String TIPO_DE_PAGAMENTO2 = "Cartao de credito";
-	private static final String TIPO_DE_PAGAMENTO3 = "a vista";
+	private static final String TIPO_DE_PAGAMENTO1 = "Cartao de débito";
+	private static final String TIPO_DE_PAGAMENTO2 = "Cartao de crédito";
+	private static final String TIPO_DE_PAGAMENTO3 = "Á vista";
 	private static final String TIPO_DE_PAGAMENTO4 = "Pix";
 	
 	/**

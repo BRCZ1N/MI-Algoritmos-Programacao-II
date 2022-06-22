@@ -37,6 +37,7 @@ public class Main extends Application {
 		
 		daoFacade.daoInicializar();
 		stage2 = new Stage();
+		stage2.centerOnScreen();
 		String url = "/applicationviewcssfxml/LoginMenu.fxml";
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(url));
 		Parent root = fxml.load();
@@ -44,6 +45,7 @@ public class Main extends Application {
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
+		primaryStage.centerOnScreen();
 		Main.setStage(primaryStage);
 		
 	}
