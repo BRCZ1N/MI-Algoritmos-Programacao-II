@@ -6,6 +6,21 @@ import java.io.FileOutputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.List;
+import com.itextpdf.text.ListItem;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+
+import applicationmodeldao.DaoFornecedores;
+import applicationmodeldao.DaoPratos;
+import applicationmodeldao.DaoProdutos;
+import applicationmodeldao.DaoVendas;
+
 
 /**
  * Classe para gerar relatorio de venda, pratos e produtos 
@@ -16,21 +31,21 @@ import java.time.format.DateTimeFormatter;
  */
 public class Relatorio {
 
-	private String dHRelatorio;
-	private int idProdutosPdf = 0;
-	private int idFornecedoresPdf = 0;
-	private int idVendasPdf = 0;
+	private static String dHRelatorio;
+	private static int idProdutosPdf = 0;
+	private static int idFornecedoresPdf = 0;
+	private static int idVendasPdf = 0;
 
 	/**
 	 * Metodo para definir o dia e o horario do relatorio
 	 * 
 	 * @param diaHorario LocalDateTime
 	 */
-	public void setDiaHorario(LocalDateTime diaHorario) {
+	public static void setDiaHorario(LocalDateTime diaHorario) {
 
 		DateTimeFormatter dataH = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		String dHRelatorio = diaHorario.format(dataH);
-		this.dHRelatorio = dHRelatorio;
+		Relatorio.dHRelatorio = dHRelatorio;
 
 	}
 
@@ -38,7 +53,7 @@ public class Relatorio {
 	 * Metodo para a criação do arquivo PDF de produtos
 	 */
 
-	public void criarPdfProdutos() {
+	public static void criarPdfProdutos() {
 
 		setDiaHorario(LocalDateTime.now());
 		Document d = new Document(PageSize.A4);
@@ -46,9 +61,9 @@ public class Relatorio {
 		
 		try {
 
-			if (idProdutosPdf >= 1) {
+			if (getIdProdutosPdf() >= 1) {
 
-				PdfWriter.getInstance(d, new FileOutputStream("RelatorioProdutos(" + idProdutosPdf + ").pdf"));
+				PdfWriter.getInstance(d, new FileOutputStream("RelatorioProdutos(" + getIdProdutosPdf() + ").pdf"));
 
 			} else {
 
@@ -57,7 +72,7 @@ public class Relatorio {
 			}
 
 			d.open();
-			Paragraph p = new Paragraph("Relatorio de produtos - " + this.dHRelatorio);
+			Paragraph p = new Paragraph("Relatorio de produtos - " + dHRelatorio);
 			d.add(p);
 			p = new Paragraph(" ");
 			d.add(p);
@@ -97,7 +112,7 @@ public class Relatorio {
 				celulaPDF2.setHorizontalAlignment(Element.ALIGN_CENTER);
 				celulaPDF3 = new PdfPCell(new Paragraph(Double.toString(produto.getQtdProduto()) + " " + produto.getTipoQtd()));
 				celulaPDF3.setHorizontalAlignment(Element.ALIGN_CENTER);
-				celulaPDF4 = new PdfPCell(new Paragraph(produto.getValidadeString()));
+				celulaPDF4 = new PdfPCell(new Paragraph(produto.getValidade().toString()));
 				celulaPDF4.setHorizontalAlignment(Element.ALIGN_CENTER);
 				celulaPDF5 = new PdfPCell(new Paragraph("R$ " + Double.toString((produto.getPreco()))));
 				celulaPDF5.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -112,9 +127,9 @@ public class Relatorio {
 
 			d.add(tabela);
 			d.close();
-			if (idProdutosPdf >= 1) {
+			if (getIdProdutosPdf() >= 1) {
 
-				Desktop.getDesktop().open(new File("RelatorioProdutos(" + idProdutosPdf + ").pdf"));
+				Desktop.getDesktop().open(new File("RelatorioProdutos(" + getIdProdutosPdf() + ").pdf"));
 
 			} else {
 				
@@ -122,7 +137,7 @@ public class Relatorio {
 
 			}
 
-			idProdutosPdf++;
+			setIdProdutosPdf(getIdProdutosPdf() + 1);
 		
 
 		} catch (Exception e) {
@@ -134,7 +149,7 @@ public class Relatorio {
 	/**
 	 * Metodo para a criação do arquivo PDF de fornecedores
 	 */
-	public void criarPdfFornecedores() {
+	public static void criarPdfFornecedores() {
 
 		setDiaHorario(LocalDateTime.now());
 		Document d = new Document();
@@ -152,7 +167,7 @@ public class Relatorio {
 			}
 
 			d.open();
-			Paragraph p = new Paragraph("Relatorio fornecedores - " + this.dHRelatorio);
+			Paragraph p = new Paragraph("Relatorio fornecedores - " + dHRelatorio);
 			d.add(p);
 			
 			p = new Paragraph(" ");
@@ -241,7 +256,7 @@ public class Relatorio {
 	/**
 	 * Metodo para a criação do arquivo PDF de vendas
 	 */
-	public void criarPdfVendas() {
+	public static void criarPdfVendas() {
 
 		setDiaHorario(LocalDateTime.now());
 		Document d = new Document();
@@ -260,7 +275,7 @@ public class Relatorio {
 			}
 
 			d.open();
-			Paragraph p = new Paragraph("Relatorio Vendas - " + this.dHRelatorio);
+			Paragraph p = new Paragraph("Relatorio Vendas - " + dHRelatorio);
 			d.add(p);
 			p = new Paragraph(" ");
 			d.add(p);
@@ -302,7 +317,7 @@ public class Relatorio {
 
 				celulaPDF1 = new PdfPCell(new Paragraph(venda.getId()));
 				celulaPDF1.setHorizontalAlignment(Element.ALIGN_CENTER);
-				celulaPDF2 = new PdfPCell(new Paragraph(venda.getDiaHorarioString()));
+				celulaPDF2 = new PdfPCell(new Paragraph(venda.getDiaHorario().toString()));
 				celulaPDF2.setHorizontalAlignment(Element.ALIGN_CENTER); 
 				celulaPDF3 = new PdfPCell(new Paragraph(Integer.toString(venda.getQtdPratosVenda())));
 				celulaPDF3.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -348,6 +363,14 @@ public class Relatorio {
 
 		}
 
+	}
+
+	public static int getIdProdutosPdf() {
+		return idProdutosPdf;
+	}
+
+	public static void setIdProdutosPdf(int idProdutosPdf) {
+		Relatorio.idProdutosPdf = idProdutosPdf;
 	}
 
 }

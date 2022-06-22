@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
+import applicationmodel.Relatorio;
 import applicationmodeldao.DaoFornecedores;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -109,8 +110,10 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	}
 	
 	@FXML
-    void gerarRelatorioAcao(ActionEvent event) {
+    public void gerarRelatorioAcao(ActionEvent event) {
 
+		Relatorio.criarPdfFornecedores();
+		
     }
 	
 

@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import applicationmain.Main;
+import applicationmodel.Relatorio;
 import applicationmodel.Vendas;
 import applicationmodeldao.DaoVendas;
 import javafx.collections.FXCollections;
@@ -147,6 +148,8 @@ public class GerenciamentoVendasController implements Initializable{
 	@FXML
     void gerarRelatorioAcao(ActionEvent event) {
 
+		Relatorio.criarPdfVendas();
+		
     }
 	
 

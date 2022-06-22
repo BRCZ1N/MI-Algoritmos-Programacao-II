@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Produtos;
+import applicationmodel.Relatorio;
 import applicationmodeldao.DaoProdutos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -130,7 +131,9 @@ public class GerenciamentoProdutosController implements Initializable {
 	}
 	
 	@FXML
-    void gerarRelatorioAcao(ActionEvent event) {
+    public void gerarRelatorioAcao(ActionEvent event) {
+		
+		Relatorio.criarPdfProdutos();
 
     }
 
