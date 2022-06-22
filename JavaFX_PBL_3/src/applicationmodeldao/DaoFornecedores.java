@@ -3,7 +3,6 @@ package applicationmodeldao;
 import java.util.ArrayList;
 
 import applicationexeceptions.CnpjJaExisteException;
-import applicationexeceptions.FornecedorComProdutoInvalidoException;
 import applicationmodel.Fornecedores;
 
 /**
@@ -42,7 +41,7 @@ public class DaoFornecedores {
 			addEditDados(fornecedorA2, null);
 			addEditDados(fornecedorB, null);
 			addEditDados(fornecedorC, null);
-		} catch (CnpjJaExisteException | FornecedorComProdutoInvalidoException e) {
+		} catch (CnpjJaExisteException  e) {
 
 			e.printStackTrace();
 		}
@@ -97,7 +96,7 @@ public class DaoFornecedores {
 	 * @throws FornecedorComProdutoInvalidoException
 	 */
 	public static void addEditDados(Fornecedores fornecedor, String chaveId)
-			throws CnpjJaExisteException, FornecedorComProdutoInvalidoException {
+			throws CnpjJaExisteException {
 
 		if (chaveId == null) {
 
@@ -119,7 +118,7 @@ public class DaoFornecedores {
 	 * @throws FornecedorComProdutoInvalidoException
 	 */
 
-	private static void addDados(Fornecedores fornecedor) throws CnpjJaExisteException, FornecedorComProdutoInvalidoException {
+	private static void addDados(Fornecedores fornecedor) throws CnpjJaExisteException {
 
 		boolean cnpjExiste = buscarCnpj(0, listaFornecedores.size() - 1, fornecedor.getCnpj());
 		if ((!cnpjExiste || fornecedor.getCnpj().equals("Sem CNPJ"))
@@ -133,11 +132,7 @@ public class DaoFornecedores {
 
 			throw new CnpjJaExisteException(fornecedor.getCnpj());
 
-		} else if (verificaProdutoInexistente(fornecedor.getIdProdutosFornecedor())) {
-
-			throw new FornecedorComProdutoInvalidoException();
-
-		}
+		} 
 
 	}
 
@@ -171,7 +166,7 @@ public class DaoFornecedores {
 	 */
 
 	private static void editarDados(Fornecedores fornecedorEditado, String chaveId)
-			throws CnpjJaExisteException, FornecedorComProdutoInvalidoException {
+			throws CnpjJaExisteException {
 
 		boolean cnpjExiste = buscarCnpj(0, listaFornecedores.size() - 1, fornecedorEditado.getCnpj());
 		int idExiste = buscarDado(0, listaFornecedores.size() - 1, chaveId, listaFornecedores);
@@ -186,10 +181,6 @@ public class DaoFornecedores {
 		}else if (cnpjExiste && !fornecedorEditado.getCnpj().equals("Sem CNPJ")) {
 
 			throw new CnpjJaExisteException(fornecedorEditado.getCnpj());
-
-		} else if (verificaProdutoInexistente(fornecedorEditado.getIdProdutosFornecedor())) {
-
-			throw new FornecedorComProdutoInvalidoException();
 
 		}
 

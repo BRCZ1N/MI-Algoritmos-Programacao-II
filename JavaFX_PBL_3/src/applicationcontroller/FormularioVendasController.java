@@ -13,7 +13,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 import applicationexeceptions.EstoqueInsuficienteException;
-import applicationexeceptions.VendaComPratoInvalidoException;
 import applicationmain.Main;
 import applicationmodel.Pratos;
 import applicationmodel.TipoPagamento;
@@ -131,7 +130,7 @@ public class FormularioVendasController implements Initializable {
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
 	public void salvarVendaAcao(ActionEvent event)
-			throws IOException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+			throws IOException, EstoqueInsuficienteException {
 
 		Vendas novaVenda = new Vendas(DaoPratos.getListaIdPratos(listaPratosCarrinho), comboBoxPagamento.getValue());
 
