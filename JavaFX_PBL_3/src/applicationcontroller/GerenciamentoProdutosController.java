@@ -47,6 +47,8 @@ public class GerenciamentoProdutosController implements Initializable {
 	private Button botaoEditar;
 	@FXML
 	private Button botaoExcluir;
+	@FXML
+    private Button gerarRelatorioBtn;
 
 	private static ObservableList<Produtos> observableListaProdutos;
 
@@ -126,6 +128,11 @@ public class GerenciamentoProdutosController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
 
 	}
+	
+	@FXML
+    void gerarRelatorioAcao(ActionEvent event) {
+
+    }
 
 	public Scene novaCena(String urlScene) throws IOException {
 

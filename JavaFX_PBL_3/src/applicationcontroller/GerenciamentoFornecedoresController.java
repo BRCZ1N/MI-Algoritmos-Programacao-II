@@ -41,6 +41,8 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	private Button botaoEditar;
 	@FXML
 	private Button botaoExcluir;
+	@FXML
+    private Button gerarRelatorioBtn;
 
 	private static ObservableList<Fornecedores> observableListaFornecedores;
 
@@ -105,6 +107,11 @@ public class GerenciamentoFornecedoresController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
 		
 	}
+	
+	@FXML
+    void gerarRelatorioAcao(ActionEvent event) {
+
+    }
 	
 
 	public Scene novaCena(String urlScene) throws IOException {
