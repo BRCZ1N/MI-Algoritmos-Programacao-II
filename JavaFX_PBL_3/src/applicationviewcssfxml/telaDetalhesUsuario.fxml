@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.ExibirDetalhesUsuariosController">
+   <children>
+      <BorderPane prefHeight="300.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane prefHeight="231.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane alignment="CENTER" layoutX="171.0" prefHeight="312.0" prefWidth="358.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="171.0" AnchorPane.rightAnchor="171.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="622.0" minWidth="10.0" prefWidth="44.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="670.0" minWidth="10.0" prefWidth="294.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TextField fx:id="textFNomeExibir" editable="false" promptText="Nome" styleClass="textfield" stylesheets="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewcssfxml/EfeitosAnimacoes.css" GridPane.columnIndex="1" />
+                        <TextField fx:id="textFLoginExibir" editable="false" promptText="Login" styleClass="textfield" stylesheets="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewcssfxml/EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <PasswordField fx:id="textFSenhaExibir" editable="false" promptText="Senha " styleClass="textfield" stylesheets="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewcssfxml/EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <image>
+                              <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/372903_username_name_full_user_round_icon.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/211855_locked_icon.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                           <image>
+                              <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/2317796_computer_device_login_monitor_screen_icon.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </ImageView>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </center>
+         <top>
+            <AnchorPane prefHeight="41.0" prefWidth="700.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutY="-1.0" prefHeight="36.0" prefWidth="700.0">
+                     <children>
+                        <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
+                           <children>
+                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#voltarMenuAcao" prefHeight="36.0" prefWidth="86.0" stylesheets="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewcssfxml/EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/352020_arrow_back_icon.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </Button>
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </top>
+         <bottom>
+            <AnchorPane prefHeight="38.0" prefWidth="700.0" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>
