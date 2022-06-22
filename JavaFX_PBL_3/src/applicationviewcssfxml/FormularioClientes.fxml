@@ -80,12 +80,18 @@
                                 <buttons>
                                   <Button fx:id="adicionarVendaCliente" mnemonicParsing="false" onAction="#acaoAdicionarVendaCliente" text="Adicionar">
                                        <graphic>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../applicationviewimages/134139_down_arrow_icon.png" />
+                                             </image></ImageView>
                                        </graphic>
                                     </Button>
                                     <Button fx:id="removerVendaCliente" mnemonicParsing="false" onAction="#acaoRemoverVendaCliente" text="Remover">
                                        <graphic>
-                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" />
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../applicationviewimages/134118_up_arrow_icon.png" />
+                                             </image></ImageView>
                                        </graphic>
                                     </Button>
                                 </buttons>
