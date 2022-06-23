@@ -89,8 +89,7 @@ public class FormularioPratosController implements Initializable {
 	void acaoAdicionarProdutoPrato(ActionEvent event) throws IOException {
 
 		abrirJanelaSecundaria("/applicationviewcssfxml/QuantidadeProduto.fxml");
-		Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),
-				QuantidadeProdutoController.getQuantidade());
+		Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),QuantidadeProdutoController.getQuantidade());
 		listaProdutosCarrinho.add(ingrediente);
 		observableProdutoCarrinho = FXCollections.observableArrayList(listaProdutosCarrinho);
 		refreshCarrinho();
@@ -162,21 +161,26 @@ public class FormularioPratosController implements Initializable {
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void salvarPratoAcao(ActionEvent event) throws IOException, EntidadeComValoresNegativoException {
+	public void salvarPratoAcao(ActionEvent event) throws IOException {
 
 		Pratos pratoNovo = new Pratos(textFNome.getText(), textFDescricao.getText(),
 				Double.parseDouble(textFPreco.getText()), textFCategoria.getText(), listaProdutosCarrinho);
-
-		if (pratoAtual == null) {
-
-			DaoPratos.addEditDados(pratoNovo, null);
-
-		} else {
-
-			DaoPratos.addEditDados(pratoNovo, pratoAtual.getId());
-
+		try {
+			if (pratoAtual == null) {
+				boolean retorno = Alerta.confirmar("prato");
+				if (retorno) {
+					DaoPratos.addEditDados(pratoNovo, null);
+				}
+				
+	
+			} else {
+	
+				DaoPratos.addEditDados(pratoNovo, pratoAtual.getId());
+	
+			}
+		}catch(EntidadeComValoresNegativoException e) {
+			Alerta.erro(e.getMessage());
 		}
-
 		mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
 		limparUsuario();
 

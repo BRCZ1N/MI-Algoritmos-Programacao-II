@@ -164,15 +164,20 @@ public class FormularioVendasController implements Initializable {
 			throws IOException, EstoqueInsuficienteException {
 
 		Vendas novaVenda = new Vendas(DaoPratos.getListaIdPratos(listaPratosCarrinho), comboBoxPagamento.getValue());
-
-		if (vendaAtual == null) {
-
-			DaoVendas.addEditDados(novaVenda, null);
-
-		} else {
-
-			DaoVendas.addEditDados(novaVenda, vendaAtual.getId());
-
+		try {
+			
+			if (vendaAtual == null) {
+				boolean retorno = Alerta.confirmar("venda");
+				if(retorno) {
+					DaoVendas.addEditDados(novaVenda, null);
+				}
+			} else {
+	
+				DaoVendas.addEditDados(novaVenda, vendaAtual.getId());
+	
+			}
+		}catch( EstoqueInsuficienteException e) {
+			Alerta.confirmar(e.getMessage());
 		}
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");

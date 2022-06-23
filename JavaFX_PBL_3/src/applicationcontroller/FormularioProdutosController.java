@@ -73,8 +73,11 @@ public class FormularioProdutosController implements Initializable {
 		try {
 
 			if (produtoAtual == null) {
-
-				DaoProdutos.addEditDados(produtoNovo, null);
+				boolean retorno = Alerta.confirmar("produto");
+				
+				if (retorno) {
+					DaoProdutos.addEditDados(produtoNovo, null);
+				}
 
 			} else {
 
@@ -82,8 +85,7 @@ public class FormularioProdutosController implements Initializable {
 
 			}
 		} catch (EntidadeComValoresNegativoException e) {
-
-			e.printStackTrace();
+			Alerta.erro(e.getMessage());
 		}
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");

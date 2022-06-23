@@ -60,17 +60,22 @@ public class FormularioUsuariosController implements Initializable {
 	public void salvarUsuarioAcao(ActionEvent event) throws IOException, LoginExistenteException {
 
 		Usuarios usuarioNovo = new Usuarios(textFLogin.getText(), textFSenha.getText(), textFNome.getText());
-
-		if (usuarioAtual == null) {
-
-			DaoUsuarios.addEditDados(usuarioNovo, null);
-
-		} else {
-
-			DaoUsuarios.addEditDados(usuarioNovo, usuarioAtual.getId());
-
+		try {
+			if (usuarioAtual == null) {
+				boolean retorno = Alerta.confirmar("usuario");
+				
+				if (retorno) {
+					DaoUsuarios.addEditDados(usuarioNovo, null);
+				}
+	
+			} else {
+	
+				DaoUsuarios.addEditDados(usuarioNovo, usuarioAtual.getId());
+	
+			}
+		}catch(LoginExistenteException e) {
+			Alerta.erro(e.getMessage());
 		}
-
 		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		limparUsuario();
 
