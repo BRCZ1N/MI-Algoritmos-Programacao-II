@@ -103,7 +103,7 @@ public class ExibirDetalhesClientesController implements Initializable {
 			textFCpfExibir.setText(clienteAtual.getCpf());
 			textFEmailExibir.setText(clienteAtual.getEmail());
 			textFTelefoneExibir.setText(clienteAtual.getTelefone());
-			listaVendasCarrinho.addAll(DaoVendas.getListaVenda(clienteAtual.getidHistoricoCompras()));
+			listaVendasCarrinho.addAll(DaoVendas.getListaVenda(clienteAtual.getIdHistoricoCompras()));
 			
 		}
 		

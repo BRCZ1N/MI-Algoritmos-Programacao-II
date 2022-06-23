@@ -74,7 +74,7 @@ public class Clientes {
 		this.telefone = telefone;
 	}
 
-	public ArrayList<String> getidHistoricoCompras() {
+	public ArrayList<String> getIdHistoricoCompras() {
 		return idHistoricoCompras;
 	}
 
