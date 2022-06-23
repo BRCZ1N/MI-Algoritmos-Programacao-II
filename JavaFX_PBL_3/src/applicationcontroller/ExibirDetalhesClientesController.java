@@ -2,8 +2,8 @@ package applicationcontroller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 import applicationmain.Main;
@@ -25,6 +25,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ExibirDetalhesClientesController implements Initializable {
+	
+	@FXML
 	private TextField textFNomeExibir;
 	@FXML
 	private TextField textFTelefoneExibir;
@@ -39,16 +41,22 @@ public class ExibirDetalhesClientesController implements Initializable {
 	@FXML
 	private TableColumn<Vendas, Double> columnCarrinhoVendaValor;
 	@FXML
-	private TableColumn<Vendas, Calendar> columnCarrinhoVendaDHorario;
+	private TableColumn<Vendas, LocalDate> columnCarrinhoVendaDHorario;
 	@FXML
 	private TableView<Vendas> tabelaCompraClienteExibir;
 	
-	
-	
-	
+	private ArrayList<Vendas> listaVendasCarrinho = new ArrayList<Vendas>();
 	
 	private static Clientes clienteAtual;
-	private ArrayList<Vendas> listaVendasCarrinho = new ArrayList<Vendas>();
+	
+    public static Clientes getClienteAtual() {
+        return clienteAtual;
+    }
+    public static void setClienteAtual(Clientes clienteAtual) {
+        ExibirDetalhesClientesController.clienteAtual = clienteAtual;
+    }
+	
+	
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -56,6 +64,7 @@ public class ExibirDetalhesClientesController implements Initializable {
 		limparUsuario();
 
 	}
+	
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
@@ -76,6 +85,7 @@ public class ExibirDetalhesClientesController implements Initializable {
 
 	}
 	public void tabelaDetalhes() {
+		
 		ObservableList<Vendas> observableVendaCarrinho = FXCollections.observableArrayList(listaVendasCarrinho);
 		tabelaCompraClienteExibir.setItems(observableVendaCarrinho);
 		columnCarrinhoVendaId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -86,6 +96,7 @@ public class ExibirDetalhesClientesController implements Initializable {
 	}
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
 		if (clienteAtual != null) {
 
 			textFNomeExibir.setText(clienteAtual.getNome());
@@ -95,6 +106,8 @@ public class ExibirDetalhesClientesController implements Initializable {
 			listaVendasCarrinho.addAll(DaoVendas.getListaVenda(clienteAtual.getidHistoricoCompras()));
 			
 		}
+		
+		tabelaDetalhes();
 	
 		
 	}

@@ -56,7 +56,7 @@ public class FormularioClientesController implements Initializable {
 	private TableView<Vendas> tabelaVendas;
 	@FXML
 	private TableView<Vendas> tabelaCompraCliente;
-	
+
 	private ArrayList<String> historicoCompras;
 
 	private ObservableList<Vendas> observableVendaSistema;
@@ -71,7 +71,7 @@ public class FormularioClientesController implements Initializable {
 		return clienteAtual;
 	}
 
-	public static void setUsuarioAtual(Clientes clienteAtual) {
+	public static void setClienteAtual(Clientes clienteAtual) {
 		FormularioClientesController.clienteAtual = clienteAtual;
 	}
 
@@ -86,35 +86,35 @@ public class FormularioClientesController implements Initializable {
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void salvarClienteAcao(ActionEvent event) throws IOException, CpfJaExisteException  {
-		
+	public void salvarClienteAcao(ActionEvent event) throws IOException {
+
 		Clientes clienteNovo = new Clientes(textFNome.getText(), textFCpf.getText(), textFEmail.getText(),
 				textFTelefone.getText(), historicoCompras);
 
-		if (clienteAtual == null) {
+		try {
+			if (clienteAtual == null) {
 
-			try {
 				boolean retorno = Alerta.confirmar("Você deseja salvar esse cliente ?");
 				if (retorno) {
+
 					DaoClientes.addEditDados(clienteNovo, null);
-				}else {
-					mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
-					limparUsuario();
+
 				}
-				
-			} catch (CpfJaExisteException e) {
-				Alerta.erro("Esse CPF Já Existe, por favor digite outro");
+
+			} else {
+
+				boolean retorno = Alerta.confirmar("Você deseja editar esse cliente ?");
+				if (retorno) {
+
+					DaoClientes.addEditDados(clienteNovo, clienteAtual.getId());
+
+				}
 			}
 
-		} else {
-			boolean retorno = Alerta.confirmar("Você deseja editar esse cliente ?");
-			if (retorno) {
-				DaoClientes.addEditDados(clienteNovo, clienteAtual.getId()); //verificar a necessidade de um exception
-			}else {
-				mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
-				limparUsuario();
-			}
-				
+		} catch (CpfJaExisteException e) {
+
+			Alerta.erro("Esse CPF Já Existe, tente novamente");
+
 		}
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
@@ -124,7 +124,7 @@ public class FormularioClientesController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-	
+
 		if (clienteAtual != null) {
 
 			textFNome.setText(clienteAtual.getNome());
@@ -132,7 +132,7 @@ public class FormularioClientesController implements Initializable {
 			textFEmail.setText(clienteAtual.getEmail());
 			textFTelefone.setText(clienteAtual.getTelefone());
 			listaVendasCarrinho.addAll(DaoVendas.getListaVenda(clienteAtual.getidHistoricoCompras()));
-			
+
 		}
 
 		refreshSistema();
@@ -173,7 +173,7 @@ public class FormularioClientesController implements Initializable {
 	@FXML
 	void acaoRemoverVendaCliente(ActionEvent event) {
 		for (Vendas vendaExcluir : tabelaCompraCliente.getSelectionModel().getSelectedItems()) {
-				listaVendasCarrinho.remove(vendaExcluir);
+			listaVendasCarrinho.remove(vendaExcluir);
 		}
 		refreshCarrinho();
 

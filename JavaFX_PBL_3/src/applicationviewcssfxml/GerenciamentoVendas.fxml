@@ -107,7 +107,13 @@
                               <Button fx:id="gerarRelatorioBtn" alignment="CENTER" mnemonicParsing="false" onAction="#gerarRelatorioAcao" prefHeight="39.0" prefWidth="100.0" stylesheets="@EfeitosAnimacoes.css" text="Gerar relatório" textFill="WHITE" />
                            </children>
                         </Pane>
-                        <Pane prefHeight="38.0" prefWidth="405.0" style="-fx-background-color: #00b4cc;" />
+                        <Pane prefHeight="38.0" prefWidth="280.0" style="-fx-background-color: #00b4cc;" />
+                        <Pane prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #343838;">
+                           <children>
+                              <Button fx:id="exibirDetalhesBtn" alignment="CENTER" mnemonicParsing="false" onAction="#exibirDetalhesAcao" prefHeight="39.0" prefWidth="110.0" stylesheets="@EfeitosAnimacoes.css" text="Exibir venda" textFill="WHITE" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="38.0" prefWidth="15.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
                               <Button fx:id="botaoNovo" alignment="CENTER" mnemonicParsing="false" onAction="#abrirAcaoAdd" prefHeight="39.0" prefWidth="55.0" stylesheets="@EfeitosAnimacoes.css" text="Novo" textFill="WHITE" />

@@ -42,13 +42,10 @@ public class FormularioFornecedoresController implements Initializable {
 	private TableView<Produtos> tabelaProdutosFornecedor;
 	@FXML
 	private TableColumn<Produtos, Double> columnSistemaProdutoId;
-
 	@FXML
 	private TableColumn<Produtos, String> columnSistemaProdutoNome;
-
 	@FXML
 	private TableColumn<Produtos, String> columnProdutosFornecidosId;
-
 	@FXML
 	private TableColumn<Produtos, Double> columnProdutosFornecidosNome;
 

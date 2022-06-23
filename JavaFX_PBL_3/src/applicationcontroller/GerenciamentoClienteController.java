@@ -21,6 +21,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 public class GerenciamentoClienteController implements Initializable {
+	
+    @FXML
+    private Button exibirDetalhesBtn;
 	@FXML
 	private TextField pesquisarCliente;
 	@FXML
@@ -59,6 +62,7 @@ public class GerenciamentoClienteController implements Initializable {
 
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
+				exibirDetalhesBtn.setDisable(false);
 
 			}
 
@@ -96,7 +100,7 @@ public class GerenciamentoClienteController implements Initializable {
 	@FXML
 	public void abrirAcaoEditar(ActionEvent event) throws IOException {
 
-		FormularioClientesController.setUsuarioAtual(tabelaClientes.getSelectionModel().getSelectedItem());
+		FormularioClientesController.setClienteAtual(tabelaClientes.getSelectionModel().getSelectedItem());
 		mudarJanela("/applicationviewcssfxml/FormularioClientes.fxml");
 
 	}
@@ -109,8 +113,9 @@ public class GerenciamentoClienteController implements Initializable {
 
 	}
 	@FXML
-	public void abrirAcaoDetalhes(ActionEvent event)throws IOException {
-		FormularioClientesController.setUsuarioAtual(tabelaClientes.getSelectionModel().getSelectedItem());
+	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
+		
+		ExibirDetalhesClientesController.setClienteAtual(tabelaClientes.getSelectionModel().getSelectedItem());
 		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
 		
 	}
