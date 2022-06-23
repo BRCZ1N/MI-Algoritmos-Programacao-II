@@ -12,4 +12,4 @@ import org.junit.platform.suite.api.SelectClasses;
 	  DaoUsuariosTest.class,
       DaoVendasTest.class,
     })
-public class MeuSuiteTestes {}
+public class SuiteTestes {}

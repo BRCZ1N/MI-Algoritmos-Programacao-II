@@ -1,20 +1,23 @@
 package applicationtest;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import java.util.ArrayList;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pblversaofinal.TipoPagamento;
-import pblversaofinal.DaoPratos;
-import pblversaofinal.DaoProdutos;
-import pblversaofinal.DaoVendas;
-import pblversaofinal.Vendas;
-import pblversaofinal.execeptions.EntidadeComValoresNegativoException;
-import pblversaofinal.execeptions.EstoqueInsuficienteException;
-import pblversaofinal.execeptions.IdInvalidoException;
-import pblversaofinal.execeptions.PratoComProdutoInvalidoException;
-import pblversaofinal.execeptions.VendaComPratoInvalidoException;
+
+import applicationexeceptions.EntidadeComValoresNegativoException;
+import applicationexeceptions.EstoqueInsuficienteException;
+import applicationmodel.TipoPagamento;
+import applicationmodel.Vendas;
+import applicationmodeldao.DaoPratos;
+import applicationmodeldao.DaoProdutos;
+import applicationmodeldao.DaoVendas;
 
 public class DaoVendasTest {
 
@@ -28,8 +31,7 @@ public class DaoVendasTest {
 
 	@BeforeEach
 	// Inicilizando os dados necess�rios aos testes
-	public void init()
-			throws EntidadeComValoresNegativoException, IdInvalidoException, PratoComProdutoInvalidoException {
+	public void init() throws EntidadeComValoresNegativoException {
 
 		gerenciamento3 = new DaoProdutos();
 		gerenciamento2 = new DaoPratos();
@@ -64,11 +66,10 @@ public class DaoVendasTest {
 	@Test
 	// Testando adicionar venda em rela��o a posi��o ao qual devem ocupar na
 	// lista de vendas
-	public void testaddDadosVendasPosicaoNaLista()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+	public void testaddDadosVendasPosicaoNaLista() throws EstoqueInsuficienteException {
 
-		gerenciamento.addEditDados(vendaA, null);
-		gerenciamento.addEditDados(vendaB, null);
+		DaoVendas.addEditDados(vendaA, null);
+		DaoVendas.addEditDados(vendaB, null);
 
 		assertEquals(vendaA, DaoVendas.getListaVendas().get(0));
 		assertEquals(vendaB, DaoVendas.getListaVendas().get(1));
@@ -78,11 +79,10 @@ public class DaoVendasTest {
 	@Test
 	// Testando adicionar vendas em rela��o a posi��o ao qual devem ocupar
 	// na lista de vendas
-	public void testAddDadosVendasTamanhoDaLista()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+	public void testAddDadosVendasTamanhoDaLista() throws EstoqueInsuficienteException {
 
-		gerenciamento.addEditDados(vendaA, null);
-		gerenciamento.addEditDados(vendaB, null);
+		DaoVendas.addEditDados(vendaA, null);
+		DaoVendas.addEditDados(vendaB, null);
 
 		assertEquals(2, DaoVendas.getListaVendas().size());
 
@@ -91,21 +91,20 @@ public class DaoVendasTest {
 	@Test
 	// Testando a remoção de vendas se existem na lista de vendas, usando como
 	// base o objeto atual e o objeto antigo
-	public void testRemoverDadosVendasSeExistirNaLista()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+	public void testRemoverDadosVendasSeExistirNaLista() throws EstoqueInsuficienteException {
 
-		gerenciamento.addEditDados(vendaA, null);
-		gerenciamento.addEditDados(vendaB, null);
+		DaoVendas.addEditDados(vendaA, null);
+		DaoVendas.addEditDados(vendaB, null);
 
 		Vendas vendaRemovido0 = DaoVendas.getListaVendas().get(0);
-		gerenciamento.removerDados("0");
+		DaoVendas.removerDados("0");
 		assertNotEquals(vendaRemovido0, DaoVendas.getListaVendas().get(0));
-		gerenciamento.addEditDados(vendaC, null);
+		DaoVendas.addEditDados(vendaC, null);
 		Vendas vendaRemovido1 = DaoVendas.getListaVendas().get(0);
-		gerenciamento.removerDados("1");
+		DaoVendas.removerDados("1");
 		assertNotEquals(vendaRemovido1.getId(), DaoVendas.getListaVendas().get(0));
 		Vendas vendaRemovido2 = DaoVendas.getListaVendas().get(0);
-		gerenciamento.removerDados("2");
+		DaoVendas.removerDados("2");
 		assertFalse(DaoVendas.getListaVendas().contains(vendaRemovido2));
 
 	}
@@ -113,67 +112,38 @@ public class DaoVendasTest {
 	@Test
 	// Testando a remo��o de vendas se existem na lista de vendas pelo tamanho
 	// da lista
-	public void testRemoverDadosDaVendaSeExistirTamanhoDaLista()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+	public void testRemoverDadosDaVendaSeExistirTamanhoDaLista() throws EstoqueInsuficienteException {
 
-		gerenciamento.addEditDados(vendaA, null);
-		gerenciamento.addEditDados(vendaB, null);
-		gerenciamento.addEditDados(vendaC, null);
+		DaoVendas.addEditDados(vendaA, null);
+		DaoVendas.addEditDados(vendaB, null);
+		DaoVendas.addEditDados(vendaC, null);
 
-		gerenciamento.removerDados("0");
+		DaoVendas.removerDados("0");
 		assertEquals(2, DaoVendas.getListaVendas().size());
-		gerenciamento.removerDados("1");
+		DaoVendas.removerDados("1");
 		assertEquals(1, DaoVendas.getListaVendas().size());
-		gerenciamento.removerDados("2");
+		DaoVendas.removerDados("2");
 		assertEquals(0, DaoVendas.getListaVendas().size());
 
 	}
 
 	@Test
-	// Testando a remo��o de vendas se n�o existe na lista de vendas
-	public void testRemoverDadosDaVendaSeNaoExistir()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
-
-		gerenciamento.addEditDados(vendaA, null);
-		gerenciamento.addEditDados(vendaB, null);
-
-		assertThrows(IdInvalidoException.class, () -> gerenciamento.removerDados("2"));
-		assertEquals(2, DaoVendas.getListaVendas().size());
-
-	}
-
-	@Test
 	// Testando a edi��o de vendas se existem na lista de vendas
-	public void testEditarProdutoNaListaDeProdutosCasoExista()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+	public void testEditarProdutoNaListaDeProdutosCasoExista() throws EstoqueInsuficienteException {
 
-		gerenciamento.addEditDados(vendaA, null);
-		gerenciamento.addEditDados(vendaB, null);
-		gerenciamento.addEditDados(vendaC, "1");
+		DaoVendas.addEditDados(vendaA, null);
+		DaoVendas.addEditDados(vendaB, null);
+		DaoVendas.addEditDados(vendaC, "1");
 
 		assertEquals(vendaC, DaoVendas.getListaVendas().get(1));
 
 	}
 
 	@Test
-	// Testando a edi��o de vendas se n�o existem na lista de vendas
-	public void testEditarDadosVendasSeNaoExistirNaLista()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
-
-		gerenciamento.addEditDados(vendaA, null);
-		gerenciamento.addEditDados(vendaC, null);
-
-		assertThrows(IdInvalidoException.class, () -> gerenciamento.addEditDados(vendaB, "2"));
-		assertFalse(DaoVendas.getListaVendas().contains(vendaB));
-
-	}
-
-	@Test
 	// Testando a listagem do dados do elemento da lista de vendas
-	public void testListagemDados()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+	public void testListagemDados() throws EstoqueInsuficienteException {
 
-		gerenciamento.addEditDados(vendaA, null);
+		DaoVendas.addEditDados(vendaA, null);
 
 		assertEquals(vendaA.getListaIdItens(), DaoVendas.getListaVendas().get(0).getListaIdItens());
 		assertEquals(vendaA.getDiaHorario(), DaoVendas.getListaVendas().get(0).getDiaHorario());
@@ -183,11 +153,10 @@ public class DaoVendasTest {
 	}
 
 	@Test
-	//Testando realizacao de venda com estoque insuficiente
-	public void testDeEstoqueInsuficienteParaVenda()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
+	// Testando realizacao de venda com estoque insuficiente
+	public void testDeEstoqueInsuficienteParaVenda() throws EstoqueInsuficienteException {
 
-		gerenciamento.addEditDados(vendaA, null);
+		DaoVendas.addEditDados(vendaA, null);
 		ArrayList<String> vendaZ = vendaB.getListaIdItens();
 		vendaZ.add("0");
 		vendaZ.add("1");
@@ -195,22 +164,9 @@ public class DaoVendasTest {
 		vendaZ.add("0");
 		vendaZ.add("0");
 		vendaB.setListaIdItens(vendaZ);
-		assertThrows(EstoqueInsuficienteException.class, () -> gerenciamento.addEditDados(vendaB, null));
+		assertThrows(EstoqueInsuficienteException.class, () -> DaoVendas.addEditDados(vendaB, null));
 
 	}
 
-	@Test
-	//Testando realizacao de venda com prato invalido
-	public void testVendaComPratoInvalidoDeEstoqueInsuficienteParaVenda()
-			throws IdInvalidoException, EstoqueInsuficienteException, VendaComPratoInvalidoException {
-
-		gerenciamento.addEditDados(vendaA, null);
-		ArrayList<String> vendaZ = vendaB.getListaIdItens();
-		vendaZ.add("0");
-		vendaZ.add("7");
-		vendaB.setListaIdItens(vendaZ);
-		assertThrows(VendaComPratoInvalidoException.class, () -> gerenciamento.addEditDados(vendaB, null));
-
-	}
 
 }
