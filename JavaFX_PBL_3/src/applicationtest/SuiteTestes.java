@@ -11,5 +11,6 @@ import org.junit.platform.suite.api.SelectClasses;
       DaoProdutosTest.class,
 	  DaoUsuariosTest.class,
       DaoVendasTest.class,
+      DaoClientesTest.class,
     })
 public class SuiteTestes {}

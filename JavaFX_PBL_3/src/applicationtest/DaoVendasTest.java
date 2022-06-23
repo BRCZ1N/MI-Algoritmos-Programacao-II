@@ -129,7 +129,7 @@ public class DaoVendasTest {
 
 	@Test
 	// Testando a edi��o de vendas se existem na lista de vendas
-	public void testEditarProdutoNaListaDeProdutosCasoExista() throws EstoqueInsuficienteException {
+	public void testEditarVendaNaListaDeVendasCasoExista() throws EstoqueInsuficienteException {
 
 		DaoVendas.addEditDados(vendaA, null);
 		DaoVendas.addEditDados(vendaB, null);

@@ -131,7 +131,7 @@ public class FormularioClientesController implements Initializable {
 			textFCpf.setText(clienteAtual.getCpf());
 			textFEmail.setText(clienteAtual.getEmail());
 			textFTelefone.setText(clienteAtual.getTelefone());
-			listaVendasCarrinho.addAll(DaoVendas.getListaVenda(clienteAtual.getidHistoricoCompras()));
+			listaVendasCarrinho.addAll(DaoVendas.getListaVenda(clienteAtual.getIdHistoricoCompras()));
 
 		}
 
