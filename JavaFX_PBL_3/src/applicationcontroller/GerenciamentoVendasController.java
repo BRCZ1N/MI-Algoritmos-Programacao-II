@@ -144,6 +144,13 @@ public class GerenciamentoVendasController implements Initializable{
 		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
 		
 	}
+	@FXML
+	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
+		
+		ExibirDetalhesVendasController.setVendaAtual(tabelaVendas.getSelectionModel().getSelectedItem());
+		mudarJanela("/applicationviewcssfxml/TelaDetalhesVendas.fxml");
+		
+	}
 	
 	@FXML
     void gerarRelatorioAcao(ActionEvent event) {

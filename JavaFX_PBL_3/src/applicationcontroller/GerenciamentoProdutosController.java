@@ -155,8 +155,8 @@ public class GerenciamentoProdutosController implements Initializable {
 	@FXML
 	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
 		
-//		ExibirDetalhesClientesController.setProdutoAtual(tabelaProdutos.getSelectionModel().getSelectedItem());
-//		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
+		ExibirDetalhesProdutoController.setProdutoAtual(tabelaProdutos.getSelectionModel().getSelectedItem());
+		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
 		
 	}
 
