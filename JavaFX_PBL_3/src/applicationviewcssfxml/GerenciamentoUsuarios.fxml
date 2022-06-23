@@ -102,25 +102,24 @@
                <children>
                   <HBox layoutY="-1.0" prefHeight="49.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Pane prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: #00b4cc;" />
+                        <Pane prefHeight="38.0" prefWidth="505.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
                               <Button fx:id="botaoNovo" alignment="CENTER" mnemonicParsing="false" onAction="#abrirAcaoAdd" prefHeight="39.0" prefWidth="55.0" stylesheets="@EfeitosAnimacoes.css" text="Novo" textFill="WHITE" />
                            </children>
                         </Pane>
-                        <Pane prefHeight="38.0" prefWidth="130.0" style="-fx-background-color: #00b4cc;" />
+                        <Pane prefHeight="38.0" prefWidth="15.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
                               <Button fx:id="botaoEditar" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#abrirAcaoEditar" prefHeight="39.0" prefWidth="55.0" stylesheets="@EfeitosAnimacoes.css" text="Editar" textFill="WHITE" />
                            </children>
                         </Pane>
-                        <Pane prefHeight="38.0" prefWidth="129.0" style="-fx-background-color: #00b4cc;" />
+                        <Pane prefHeight="38.0" prefWidth="15.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="45.0" prefWidth="55.0" style="-fx-background-color: #343838;">
                            <children>
                               <Button fx:id="botaoExcluir" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#abrirAcaoExcluir" prefHeight="39.0" prefWidth="55.0" stylesheets="@EfeitosAnimacoes.css" text="Excluir" textFill="WHITE" />
                            </children>
                         </Pane>
-                        <Pane prefHeight="38.0" prefWidth="140.0" style="-fx-background-color: #00b4cc;" />
                      </children>
                   </HBox>
                </children>

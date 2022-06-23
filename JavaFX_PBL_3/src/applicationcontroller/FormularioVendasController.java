@@ -23,6 +23,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -113,6 +114,21 @@ public class FormularioVendasController implements Initializable {
 		columnCarrinhoPratoId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnCarrinhoPratoNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		columnCarrinhoPratoPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+		columnCarrinhoPratoPreco.setCellFactory(column -> {
+			return new TableCell<Pratos, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
+
+			};
+
+		});
 
 	}
 
@@ -124,6 +140,21 @@ public class FormularioVendasController implements Initializable {
 		columnSistemaPratoId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnSistemaPratoNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		columnSistemaPratoPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+		columnSistemaPratoPreco.setCellFactory(column -> {
+			return new TableCell<Pratos, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
+
+			};
+
+		});
 
 	}
 
