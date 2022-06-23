@@ -81,7 +81,7 @@ public class FormularioPratosController implements Initializable {
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
-		limparUsuario();
+		limparPrato();
 
 	}
 
@@ -182,7 +182,7 @@ public class FormularioPratosController implements Initializable {
 			Alerta.erro(e.getMessage());
 		}
 		mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
-		limparUsuario();
+		limparPrato();
 
 	}
 
@@ -205,7 +205,7 @@ public class FormularioPratosController implements Initializable {
 
 	}
 
-	public void limparUsuario() {
+	public void limparPrato() {
 
 		pratoAtual = null;
 

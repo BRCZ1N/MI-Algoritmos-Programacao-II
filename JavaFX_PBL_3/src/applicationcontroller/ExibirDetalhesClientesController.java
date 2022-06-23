@@ -61,7 +61,7 @@ public class ExibirDetalhesClientesController implements Initializable {
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
-		limparUsuario();
+		limparCliente();
 
 	}
 	
@@ -70,7 +70,7 @@ public class ExibirDetalhesClientesController implements Initializable {
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
-	public void limparUsuario() {
+	public void limparCliente() {
 
 		clienteAtual = null;
 
