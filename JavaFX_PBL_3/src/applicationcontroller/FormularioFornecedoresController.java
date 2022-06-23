@@ -84,23 +84,25 @@ public class FormularioFornecedoresController implements Initializable {
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
 	public void salvarFornecedorAcao(ActionEvent event)
-			throws IOException, CnpjJaExisteException {
+			throws IOException {
 
 		Fornecedores fornecedorNovo = new Fornecedores(textFCnpj.getText(), textFNome.getText(),
 				textFEndereco.getText(), DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));
-
-		if (fornecedorAtual == null) {
-
-			DaoFornecedores.addEditDados(fornecedorNovo, null);
-
-		} else {
-
-			DaoFornecedores.addEditDados(fornecedorNovo, fornecedorAtual.getId());
-
+		try {
+			if (fornecedorAtual == null) {
+				boolean retorno = Alerta.confirmar("fornecedor");
+				if (retorno) {
+					DaoFornecedores.addEditDados(fornecedorNovo, null);
+				}	
+			}else {
+				DaoFornecedores.addEditDados(fornecedorNovo, fornecedorAtual.getId());
+	
+			}
+	
+			Main.getStage2().close();
+		}catch ( CnpjJaExisteException e) {
+			Alerta.erro(e.getMessage());
 		}
-
-		Main.getStage2().close();
-
 		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
 		limparUsuario();
 
