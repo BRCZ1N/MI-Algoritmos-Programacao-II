@@ -108,6 +108,12 @@ public class GerenciamentoClienteController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 
 	}
+	@FXML
+	public void abrirAcaoDetalhes(ActionEvent event)throws IOException {
+		FormularioClientesController.setUsuarioAtual(tabelaClientes.getSelectionModel().getSelectedItem());
+		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
+		
+	}
 	
 	@FXML
     void gerarRelatorioAcao(ActionEvent event) {

@@ -35,7 +35,7 @@
                            <children>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
                                  <image>
-                                    <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/8666421_pix_icon.png" />
+                                    <Image url="@../applicationviewimages/8666421_pix_icon.png" />
                                  </image>
                                  <GridPane.margin>
                                     <Insets />
@@ -71,11 +71,11 @@
                      <children>
                         <Pane prefHeight="36.0" prefWidth="86.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#voltarMenuAcao" prefHeight="36.0" prefWidth="86.0" stylesheets="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewcssfxml/EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
+                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#voltarMenuAcao" prefHeight="36.0" prefWidth="86.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/352020_arrow_back_icon.png" />
+                                          <Image url="@../applicationviewimages/352020_arrow_back_icon.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

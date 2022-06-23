@@ -32,12 +32,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField fx:id="textFNomeExibir" editable="false" promptText="Nome" styleClass="textfield" stylesheets="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewcssfxml/EfeitosAnimacoes.css" GridPane.columnIndex="1" />
-                        <TextField fx:id="textFLoginExibir" editable="false" promptText="Login" styleClass="textfield" stylesheets="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewcssfxml/EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <PasswordField fx:id="textFSenhaExibir" editable="false" promptText="Senha " styleClass="textfield" stylesheets="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewcssfxml/EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="textFNomeExibir" editable="false" promptText="Nome" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" />
+                        <TextField fx:id="textFLoginExibir" editable="false" promptText="Login" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <PasswordField fx:id="textFSenhaExibir" editable="false" promptText="Senha " styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <image>
-                              <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/372903_username_name_full_user_round_icon.png" />
+                              <Image url="@../applicationviewimages/372903_username_name_full_user_round_icon.png" />
                            </image>
                            <GridPane.margin>
                               <Insets />
@@ -45,7 +45,7 @@
                         </ImageView>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="2">
                            <image>
-                              <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/211855_locked_icon.png" />
+                              <Image url="@../applicationviewimages/211855_locked_icon.png" />
                            </image>
                            <GridPane.margin>
                               <Insets />
@@ -53,7 +53,7 @@
                         </ImageView>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                            <image>
-                              <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/2317796_computer_device_login_monitor_screen_icon.png" />
+                              <Image url="@../applicationviewimages/2317796_computer_device_login_monitor_screen_icon.png" />
                            </image>
                            <GridPane.margin>
                               <Insets />
@@ -71,11 +71,11 @@
                      <children>
                         <Pane prefHeight="36.0" prefWidth="112.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#voltarMenuAcao" prefHeight="36.0" prefWidth="86.0" stylesheets="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewcssfxml/EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
+                              <Button fx:id="voltarMenu" mnemonicParsing="false" onAction="#voltarMenuAcao" prefHeight="36.0" prefWidth="86.0" stylesheets="@EfeitosAnimacoes.css" text="Voltar" textFill="WHITE">
                                  <graphic>
                                     <ImageView fitHeight="15.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../Documentos/GitHub/PBL_3/JavaFX_PBL_3/src/applicationviewimages/352020_arrow_back_icon.png" />
+                                          <Image url="@../applicationviewimages/352020_arrow_back_icon.png" />
                                        </image>
                                     </ImageView>
                                  </graphic>

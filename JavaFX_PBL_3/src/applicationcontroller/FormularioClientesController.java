@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.ResourceBundle;
 import applicationexeceptions.CpfJaExisteException;
-import applicationexeceptions.LoginExistenteException;
 import applicationmain.Main;
 import applicationmodel.Clientes;
 import applicationmodel.Vendas;
@@ -91,19 +90,35 @@ public class FormularioClientesController implements Initializable {
 
 	// Event Listener on Button[#novoUsuario].onAction
 	@FXML
-	public void salvarClienteAcao(ActionEvent event) throws IOException, CpfJaExisteException, LoginExistenteException {
-
+	public void salvarClienteAcao(ActionEvent event) throws IOException, CpfJaExisteException  {
+		
 		Clientes clienteNovo = new Clientes(textFNome.getText(), textFCpf.getText(), textFEmail.getText(),
 				textFTelefone.getText(), historicoCompras);
 
 		if (clienteAtual == null) {
 
-			DaoClientes.addEditDados(clienteNovo, null);
+			try {
+				boolean retorno = Alerta.confirmar("Você deseja salvar esse cliente ?");
+				if (retorno) {
+					DaoClientes.addEditDados(clienteNovo, null);
+				}else {
+					mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
+					limparUsuario();
+				}
+				
+			} catch (CpfJaExisteException e) {
+				Alerta.erro("Esse CPF Já Existe, por favor digite outro");
+			}
 
 		} else {
-
-			DaoClientes.addEditDados(clienteNovo, clienteAtual.getId());
-
+			boolean retorno = Alerta.confirmar("Você deseja editar esse cliente ?");
+			if (retorno) {
+				DaoClientes.addEditDados(clienteNovo, clienteAtual.getId()); //verificar a necessidade de um exception
+			}else {
+				mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
+				limparUsuario();
+			}
+				
 		}
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
@@ -113,7 +128,7 @@ public class FormularioClientesController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+	
 		if (clienteAtual != null) {
 
 			textFNome.setText(clienteAtual.getNome());
@@ -121,7 +136,7 @@ public class FormularioClientesController implements Initializable {
 			textFEmail.setText(clienteAtual.getEmail());
 			textFTelefone.setText(clienteAtual.getTelefone());
 			listaVendasCarrinho.addAll(DaoVendas.getListaVenda(clienteAtual.getidHistoricoCompras()));
-
+			
 		}
 
 		refreshSistema();
@@ -161,11 +176,8 @@ public class FormularioClientesController implements Initializable {
 
 	@FXML
 	void acaoRemoverVendaCliente(ActionEvent event) {
-
 		for (Vendas vendaExcluir : tabelaCompraCliente.getSelectionModel().getSelectedItems()) {
-
-			listaVendasCarrinho.remove(vendaExcluir);
-
+				listaVendasCarrinho.remove(vendaExcluir);
 		}
 		refreshCarrinho();
 
@@ -186,7 +198,6 @@ public class FormularioClientesController implements Initializable {
 
 		observableVendaSistema = FXCollections.observableArrayList(DaoVendas.getListaVendas());
 		tabelaVendas.setItems(observableVendaSistema);
-
 		columnSistemaVendaId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnSistemaVendaValor.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
 		columnSistemaVendaDHorario.setCellValueFactory(new PropertyValueFactory<>("diaHorario"));
