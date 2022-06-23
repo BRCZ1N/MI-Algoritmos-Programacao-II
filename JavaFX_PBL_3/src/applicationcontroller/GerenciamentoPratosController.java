@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
@@ -69,8 +70,23 @@ public class GerenciamentoPratosController implements Initializable {
 
 		columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		columnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));;
 		columnCategoria.setCellValueFactory(new PropertyValueFactory<>("categoria"));
+		columnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+		columnPreco.setCellFactory(column -> {
+			return new TableCell<Pratos, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
+
+			};
+
+		});
 		
 	}
 

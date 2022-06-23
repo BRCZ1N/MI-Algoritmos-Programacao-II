@@ -70,7 +70,6 @@
                                 <columns>
                                   <TableColumn fx:id="columnSistemaVendaId" prefWidth="75.0" text="ID" />
                                   <TableColumn fx:id="columnSistemaVendaValor" prefWidth="75.0" text="Valor" />
-                                    <TableColumn fx:id="columnSistemaVendaDHorario" prefWidth="75.0" text="Dia/horário" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -103,7 +102,6 @@
                                 <columns>
                                   <TableColumn fx:id="columnCarrinhoVendaId" prefWidth="75.0" text="ID" />
                                   <TableColumn fx:id="columnCarrinhoVendaValor" prefWidth="75.0" text="Valor" />
-                                    <TableColumn fx:id="columnCarrinhoVendaDHorario" prefWidth="75.0" text="Dia/horário" />
                                 </columns>
                                  <columnResizePolicy>
                                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

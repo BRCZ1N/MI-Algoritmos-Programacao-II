@@ -6,6 +6,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -14,7 +15,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 import applicationexeceptions.CpfJaExisteException;
 import applicationmain.Main;
@@ -49,13 +49,9 @@ public class FormularioClientesController implements Initializable {
 	@FXML
 	private TableColumn<Vendas, Double> columnCarrinhoVendaValor;
 	@FXML
-	private TableColumn<Vendas, Calendar> columnCarrinhoVendaDHorario;
-	@FXML
 	private TableColumn<Vendas, String> columnSistemaVendaId;
 	@FXML
 	private TableColumn<Vendas, Double> columnSistemaVendaValor;
-	@FXML
-	private TableColumn<Vendas, Calendar> columnSistemaVendaDHorario;
 	@FXML
 	private TableView<Vendas> tabelaVendas;
 	@FXML
@@ -190,7 +186,21 @@ public class FormularioClientesController implements Initializable {
 
 		columnCarrinhoVendaId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnCarrinhoVendaValor.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
-		columnCarrinhoVendaDHorario.setCellValueFactory(new PropertyValueFactory<>("diaHorario"));
+		columnCarrinhoVendaValor.setCellFactory(column -> {
+			return new TableCell<Vendas, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
+
+			};
+
+		});
 
 	}
 
@@ -200,7 +210,21 @@ public class FormularioClientesController implements Initializable {
 		tabelaVendas.setItems(observableVendaSistema);
 		columnSistemaVendaId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnSistemaVendaValor.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
-		columnSistemaVendaDHorario.setCellValueFactory(new PropertyValueFactory<>("diaHorario"));
+		columnSistemaVendaValor.setCellFactory(column -> {
+			return new TableCell<Vendas, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
+
+			};
+
+		});
 
 	}
 }

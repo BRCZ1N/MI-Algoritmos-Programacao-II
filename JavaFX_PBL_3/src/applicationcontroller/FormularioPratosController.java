@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -86,9 +87,10 @@ public class FormularioPratosController implements Initializable {
 
 	@FXML
 	void acaoAdicionarProdutoPrato(ActionEvent event) throws IOException {
-		
+
 		abrirJanelaSecundaria("/applicationviewcssfxml/QuantidadeProduto.fxml");
-		Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),QuantidadeProdutoController.getQuantidade());
+		Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),
+				QuantidadeProdutoController.getQuantidade());
 		listaProdutosCarrinho.add(ingrediente);
 		observableProdutoCarrinho = FXCollections.observableArrayList(listaProdutosCarrinho);
 		refreshCarrinho();
@@ -102,6 +104,21 @@ public class FormularioPratosController implements Initializable {
 
 		columnCarrinhoProdutoId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnCarrinhoProdutoQtd.setCellValueFactory(new PropertyValueFactory<>("qtd"));
+		columnCarrinhoProdutoQtd.setCellFactory(colum -> {
+			return new TableCell<Ingredientes, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
+
+			};
+
+		});
 
 	}
 
@@ -113,6 +130,21 @@ public class FormularioPratosController implements Initializable {
 		columnSistemaProdutoId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnSistemaProdutoNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
 		columnSistemaProdutoQtd.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
+		columnSistemaProdutoQtd.setCellFactory(column -> {
+			return new TableCell<Produtos, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
+
+			};
+
+		});
 
 	}
 
@@ -180,7 +212,7 @@ public class FormularioPratosController implements Initializable {
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
-	
+
 	public void abrirJanelaSecundaria(String urlScene) throws IOException {
 
 		Main.getStage2().setScene(novaCena(urlScene));

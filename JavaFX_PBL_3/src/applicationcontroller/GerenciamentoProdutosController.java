@@ -78,7 +78,8 @@ public class GerenciamentoProdutosController implements Initializable {
 
 		columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-		columnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+		columnTipoQtd.setCellValueFactory(new PropertyValueFactory<>("tipoQtd"));
+		columnValidade.setCellValueFactory(new PropertyValueFactory<>("validade"));
 		columnQtd.setCellValueFactory(new PropertyValueFactory<>("qtdProduto"));
 		columnQtd.setCellFactory(column -> {
 			return new TableCell<Produtos, Double>() {
@@ -95,8 +96,22 @@ public class GerenciamentoProdutosController implements Initializable {
 			};
 
 		});
-		columnTipoQtd.setCellValueFactory(new PropertyValueFactory<>("tipoQtd"));
-		columnValidade.setCellValueFactory(new PropertyValueFactory<>("validade"));
+		columnPreco.setCellValueFactory(new PropertyValueFactory<>("preco"));
+		columnPreco.setCellFactory(column -> {
+			return new TableCell<Produtos, Double>() {
+				@Override
+				public void updateItem(Double item, boolean empty) {
+					super.updateItem(item, empty);
+					if (empty) {
+						setText(null);
+					} else {
+						setText(String.format("%.2f", item));
+					}
+				}
+
+			};
+
+		});
 
 	}
 
