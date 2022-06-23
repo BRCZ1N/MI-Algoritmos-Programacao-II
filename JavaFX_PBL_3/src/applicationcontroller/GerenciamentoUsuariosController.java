@@ -108,6 +108,14 @@ public class GerenciamentoUsuariosController implements Initializable {
 		
 	}
 	
+	@FXML
+	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
+		
+//		ExibirDetalhesClientesController.setUsuarioAtual(tabelaUsuarios.getSelectionModel().getSelectedItem());
+//		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
+		
+	}
+	
 
 	public Scene novaCena(String urlScene) throws IOException {
 

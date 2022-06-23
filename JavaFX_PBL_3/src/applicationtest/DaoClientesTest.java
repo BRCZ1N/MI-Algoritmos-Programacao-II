@@ -64,7 +64,7 @@ public class DaoClientesTest {
 
 	@Test
 	// Testando adicionar venda em rela��o a posi��o ao qual devem ocupar na
-	// lista de vendas
+	// lista de clientes
 	public void testaddClientePosicaoNaLista() throws CpfJaExisteException {
 
 		DaoClientes.addEditDados(clienteA, null);
@@ -77,7 +77,7 @@ public class DaoClientesTest {
 
 	@Test
 	// Testando adicionar vendas em rela��o a posi��o ao qual devem ocupar
-	// na lista de vendas
+	// na lista de clientes
 	public void testAddClienteTamanhoDaLista() throws CpfJaExisteException {
 
 		DaoClientes.addEditDados(clienteA, null);
@@ -88,7 +88,7 @@ public class DaoClientesTest {
 	}
 
 	@Test
-	// Testando a remoção de vendas se existem na lista de vendas, usando como
+	// Testando a remoção de vendas se existem na lista de clientes, usando como
 	// base o objeto atual e o objeto antigo
 	public void testRemoverClienteSeExistirNaLista() throws CpfJaExisteException {
 
@@ -109,7 +109,7 @@ public class DaoClientesTest {
 	}
 
 	@Test
-	// Testando a remo��o de vendas se existem na lista de vendas pelo tamanho
+	// Testando a remo��o de vendas se existem na lista de clientes pelo tamanho
 	// da lista
 	public void testRemoverClienteSeExistirTamanhoDaLista() throws CpfJaExisteException {
 
@@ -127,7 +127,7 @@ public class DaoClientesTest {
 	}
 
 	@Test
-	// Testando a edi��o de vendas se existem na lista de vendas
+	// Testando a edi��o de clientes se existem na lista de clientes
 	public void testEditarClienteNaListaDeClientesCasoExista() throws CpfJaExisteException {
 
 		DaoClientes.addEditDados(clienteA, null);
@@ -150,7 +150,7 @@ public class DaoClientesTest {
 	}
 	
 	@Test
-	// Testando a edi��o de vendas se existem na lista de clientes com cpf igual
+	// Testando a edi��o de clientes se existem na lista de clientes com cpf igual
 	public void testEditClienteNaListaDeClientesComCpfIgual() throws CpfJaExisteException {
 
 		DaoClientes.addEditDados(clienteA, null);
@@ -161,7 +161,7 @@ public class DaoClientesTest {
 	}
 
 	@Test
-	// Testando a listagem do dados do elemento da lista de vendas
+	// Testando a listagem do dados do elemento da lista de clientes
 	public void testListagemDados() throws CpfJaExisteException {
 
 		DaoClientes.addEditDados(clienteA, null);

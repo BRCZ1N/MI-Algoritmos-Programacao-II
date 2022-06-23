@@ -151,6 +151,14 @@ public class GerenciamentoProdutosController implements Initializable {
 		Relatorio.criarPdfProdutos();
 
     }
+	
+	@FXML
+	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
+		
+//		ExibirDetalhesClientesController.setProdutoAtual(tabelaProdutos.getSelectionModel().getSelectedItem());
+//		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
+		
+	}
 
 	public Scene novaCena(String urlScene) throws IOException {
 
