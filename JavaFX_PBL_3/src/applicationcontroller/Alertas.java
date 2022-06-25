@@ -5,7 +5,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
-public class Alerta {
+public class Alertas {
 
 	public static void erro (String exceptionErroMsg) {
 		Alert alerta = new Alert(Alert.AlertType.ERROR);

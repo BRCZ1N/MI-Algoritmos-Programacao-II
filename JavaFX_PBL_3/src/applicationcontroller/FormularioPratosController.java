@@ -167,7 +167,7 @@ public class FormularioPratosController implements Initializable {
 				Double.parseDouble(textFPreco.getText()), textFCategoria.getText(), listaProdutosCarrinho);
 		try {
 			if (pratoAtual == null) {
-				boolean retorno = Alerta.confirmar("prato");
+				boolean retorno = Alertas.confirmar("prato");
 				if (retorno) {
 					DaoPratos.addEditDados(pratoNovo, null);
 				}
@@ -179,7 +179,7 @@ public class FormularioPratosController implements Initializable {
 	
 			}
 		}catch(EntidadeComValoresNegativoException e) {
-			Alerta.erro(e.getMessage());
+			Alertas.erro(e.getMessage());
 		}
 		mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
 		limparPrato();

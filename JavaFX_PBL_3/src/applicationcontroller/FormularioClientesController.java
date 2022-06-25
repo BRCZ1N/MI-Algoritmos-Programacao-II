@@ -94,7 +94,7 @@ public class FormularioClientesController implements Initializable {
 		try {
 			if (clienteAtual == null) {
 
-				boolean retorno = Alerta.confirmar("Você deseja salvar esse cliente ?");
+				boolean retorno = Alertas.confirmar("Você deseja salvar esse cliente ?");
 				if (retorno) {
 
 					DaoClientes.addEditDados(clienteNovo, null);
@@ -103,7 +103,7 @@ public class FormularioClientesController implements Initializable {
 
 			} else {
 
-				boolean retorno = Alerta.confirmar("Você deseja editar esse cliente ?");
+				boolean retorno = Alertas.confirmar("Você deseja editar esse cliente ?");
 				if (retorno) {
 
 					DaoClientes.addEditDados(clienteNovo, clienteAtual.getId());
@@ -113,7 +113,7 @@ public class FormularioClientesController implements Initializable {
 
 		} catch (CpfJaExisteException e) {
 
-			Alerta.erro("Esse CPF Já Existe, tente novamente");
+			Alertas.erro("Esse CPF Já Existe, tente novamente");
 
 		}
 

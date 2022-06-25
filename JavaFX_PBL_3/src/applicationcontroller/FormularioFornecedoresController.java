@@ -87,7 +87,7 @@ public class FormularioFornecedoresController implements Initializable {
 				textFEndereco.getText(), DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));
 		try {
 			if (fornecedorAtual == null) {
-				boolean retorno = Alerta.confirmar("fornecedor");
+				boolean retorno = Alertas.confirmar("fornecedor");
 				if (retorno) {
 					DaoFornecedores.addEditDados(fornecedorNovo, null);
 				}	
@@ -98,7 +98,7 @@ public class FormularioFornecedoresController implements Initializable {
 	
 			Main.getStage2().close();
 		}catch ( CnpjJaExisteException e) {
-			Alerta.erro(e.getMessage());
+			Alertas.erro(e.getMessage());
 		}
 		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
 		limparUsuario();

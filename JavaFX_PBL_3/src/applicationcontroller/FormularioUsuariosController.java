@@ -62,7 +62,7 @@ public class FormularioUsuariosController implements Initializable {
 		Usuarios usuarioNovo = new Usuarios(textFLogin.getText(), textFSenha.getText(), textFNome.getText());
 		try {
 			if (usuarioAtual == null) {
-				boolean retorno = Alerta.confirmar("usuario");
+				boolean retorno = Alertas.confirmar("usuario");
 				
 				if (retorno) {
 					DaoUsuarios.addEditDados(usuarioNovo, null);
@@ -74,7 +74,7 @@ public class FormularioUsuariosController implements Initializable {
 	
 			}
 		}catch(LoginExistenteException e) {
-			Alerta.erro(e.getMessage());
+			Alertas.erro(e.getMessage());
 		}
 		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		limparUsuario();

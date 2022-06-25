@@ -167,7 +167,7 @@ public class FormularioVendasController implements Initializable {
 		try {
 			
 			if (vendaAtual == null) {
-				boolean retorno = Alerta.confirmar("venda");
+				boolean retorno = Alertas.confirmar("venda");
 				if(retorno) {
 					DaoVendas.addEditDados(novaVenda, null);
 				}
@@ -177,7 +177,7 @@ public class FormularioVendasController implements Initializable {
 	
 			}
 		}catch( EstoqueInsuficienteException e) {
-			Alerta.confirmar(e.getMessage());
+			Alertas.confirmar(e.getMessage());
 		}
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
