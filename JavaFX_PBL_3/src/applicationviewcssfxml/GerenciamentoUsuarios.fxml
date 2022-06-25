@@ -105,7 +105,7 @@
                         <Pane prefHeight="38.0" prefWidth="395.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="exibirDetalhesBtn" alignment="CENTER" mnemonicParsing="false" onAction="#exibirDetalhesAcao" prefHeight="39.0" prefWidth="110.0" stylesheets="@EfeitosAnimacoes.css" text="Exibir usuário" textFill="WHITE" />
+                              <Button fx:id="exibirDetalhesBtn" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#exibirDetalhesAcao" prefHeight="39.0" prefWidth="110.0" stylesheets="@EfeitosAnimacoes.css" text="Exibir usuário" textFill="WHITE" />
                            </children>
                         </Pane>
                         <Pane prefHeight="38.0" prefWidth="15.0" style="-fx-background-color: #00b4cc;" />

@@ -22,6 +22,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 public class GerenciamentoFornecedoresController implements Initializable {
+	
+	@FXML
+    private Button exibirDetalhesBtn;
 	@FXML
 	private TextField pesquisaFornecedor;
 	@FXML
@@ -58,7 +61,8 @@ public class GerenciamentoFornecedoresController implements Initializable {
 				
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
-				
+				exibirDetalhesBtn.setDisable(false);
+
 			}
 			
 		});	
@@ -120,7 +124,7 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
 		
 		ExibirDetalhesFornecedorController.setFornecedorAtual(tabelaFornecedores.getSelectionModel().getSelectedItem());
-		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
+		mudarJanela("/applicationviewcssfxml/TelaDetalhesFornecedor.fxml");
 		
 	}
 	

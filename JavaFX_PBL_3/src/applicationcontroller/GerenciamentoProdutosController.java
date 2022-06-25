@@ -24,6 +24,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 public class GerenciamentoProdutosController implements Initializable {
+	
+	@FXML
+    private Button exibirDetalhesBtn;
 	@FXML
 	private TextField pesquisarProduto;
 	@FXML
@@ -64,6 +67,7 @@ public class GerenciamentoProdutosController implements Initializable {
 
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
+				exibirDetalhesBtn.setDisable(false);
 
 			}
 

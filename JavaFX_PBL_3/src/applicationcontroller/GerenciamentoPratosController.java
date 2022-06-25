@@ -22,6 +22,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 public class GerenciamentoPratosController implements Initializable {
+	
+	@FXML
+    private Button exibirDetalhesBtn;
 	@FXML
 	private TextField pesquisarPrato;
 	@FXML
@@ -56,6 +59,7 @@ public class GerenciamentoPratosController implements Initializable {
 				
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
+				exibirDetalhesBtn.setDisable(false);
 				
 			}
 			

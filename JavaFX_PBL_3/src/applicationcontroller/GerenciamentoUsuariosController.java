@@ -23,6 +23,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 public class GerenciamentoUsuariosController implements Initializable {
+	
+	@FXML
+    private Button exibirDetalhesBtn;
 	@FXML
 	private TextField pesquisarUsuario;
 	@FXML
@@ -57,6 +60,7 @@ public class GerenciamentoUsuariosController implements Initializable {
 				
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
+				exibirDetalhesBtn.setDisable(false);
 				
 			}
 			
