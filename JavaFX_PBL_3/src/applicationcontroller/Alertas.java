@@ -6,7 +6,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 public class Alertas {
-
+	/**
+	 * Metodo que ira exibir um Balão que representa algum erro previsto pelo programa 
+	 *@param exceptionErroMsg String - Tipo de mensagem de erro
+	 */
 	public static void erro (String exceptionErroMsg) {
 		Alert alerta = new Alert(Alert.AlertType.ERROR);
 		alerta.setTitle("Erro!");
@@ -15,6 +18,12 @@ public class Alertas {
         alerta.show();
 
 	}
+	/**
+	 * Metodo que ira exibir um Balão que representa a solicitação de confirmação do usuario 
+	 *@param tipo String - Tipo de classe que pedir a confirmação
+	 *@return  Boolean <code>true</code> Se o botão representativo do sim for acionado
+	 *         <code>false</code> Se o botão representativo do não for acionado
+	 */
 	public static boolean confirmar(String tipo) {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         ButtonType buttonSim = new ButtonType("Sim");
@@ -30,6 +39,11 @@ public class Alertas {
         alerta.close();
         return false;
       }
+	/**
+	 * Metodo que ira exibir um Balão que representa a solicitação de confirmação do usuario para o caso de saida do sistema
+	 *@return  Boolean <code>true</code> Se o botão representativo do sim for acionado
+	 *         <code>false</code> Se o botão representativo do não for acionado
+	 */
 	public static boolean confirmarSaida() {
 		Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
 		ButtonType buttonSim = new ButtonType("Sim");
