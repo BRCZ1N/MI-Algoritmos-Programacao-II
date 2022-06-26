@@ -48,15 +48,26 @@ public class TelaDetalhesClientesController implements Initializable {
 	private ArrayList<Vendas> listaVendasCarrinho = new ArrayList<Vendas>();
 	
 	private static Clientes clienteAtual;
-	
+	/**
+	 *M�todo para retorno do conteudo do cliente selecionado.
+	 *@return Clientes clienteAtual
+	 */
     public static Clientes getClienteAtual() {
         return clienteAtual;
     }
+    /**
+	 *M�todo para setar o conteudo do cliente selecionado.
+	 *@param clienteAtual Clientes 
+	 */
     public static void setClienteAtual(Clientes clienteAtual) {
         TelaDetalhesClientesController.clienteAtual = clienteAtual;
     }
 	
-	
+    /**
+   	 *M�todo para retornar ao gerenciamento de Clientes.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -64,17 +75,29 @@ public class TelaDetalhesClientesController implements Initializable {
 		limparCliente();
 
 	}
-	
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
+	/**
+   	 *Metodo para setar o cliente atual como nulo
+   	 */
 	public void limparCliente() {
 
 		clienteAtual = null;
 
 	}
+	/**
+   	 *M�todo para criar uma nova janela determinada
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -84,6 +107,9 @@ public class TelaDetalhesClientesController implements Initializable {
 		return scene;
 
 	}
+	/**
+   	 *M�todo para criar uma tabela onde serão exibidos as informações de forma mais explicita.
+   	 */
 	public void tabelaDetalhes() {
 		
 		ObservableList<Vendas> observableVendaCarrinho = FXCollections.observableArrayList(listaVendasCarrinho);
@@ -94,6 +120,11 @@ public class TelaDetalhesClientesController implements Initializable {
 
 		
 	}
+	/**
+   	 *M�todo para inicializar a pagina selecionada pelo gerenciamento
+   	 *@param arg0 URL
+   	 *@param arg1 ResourceBundle
+   	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		

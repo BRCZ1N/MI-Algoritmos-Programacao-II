@@ -19,7 +19,16 @@ public class Clientes {
 	private String email;
 	private String telefone;
 	private ArrayList<String> idHistoricoCompras;
-
+	
+	
+	/**
+	 *Primeiro construtor da classe Clientes cria um cliente
+	 *@param nome String - nome do cliente
+	 *@param cpf String - Cpf do cliente
+	 *@param email String - Email do cliente
+	 *@param telefone String - telefone do cliente 
+	 *@param idHistoricoCompras ArrayList<String> - Lista de id's das compras do cliente
+	 */
 	public Clientes(String nome, String cpf, String email, String telefone, ArrayList<String> idHistoricoCompras) {
 
 		this.nome = nome;
@@ -33,23 +42,39 @@ public class Clientes {
 	public Clientes() {
 
 	}
-
+	/**
+	 *M�todo para retorno de id do cliente.
+	 *@return String id
+	 */
+	
 	public String getId() {
 		return id;
 	}
-
+	/**
+	 *M�todo para setar o valor de id do Cliente.
+	 *@param id String
+	 */
 	public void setId(String id) {
 		this.id = id;
 	}
-
+	/**
+	 *M�todo para retorno de nome do cliente.
+	 *@return String nome
+	 */
 	public String getNome() {
 		return nome;
 	}
-
+	/**
+	 *M�todo para setar o valor de nome do Cliente.
+	 *@param nome String
+	 */
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
+	/**
+	 *M�todo para retorno de cpf do cliente.
+	 *@return String cpf
+	 */
 	public String getCpf() {
 		return cpf;
 	}
