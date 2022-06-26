@@ -353,11 +353,11 @@ public class DaoVendas {
 
 	}
 	
-	public static ArrayList<Vendas> getListaVenda(ArrayList<String> idVenda) {
+	public static ArrayList<Vendas> getListaVenda(ArrayList<String> listaIdVenda) {
 
 		ArrayList<Vendas> vendas = new ArrayList<Vendas>();
 
-		for (String vendaId : idVenda) {
+		for (String vendaId : listaIdVenda) {
 
 			vendas.add(getVenda(vendaId));
 

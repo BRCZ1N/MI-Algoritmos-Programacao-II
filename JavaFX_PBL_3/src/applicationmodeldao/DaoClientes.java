@@ -1,10 +1,9 @@
 package applicationmodeldao;
 
-
 import java.util.ArrayList;
-
 import applicationexeceptions.CpfJaExisteException;
 import applicationmodel.Clientes;
+import applicationmodel.Vendas;
 
 /**
  * Classe para gerenciamento de objetos do tipo Pratos.
@@ -15,51 +14,51 @@ import applicationmodel.Clientes;
  * @since 2022
  */
 
-
 public class DaoClientes {
-	
+
 	private static ArrayList<Clientes> listaClientes = new ArrayList<Clientes>();
 	private static int idSeq = 0;
+
 	/**
 	 * Construtor para popular a estrutura de dados referente a clientes no menu.
 	 */
-	
+
 	public DaoClientes() {
 
 		ArrayList<String> idHistoricoCompras = new ArrayList<String>();
-		
+
 		idHistoricoCompras.add("0");
 		idHistoricoCompras.add("1");
-		
-		Clientes clienteA = new Clientes("Robenilson","018.236.120/0001-58","RobenilsonPatriota@yahoo.com","4002-8922",idHistoricoCompras);
-		Clientes clienteB = new Clientes("Carlos","018.232.120/0001-58","robinPat@yahoo.com","4002-8922", idHistoricoCompras);
-		Clientes clienteC = new Clientes("Claudinho","018.231.120/0001-58","Cocada@yahoo.com","4002-8922", idHistoricoCompras);
-		
+
+		Clientes clienteA = new Clientes("Robenilson", "018.236.120/0001-58", "RobenilsonPatriota@yahoo.com",
+				"4002-8922", idHistoricoCompras);
+		Clientes clienteB = new Clientes("Carlos", "018.232.120/0001-58", "robinPat@yahoo.com", "4002-8922",
+				idHistoricoCompras);
+		Clientes clienteC = new Clientes("Claudinho", "018.231.120/0001-58", "Cocada@yahoo.com", "4002-8922",
+				idHistoricoCompras);
+
 		try {
-			
+
 			addEditDados(clienteA, null);
 			addEditDados(clienteB, null);
 			addEditDados(clienteC, null);
-			
+
 		} catch (CpfJaExisteException e) {
 
 			e.getMessage();
 		}
-	
+
 	}
-	
 
 	/**
 	 * Metodo para retorno de uma lista de clientes.
 	 * 
 	 * @return Arraylist<Clientes> listaClientes
 	 */
-	
+
 	public static ArrayList<Clientes> getListaClientes() {
 		return listaClientes;
 	}
-
-
 
 	/**
 	 * Metodo para setar uma lista de clientes.
@@ -69,7 +68,6 @@ public class DaoClientes {
 	public static void setListaClientes(ArrayList<Clientes> listaClientes) {
 		DaoClientes.listaClientes = listaClientes;
 	}
-
 
 	/**
 	 * Metododo para obter o retorno do id sequencial
@@ -81,8 +79,6 @@ public class DaoClientes {
 		return idSeq;
 	}
 
-
-
 	/**
 	 * Metodo para setar um id sequencial
 	 * 
@@ -92,20 +88,17 @@ public class DaoClientes {
 		DaoClientes.idSeq = idSeq;
 	}
 
-
-
 	/**
-	 * Metodo para acessar o m�todo de editar caso exista um cliente a ser
-	 * editado, ou ent�o para adicionar um novo cliente.
+	 * Metodo para acessar o m�todo de editar caso exista um cliente a ser editado,
+	 * ou ent�o para adicionar um novo cliente.
 	 * 
 	 * @param cliente Clientes
 	 * @param chaveId String
 	 * @throws CpfJaExisteException
 	 * @throws IdInvalidoException
-	 * @throws VendaInexistenteException 
+	 * @throws VendaInexistenteException
 	 */
-	public static void addEditDados(Clientes cliente, String chaveId)
-			throws CpfJaExisteException {
+	public static void addEditDados(Clientes cliente, String chaveId) throws CpfJaExisteException {
 
 		if (chaveId == null) {
 
@@ -117,7 +110,6 @@ public class DaoClientes {
 
 		}
 
-		
 	}
 
 	/**
@@ -125,24 +117,23 @@ public class DaoClientes {
 	 * 
 	 * @param cliente Clientes- Objeto do tipo Clientes
 	 * @throws CpfJaExisteException
-	 * @throws IdInvalidoException 
+	 * @throws IdInvalidoException
 	 */
-	private static void addDados(Clientes cliente) throws CpfJaExisteException  {
-		
+	private static void addDados(Clientes cliente) throws CpfJaExisteException {
+
 		boolean cpfExiste = buscarCpf(0, listaClientes.size() - 1, cliente.getCpf());
-		
-		if(!cpfExiste) {
+
+		if (!cpfExiste) {
 			cliente.setId(Integer.toString(idSeq));
 			listaClientes.add(cliente);
 			idSeq++;
-			
+
 		} else {
-			
+
 			throw new CpfJaExisteException(cliente.getCpf());
-			
+
 		}
 	}
-	
 
 	/**
 	 * M�todo para editar um cliente na lista de clientes.
@@ -152,32 +143,29 @@ public class DaoClientes {
 	 * @throws CpfJaExisteException
 	 * @throws IdInvalidoException
 	 */
-	
-	
-	
-	private static void editarDados(Clientes clienteEditado, String chaveId) throws CpfJaExisteException  {
-		
+
+	private static void editarDados(Clientes clienteEditado, String chaveId) throws CpfJaExisteException {
+
 		int idExiste = buscarDado(0, listaClientes.size() - 1, chaveId);
 		if (idExiste != -1) {
-			Clientes clienteSalvo;	
+			Clientes clienteSalvo;
 			clienteEditado.setId(listaClientes.get(idExiste).getId());
 			clienteSalvo = listaClientes.get(idExiste);
 			removerDados(Integer.toString(idExiste));
-	
+
 			if (buscarCpf(0, listaClientes.size() - 1, clienteEditado.getCpf()) == false) {
-	
+
 				listaClientes.add(idExiste, clienteEditado);
-	
+
 			} else {
-	
+
 				listaClientes.add(idExiste, clienteSalvo);
 				throw new CpfJaExisteException(clienteEditado.getCpf());
-	
+
 			}
 
 		}
 	}
-
 
 	/**
 	 * M�todo para remover um cliente na lista de clientes.
@@ -187,21 +175,20 @@ public class DaoClientes {
 	 * 
 	 */
 
+	public static void removerDados(String chaveId) {
 
-
-	public static void removerDados(String chaveId)  {
-		
 		int idExiste = buscarDado(0, listaClientes.size() - 1, chaveId);
 		if (idExiste != -1) {
 
 			listaClientes.remove(idExiste);
 
-		} 
+		}
 
 	}
+
 	/**
-	 * M�todo de busca bin�ria recursiva pelo cpf, que retorna a posi��o do
-	 * objeto caso exista na lista.
+	 * M�todo de busca bin�ria recursiva pelo cpf, que retorna a posi��o do objeto
+	 * caso exista na lista.
 	 * 
 	 * @param inicio  Integer - Index inicial da lista
 	 * @param fim     Integer - Index final da lista
@@ -227,6 +214,7 @@ public class DaoClientes {
 		return false;
 
 	}
+
 	public static int buscarDado(int inicio, int fim, String chaveId) {
 
 		int meio = (inicio + fim) / 2;
@@ -251,16 +239,38 @@ public class DaoClientes {
 
 		return -1;
 	}
+
 	public static void limparLista() {
 
 		DaoClientes.listaClientes.clear();
 	}
 
+	public static double valorTotalVendasCliente(ArrayList<String> listaIdVendas) {
 
+		double valorTotal = 0;
 
+		for (Vendas venda : DaoVendas.getListaVenda(listaIdVendas)) {
 
-	public void listarDados() {
-		
-		
+			valorTotal += venda.getPrecoTotal();
+
+		}
+
+		return valorTotal;
+
 	}
+
+	public static ArrayList<String> listaPratosIdCliente(ArrayList<String> listaIdVendas) {
+
+		ArrayList<String> clientesLista = new ArrayList<String>();
+
+		for (Vendas venda:DaoVendas.getListaVenda(listaIdVendas)) {
+
+			clientesLista.addAll(venda.getListaIdItens());
+
+		}
+
+		return clientesLista;
+
+	}
+
 }
