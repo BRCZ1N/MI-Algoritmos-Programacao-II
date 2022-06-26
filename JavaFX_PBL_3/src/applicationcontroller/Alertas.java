@@ -49,7 +49,7 @@ public class Alertas {
 		ButtonType buttonSim = new ButtonType("Sim");
         ButtonType buttonNao = new ButtonType("Não", ButtonBar.ButtonData.CANCEL_CLOSE);
         alerta.setTitle("Confirmação");
-        alerta.setHeaderText("Você deseja sair do programa ?");
+        alerta.setHeaderText("Você deseja se desconectar ?");
         alerta.setContentText("Escolha a sua opção:");
         alerta.getButtonTypes().setAll(buttonSim, buttonNao);
         Optional<ButtonType> opcao = alerta.showAndWait();

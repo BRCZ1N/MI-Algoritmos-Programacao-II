@@ -74,8 +74,13 @@ public class PaginaPrincipalController {
 	@FXML
 	public void menuSairAcao(ActionEvent event) throws IOException {
 		
-		mudarJanela("/applicationviewcssfxml/LoginMenu.fxml");
-		
+		boolean resposta = Alertas.confirmarSaida();
+		if(resposta == true) {
+			
+			mudarJanela("/applicationviewcssfxml/LoginMenu.fxml");
+			
+		}
+				
 	}
 	
 	public Scene novaCena(String urlScene) throws IOException {

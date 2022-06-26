@@ -21,7 +21,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ExibirDetalhesFornecedorController implements Initializable {
+public class TelasDetalhesFornecedorController implements Initializable {
     @FXML
     private TableColumn<Produtos, Double> columnProdutosFornecidosId;
 
@@ -55,7 +55,7 @@ public class ExibirDetalhesFornecedorController implements Initializable {
 
 	public static void setFornecedorAtual(Fornecedores fornecedorAtual) {
 
-		ExibirDetalhesFornecedorController.fornecedorAtual = fornecedorAtual;
+		TelasDetalhesFornecedorController.fornecedorAtual = fornecedorAtual;
 
 	}
 	@FXML

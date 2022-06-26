@@ -24,7 +24,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ExibirDetalhesClientesController implements Initializable {
+public class TelaDetalhesClientesController implements Initializable {
 	
 	@FXML
 	private TextField textFNomeExibir;
@@ -60,7 +60,7 @@ public class ExibirDetalhesClientesController implements Initializable {
 	 *@param clienteAtual Clientes 
 	 */
     public static void setClienteAtual(Clientes clienteAtual) {
-        ExibirDetalhesClientesController.clienteAtual = clienteAtual;
+        TelaDetalhesClientesController.clienteAtual = clienteAtual;
     }
 	
     /**

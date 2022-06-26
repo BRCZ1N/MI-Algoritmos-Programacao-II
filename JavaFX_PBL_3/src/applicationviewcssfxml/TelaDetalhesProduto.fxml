@@ -2,8 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.ExibirDetalhesProdutoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="415.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="applicationcontroller.TelaDetalhesProdutoController">
    <children>
       <BorderPane prefHeight="300.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <center>
@@ -34,10 +32,9 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField fx:id="textFNomeExibir" editable="false" promptText="Nome" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" />
-                        <TextField fx:id="textFPrecoExibir" editable="false" promptText="Preço" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <TextField fx:id="textFQtdExibir" editable="false" promptText="Quantidade" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <DatePicker fx:id="datePickerProdutoExibir" editable="false" prefHeight="25.0" prefWidth="303.0" promptText="Validade" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="textFNome" editable="false" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" />
+                        <TextField fx:id="textFPreco" editable="false" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <TextField fx:id="textFQtd" editable="false" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <image>
                               <Image url="@../applicationviewimages/372903_username_name_full_user_round_icon.png" />
@@ -70,12 +67,13 @@
                               <Insets />
                            </GridPane.margin>
                         </ImageView>
-                        <ComboBox fx:id="comboBoxUMedidaExibir" prefHeight="25.0" prefWidth="314.0" promptText="Unidade de medida" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                            <image>
                               <Image url="@../applicationviewimages/3615743_measuring_package_scale_shipping_weigh_icon.png" />
                            </image>
                         </ImageView>
+                        <TextField fx:id="textFDataV" editable="false" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="textFUnidadeM" editable="false" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                      </children>
                   </GridPane>
                </children>

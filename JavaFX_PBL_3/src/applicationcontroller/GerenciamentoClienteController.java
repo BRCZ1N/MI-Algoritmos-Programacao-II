@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Clientes;
+import applicationmodel.Relatorio;
 import applicationmodeldao.DaoClientes;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,7 +64,8 @@ public class GerenciamentoClienteController implements Initializable {
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
 				exibirDetalhesBtn.setDisable(false);
-
+				gerarRelatorioBtn.setDisable(false);
+				
 			}
 
 		});
@@ -115,13 +117,15 @@ public class GerenciamentoClienteController implements Initializable {
 	@FXML
 	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
 		
-		ExibirDetalhesClientesController.setClienteAtual(tabelaClientes.getSelectionModel().getSelectedItem());
+		TelaDetalhesClientesController.setClienteAtual(tabelaClientes.getSelectionModel().getSelectedItem());
 		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
 		
 	}
 	
 	@FXML
     void gerarRelatorioAcao(ActionEvent event) {
+		
+		Relatorio.criarPdfCliente(tabelaClientes.getSelectionModel().getSelectedItem());
 
     }
 
