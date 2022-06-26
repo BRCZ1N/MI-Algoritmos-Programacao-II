@@ -103,12 +103,12 @@
                <children>
                   <HBox layoutY="-1.0" prefHeight="49.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Pane prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #343838;">
+                        <Pane prefHeight="38.0" prefWidth="160.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="gerarRelatorioBtn" alignment="CENTER" mnemonicParsing="false" onAction="#gerarRelatorioAcao" prefHeight="39.0" prefWidth="100.0" stylesheets="@EfeitosAnimacoes.css" text="Gerar relatório" textFill="WHITE" />
+                              <Button fx:id="gerarRelatorioBtn" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#gerarRelatorioAcao" prefHeight="39.0" prefWidth="154.0" stylesheets="@EfeitosAnimacoes.css" text="Gerar relatório do cliente" textFill="WHITE" />
                            </children>
                         </Pane>
-                        <Pane prefHeight="38.0" prefWidth="295.0" style="-fx-background-color: #00b4cc;" />
+                        <Pane prefHeight="38.0" prefWidth="243.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #343838;">
                            <children>
                               <Button fx:id="exibirDetalhesBtn" alignment="CENTER" disable="true" layoutX="-2.0" mnemonicParsing="false" onAction="#exibirDetalhesAcao" prefHeight="39.0" prefWidth="111.0" stylesheets="@EfeitosAnimacoes.css" text="Exibir Cliente" textFill="WHITE" />

@@ -115,8 +115,8 @@ public class GerenciamentoUsuariosController implements Initializable {
 	@FXML
 	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
 		
-		ExibirDetalhesUsuariosController.setUsuarioAtual(tabelaUsuarios.getSelectionModel().getSelectedItem());
-		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
+		TelaDetalhesUsuariosController.setUsuarioAtual(tabelaUsuarios.getSelectionModel().getSelectedItem());
+		mudarJanela("/applicationviewcssfxml/TelaDetalhesUsuario.fxml");
 		
 	}
 	

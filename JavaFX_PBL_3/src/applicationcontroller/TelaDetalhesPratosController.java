@@ -24,7 +24,7 @@ import javafx.scene.control.TableColumn;
 	import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-	public class ExibirDetalhesPratosController implements Initializable {
+	public class TelaDetalhesPratosController implements Initializable {
 
 	    @FXML
 	    private TableColumn<Ingredientes, String> columnCarrinhoProdutoId;
@@ -61,7 +61,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 		}
 
 		public static void setPratoAtual(Pratos pratoAtual) {
-			ExibirDetalhesPratosController.pratoAtual = pratoAtual;
+			TelaDetalhesPratosController.pratoAtual = pratoAtual;
 		}
 
 		@FXML

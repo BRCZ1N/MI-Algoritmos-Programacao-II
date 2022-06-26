@@ -123,7 +123,7 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	@FXML
 	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
 		
-		ExibirDetalhesFornecedorController.setFornecedorAtual(tabelaFornecedores.getSelectionModel().getSelectedItem());
+		TelasDetalhesFornecedorController.setFornecedorAtual(tabelaFornecedores.getSelectionModel().getSelectedItem());
 		mudarJanela("/applicationviewcssfxml/TelaDetalhesFornecedor.fxml");
 		
 	}

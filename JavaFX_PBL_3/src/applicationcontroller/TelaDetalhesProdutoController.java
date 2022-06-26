@@ -3,14 +3,9 @@ package applicationcontroller;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import applicationmain.Main;
 import applicationmodel.Produtos;
-import applicationmodel.UnidadeMedida;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,26 +13,25 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
-public class ExibirDetalhesProdutoController implements Initializable {
+public class TelaDetalhesProdutoController implements Initializable {
+
+
+	@FXML
+    private TextField textFDataV;
 
     @FXML
-    private ComboBox<String> comboBoxUMedidaExibir;
+    private TextField textFNome;
 
     @FXML
-    private DatePicker datePickerProdutoExibir;
+    private TextField textFPreco;
 
     @FXML
-    private TextField textFNomeExibir;
+    private TextField textFQtd;
 
     @FXML
-    private TextField textFPrecoExibir;
-
-    @FXML
-    private TextField textFQtdExibir;
+    private TextField textFUnidadeM;
 
     @FXML
     private Button voltarMenu;
@@ -49,10 +43,6 @@ public class ExibirDetalhesProdutoController implements Initializable {
 
 	}
 
-    private ArrayList<String> arrayListComboBox = new ArrayList<String>();
-
-	private ObservableList<String> observableComboBox;
-
 	private static Produtos produtoAtual;
 
 	public static Produtos getProdutoAtual() {
@@ -60,20 +50,9 @@ public class ExibirDetalhesProdutoController implements Initializable {
 	}
 
 	public static void setProdutoAtual(Produtos produtoAtual) {
-		ExibirDetalhesProdutoController.produtoAtual = produtoAtual;
+		TelaDetalhesProdutoController.produtoAtual = produtoAtual;
 	}
 	
-
-	public void inicializarComboBox() {
-
-		arrayListComboBox.add(UnidadeMedida.getTipoDeUnidade1());
-		arrayListComboBox.add(UnidadeMedida.getTipoDeUnidade2());
-		observableComboBox = FXCollections.observableArrayList(arrayListComboBox);
-
-		comboBoxUMedidaExibir.setItems(observableComboBox);
-
-	}
-
 	public void limparProduto() {
 
 		produtoAtual = null;
@@ -100,17 +79,14 @@ public class ExibirDetalhesProdutoController implements Initializable {
 
 		if (produtoAtual != null) {
 
-			textFNomeExibir.setText(produtoAtual.getNome());
-			textFPrecoExibir.setText(Double.toString(produtoAtual.getPreco()));
-			textFQtdExibir.setText(Double.toString(produtoAtual.getQtdProduto()));
-			comboBoxUMedidaExibir.setValue(produtoAtual.getTipoQtd());
-			datePickerProdutoExibir.setValue(produtoAtual.getValidade());
-
+			textFNome.setText(produtoAtual.getNome());
+			textFPreco.setText(Double.toString(produtoAtual.getPreco()));
+			textFQtd.setText(Double.toString(produtoAtual.getQtdProduto()));
+			textFDataV.setText(produtoAtual.getValidade().toString());
+			textFUnidadeM.setText(produtoAtual.getTipoQtd());
+		
 		}
 		
-		
-		inicializarComboBox();
-
 	}
 }
 

@@ -16,7 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
-public class ExibirDetalhesUsuariosController implements Initializable {
+public class TelaDetalhesUsuariosController implements Initializable {
 
     @FXML
     private TextField textFLoginExibir;
@@ -36,7 +36,7 @@ public class ExibirDetalhesUsuariosController implements Initializable {
 	}
 
 	public static void setUsuarioAtual(Usuarios usuarioAtual) {
-		ExibirDetalhesUsuariosController.usuarioAtual = usuarioAtual;
+		TelaDetalhesUsuariosController.usuarioAtual = usuarioAtual;
 	}
 
 	// Event Listener on Button[#voltarMenu].onAction

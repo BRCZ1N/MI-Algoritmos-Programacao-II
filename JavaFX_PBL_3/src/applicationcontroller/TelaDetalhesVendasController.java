@@ -2,12 +2,11 @@ package applicationcontroller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import applicationmain.Main;
 import applicationmodel.Pratos;
-import applicationmodel.TipoPagamento;
 import applicationmodel.Vendas;
 import applicationmodeldao.DaoPratos;
 import javafx.collections.FXCollections;
@@ -19,40 +18,41 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-public class ExibirDetalhesVendasController implements  Initializable {
+public class TelaDetalhesVendasController implements Initializable {
 
-    @FXML
-    private TableColumn<Pratos, String> columnCarrinhoPratoId;
+	@FXML
+	private TextField textFDataH;
 
-    @FXML
-    private TableColumn<Pratos, String> columnCarrinhoPratoNome;
+	@FXML
+	private TextField textFPagamentoM;
 
-    @FXML
-    private TableColumn<Pratos, Double> columnCarrinhoPratoPreco;
+	@FXML
+	private TextField textFValorTotal;
 
-    @FXML
-    private ComboBox<String> comboBoxPagamentoExibir;
+	@FXML
+	private TableColumn<Pratos, String> columnCarrinhoPratoId;
 
-    @FXML
-    private TableView<Pratos> tabelaCarrinho;
+	@FXML
+	private TableColumn<Pratos, String> columnCarrinhoPratoNome;
 
-    @FXML
-    private Button voltarMenu;
+	@FXML
+	private TableColumn<Pratos, Double> columnCarrinhoPratoPreco;
 
-    private ObservableList<Pratos> observablePratoCarrinho;
+	@FXML
+	private TableView<Pratos> tabelaCarrinho;
+
+	@FXML
+	private Button voltarMenu;
+
+	private ObservableList<Pratos> observablePratoCarrinho;
 
 	private ArrayList<Pratos> listaPratosCarrinho = new ArrayList<Pratos>();
-
-	private ArrayList<String> arrayListComboBox = new ArrayList<String>();
-
-	private ObservableList<String> observableComboBox;
 
 	private static Vendas vendaAtual;
 
@@ -61,7 +61,7 @@ public class ExibirDetalhesVendasController implements  Initializable {
 	}
 
 	public static void setVendaAtual(Vendas vendaAtual) {
-		ExibirDetalhesVendasController.vendaAtual = vendaAtual;
+		TelaDetalhesVendasController.vendaAtual = vendaAtual;
 	}
 
 	// Event Listener on Button[#voltarMenu].onAction
@@ -72,6 +72,7 @@ public class ExibirDetalhesVendasController implements  Initializable {
 		limparVenda();
 
 	}
+
 	public void limparVenda() {
 
 		vendaAtual = null;
@@ -93,6 +94,7 @@ public class ExibirDetalhesVendasController implements  Initializable {
 		return scene;
 
 	}
+
 	public void refreshCarrinho() {
 
 		observablePratoCarrinho = FXCollections.observableArrayList(listaPratosCarrinho);
@@ -118,32 +120,23 @@ public class ExibirDetalhesVendasController implements  Initializable {
 		});
 
 	}
-	public void inicializarComboBox() {
-
-		arrayListComboBox.add(TipoPagamento.getTipoDePagamento1());
-		arrayListComboBox.add(TipoPagamento.getTipoDePagamento2());
-		arrayListComboBox.add(TipoPagamento.getTipoDePagamento3());
-		arrayListComboBox.add(TipoPagamento.getTipoDePagamento4());
-
-		observableComboBox = FXCollections.observableArrayList(arrayListComboBox);
-
-		comboBoxPagamentoExibir.setItems(observableComboBox);
-
-	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		DateTimeFormatter formatarDHorario = DateTimeFormatter.ofPattern("dd.MM.yyyy - HH:mm:ss");
+		
 		if (vendaAtual != null) {
 
-			comboBoxPagamentoExibir.setValue(vendaAtual.getTipoPagamento());
+			textFPagamentoM.setText(vendaAtual.getTipoPagamento());
+			textFDataH.setText(formatarDHorario.format(vendaAtual.getDiaHorario()));
+			textFValorTotal.setText(Double.toString(vendaAtual.getPrecoTotal()));
 			listaPratosCarrinho.addAll(DaoPratos.getListaPratos(vendaAtual.getListaIdItens()));
 			refreshCarrinho();
 
 		}
-		inicializarComboBox();
-		tabelaCarrinho.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
+
 	}
 
 }
-

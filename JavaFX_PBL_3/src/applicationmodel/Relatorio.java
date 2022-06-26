@@ -16,6 +16,7 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import applicationmodeldao.DaoClientes;
 import applicationmodeldao.DaoFornecedores;
 import applicationmodeldao.DaoPratos;
 import applicationmodeldao.DaoProdutos;
@@ -35,6 +36,7 @@ public class Relatorio {
 	private static int idProdutosPdf = 0;
 	private static int idFornecedoresPdf = 0;
 	private static int idVendasPdf = 0;
+	private static int idClientesPdf = 0;
 
 	/**
 	 * Metodo para definir o dia e o horario do relatorio
@@ -61,9 +63,9 @@ public class Relatorio {
 		
 		try {
 
-			if (getIdProdutosPdf() >= 1) {
+			if (idProdutosPdf >= 1) {
 
-				PdfWriter.getInstance(d, new FileOutputStream("RelatorioProdutos(" + getIdProdutosPdf() + ").pdf"));
+				PdfWriter.getInstance(d, new FileOutputStream("RelatorioProdutos(" + idProdutosPdf + ").pdf"));
 
 			} else {
 
@@ -127,9 +129,9 @@ public class Relatorio {
 
 			d.add(tabela);
 			d.close();
-			if (getIdProdutosPdf() >= 1) {
+			if (idProdutosPdf >= 1) {
 
-				Desktop.getDesktop().open(new File("RelatorioProdutos(" + getIdProdutosPdf() + ").pdf"));
+				Desktop.getDesktop().open(new File("RelatorioProdutos(" + idProdutosPdf + ").pdf"));
 
 			} else {
 				
@@ -137,7 +139,7 @@ public class Relatorio {
 
 			}
 
-			setIdProdutosPdf(getIdProdutosPdf() + 1);
+			idProdutosPdf += 1;
 		
 
 		} catch (Exception e) {
@@ -364,13 +366,127 @@ public class Relatorio {
 		}
 
 	}
+	
+	public static void criarPdfCliente(Clientes cliente) {
 
-	public static int getIdProdutosPdf() {
-		return idProdutosPdf;
-	}
+		setDiaHorario(LocalDateTime.now());
+		Document d = new Document();
+		DateTimeFormatter formatarDHorario = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
-	public static void setIdProdutosPdf(int idProdutosPdf) {
-		Relatorio.idProdutosPdf = idProdutosPdf;
+		try {
+
+			if (idClientesPdf >= 1) {
+
+				PdfWriter.getInstance(d,new FileOutputStream("RelatorioCliente(" + idClientesPdf + ") - "+cliente.getNome()+".pdf"));
+
+			} else {
+
+				PdfWriter.getInstance(d, new FileOutputStream("RelatorioCliente - "+ cliente.getNome() + ".pdf"));
+
+			}
+
+			d.open();
+			Paragraph p = new Paragraph("Relatorio de cliente - "+dHRelatorio);
+			d.add(p);
+			
+			p = new Paragraph(" ");
+			d.add(p);
+			
+			p = new Paragraph("Dados do cliente:");
+			d.add(p);
+			
+			p = new Paragraph(" ");
+			d.add(p);
+		
+			p = new Paragraph("Id: "+cliente.getId());
+			d.add(p);
+			
+			p = new Paragraph("Nome: "+cliente.getNome());
+			d.add(p);
+		
+			p = new Paragraph("Cpf: "+cliente.getCpf());
+			d.add(p);
+			
+			p = new Paragraph(" ");
+			d.add(p);
+
+			p = new Paragraph("Valor total gasto pelo cliente: " + DaoClientes.valorTotalVendasCliente(cliente.getIdHistoricoCompras()));
+			d.add(p);
+
+			p = new Paragraph(" ");
+			d.add(p);
+
+			PdfPTable tabela = new PdfPTable(5);
+			tabela.setTotalWidth(100f);
+			tabela.setWidths(new float[] {12f,20f,20f,20f,28f});
+
+			PdfPCell celulaPDF1 = new PdfPCell(new Paragraph("Id"));
+			celulaPDF1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			PdfPCell celulaPDF2 = new PdfPCell(new Paragraph("Data/horario"));
+			celulaPDF2.setHorizontalAlignment(Element.ALIGN_CENTER);
+			PdfPCell celulaPDF3 = new PdfPCell(new Paragraph("Quantidade de Itens"));
+			celulaPDF3.setHorizontalAlignment(Element.ALIGN_CENTER);
+			PdfPCell celulaPDF4 = new PdfPCell(new Paragraph("Valor"));
+			celulaPDF4.setHorizontalAlignment(Element.ALIGN_CENTER);
+			PdfPCell celulaPDF5 = new PdfPCell(new Paragraph("Pratos"));
+			celulaPDF5.setHorizontalAlignment(Element.ALIGN_CENTER);
+			
+			tabela.addCell(celulaPDF1);
+			tabela.addCell(celulaPDF2);
+			tabela.addCell(celulaPDF3);
+			tabela.addCell(celulaPDF4);
+			tabela.addCell(celulaPDF5);
+
+			for (Vendas venda : DaoVendas.getListaVenda(cliente.getIdHistoricoCompras())) {
+
+				celulaPDF1 = new PdfPCell(new Paragraph(venda.getId()));
+				celulaPDF1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				celulaPDF2 = new PdfPCell(new Paragraph(formatarDHorario.format(venda.getDiaHorario())));
+				celulaPDF2.setHorizontalAlignment(Element.ALIGN_CENTER); 
+				celulaPDF3 = new PdfPCell(new Paragraph(Integer.toString(venda.getQtdPratosVenda())));
+				celulaPDF3.setHorizontalAlignment(Element.ALIGN_CENTER);
+				celulaPDF4 = new PdfPCell(new Paragraph("R$" + Double.toString(venda.getPrecoTotal())));
+				celulaPDF4.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+				List lista = new List();
+
+				for (String idPrato : venda.getListaIdItens()) {
+
+					lista.add(new ListItem(DaoPratos.getPrato(idPrato).getNome() + "(" + ( DaoPratos.getPrato(idPrato).getCategoria() + ")")));
+
+				}
+
+				celulaPDF5 = new PdfPCell();
+				celulaPDF5.addElement(lista);
+				celulaPDF5.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+				tabela.addCell(celulaPDF1);
+				tabela.addCell(celulaPDF2);
+				tabela.addCell(celulaPDF3);
+				
+				tabela.addCell(celulaPDF4);
+				tabela.addCell(celulaPDF5);
+
+			}
+
+			d.add(tabela);
+			d.close();
+			if (idClientesPdf >= 1) {
+
+				Desktop.getDesktop().open(new File("RelatorioCliente(" + idClientesPdf + ") - "+cliente.getNome()+".pdf"));
+
+			} else {
+				
+				Desktop.getDesktop().open(new File("RelatorioCliente - "+ cliente.getNome() +".pdf"));
+
+			}
+			idClientesPdf++;
+			
+
+		} catch (Exception e) {
+
+		}
+
 	}
 
 }

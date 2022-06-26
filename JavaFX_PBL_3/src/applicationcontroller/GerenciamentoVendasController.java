@@ -96,7 +96,7 @@ public class GerenciamentoVendasController implements Initializable{
 		});
 		columnTPagamento.setCellValueFactory(new PropertyValueFactory<>("tipoPagamento"));
 		columnDHorario.setCellValueFactory(new PropertyValueFactory<>("diaHorario"));
-		DateTimeFormatter formatarDHorario = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
+		DateTimeFormatter formatarDHorario = DateTimeFormatter.ofPattern("dd.MM.yyyy - HH:mm:ss");
 		columnDHorario.setCellFactory(column -> {
 
 			return new TableCell<Vendas, LocalDateTime>() {
@@ -151,7 +151,7 @@ public class GerenciamentoVendasController implements Initializable{
 	@FXML
 	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
 		
-		ExibirDetalhesVendasController.setVendaAtual(tabelaVendas.getSelectionModel().getSelectedItem());
+		TelaDetalhesVendasController.setVendaAtual(tabelaVendas.getSelectionModel().getSelectedItem());
 		mudarJanela("/applicationviewcssfxml/TelaDetalhesVendas.fxml");
 		
 	}

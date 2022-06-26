@@ -129,8 +129,8 @@ public class GerenciamentoPratosController implements Initializable {
 	@FXML
 	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
 		
-		ExibirDetalhesPratosController.setPratoAtual(tabelaPratos.getSelectionModel().getSelectedItem());
-		mudarJanela("/applicationviewcssfxml/TelaDetalhesCliente.fxml");
+		TelaDetalhesPratosController.setPratoAtual(tabelaPratos.getSelectionModel().getSelectedItem());
+		mudarJanela("/applicationviewcssfxml/TelaDetalhesPrato.fxml");
 		
 	}
 	
