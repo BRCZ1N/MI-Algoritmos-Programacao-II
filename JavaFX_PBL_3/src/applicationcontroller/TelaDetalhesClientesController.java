@@ -1,11 +1,8 @@
 package applicationcontroller;
-
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
-
 import applicationmain.Main;
 import applicationmodel.Clientes;
 import applicationmodel.Vendas;
@@ -40,8 +37,6 @@ public class TelaDetalhesClientesController implements Initializable {
 	private TableColumn<Vendas, String> columnCarrinhoVendaId;
 	@FXML
 	private TableColumn<Vendas, Double> columnCarrinhoVendaValor;
-	@FXML
-	private TableColumn<Vendas, LocalDate> columnCarrinhoVendaDHorario;
 	@FXML
 	private TableView<Vendas> tabelaCompraClienteExibir;
 	
@@ -116,8 +111,6 @@ public class TelaDetalhesClientesController implements Initializable {
 		tabelaCompraClienteExibir.setItems(observableVendaCarrinho);
 		columnCarrinhoVendaId.setCellValueFactory(new PropertyValueFactory<>("id"));
 		columnCarrinhoVendaValor.setCellValueFactory(new PropertyValueFactory<>("precoTotal"));
-		columnCarrinhoVendaDHorario.setCellValueFactory(new PropertyValueFactory<>("diaHorario"));
-
 		
 	}
 	/**
