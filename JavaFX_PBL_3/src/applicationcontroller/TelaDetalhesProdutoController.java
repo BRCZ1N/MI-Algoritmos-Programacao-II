@@ -35,36 +35,57 @@ public class TelaDetalhesProdutoController implements Initializable {
 
     @FXML
     private Button voltarMenu;
-    @FXML
+	private static Produtos produtoAtual;
+	/**
+	 *M�todo para retorno do conteudo do produto selecionado.
+	 *@return Produtos produtoAtual
+	 */
+	public static Produtos getProdutoAtual() {
+		return produtoAtual;
+	}
+	/**
+	 *M�todo para setar o conteudo do produto selecionado.
+	 *@param produtoAtual Produtos 
+	 */
+	public static void setProdutoAtual(Produtos produtoAtual) {
+		TelaDetalhesProdutoController.produtoAtual = produtoAtual;
+	}
+	/**
+   	 *M�todo para retornar ao gerenciamento de Produtos.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
+	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
 		limparProduto();
 
 	}
-
-	private static Produtos produtoAtual;
-
-	public static Produtos getProdutoAtual() {
-		return produtoAtual;
-	}
-
-	public static void setProdutoAtual(Produtos produtoAtual) {
-		TelaDetalhesProdutoController.produtoAtual = produtoAtual;
-	}
 	
-	public void limparProduto() {
-
-		produtoAtual = null;
-
-	}
-
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
+	/**
+   	 *Metodo para setar o produto atual como nulo
+   	 */
+	public void limparProduto() {
 
+		produtoAtual = null;
+
+	}
+	/**
+   	 *M�todo para criar uma nova janela determinada
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -74,6 +95,11 @@ public class TelaDetalhesProdutoController implements Initializable {
 		return scene;
 
 	}
+	/**
+   	 *M�todo para inicializar a pagina selecionada pelo gerenciamento
+   	 *@param arg0 URL
+   	 *@param arg1 ResourceBundle
+   	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 

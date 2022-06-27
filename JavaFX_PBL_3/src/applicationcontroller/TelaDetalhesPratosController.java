@@ -55,15 +55,25 @@ import javafx.scene.control.cell.PropertyValueFactory;
 		private ArrayList<Ingredientes> listaProdutosCarrinho = new ArrayList<Ingredientes>();
 
 		private static Pratos pratoAtual;
-
+		/**
+		 *M�todo para retorno do conteudo do prato selecionado.
+		 *@return Pratos pratoAtual
+		 */
 		public static Pratos getPratoAtual() {
 			return pratoAtual;
 		}
-
+		 /**
+		 *M�todo para setar o conteudo do Prato selecionado.
+		 *@param pratoAtual Pratos 
+		 */
 		public static void setPratoAtual(Pratos pratoAtual) {
 			TelaDetalhesPratosController.pratoAtual = pratoAtual;
 		}
-
+		/**
+	   	 *M�todo para retornar ao gerenciamento de Pratos.
+	   	 *@param  event ActionEvent
+	   	 *@throws IOException
+	   	 */
 		@FXML
 		public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -71,17 +81,30 @@ import javafx.scene.control.cell.PropertyValueFactory;
 			limparPrato();
 
 		}
+		/**
+	   	 *M�todo para mudar para a janela determinada.
+	   	 *@param urlScene String
+	   	 *@throws IOException
+	   	 */
+		public void mudarJanela(String urlScene) throws IOException {
+
+			Main.getStage().setScene(novaCena(urlScene));
+
+		}
+		/**
+	   	 *Metodo para setar o Prato atual como nulo
+	   	 */
 		public void limparPrato() {
 
 			pratoAtual = null;
 
 		}
 
-		public void mudarJanela(String urlScene) throws IOException {
-
-			Main.getStage().setScene(novaCena(urlScene));
-
-		}
+		/**
+	   	 *M�todo para criar uma nova janela determinada
+	   	 *@param urlScene String
+	   	 *@throws IOException
+	   	 */
 		public Scene novaCena(String urlScene) throws IOException {
 
 			FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -91,6 +114,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 			return scene;
 
 		}
+		/**
+	   	 *M�todo para criar uma tabela onde serão exibidos as informações de forma mais explicita.
+	   	 */
 		public void tabelaDetalhes() {
 
 			observableProdutoCarrinho = FXCollections.observableArrayList(listaProdutosCarrinho);
@@ -115,6 +141,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 			});
 
 		}
+		/**
+	   	 *M�todo para inicializar a pagina selecionada pelo gerenciamento
+	   	 *@param arg0 URL
+	   	 *@param arg1 ResourceBundle
+	   	 */
 		@Override
 		public void initialize(URL arg0, ResourceBundle arg1) {
 

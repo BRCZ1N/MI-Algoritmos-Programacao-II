@@ -55,16 +55,26 @@ public class TelaDetalhesVendasController implements Initializable {
 	private ArrayList<Pratos> listaPratosCarrinho = new ArrayList<Pratos>();
 
 	private static Vendas vendaAtual;
-
+	/**
+	 *M�todo para retorno do conteudo da venda selecionada.
+	 *@return Vendas vendaAtual
+	 */
 	public static Vendas getVendaaAtual() {
 		return vendaAtual;
 	}
+	/**
+	 *M�todo para setar o conteudo da Venda selecionada.
+	 *@param vendaAtual Vendas 
+	 */
 
 	public static void setVendaAtual(Vendas vendaAtual) {
 		TelaDetalhesVendasController.vendaAtual = vendaAtual;
 	}
-
-	// Event Listener on Button[#voltarMenu].onAction
+	/**
+   	 *M�todo para retornar ao gerenciamento de Vendas.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -73,18 +83,30 @@ public class TelaDetalhesVendasController implements Initializable {
 
 	}
 
-	public void limparVenda() {
-
-		vendaAtual = null;
-
-	}
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 		;
 	}
+	/**
+   	 *Metodo para setar o venda atual como nula
+   	 */
+	public void limparVenda() {
 
+		vendaAtual = null;
+
+	}
+	/**
+   	 *M�todo para criar uma nova janela determinada
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -94,8 +116,11 @@ public class TelaDetalhesVendasController implements Initializable {
 		return scene;
 
 	}
+	/**
+   	 *M�todo para criar uma tabela onde serão exibidos as informações de forma mais explicita.
+   	 */
 
-	public void refreshCarrinho() {
+	public void tabelaDetalhes() {
 
 		observablePratoCarrinho = FXCollections.observableArrayList(listaPratosCarrinho);
 		tabelaCarrinho.setItems(observablePratoCarrinho);
@@ -120,7 +145,11 @@ public class TelaDetalhesVendasController implements Initializable {
 		});
 
 	}
-
+	/**
+   	 *M�todo para inicializar a pagina selecionada pelo gerenciamento
+   	 *@param arg0 URL
+   	 *@param arg1 ResourceBundle
+   	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
@@ -132,7 +161,7 @@ public class TelaDetalhesVendasController implements Initializable {
 			textFDataH.setText(formatarDHorario.format(vendaAtual.getDiaHorario()));
 			textFValorTotal.setText(Double.toString(vendaAtual.getPrecoTotal()));
 			listaPratosCarrinho.addAll(DaoPratos.getListaPratos(vendaAtual.getListaIdItens()));
-			refreshCarrinho();
+			tabelaDetalhes();
 
 		}
 		

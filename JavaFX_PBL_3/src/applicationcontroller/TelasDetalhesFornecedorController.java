@@ -46,18 +46,29 @@ public class TelasDetalhesFornecedorController implements Initializable {
     private ArrayList<Produtos> listaProdutosFornecidos = new ArrayList<Produtos>();
 
 	private static Fornecedores fornecedorAtual;
-
+	/**
+	 *M�todo para retorno do conteudo do prato selecionado.
+	 *@return Pratos pratoAtual
+	 */
 	public static Fornecedores getFornecedorAtual() {
 
 		return fornecedorAtual;
 
 	}
-
+	/**
+	 *M�todo para setar o conteudo do Prato selecionado.
+	 *@param pratoAtual Pratos 
+	 */
 	public static void setFornecedorAtual(Fornecedores fornecedorAtual) {
 
 		TelasDetalhesFornecedorController.fornecedorAtual = fornecedorAtual;
 
 	}
+	/**
+   	 *M�todo para retornar ao gerenciamento de Pratos.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -65,16 +76,29 @@ public class TelasDetalhesFornecedorController implements Initializable {
 		limparFornecedor();
 
 	}
-	public void limparFornecedor() {
-
-		fornecedorAtual = null;
-
-	}
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 	}
+	/**
+   	 *Metodo para setar o Prato atual como nulo
+   	 */
+	public void limparFornecedor() {
+
+		fornecedorAtual = null;
+
+	}
+	/**
+   	 *M�todo para criar uma nova janela determinada
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 
 	public Scene novaCena(String urlScene) throws IOException {
 
@@ -85,6 +109,23 @@ public class TelasDetalhesFornecedorController implements Initializable {
 		return scene;
 
 	}
+	/**
+   	 *M�todo para criar uma tabela onde serão exibidos as informações de forma mais explicita.
+   	 */
+	public void tabelaDetalhes() {
+
+		observableProdutoFornecido = FXCollections.observableArrayList(listaProdutosFornecidos);
+		tabelaProdutosFornecedorExibir.setItems(observableProdutoFornecido);
+
+		columnProdutosFornecidosId.setCellValueFactory(new PropertyValueFactory<>("id"));
+		columnProdutosFornecidosNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+
+	}
+	/**
+   	 *M�todo para inicializar a pagina selecionada pelo gerenciamento
+   	 *@param arg0 URL
+   	 *@param arg1 ResourceBundle
+   	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		if (fornecedorAtual != null) {
@@ -97,15 +138,6 @@ public class TelasDetalhesFornecedorController implements Initializable {
 
 		}
 		
-	}
-	public void tabelaDetalhes() {
-
-		observableProdutoFornecido = FXCollections.observableArrayList(listaProdutosFornecidos);
-		tabelaProdutosFornecedorExibir.setItems(observableProdutoFornecido);
-
-		columnProdutosFornecidosId.setCellValueFactory(new PropertyValueFactory<>("id"));
-		columnProdutosFornecidosNome.setCellValueFactory(new PropertyValueFactory<>("nome"));
-
 	}
 
 }

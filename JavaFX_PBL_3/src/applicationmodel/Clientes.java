@@ -78,31 +78,52 @@ public class Clientes {
 	public String getCpf() {
 		return cpf;
 	}
-
+	/**
+	 *M�todo para setar o valor de cpf do Cliente.
+	 *@param cpf String
+	 */
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
+	/**
+	 *M�todo para retorno de email do cliente.
+	 *@return String email
+	 */
 	public String getEmail() {
 		return email;
 	}
-
+	/**
+	 *M�todo para setar o email do Cliente.
+	 *@param email String
+	 */
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
+	/**
+	 *M�todo para retorno de telefone do cliente.
+	 *@return String telefone
+	 */
 	public String getTelefone() {
 		return telefone;
 	}
-
+	/**
+	 *M�todo para setar o telefone do Cliente.
+	 *@param telefone String
+	 */
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
+	/**
+	 *M�todo para retorno de uma lista de id's das compras do cliente.
+	 *@return ArrayList<String> idHistoricoCompras0	 
+	 **/
 	public ArrayList<String> getIdHistoricoCompras() {
 		return idHistoricoCompras;
 	}
-
+	/**
+	 *M�todo para setar a lista de compras feitas pelo cliente.
+	 *@param idHistoricoCompras ArrayList<String> 
+	 */
 	public void setHistoricoCompras(ArrayList<String> idHistoricoCompras) {
 		this.idHistoricoCompras = idHistoricoCompras;
 	}
