@@ -45,16 +45,26 @@ public class FormularioProdutosController implements Initializable {
 	private ObservableList<String> observableComboBox;
 
 	private static Produtos produtoAtual;
-
+	/**
+	 *M�todo para retorno do conteudo do produto selecionado.
+	 *@return Produtos produtoAtual
+	 */
 	public static Produtos getProdutoAtual() {
 		return produtoAtual;
 	}
-
+	/**
+	 *M�todo para setar o conteudo do produto selecionado.
+	 *@param produtoAtual Produtos 
+	 */
 	public static void setProdutoAtual(Produtos produtoAtual) {
 		FormularioProdutosController.produtoAtual = produtoAtual;
 	}
 
-	// Event Listener on Button[#voltarMenu].onAction
+	/**
+   	 *M�todo para retornar ao gerenciamento de Produtos.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -63,7 +73,11 @@ public class FormularioProdutosController implements Initializable {
 
 	}
 
-	// Event Listener on Button[#novoUsuario].onAction
+	/**
+   	 *M�todo para salvar o produto apos a confirmação.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void salvarProdutoAcao(ActionEvent event) throws IOException {
 
@@ -92,7 +106,11 @@ public class FormularioProdutosController implements Initializable {
 		limparUsuario();
 
 	}
-
+	/**
+   	 *M�todo para inicializar o gerenciamento de Fornecedores
+   	 *@param arg0 URL
+   	 *@param arg1 ResourceBundle
+   	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -110,7 +128,9 @@ public class FormularioProdutosController implements Initializable {
 		inicializarComboBox();
 
 	}
-
+	/**
+   	 *Metodo para inicializar o comboBox da unidade de medida do produto
+   	 */
 	public void inicializarComboBox() {
 
 		arrayListComboBox.add(UnidadeMedida.getTipoDeUnidade1());
@@ -120,19 +140,29 @@ public class FormularioProdutosController implements Initializable {
 		comboBoxUMedida.setItems(observableComboBox);
 
 	}
-
+	/**
+   	 *Metodo para setar o produto atual como nulo
+   	 */
 	public void limparUsuario() {
 
 		produtoAtual = null;
 
 	}
-
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
-
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));

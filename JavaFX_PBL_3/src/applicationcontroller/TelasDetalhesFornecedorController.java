@@ -47,7 +47,7 @@ public class TelasDetalhesFornecedorController implements Initializable {
 
 	private static Fornecedores fornecedorAtual;
 	/**
-	 *M�todo para retorno do conteudo do prato selecionado.
+	 *M�todo para retorno do conteudo do Fornecedor selecionado.
 	 *@return Pratos pratoAtual
 	 */
 	public static Fornecedores getFornecedorAtual() {
@@ -56,7 +56,7 @@ public class TelasDetalhesFornecedorController implements Initializable {
 
 	}
 	/**
-	 *M�todo para setar o conteudo do Prato selecionado.
+	 *M�todo para setar o conteudo do Fornecedor selecionado.
 	 *@param pratoAtual Pratos 
 	 */
 	public static void setFornecedorAtual(Fornecedores fornecedorAtual) {
@@ -65,7 +65,7 @@ public class TelasDetalhesFornecedorController implements Initializable {
 
 	}
 	/**
-   	 *M�todo para retornar ao gerenciamento de Pratos.
+   	 *M�todo para retornar ao gerenciamento de Fornecedores.
    	 *@param  event ActionEvent
    	 *@throws IOException
    	 */
@@ -87,7 +87,7 @@ public class TelasDetalhesFornecedorController implements Initializable {
 		Main.getStage().setScene(novaCena(urlScene));
 	}
 	/**
-   	 *Metodo para setar o Prato atual como nulo
+   	 *Metodo para setar o fornecedor atual como nulo
    	 */
 	public void limparFornecedor() {
 

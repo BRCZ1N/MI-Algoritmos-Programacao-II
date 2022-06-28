@@ -37,16 +37,25 @@ public class FormularioUsuariosController implements Initializable {
 	private Button editarUsuario;
 
 	private static Usuarios usuarioAtual;
-
+	 /**
+		 *M�todo para retorno do conteudo do usuario selecionado.
+		 *@return Usuarios usuarioAtual
+		 */
 	public static Usuarios getUsuarioAtual() {
 		return usuarioAtual;
 	}
-
+	/**
+	 *M�todo para setar o conteudo do usuario selecionado.
+	 *@param usuarioAtual Usuarios 
+	 */
 	public static void setUsuarioAtual(Usuarios usuarioAtual) {
 		FormularioUsuariosController.usuarioAtual = usuarioAtual;
 	}
-
-	// Event Listener on Button[#voltarMenu].onAction
+	/**
+   	 *M�todo para retornar ao gerenciamento de usuarios.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -54,8 +63,11 @@ public class FormularioUsuariosController implements Initializable {
 		limparUsuario();
 
 	}
-
-	// Event Listener on Button[#novoUsuario].onAction
+	/**
+   	 *M�todo para salvar o Usuario apos a confirmação.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void salvarUsuarioAcao(ActionEvent event) throws IOException, LoginExistenteException {
 
@@ -80,7 +92,11 @@ public class FormularioUsuariosController implements Initializable {
 		limparUsuario();
 
 	}
-
+	/**
+   	 *M�todo para inicializar a pagina selecionada pelo gerenciamento
+   	 *@param arg0 URL
+   	 *@param arg1 ResourceBundle
+   	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -93,19 +109,29 @@ public class FormularioUsuariosController implements Initializable {
 		}
 
 	}
-
+	/**
+   	 *Metodo para setar o usuario atual como nulo
+   	 */
 	public void limparUsuario() {
 
 		usuarioAtual = null;
 
 	}
-
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 		;
 	}
-
+	/**
+   	 *M�todo para criar uma nova janela determinada
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */''
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));

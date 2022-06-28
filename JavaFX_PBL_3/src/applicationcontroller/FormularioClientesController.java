@@ -66,16 +66,26 @@ public class FormularioClientesController implements Initializable {
 	private ArrayList<Vendas> listaVendasCarrinho = new ArrayList<Vendas>();
 
 	private static Clientes clienteAtual;
-
+	/**
+	 *M�todo para retorno do conteudo do cliente selecionado.
+	 *@return Clientes clienteAtual
+	 */
 	public static Clientes getUsuarioAtual() {
 		return clienteAtual;
 	}
-
+	/**
+	 *M�todo para setar o conteudo do cliente selecionado.
+	 *@param clienteAtual Clientes 
+	 */
 	public static void setClienteAtual(Clientes clienteAtual) {
 		FormularioClientesController.clienteAtual = clienteAtual;
 	}
 
-	// Event Listener on Button[#voltarMenu].onAction
+	/**
+   	 *M�todo para retornar ao gerenciamento de Clientes.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -83,8 +93,11 @@ public class FormularioClientesController implements Initializable {
 		limparUsuario();
 
 	}
-
-	// Event Listener on Button[#novoUsuario].onAction
+	/**
+   	 *M�todo para salvar o cliente apos a confirmação.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void salvarClienteAcao(ActionEvent event) throws IOException {
 
@@ -94,7 +107,7 @@ public class FormularioClientesController implements Initializable {
 		try {
 			if (clienteAtual == null) {
 
-				boolean retorno = Alertas.confirmar("Você deseja salvar esse cliente ?");
+				boolean retorno = Alertas.confirmar("cliente");
 				if (retorno) {
 
 					DaoClientes.addEditDados(clienteNovo, null);
@@ -103,7 +116,7 @@ public class FormularioClientesController implements Initializable {
 
 			} else {
 
-				boolean retorno = Alertas.confirmar("Você deseja editar esse cliente ?");
+				boolean retorno = Alertas.confirmar("cliente");
 				if (retorno) {
 
 					DaoClientes.addEditDados(clienteNovo, clienteAtual.getId());
@@ -121,7 +134,11 @@ public class FormularioClientesController implements Initializable {
 		limparUsuario();
 
 	}
-
+	/**
+   	 *M�todo para inicializar o gerenciamento de clientes
+   	 *@param arg0 URL
+   	 *@param arg1 ResourceBundle
+   	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -139,19 +156,29 @@ public class FormularioClientesController implements Initializable {
 		refreshCarrinho();
 
 	}
-
+	/**
+   	 *Metodo para setar o cliente atual como nulo
+   	 */
 	public void limparUsuario() {
 
 		clienteAtual = null;
 
 	}
-
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
-
+	/**
+   	 *M�todo para criar uma nova janela determinada
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -161,7 +188,10 @@ public class FormularioClientesController implements Initializable {
 		return scene;
 
 	}
-
+	/**
+   	 *M�todo para adicionar vendas feitas na lista de compras do cliente
+   	 *@param event ActionEvent
+   	 */
 	@FXML
 	void acaoAdicionarVendaCliente(ActionEvent event) {
 
@@ -169,7 +199,10 @@ public class FormularioClientesController implements Initializable {
 		refreshCarrinho();
 
 	}
-
+	/**
+   	 *M�todo para remover vendas feitas na lista de compras do cliente
+   	 *@param event ActionEvent
+   	 */
 	@FXML
 	void acaoRemoverVendaCliente(ActionEvent event) {
 		for (Vendas vendaExcluir : tabelaCompraCliente.getSelectionModel().getSelectedItems()) {
@@ -178,7 +211,9 @@ public class FormularioClientesController implements Initializable {
 		refreshCarrinho();
 
 	}
-
+	/**
+   	 *M�todo para atualizar o listView do carrinho de compras do cliente e formatar o preço total 
+   	 */
 	public void refreshCarrinho() {
 
 		observableVendaCarrinho = FXCollections.observableArrayList(listaVendasCarrinho);
@@ -203,7 +238,9 @@ public class FormularioClientesController implements Initializable {
 		});
 
 	}
-
+	/**
+   	 *M�todo para atualizar a listView de vendas da classe de vendas e formatar o preço total 
+   	 */
 	public void refreshSistema() {
 
 		observableVendaSistema = FXCollections.observableArrayList(DaoVendas.getListaVendas());
