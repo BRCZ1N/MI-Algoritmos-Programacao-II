@@ -131,7 +131,7 @@ public class FormularioUsuariosController implements Initializable {
    	 *M�todo para criar uma nova janela determinada
    	 *@param urlScene String
    	 *@throws IOException
-   	 */''
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
