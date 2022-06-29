@@ -48,7 +48,11 @@ public class GerenciamentoUsuariosController implements Initializable {
 	private Button botaoExcluir;
 
 	private static ObservableList<Usuarios> observableListaUsuarios;
-
+	/**
+   	 *M�todo para inicializar o gerenciamento e  ativar a visualização dos botões 
+   	 *@param arg0 URL
+   	 *@param arg1 ResourceBundle
+   	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -67,7 +71,9 @@ public class GerenciamentoUsuariosController implements Initializable {
 		});	
 			
 	}
-
+	/**
+   	 *M�todo para carregar a listView da classe e formatar as celulas
+   	 */
 	public void carregarListaUsuarios() {
 
 		observableListaUsuarios = FXCollections.observableArrayList(DaoUsuarios.getListaUsuarios());
@@ -79,7 +85,11 @@ public class GerenciamentoUsuariosController implements Initializable {
 		columnSenha.setCellValueFactory(new PropertyValueFactory<>("senhaUsuario"));
 		
 	}
-
+	/**
+   	 *M�todo para retornar ao menu principal.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
@@ -87,14 +97,22 @@ public class GerenciamentoUsuariosController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
 		
 	}
-
+	/**
+   	 *M�todo para abrir a tela do formulario de cadastro 
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void abrirAcaoAdd(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/FormularioUsuarios.fxml");
 	
 	}
-	
+	/**
+   	 *M�todo para abrir a tela de edição de determinada celula
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void abrirAcaoEditar(ActionEvent event) throws IOException {
 
@@ -103,7 +121,11 @@ public class GerenciamentoUsuariosController implements Initializable {
 	
 	}
 	
-	
+	/**
+   	 *M�todo para excluir a celula escolhida
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 
@@ -111,7 +133,11 @@ public class GerenciamentoUsuariosController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		
 	}
-	
+	/**
+   	 *M�todo para exibir detalhes de determinada celula
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
 		
@@ -120,7 +146,11 @@ public class GerenciamentoUsuariosController implements Initializable {
 		
 	}
 	
-
+	/**
+   	 *M�todo para criar uma nova janela determinada pelo paranmetro 
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -130,7 +160,11 @@ public class GerenciamentoUsuariosController implements Initializable {
 		return scene;
 
 	}
-
+	/**
+   	 *M�todo para mudar para a janela determinada pelo paranmetro
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
