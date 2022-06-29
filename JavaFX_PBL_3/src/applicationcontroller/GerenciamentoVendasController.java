@@ -52,7 +52,11 @@ public class GerenciamentoVendasController implements Initializable{
     private Button gerarRelatorioBtn;
 
 	private static ObservableList<Vendas> observableListaVendas;
-
+	/**
+   	 *M�todo para inicializar o gerenciamento e  ativar a visualização dos botões 
+   	 *@param arg0 URL
+   	 *@param arg1 ResourceBundle
+   	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
@@ -71,7 +75,9 @@ public class GerenciamentoVendasController implements Initializable{
 		});	
 			
 	}
-
+	/**
+   	 *M�todo para carregar a listView da classe e formatar as celulas
+   	 */
 	public void carregarListaVendas() {
 
 		observableListaVendas = FXCollections.observableArrayList(DaoVendas.getListaVendas());
@@ -117,21 +123,33 @@ public class GerenciamentoVendasController implements Initializable{
 		
 	}
 
-
+	/**
+   	 *M�todo para retornar ao menu principal.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 		
 		mudarJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
 		
 	}
-
+	/**
+   	 *M�todo para abrir a tela do formulario de cadastro 
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void abrirAcaoAdd(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/FormularioVendas.fxml");
 	
 	}
-	
+	/**
+   	 *M�todo para abrir a tela de edição de determinada celula
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void abrirAcaoEditar(ActionEvent event) throws IOException {
 
@@ -139,7 +157,11 @@ public class GerenciamentoVendasController implements Initializable{
 		mudarJanela("/applicationviewcssfxml/FormularioVendas.fxml");
 	
 	}
-	
+	/**
+   	 *M�todo para excluir a celula escolhida
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
@@ -148,6 +170,11 @@ public class GerenciamentoVendasController implements Initializable{
 		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
 		
 	}
+	/**
+   	 *M�todo para exibir detalhes de determinada celula
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
 	@FXML
 	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
 		
@@ -155,7 +182,10 @@ public class GerenciamentoVendasController implements Initializable{
 		mudarJanela("/applicationviewcssfxml/TelaDetalhesVendas.fxml");
 		
 	}
-	
+	/**
+   	 *M�todo para gerar um relatorio do gerenciamento
+   	 *@param  event ActionEvent
+   	 */
 	@FXML
     void gerarRelatorioAcao(ActionEvent event) {
 
@@ -163,7 +193,11 @@ public class GerenciamentoVendasController implements Initializable{
 		
     }
 	
-
+	/**
+   	 *M�todo para criar uma nova janela determinada pelo paranmetro
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -173,7 +207,11 @@ public class GerenciamentoVendasController implements Initializable{
 		return scene;
 
 	}
-
+	/**
+   	 *M�todo para mudar para a janela determinada pelo paranmetro
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
