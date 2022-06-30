@@ -95,7 +95,7 @@ public class FormularioClientesController implements Initializable {
 	}
 	/**
    	 *M�todo para salvar o cliente apos a confirmação.
-   	 *@param  event ActionEvent
+   	 *@param  event ActionEvent 
    	 *@throws IOException
    	 */
 	@FXML
@@ -136,7 +136,7 @@ public class FormularioClientesController implements Initializable {
 	}
 	/**
    	 *M�todo para inicializar o gerenciamento de clientes
-   	 *@param arg0 URL
+   	 *@param arg0 URL 
    	 *@param arg1 ResourceBundle
    	 */
 	@Override

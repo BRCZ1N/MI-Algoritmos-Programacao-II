@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationexeceptions.EstoqueInsuficienteException;
+import applicationmodel.Ingredientes;
 import applicationmodel.Produtos;
 import applicationmodel.UnidadeMedida;
+import applicationmodel.Vendas;
 
 /**
  * Classe para gerenciamento de objetos do tipo Produtos.
@@ -31,9 +33,9 @@ public class DaoProdutos {
 		LocalDate validade2 = LocalDate.now();
 		LocalDate validade3 = LocalDate.now();
 
-		Produtos produtoA = new Produtos("ProdutoA", validade1, 140.0, 128.88, UnidadeMedida.getTipoDeUnidade1());
-		Produtos produtoB = new Produtos("ProdutoB", validade2, 80.2, 90.1, UnidadeMedida.getTipoDeUnidade2());
-		Produtos produtoC = new Produtos("ProdutoC", validade3, 80.2, 180.3, UnidadeMedida.getTipoDeUnidade1());
+		Produtos produtoA = new Produtos("ProdutoALFA", validade1, 140.0, 128.88, UnidadeMedida.getTipoDeUnidade1());
+		Produtos produtoB = new Produtos("ProdutoBETA", validade2, 80.2, 90.1, UnidadeMedida.getTipoDeUnidade2());
+		Produtos produtoC = new Produtos("ProdutoGama", validade3, 80.2, 180.3, UnidadeMedida.getTipoDeUnidade1());
 
 		try {
 
@@ -370,6 +372,20 @@ public class DaoProdutos {
 		return listaProdutos;
 
 	}
+	public static int getQtdTotalProdutos() {
+
+		if (listaProdutos.isEmpty()) {
+
+			return 0;
+
+		} else {
+
+			return listaProdutos.size();
+
+		}
+
+	
+	}
 
 //	public static ArrayList<Ingredientes> gerarListaIngredientes(ArrayList<Produtos> listaProdutos){
 //		
@@ -386,5 +402,36 @@ public class DaoProdutos {
 //		return listaIngredientes;
 //		
 //	}
+	public static ArrayList<String> getListaNomeIngredientes(ArrayList<Ingredientes> listaIngredientes){
+		ArrayList<String> listaNomeIngredientes = new ArrayList<String>();
+		for (Ingredientes produto : listaIngredientes) {
+			int idProduto = buscarDado(0, listaIngredientes.size() - 1, produto, listaProdutos);
 
+			if (idProduto != -1) {
+
+				listaNomeIngredientes.add(listaProdutos.get(idProduto).getNome());
+
+		}
+		return listaNomeIngredientes;
+		
+
+		
+		
+	}
+	}
+	public static Produtos getProduto(String idProduto) {
+		
+		Produtos produto =  new Produtos();
+		
+		int idExiste = DaoProdutos.buscarDado(0, DaoProdutos.getListaProdutos().size() - 1, idProduto,DaoProdutos.getListaProdutos());
+	
+		if(idExiste != -1) {
+				
+			produto = DaoProdutos.getListaProdutos().get(idExiste);
+			
+		}
+		
+		return produto;
+		
+	}	
 }

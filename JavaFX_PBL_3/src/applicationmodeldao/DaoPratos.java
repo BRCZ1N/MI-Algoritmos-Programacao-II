@@ -6,7 +6,6 @@ import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 
-
 /**
  * Classe para gerenciamento de objetos do tipo Pratos.
  * 
@@ -16,7 +15,7 @@ import applicationexeceptions.EntidadeComValoresNegativoException;
  * @since 2022
  */
 
-public class DaoPratos  {
+public class DaoPratos {
 
 	private static ArrayList<Pratos> listaPratos = new ArrayList<Pratos>();
 	private static int idSeq = 0;
@@ -24,7 +23,7 @@ public class DaoPratos  {
 	/**
 	 * Construtor para popular a estrutura de dados referente a pratos no menu.
 	 */
-	
+
 	public DaoPratos() {
 
 		Ingredientes ingrediente1 = new Ingredientes("0", 10.74);
@@ -92,8 +91,8 @@ public class DaoPratos  {
 	}
 
 	/**
-	 * Metodo para acessar o m�todo de editar caso exista um prato a ser editado,
-	 * ou ent�o para adicionar um novo prato.
+	 * Metodo para acessar o m�todo de editar caso exista um prato a ser editado, ou
+	 * ent�o para adicionar um novo prato.
 	 * 
 	 * @param prato   Pratos
 	 * @param chaveId String
@@ -101,8 +100,7 @@ public class DaoPratos  {
 	 * @throws EntidadeComValoresNegativoException
 	 * @throws PratoComProdutoInvalidoException
 	 */
-	public static void addEditDados(Pratos prato, String chaveId)
-			throws EntidadeComValoresNegativoException {
+	public static void addEditDados(Pratos prato, String chaveId) throws EntidadeComValoresNegativoException {
 
 		if (chaveId == null) {
 
@@ -136,7 +134,7 @@ public class DaoPratos  {
 
 			throw new EntidadeComValoresNegativoException();
 
-		} 
+		}
 	}
 
 	/**
@@ -153,7 +151,7 @@ public class DaoPratos  {
 
 			listaPratos.remove(idExiste);
 
-		} 
+		}
 
 	}
 
@@ -167,8 +165,7 @@ public class DaoPratos  {
 	 * @throws PratoComProdutoInvalidoException
 	 */
 
-	private static void editarDados(Pratos pratoEditado, String chaveId)
-			throws EntidadeComValoresNegativoException {
+	private static void editarDados(Pratos pratoEditado, String chaveId) throws EntidadeComValoresNegativoException {
 
 		int idExiste = buscarDado(0, listaPratos.size() - 1, chaveId, listaPratos);
 
@@ -184,7 +181,7 @@ public class DaoPratos  {
 
 			throw new EntidadeComValoresNegativoException();
 
-		} 
+		}
 
 	}
 
@@ -232,8 +229,44 @@ public class DaoPratos  {
 	}
 
 	/**
-	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do
-	 * objeto caso exista na lista.
+	 * metodo para gerar a lista de categorias do sistema
+	 */
+	public static ArrayList<String> gerarListaCategoria() {
+		ArrayList<String> listaCategoria = new ArrayList<String>();
+		for (Pratos prato : DaoPratos.getListaPratos()) {
+			if (!listaCategoria.contains(prato.getCategoria())) {
+				listaCategoria.add(prato.getCategoria());
+
+			}
+
+		}
+		return listaCategoria;
+	}
+	/**
+	 * metodo para gerar uma lista de pratos a depender da categoria
+	 * @param categoria String 
+	 * @return ArrayList<Pratos> listaPratosCategoria
+	 */
+	public static ArrayList<Pratos> gerarListaPratosCategoria(String categoria) {
+		ArrayList<Pratos> listaPratosCategoria = new ArrayList<Pratos>();
+		for (Pratos prato : DaoPratos.getListaPratos()) {
+			if(prato.getCategoria().equals(categoria)) {
+				listaPratosCategoria.add(prato);
+				
+			}
+			
+		}
+		
+		
+		
+		
+		return listaPratosCategoria;
+	
+	}
+
+	/**
+	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do objeto
+	 * caso exista na lista.
 	 * 
 	 * @param inicio      Integer - Index inicial da lista
 	 * @param fim         Integer - Index final da lista
@@ -292,7 +325,7 @@ public class DaoPratos  {
 		return false;
 
 	}
-	
+
 	/**
 	 * M�todo para obter a lista de pratos da venda
 	 * 
@@ -302,7 +335,7 @@ public class DaoPratos  {
 	 * 
 	 * @return ArrayList<Pratos> pratosVenda - lista de pratos da venda
 	 */
-								
+
 //	public static ArrayList<Pratos> getListaPratosVenda(ArrayList<String> idPratoVenda) {
 //
 //		ArrayList<Pratos> pratosVenda = new ArrayList<Pratos>();
@@ -331,8 +364,7 @@ public class DaoPratos  {
 //		return listaIdPratos;
 //		
 //	}
-	
-	
+
 	public static ArrayList<Pratos> getListaPratos(ArrayList<String> listaIdPratos) {
 
 		ArrayList<Pratos> pratos = new ArrayList<Pratos>();
@@ -346,11 +378,9 @@ public class DaoPratos  {
 		return pratos;
 
 	}
-	
-	
-	public static ArrayList<String> getListaIdPratos(ArrayList<Pratos> listaPratos){
-		
-		
+
+	public static ArrayList<String> getListaIdPratos(ArrayList<Pratos> listaPratos) {
+
 		ArrayList<String> pratosId = new ArrayList<String>();
 
 		for (Pratos prato : listaPratos) {
@@ -360,9 +390,10 @@ public class DaoPratos  {
 		}
 
 		return pratosId;
-		
+
 	}
 	
+
 	/**
 	 * Metodo para obter as informações de um prato caso ele exista na lista de
 	 * pratos
@@ -371,7 +402,7 @@ public class DaoPratos  {
 	 * 
 	 * @return Pratos listaPratos.get(idExiste) - Objeto do tipo Prato
 	 */
-	
+
 	public static Pratos getPrato(String chaveId) {
 
 		int idExiste = buscarDado(0, listaPratos.size() - 1, chaveId, listaPratos);
@@ -385,5 +416,4 @@ public class DaoPratos  {
 
 	}
 	
-
 }

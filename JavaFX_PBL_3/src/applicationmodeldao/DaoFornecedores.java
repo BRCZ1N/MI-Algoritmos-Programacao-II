@@ -31,10 +31,10 @@ public class DaoFornecedores {
 		idProdutosFornecedor.add("1");
 		idProdutosFornecedor.add("2");
 
-		Fornecedores fornecedorA = new Fornecedores("018.236.120/0001-58", "EmpresaATest", "Rua UEFSA",idProdutosFornecedor);
-		Fornecedores fornecedorA2 = new Fornecedores("Sem CNPJ", "EmpresaATest", "Rua UEFSA", idProdutosFornecedor);
-		Fornecedores fornecedorB = new Fornecedores("Sem CNPJ", "EmpresaBTest", "Rua UEFSB", idProdutosFornecedor);
-		Fornecedores fornecedorC = new Fornecedores("019.579.305/0001-79", "EmpresaCTest", "Rua UEFSC",idProdutosFornecedor);
+		Fornecedores fornecedorA = new Fornecedores("018.236.120/0001-58", "EmpresaALFATest", "Rua UEFSA",idProdutosFornecedor);
+		Fornecedores fornecedorA2 = new Fornecedores("Sem CNPJ", "EmpresaBETATest", "Rua UEFSA", idProdutosFornecedor);
+		Fornecedores fornecedorB = new Fornecedores("Sem CNPJ", "EmpresaGAMATest", "Rua UEFSB", idProdutosFornecedor);
+		Fornecedores fornecedorC = new Fornecedores("019.579.305/0001-79", "EmpresaZETATest", "Rua UEFSC",idProdutosFornecedor);
 
 		try {
 			addEditDados(fornecedorA, null);
@@ -336,5 +336,30 @@ public class DaoFornecedores {
 		return false;
 
 	}
+	/**
+	 * metodo ira trazer o nome do produto com base no seu id
+	 * 
+	 * @param listaIdFornecedor  ArrayList <String> 
+	 * 
+	 * @return ArrayList<String> listaNomeFornecedor
+	 */
+	public static ArrayList<String> getNomeFornecedor(ArrayList<String> listaIdFornecedor) {
 
+		ArrayList<String> listaNomeFornecedor = new ArrayList<>();
+
+		for (String idFornecedor : listaIdFornecedor) {
+
+			int posiFornecedor = buscarDado(0, listaIdFornecedor.size() - 1, idFornecedor, listaFornecedores);
+
+			if (posiFornecedor != -1) {
+
+				listaNomeFornecedor.add(listaFornecedores.get(posiFornecedor).getNome());
+
+			}
+
+		}
+
+		return listaNomeFornecedor;
+
+	}
 }
