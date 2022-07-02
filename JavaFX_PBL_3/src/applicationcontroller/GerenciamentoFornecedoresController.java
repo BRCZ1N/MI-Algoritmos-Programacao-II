@@ -8,10 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
@@ -57,6 +59,8 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	private ObservableList<String> observableFornecedoresRelatorio;
 
 	private static ObservableList<Fornecedores> observableListaFornecedores;
+
+	private Optional<String> input;
 
 	/**
 	 * M�todo para inicializar o gerenciamento e ativar a visualização dos botões
@@ -173,16 +177,23 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	 */
 	@FXML
 	public void gerarRelatorioAcao(ActionEvent event) {
-		
-	
+
 		if (comboBoxRelatorios.getValue() == "Lista de fornecedores geral") {
 
 			Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedores());
 
 		} else {
 
-			Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedoresProduto(null));
-			
+			TextInputDialog textInput = new TextInputDialog();
+			textInput.getDialogPane().setContentText("Digite o id do produto");
+			input = textInput.showAndWait();
+
+			if(input.isPresent()) {
+				
+				Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedoresProduto(input.get()));
+
+			}
+
 		}
 
 	}

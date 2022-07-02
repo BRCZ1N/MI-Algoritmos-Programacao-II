@@ -9,12 +9,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Relatorio;
@@ -60,6 +62,8 @@ public class GerenciamentoVendasController implements Initializable {
 	private ObservableList<String> observableVendasRelatorio;
 
 	private static ObservableList<Vendas> observableListaVendas;
+	
+	private Optional<String> input;
 
 	/**
 	 * M�todo para inicializar o gerenciamento e ativar a visualização dos botões
@@ -229,12 +233,19 @@ public class GerenciamentoVendasController implements Initializable {
 			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendas());
 
 		} else if (comboBoxRelatorios.getValue() == "Lista de vendas por periodo") {
-
+			
 			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPeriodo(null, null));
 			
 		} else {
+			
+			TextInputDialog textInput = new TextInputDialog();
+			textInput.getDialogPane().setContentText("Digite o id do prato");
+			input = textInput.showAndWait();
 
-			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPrato(null));
+			if(input.isPresent()) {
+				
+				Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPrato(input.get()));
+			}
 			
 		}
 

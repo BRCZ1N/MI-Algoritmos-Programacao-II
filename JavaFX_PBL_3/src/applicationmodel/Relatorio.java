@@ -206,7 +206,7 @@ public class Relatorio {
 			tabela.addCell(celulaPDF4);
 			tabela.addCell(celulaPDF5);
 
-			for (Fornecedores fornecedores : DaoFornecedores.getListaFornecedores()) {
+			for (Fornecedores fornecedores : listaFornecedores) {
 
 				celulaPDF1 = new PdfPCell(new Paragraph(fornecedores.getId()));
 				celulaPDF1.setHorizontalAlignment(Element.ALIGN_CENTER);
