@@ -26,16 +26,28 @@ public class LoginMenuController {
 	private ImageView logarUsuario;
 	
 	private static Usuarios usuarioLogado;
-
+	/**
+	 *M�todo para retorno do usuario logado
+	 *@return Usuarios usuarioLogado
+	 */
 	public static Usuarios getUsuarioLogado() {
 		return usuarioLogado;
 	}
+	/**
+	 *M�todo para retorno do usuario logado
+	 *@param usuarioLogado Usuarios 
+	 */
 
 	public static void setUsuarioLogado(Usuarios usuarioLogado) {
 		LoginMenuController.usuarioLogado = usuarioLogado;
 	}
 
-	// Event Listener on Button.onAction
+	/**
+   	 *M�todo que ira dar loggin no sistema apos o acionamento de botão 
+   	 *@param event ActionEvent
+   	 *@throws IOException
+   	 */
+
 	@FXML
 	public void acaoBotaoLogin(ActionEvent event) throws IOException {
 
@@ -55,7 +67,11 @@ public class LoginMenuController {
 		}
 
 	}
-
+	/**
+   	 *M�todo para criar uma nova janela determinada
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -65,7 +81,11 @@ public class LoginMenuController {
 		return scene;
 
 	}
-	
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));

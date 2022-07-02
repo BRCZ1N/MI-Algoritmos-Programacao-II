@@ -87,6 +87,10 @@ public class GerenciamentoFornecedoresController implements Initializable {
 		});
 
 	}
+	/**
+	 * M�todo para carregar a comboBox para gerar relatorio
+	 */
+
 
 	public void carregarComboBoxRelatorio() {
 

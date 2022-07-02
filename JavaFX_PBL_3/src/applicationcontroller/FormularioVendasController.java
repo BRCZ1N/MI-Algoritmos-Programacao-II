@@ -71,7 +71,7 @@ public class FormularioVendasController implements Initializable {
 	 *M�todo para retorno do conteudo da venda selecionada.
 	 *@return Vendas vendaAtual
 	 */
-	public static Vendas getVendaaAtual() {
+	public static Vendas getVendaAtual() { 
 		return vendaAtual;
 	}
 	/**

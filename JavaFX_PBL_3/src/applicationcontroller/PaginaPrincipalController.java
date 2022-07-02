@@ -28,49 +28,71 @@ public class PaginaPrincipalController {
 	@FXML
 	private Button menuSair;
 
-	// Event Listener on Button[#menuFornecedores].onAction
+	/**
+   	 *M�todo que irá exibir a janela do gerenciamento de fornecedores
+   	 *@param event ActionEvent
+   	 */
 	@FXML
 	public void menuFornecedoresAcao(ActionEvent event) throws IOException {
 		
 		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
 		
 	}
-	// Event Listener on Button[#menuClientes].onAction
+	/**
+   	 *M�todo que irá exibir a janela do gerenciamento de clientes
+   	 *@param event ActionEvent
+   	 */
 	@FXML
 	public void menuClientesAcao(ActionEvent event) throws IOException {
 		
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 		
 	}
-	// Event Listener on Button[#menuUsuarios].onAction
+	/**
+   	 *M�todo que irá exibir a janela do gerenciamento de Usuarios
+   	 *@param event ActionEvent
+   	 */
 	@FXML
 	public void menuUsuariosAcao(ActionEvent event) throws IOException {
 		
 		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
 		
 	}
-	// Event Listener on Button[#menuProdutos].onAction
+	/**
+   	 *M�todo que irá exibir a janela do gerenciamento de Produtos
+   	 *@param event ActionEvent
+   	 */
 	@FXML
 	public void menuProdutosAcao(ActionEvent event) throws IOException {
 		
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
 		
 	}
-	// Event Listener on Button[#menuPratos].onAction
+	/**
+   	 *M�todo que irá exibir a janela do gerenciamento de Pratos 
+   	 *@param event ActionEvent
+   	 */
 	@FXML
 	public void menuPratosAcao(ActionEvent event) throws IOException {
 		
 		mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
 		
 	}
-	// Event Listener on Button[#menuVendas].onAction
+	/**
+   	 *M�todo que irá exibir a janela do gerenciamento de Vendas
+   	 *@param event ActionEvent
+   	 */
 	@FXML
 	public void menuVendasAcao(ActionEvent event) throws IOException {
 		
 		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
 		
 	}
-	// Event Listener on Button[#menuSair].onAction
+	/**
+   	 *M�todo que irá voltar a tela de login
+   	 *@param event ActionEvent
+   	 *@throws IOException 
+   	 */
 	@FXML
 	public void menuSairAcao(ActionEvent event) throws IOException {
 		
@@ -82,7 +104,11 @@ public class PaginaPrincipalController {
 		}
 				
 	}
-	
+	/**
+   	 *M�todo para criar uma nova janela determinada
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -92,7 +118,11 @@ public class PaginaPrincipalController {
 		return scene;
 
 	}
-	
+	/**
+   	 *M�todo para mudar para a janela determinada.
+   	 *@param urlScene String
+   	 *@throws IOException
+   	 */
 	public void mudarJanela(String urlScene) throws IOException {
 		
 		Main.getStage().setScene(novaCena(urlScene));

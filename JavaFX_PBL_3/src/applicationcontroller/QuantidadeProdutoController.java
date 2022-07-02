@@ -27,16 +27,25 @@ public class QuantidadeProdutoController {
 	public static void setResposta(boolean resposta) {
 		QuantidadeProdutoController.resposta = resposta;
 	}
-	
+	/**
+	 *M�todo para retorno da quantidade de um produto
+	 *@return double quantidade
+	 */
+
 	public static double getQuantidade() {
 		return quantidade;
 	}
-
+	/**
+	 *M�todo para setar a quantidade de um produto
+	 *@param quantidade double 
+	 */
 	public static void setQuantidade(double quantidade) {
 		QuantidadeProdutoController.quantidade = quantidade;
 	}
 
-	// Event Listener on Button[#botaoConfirmar].onAction
+	/**
+	 *M�todo para confirmar a seleção de determinada quantidade
+	 */
 	@FXML
 	public void botaoConfirmarAcao(ActionEvent event) {
 
@@ -45,7 +54,9 @@ public class QuantidadeProdutoController {
 		Main.getStage2().close();
 	}
 
-	// Event Listener on Button[#botaoCancelar].onAction
+	/**
+	 *M�todo para cancelar a seleção de determinada quantidade
+	 */
 	@FXML
 	public void botaoCancelarAcao(ActionEvent event) {
 
