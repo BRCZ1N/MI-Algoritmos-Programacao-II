@@ -1,6 +1,5 @@
 package applicationmodel;
 import java.time.LocalDate;
-import java.util.ArrayList;
 
 /**
  * Classe para objetos do tipo Produtos.
@@ -18,8 +17,6 @@ public class Produtos {
 	private double qtdProduto;
 	private String tipoQtd;
 	private double preco;
-	private ArrayList<String> idFornecedoresProduto;
-	private ArrayList<String> nomeProdutos;
 	
 	/**
 	 *O Construtor da classe Produtos cria um produto a partir de um nome, validade e pre�o, o atributo id receber� valor no gereciamento de produtos.
@@ -159,21 +156,6 @@ public class Produtos {
 		this.preco = preco;
 	}
 	
-	/**
-	 *M�todo para retorno do Id dos fornecedores de determinado produto
-	 *@return ArrayList<String> idFornecedoresProduto
-	 */
-	public ArrayList<String> getIdFornecedoresProduto() {
-		return idFornecedoresProduto;
-	}
-
-	/**
-	 *M�todo para setar o id dos fornecedores de determinado produto.
-	 *@param idFornecedoresProduto ArrayList<String> 
-	 */
-	public void setIdFornecedoresProduto(ArrayList<String> idFornecedoresProduto) {
-		this.idFornecedoresProduto = idFornecedoresProduto;
-	}
 
 
 }
