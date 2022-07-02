@@ -27,7 +27,11 @@ public class RelatorioDataDadosController {
 	public static boolean isRespostaAlerta() {
 		return resposta;
 	}
-
+	/**
+	 * M�todo para setar a resposta de um botão 
+	 * 
+	 * @param reposta boolean
+	 */
 	public static void setResposta(boolean resposta) {
 		RelatorioDataDadosController.resposta = resposta;
 	}
@@ -53,7 +57,7 @@ public class RelatorioDataDadosController {
 	}
 
 	/**
-	 * M�todo para setar a quantidade de um produto
+	 * M�todo para setar a data inicial da geração de relatorio por periodo
 	 * 
 	 * @param LocalDate dataInicial
 	 */
@@ -62,7 +66,7 @@ public class RelatorioDataDadosController {
 	}
 	
 	/**
-	 * M�todo para setar a quantidade de um produto
+	 * M�todo para setar a data final da gereação de relatorio por periodo
 	 * 
 	 * @param LocalDate dataFinal
 	 */
@@ -72,7 +76,7 @@ public class RelatorioDataDadosController {
 	}
 
 	/**
-	 * M�todo para confirmar a seleção de determinada quantidade
+	 * M�todo para confirmar a seleção das datas e gerar relatorio
 	 * @param ActionEvent event
 	 */
 	@FXML
@@ -85,7 +89,7 @@ public class RelatorioDataDadosController {
 	}
 
 	/**
-	 * M�todo para cancelar a seleção de determinada quantidade
+	 * M�todo para cancelar a seleção de datas para criação do relatorio
 	 * @param ActionEvent event
 	 */
 	@FXML
