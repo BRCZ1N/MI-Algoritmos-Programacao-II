@@ -364,8 +364,14 @@ public class DaoPratos {
 //		return listaIdPratos;
 //		
 //	}
-
-	public static ArrayList<Pratos> getListaPratos(ArrayList<String> listaIdPratos) {
+	/**
+	 * M�todo para obter a lista de pratos
+	 * 
+	 * @param listIdPratos ArrayList<String> - lista de id's de pratos
+	 * 
+	 * @return ArrayList<Pratos> pratos - lista de pratos 
+	 */
+	static ArrayList<Pratos> getListaPratos(ArrayList<String> listaIdPratos) {
 
 		ArrayList<Pratos> pratos = new ArrayList<Pratos>();
 
@@ -378,7 +384,14 @@ public class DaoPratos {
 		return pratos;
 
 	}
-
+	/**
+	 * Metodo para obter a lista de id de pratos
+	 * 
+	 *
+	 * @param listaPratos ArrayList<Pratos> - lista de pratos
+	 * 
+	 * @return ArrayList<String> pratosId - lista de id de pratos
+	 */
 	public static ArrayList<String> getListaIdPratos(ArrayList<Pratos> listaPratos) {
 
 		ArrayList<String> pratosId = new ArrayList<String>();

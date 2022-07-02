@@ -336,7 +336,13 @@ public class DaoFornecedores {
 		return false;
 
 	}
-	
+	/**
+	 *metodo que ira retornar fornecedores que estão atrelados a um determinado produto
+	 * 
+	 * @param idProduto  String
+	 * 
+	 * @return ArrayList<Fornecedores> listaFornecedores
+	 */
 	public static ArrayList<Fornecedores> getListaFornecedoresProduto (String idProduto){
 		
 		ArrayList<Fornecedores> listaFornecedores = new ArrayList<Fornecedores>();
