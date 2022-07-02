@@ -226,17 +226,19 @@ public class GerenciamentoVendasController implements Initializable {
 	 * M�todo para gerar um relatorio do gerenciamento
 	 * 
 	 * @param event ActionEvent
+	 * @throws IOException 
 	 */
 	@FXML
-	void gerarRelatorioAcao(ActionEvent event) {
+	void gerarRelatorioAcao(ActionEvent event) throws IOException {
 
 		if (comboBoxRelatorios.getValue() == "Lista de vendas geral") {
 
 			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendas());
 
 		} else if (comboBoxRelatorios.getValue() == "Lista de vendas por periodo") {
-			
-			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPeriodo(null, null));
+		
+			mudarJanelaSecundaria("/applicationviewcssfxml/RelatorioDataDados.fxml");
+			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPeriodo(RelatorioDataDadosController.getDataInicial(), RelatorioDataDadosController.getDataFinal()));
 			
 		} else {
 			
@@ -278,6 +280,13 @@ public class GerenciamentoVendasController implements Initializable {
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
+
+	}
+	
+	public void mudarJanelaSecundaria(String urlScene) throws IOException {
+
+		Main.getStage2().setScene(novaCena(urlScene));
+		Main.getStage2().showAndWait();
 
 	}
 

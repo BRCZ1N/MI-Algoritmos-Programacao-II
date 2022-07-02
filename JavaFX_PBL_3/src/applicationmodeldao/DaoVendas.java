@@ -274,8 +274,8 @@ public class DaoVendas {
 		ArrayList<Vendas> listaVendaP = new ArrayList<Vendas>();
 		
 		for(Vendas venda:DaoVendas.getListaVendas()) {
-			
-			if(dataInicial.compareTo(venda.getDiaHorario().toLocalDate()) >= 0 && dataInicial.compareTo(venda.getDiaHorario().toLocalDate()) <= 0) {
+					//22 							//26
+			if(dataInicial.compareTo(venda.getDiaHorario().toLocalDate()) <= 0 && dataFinal.compareTo(venda.getDiaHorario().toLocalDate()) >= 0) {
 				
 				listaVendaP.add(venda);
 	
