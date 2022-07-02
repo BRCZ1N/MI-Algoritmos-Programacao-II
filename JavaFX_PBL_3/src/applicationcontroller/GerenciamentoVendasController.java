@@ -86,7 +86,9 @@ public class GerenciamentoVendasController implements Initializable {
 		});
 
 	}
-
+	/**
+	 * M�todo para carregar uma comboBox de geração de relatorio
+	 */
 	public void carregarComboBoxRelatorio() {
 
 		listaVendasRelatorio.add("Lista de vendas geral");
