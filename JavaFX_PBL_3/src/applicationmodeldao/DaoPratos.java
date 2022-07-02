@@ -371,7 +371,7 @@ public class DaoPratos {
 	 * 
 	 * @return ArrayList<Pratos> pratos - lista de pratos 
 	 */
-	static ArrayList<Pratos> getListaPratos(ArrayList<String> listaIdPratos) {
+	public static ArrayList<Pratos> getListaPratos(ArrayList<String> listaIdPratos) {
 
 		ArrayList<Pratos> pratos = new ArrayList<Pratos>();
 

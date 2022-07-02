@@ -257,7 +257,7 @@ public class DaoClientes {
 	 * @param listaIdVendas ArrayList<String>
 	 * @return double valorTotal
 	 */
-	static double valorTotalVendasCliente(ArrayList<String> listaIdVendas) {
+	public static double valorTotalVendasCliente(ArrayList<String> listaIdVendas) {
 
 		double valorTotal = 0;
 
