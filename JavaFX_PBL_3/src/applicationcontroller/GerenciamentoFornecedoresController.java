@@ -94,8 +94,8 @@ public class GerenciamentoFornecedoresController implements Initializable {
 
 	public void carregarComboBoxRelatorio() {
 
-		listaFornecedoresRelatorio.add("Lista de fornecedores geral");
-		listaFornecedoresRelatorio.add("Lista de fornecedores por produto");
+		listaFornecedoresRelatorio.add("Fornecedores geral");
+		listaFornecedoresRelatorio.add("Fornecedores por produto");
 
 		observableFornecedoresRelatorio = FXCollections.observableArrayList(listaFornecedoresRelatorio);
 
@@ -182,7 +182,7 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	@FXML
 	public void gerarRelatorioAcao(ActionEvent event) {
 
-		if (comboBoxRelatorios.getValue() == "Lista de fornecedores geral") {
+		if (comboBoxRelatorios.getValue() == "Fornecedores geral") {
 
 			Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedores());
 

@@ -118,17 +118,6 @@ public class Produtos {
 	public LocalDate getValidade() {
 		return validade;
 	}
-//	/**
-//	 *M�todo para formatar a data de validade
-//	 *@return String validade
-//	 */
-//	public String getValidadeString() {
-//		
-//		DateFormat f = DateFormat.getDateInstance(DateFormat.FULL);
-//		String validade = f.format(this.validade.getTime());
-//		return validade;
-//		
-//	}
 	
 	/**
 	 *M�todo para setar a validade do produto.

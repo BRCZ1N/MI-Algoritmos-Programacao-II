@@ -95,9 +95,9 @@ public class GerenciamentoVendasController implements Initializable {
 	 */
 	public void carregarComboBoxRelatorio() {
 
-		listaVendasRelatorio.add("Lista de vendas geral");
-		listaVendasRelatorio.add("Lista de vendas por periodo");
-		listaVendasRelatorio.add("Lista de fornecedores por tipo de prato");
+		listaVendasRelatorio.add("Vendas geral");
+		listaVendasRelatorio.add("Vendas por periodo");
+		listaVendasRelatorio.add("Vendas por tipo de prato");
 
 		observableVendasRelatorio = FXCollections.observableArrayList(listaVendasRelatorio);
 
@@ -231,13 +231,15 @@ public class GerenciamentoVendasController implements Initializable {
 	@FXML
 	void gerarRelatorioAcao(ActionEvent event) throws IOException {
 
-		if (comboBoxRelatorios.getValue() == "Lista de vendas geral") {
+		if (comboBoxRelatorios.getValue() == "Vendas geral") {
 
 			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendas());
 
-		} else if (comboBoxRelatorios.getValue() == "Lista de vendas por periodo") {
+		} else if (comboBoxRelatorios.getValue() == "Vendas por periodo") {
 		
 			mudarJanelaSecundaria("/applicationviewcssfxml/RelatorioDataDados.fxml");
+			RelatorioDataDadosController.setVisibilidadeDatePickerInicial(true);
+			RelatorioDataDadosController.setVisibilidadeDatePickerFinal(true);
 			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPeriodo(RelatorioDataDadosController.getDataInicial(), RelatorioDataDadosController.getDataFinal()));
 			
 		} else {

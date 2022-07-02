@@ -1,13 +1,17 @@
 package applicationcontroller;
 
+import java.net.URL;
 import java.time.LocalDate;
+import java.util.ResourceBundle;
+
 import applicationmain.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 
-public class RelatorioDataDadosController {
+public class RelatorioDataDadosController implements Initializable {
 
 	@FXML
 	private Button botaoCancelar;
@@ -23,6 +27,10 @@ public class RelatorioDataDadosController {
 	private static LocalDate dataInicial;
 	
 	private static LocalDate dataFinal;
+	
+	private static boolean visibilidadeDatePickerInicial = false;
+
+	private static boolean visibilidadeDatePickerFinal = false;
 
 	public static boolean isRespostaAlerta() {
 		return resposta;
@@ -83,8 +91,18 @@ public class RelatorioDataDadosController {
 	public void botaoConfirmarAcao(ActionEvent event) {
 
 		setResposta(true);
-		setDataInicial(datePickerInicial.getValue());
-		setDataFinal(datePickerFinal.getValue());
+		if (isVisibilidadeDatePickerFinal() && isVisibilidadeDatePickerInicial()) {
+
+			setDataInicial(datePickerInicial.getValue());
+			setDataFinal(datePickerFinal.getValue());
+
+		} else {
+
+			setDataInicial(datePickerInicial.getValue());
+
+		}
+
+		resetVisible();
 		Main.getStage2().close();
 	}
 
@@ -98,6 +116,45 @@ public class RelatorioDataDadosController {
 		setResposta(false);
 		Main.getStage2().close();
 
+	}
+	
+	public static boolean isVisibilidadeDatePickerFinal() {
+		
+		return visibilidadeDatePickerFinal;
+		
+	}
+
+	public static void setVisibilidadeDatePickerFinal(boolean visibilidadeDatePickerFinal) {
+		
+		RelatorioDataDadosController.visibilidadeDatePickerFinal = visibilidadeDatePickerFinal;
+		
+	}
+
+	public static boolean isVisibilidadeDatePickerInicial() {
+		
+		return visibilidadeDatePickerInicial;
+		
+	}
+
+	public static void setVisibilidadeDatePickerInicial(boolean visibilidadeDatePickerInicial) {
+		
+		RelatorioDataDadosController.visibilidadeDatePickerInicial = visibilidadeDatePickerInicial;
+		
+	}
+	
+	public void resetVisible() {
+		
+		datePickerInicial.setVisible(false);
+		datePickerInicial.setVisible(false);
+		
+	}
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		datePickerInicial.setVisible(visibilidadeDatePickerInicial);
+		datePickerFinal.setVisible(visibilidadeDatePickerFinal);
+		
 	}
 
 }

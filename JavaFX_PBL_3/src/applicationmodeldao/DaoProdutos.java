@@ -232,7 +232,7 @@ public class DaoProdutos {
 	 * @return qtdTotalProduto - quantidade total de produtos
 	 * 
 	 */
-	public static int qtdTotalProdutos() {
+	public static int qtdTotalProdutos(ArrayList<Produtos> listaProdutos) {
 
 		int qtdTotalProduto = 0;
 
@@ -249,31 +249,6 @@ public class DaoProdutos {
 
 	}
 
-	public static int qtdTotalProdutosExpirados() {
-
-		int qtdTotalProduto = 0;
-
-		if (listaProdutos.isEmpty()) {
-
-			return qtdTotalProduto;
-
-		} else {
-
-			for (Produtos produto : DaoProdutos.getListaProdutos()) {
-
-				if (produto.getValidade().compareTo(LocalDate.now()) > 0) {
-
-					qtdTotalProduto += 1;
-
-				}
-
-			}
-
-		}
-		
-		return qtdTotalProduto;
-
-	}
 
 	/*
 	 * M�todo para o retorno dos nomes dos produtos que est�o no prato
@@ -385,13 +360,13 @@ public class DaoProdutos {
 
 	}
 	
-	public ArrayList<Produtos> gerarListaProdutosAVencer(LocalDate dataInicial){
+	public static ArrayList<Produtos> gerarListaProdutosAVencer(LocalDate dataInicial){
 		
 		ArrayList<Produtos> listaProdutosAVencer = new ArrayList<Produtos>();
 		
 		for(Produtos produto:DaoProdutos.getListaProdutos()) {
 			
-			if(dataInicial.compareTo(produto.getValidade()) <= 0) {
+			if(dataInicial.compareTo(produto.getValidade()) >= 0) {
 				
 				listaProdutosAVencer.add(produto);
 				

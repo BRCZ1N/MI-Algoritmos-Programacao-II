@@ -6,12 +6,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Produtos;
@@ -24,9 +26,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
 public class GerenciamentoProdutosController implements Initializable {
-	
+
 	@FXML
-    private Button exibirDetalhesBtn;
+	private Button exibirDetalhesBtn;
 	@FXML
 	private TextField pesquisarProduto;
 	@FXML
@@ -52,18 +54,27 @@ public class GerenciamentoProdutosController implements Initializable {
 	@FXML
 	private Button botaoExcluir;
 	@FXML
-    private Button gerarRelatorioBtn;
+	private Button gerarRelatorioBtn;
+	@FXML
+	private ComboBox<String> comboBoxRelatorios;
+
+	private ArrayList<String> listaProdutosRelatorio = new ArrayList<String>();
+
+	private ObservableList<String> observableProdutosRelatorio;
 
 	private static ObservableList<Produtos> observableListaProdutos;
+
 	/**
-   	 *M�todo para inicializar o gerenciamento e  ativar a visualização dos botões 
-   	 *@param arg0 URL
-   	 *@param arg1 ResourceBundle
-   	 */
+	 * M�todo para inicializar o gerenciamento e ativar a visualização dos botões
+	 * 
+	 * @param arg0 URL
+	 * @param arg1 ResourceBundle
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		carregarListaProdutos();
+		carregarComboBoxRelatorio();
 
 		tabelaProdutos.setOnMouseClicked(e -> {
 
@@ -78,9 +89,21 @@ public class GerenciamentoProdutosController implements Initializable {
 		});
 
 	}
+
+	public void carregarComboBoxRelatorio() {
+
+		listaProdutosRelatorio.add("Produtos geral");
+		listaProdutosRelatorio.add("Produtos a vencer");
+
+		observableProdutosRelatorio = FXCollections.observableArrayList(listaProdutosRelatorio);
+
+		comboBoxRelatorios.setItems(observableProdutosRelatorio);
+
+	}
+
 	/**
-   	 *M�todo para carregar a listView da classe e formatar as celulas
-   	 */
+	 * M�todo para carregar a listView da classe e formatar as celulas
+	 */
 	public void carregarListaProdutos() {
 
 		observableListaProdutos = FXCollections.observableArrayList(DaoProdutos.getListaProdutos());
@@ -124,33 +147,39 @@ public class GerenciamentoProdutosController implements Initializable {
 		});
 
 	}
+
 	/**
-   	 *M�todo para retornar ao menu principal.
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para retornar ao menu principal.
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/PaginaPrincipal.fxml");
 
 	}
+
 	/**
-   	 *M�todo para abrir a tela do formulario de cadastro 
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para abrir a tela do formulario de cadastro
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void abrirAcaoAdd(ActionEvent event) throws IOException {
 
 		mudarJanela("/applicationviewcssfxml/FormularioProdutos.fxml");
 
 	}
+
 	/**
-   	 *M�todo para abrir a tela de edição de determinada celula
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para abrir a tela de edição de determinada celula
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void abrirAcaoEditar(ActionEvent event) throws IOException {
 
@@ -158,11 +187,13 @@ public class GerenciamentoProdutosController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/FormularioProdutos.fxml");
 
 	}
+
 	/**
-   	 *M�todo para excluir a celula escolhida
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para excluir a celula escolhida
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 
@@ -170,34 +201,52 @@ public class GerenciamentoProdutosController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
 
 	}
+
 	/**
-   	 *M�todo para gerar um relatorio do gerenciamento
-   	 *@param  event ActionEvent
-   	 */
+	 * M�todo para gerar um relatorio do gerenciamento
+	 * 
+	 * @param event ActionEvent
+	 */
 	@FXML
-    public void gerarRelatorioAcao(ActionEvent event) {
-		
-		
+	public void gerarRelatorioAcao(ActionEvent event) throws IOException {
+
 		Relatorio.gerarRelatorioProdutos(DaoProdutos.getListaProdutos());
 
-    }
+		if (comboBoxRelatorios.getValue() == "Produtos geral") {
+
+			Relatorio.gerarRelatorioProdutos(DaoProdutos.getListaProdutos());
+
+		} else {
+
+			RelatorioDataDadosController.setVisibilidadeDatePickerInicial(true);
+			mudarJanelaSecundaria("/applicationviewcssfxml/RelatorioDataDados.fxml");
+			Relatorio.gerarRelatorioProdutos(
+					DaoProdutos.gerarListaProdutosAVencer(RelatorioDataDadosController.getDataInicial()));
+
+		}
+
+	}
+
 	/**
-   	 *M�todo para exibir detalhes de determinada celula
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para exibir detalhes de determinada celula
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
-	public void exibirDetalhesAcao(ActionEvent event)throws IOException {
-		
+	public void exibirDetalhesAcao(ActionEvent event) throws IOException {
+
 		TelaDetalhesProdutoController.setProdutoAtual(tabelaProdutos.getSelectionModel().getSelectedItem());
 		mudarJanela("/applicationviewcssfxml/TelaDetalhesProduto.fxml");
-		
+
 	}
+
 	/**
-   	 *M�todo para criar uma nova janela determinada pelo paranmetro 
-   	 *@param urlScene String
-   	 *@throws IOException
-   	 */
+	 * M�todo para criar uma nova janela determinada pelo paranmetro
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -207,14 +256,23 @@ public class GerenciamentoProdutosController implements Initializable {
 		return scene;
 
 	}
+
 	/**
-   	 *M�todo para mudar para a janela determinada pelo paranmetro
-   	 *@param urlScene String
-   	 *@throws IOException
-   	 */
+	 * M�todo para mudar para a janela determinada pelo parametro
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
+
+	}
+	
+	public void mudarJanelaSecundaria(String urlScene) throws IOException {
+
+		Main.getStage2().setScene(novaCena(urlScene));
+		Main.getStage2().showAndWait();
 
 	}
 

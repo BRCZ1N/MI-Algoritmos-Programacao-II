@@ -8,7 +8,7 @@ import javafx.scene.control.TextField;
 import applicationmain.Main;
 import javafx.event.ActionEvent;
 
-public class QuantidadeProdutoController {
+public class QuantidadeProdutoController{
 	@FXML
 	private TextField qtdProduto;
 	@FXML
