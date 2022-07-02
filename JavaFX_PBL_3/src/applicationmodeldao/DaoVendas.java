@@ -1,5 +1,6 @@
 package applicationmodeldao;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import applicationexeceptions.EstoqueInsuficienteException;
@@ -267,6 +268,24 @@ public class DaoVendas {
 		}
 
 	}
+	
+	public static ArrayList<Vendas> getListaVendasPeriodo(LocalDate dataInicial,LocalDate dataFinal) {
+		
+		ArrayList<Vendas> listaVendaP = new ArrayList<Vendas>();
+		
+		for(Vendas venda:DaoVendas.getListaVendas()) {
+			
+			if(dataInicial.compareTo(venda.getDiaHorario().toLocalDate()) >= 0 && dataInicial.compareTo(venda.getDiaHorario().toLocalDate()) <= 0) {
+				
+				listaVendaP.add(venda);
+	
+			}
+			
+		}
+		
+		return listaVendaP;
+		
+	}
 
 	/**
 	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do
@@ -304,6 +323,8 @@ public class DaoVendas {
 		return -1;
 
 	}
+	
+	
 
 	/**
 	 * Metodo para verificação da existencia de um prato
@@ -380,6 +401,27 @@ public class DaoVendas {
 		}
 
 		return vendas;
+		
+	}
+	
+	public static ArrayList<Vendas> getListaVendasPrato(String idPrato){
+		
+		ArrayList<Vendas> listaVendasPrato = new ArrayList<Vendas>();
+		
+		for(Vendas venda:DaoVendas.getListaVendas()) {
+			
+			if(venda.getListaIdItens().contains(idPrato)) {
+				
+				listaVendasPrato.add(venda);
+				
+			}
+			
+			
+			
+		}
+		return listaVendas;
+		
+		
 		
 	}
 	
