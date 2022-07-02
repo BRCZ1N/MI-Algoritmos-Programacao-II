@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -83,7 +84,7 @@
                                  </graphic></Button>
                            </children>
                         </Pane>
-                        <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" text="Gerenciamento de Fornecedores" textFill="WHITE">
+                        <Label alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="36.0" prefWidth="645.0" style="-fx-background-color: #00b4cc;" text="Gerenciamento de fornecedores" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -102,15 +103,20 @@
                <children>
                   <HBox layoutY="-1.0" prefHeight="38.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <Pane prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #343838;">
+                        <Pane prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: #00b4cc;">
+                           <children>
+                              <ComboBox fx:id="comboBoxRelatorios" layoutX="8.0" layoutY="7.0" prefHeight="25.0" prefWidth="195.0" />
+                           </children>
+                        </Pane>
+                        <Pane prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #343838;">
                            <children>
                               <Button fx:id="gerarRelatorioBtn" alignment="CENTER" mnemonicParsing="false" onAction="#gerarRelatorioAcao" prefHeight="39.0" prefWidth="100.0" stylesheets="@EfeitosAnimacoes.css" text="Gerar relatório" textFill="WHITE" />
                            </children>
                         </Pane>
-                        <Pane prefHeight="38.0" prefWidth="295.0" style="-fx-background-color: #00b4cc;" />
+                        <Pane prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #00b4cc;" />
                         <Pane prefHeight="38.0" prefWidth="110.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="exibirDetalhesBtn" alignment="CENTER" disable="true" layoutX="-1.0" mnemonicParsing="false" onAction="#exibirDetalhesAcao" prefHeight="39.0" prefWidth="109.0" stylesheets="@EfeitosAnimacoes.css" text="Exibir Fornecedor" textFill="WHITE" />
+                              <Button fx:id="exibirDetalhesBtn" alignment="CENTER" disable="true" layoutX="-1.0" mnemonicParsing="false" onAction="#exibirDetalhesAcao" prefHeight="39.0" prefWidth="109.0" stylesheets="@EfeitosAnimacoes.css" text="Exibir fornecedor" textFill="WHITE" />
                            </children>
                         </Pane>
                         <Pane prefHeight="38.0" prefWidth="15.0" style="-fx-background-color: #00b4cc;" />

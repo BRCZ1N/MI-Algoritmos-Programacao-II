@@ -155,7 +155,7 @@ public class GerenciamentoClienteController implements Initializable {
 	@FXML
     void gerarRelatorioAcao(ActionEvent event) {
 		
-		Relatorio.criarPdfCliente(tabelaClientes.getSelectionModel().getSelectedItem());
+		Relatorio.gerarRelatorioClientes(tabelaClientes.getSelectionModel().getSelectedItem());
 
     }
 	/**

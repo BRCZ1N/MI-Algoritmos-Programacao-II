@@ -336,6 +336,26 @@ public class DaoFornecedores {
 		return false;
 
 	}
+	
+	public static ArrayList<Fornecedores> getListaFornecedoresProduto (String idProduto){
+		
+		ArrayList<Fornecedores> listaFornecedores = new ArrayList<Fornecedores>();
+		
+		for(Fornecedores fornecedor:DaoFornecedores.getListaFornecedores()) {
+			
+			if(fornecedor.getIdProdutosFornecedor().contains(idProduto)) {
+				
+				listaFornecedores.add(fornecedor);
+			
+			}
+				
+		}
+		
+		return listaFornecedores;
+	
+	}
+	
+	
 	/**
 	 * metodo ira trazer o nome do produto com base no seu id
 	 * 

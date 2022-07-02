@@ -177,7 +177,8 @@ public class GerenciamentoProdutosController implements Initializable {
 	@FXML
     public void gerarRelatorioAcao(ActionEvent event) {
 		
-		Relatorio.criarPdfProdutos();
+		
+		Relatorio.gerarRelatorioProdutos(DaoProdutos.getListaProdutos());
 
     }
 	/**
