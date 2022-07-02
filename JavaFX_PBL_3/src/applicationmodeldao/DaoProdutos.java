@@ -370,7 +370,12 @@ public class DaoProdutos {
 		}
 
 	}
-
+	/**
+	 * Metodo para gerar uma lista com apenas os ids da lista de produtos
+	 * 
+	 * @param  listaProdutos ArrayList<Produtos>
+	 * @return ArrayList<String>listaIdProdutos
+	 */
 	public static ArrayList<String> gerarListaIdProdutos(ArrayList<Produtos> listaProdutos) {
 
 		ArrayList<String> listaIdProdutos = new ArrayList<String>();
@@ -384,7 +389,12 @@ public class DaoProdutos {
 		return listaIdProdutos;
 
 	}
-	
+	/**
+	 * Metodo para gerar uma lista com os produtos perto da validade
+	 * 
+	 * @param  dataInicial LocalDate
+	 * @return ArrayList<Produtos> listaProdutosAVencer
+	 */
 	public ArrayList<Produtos> gerarListaProdutosAVencer(LocalDate dataInicial){
 		
 		ArrayList<Produtos> listaProdutosAVencer = new ArrayList<Produtos>();
@@ -403,7 +413,13 @@ public class DaoProdutos {
 		return listaProdutosAVencer;
 		
 	}
-
+	
+	/**
+	 * Metodo para gerar uma lista de produtos
+	 * 
+	 * @param  listaIdProdutos ArrayList<String>
+	 * @return ArrayList<Produtos> listaProdutos
+	 */
 	public static ArrayList<Produtos> gerarListaProdutos(ArrayList<String> listaIdProdutos) {
 
 		ArrayList<Produtos> listaProdutos = new ArrayList<Produtos>();
@@ -416,7 +432,10 @@ public class DaoProdutos {
 		return listaProdutos;
 
 	}
-
+	/**
+	 * Metodo para obter a quantidade total de produtos
+	 * 
+	 */
 	public static int getQtdTotalProdutos() {
 
 		if (listaProdutos.isEmpty()) {
@@ -430,6 +449,12 @@ public class DaoProdutos {
 		}
 
 	}
+	/**
+	 * Metodo para gerar uma lista com apenas os nomes dos produtos nela
+	 * 
+	 * @param  listaIngredientes ArrayList<Ingredientes>
+	 * @return ArrayList<String> listaNomeIngredientes
+	 */
 	public static ArrayList<String> getListaNomeIngredientes(ArrayList<Ingredientes> listaIngredientes) {
 
 		ArrayList<String> listaNomeIngredientes = new ArrayList<String>();
@@ -443,7 +468,12 @@ public class DaoProdutos {
 		return listaNomeIngredientes;
 
 	}
-
+	/**
+	 * Metodo para obter um produto
+	 * 
+	 * @param  idProduto String
+	 * @return Produtos produto
+	 */
 	public static Produtos getProduto(String idProduto) {
 
 		Produtos produto = new Produtos();

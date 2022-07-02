@@ -214,7 +214,15 @@ public class DaoClientes {
 		return false;
 
 	}
-
+	/**
+	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do objeto
+	 * caso exista na lista.
+	 * 
+	 * @param inicio  Integer - Index inicial da lista
+	 * @param fim     Integer - Index final da lista
+	 * @param chaveId String - Id a ser buscado
+	 * @return Integer - Posi��o do objeto buscado na lista
+	 */
 	public static int buscarDado(int inicio, int fim, String chaveId) {
 
 		int meio = (inicio + fim) / 2;
@@ -244,8 +252,12 @@ public class DaoClientes {
 
 		DaoClientes.listaClientes.clear();
 	}
-
-	public static double valorTotalVendasCliente(ArrayList<String> listaIdVendas) {
+	/**
+	 * M�todo de soma, para calcular o valor total gasto pelo cliente
+	 * @param listaIdVendas ArrayList<String>
+	 * @return double valorTotal
+	 */
+	static double valorTotalVendasCliente(ArrayList<String> listaIdVendas) {
 
 		double valorTotal = 0;
 
@@ -258,7 +270,11 @@ public class DaoClientes {
 		return valorTotal;
 
 	}
-
+	/**
+	 * M�todo de obtenção do id das vendas feitas para determinado cliente
+	 * @param listaIdVendas ArrayList<String>
+	 * @return ArrayList<String> clientesLista
+	 */
 	public static ArrayList<String> listaPratosIdCliente(ArrayList<String> listaIdVendas) {
 
 		ArrayList<String> clientesLista = new ArrayList<String>();

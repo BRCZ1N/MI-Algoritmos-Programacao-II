@@ -268,7 +268,13 @@ public class DaoVendas {
 		}
 
 	}
-	
+	/**
+	 * metodo que ira obter uma lista de vendas feitas em um determinado periodo
+	 * @param dataInicial LocalDate 
+	 * @param dataFinal LocalDate
+	 * @return ArrayList<Vendas> listaVendaP
+	 */
+
 	public static ArrayList<Vendas> getListaVendasPeriodo(LocalDate dataInicial,LocalDate dataFinal) {
 		
 		ArrayList<Vendas> listaVendaP = new ArrayList<Vendas>();
@@ -373,7 +379,12 @@ public class DaoVendas {
 		}
 
 	}
-	
+	/**
+	 * metodo que  criara uma lista de vendas por meio de uma lista de id's
+	 * 
+	 * @param listaIdVenda ArrayList<String> - lista dos ids das vendas
+	 * @return ArrayList<Vendas> vendas
+	 */
 	public static ArrayList<Vendas> getListaVenda(ArrayList<String> listaIdVenda) {
 
 		ArrayList<Vendas> vendas = new ArrayList<Vendas>();
@@ -387,7 +398,12 @@ public class DaoVendas {
 		return vendas;
 
 	}
-	
+	/**
+	 * metodo que  criara uma lista de id's de vendas por meio da lista de vendas
+	 * 
+	 * @param listaVenda ArrayList<Vendas> - lista das vendas
+	 * @return ArrayList<String> vendas
+	 */
 	
 	public static ArrayList<String> getListaIdVenda(ArrayList<Vendas> listaVenda){
 		
@@ -403,7 +419,12 @@ public class DaoVendas {
 		return vendas;
 		
 	}
-	
+	/**
+	 * metodo que  criara uma lista de vendas feitas com a composição de um determinado prato 
+	 * 
+	 * @param idPrato String - id do prato
+	 * @return ArrayList<Vendas> listaVendas
+	 */
 	public static ArrayList<Vendas> getListaVendasPrato(String idPrato){
 		
 		ArrayList<Vendas> listaVendasPrato = new ArrayList<Vendas>();
@@ -425,7 +446,12 @@ public class DaoVendas {
 		
 	}
 	
-	
+	/**
+	 * metodo que ira obter uma lista de vendas do tipo Venda
+	 * 
+	 * @param idPrato String - id do prato
+	 * @return Vendas venda
+	 */
 	public static Vendas getVenda(String idVenda) {
 		
 		Vendas venda =  new Vendas();
