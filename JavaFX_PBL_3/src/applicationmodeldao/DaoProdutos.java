@@ -232,7 +232,7 @@ public class DaoProdutos {
 	 * @return qtdTotalProduto - quantidade total de produtos
 	 * 
 	 */
-	public static int qtdTotalProdutos() {
+	public static int qtdTotalProdutos(ArrayList<Produtos> listaProdutos) {
 
 		int qtdTotalProduto = 0;
 
@@ -249,7 +249,7 @@ public class DaoProdutos {
 
 	}
 
-	public static int qtdTotalProdutosExpirados() {
+	public static int qtdTotalProdutosExpirados(ArrayList<Produtos> listaProdutos) {
 
 		int qtdTotalProduto = 0;
 
@@ -259,7 +259,7 @@ public class DaoProdutos {
 
 		} else {
 
-			for (Produtos produto : DaoProdutos.getListaProdutos()) {
+			for (Produtos produto : listaProdutos) {
 
 				if (produto.getValidade().compareTo(LocalDate.now()) > 0) {
 
@@ -389,6 +389,7 @@ public class DaoProdutos {
 		return listaIdProdutos;
 
 	}
+<<<<<<< HEAD
 	/**
 	 * Metodo para gerar uma lista com os produtos perto da validade
 	 * 
@@ -396,12 +397,16 @@ public class DaoProdutos {
 	 * @return ArrayList<Produtos> listaProdutosAVencer
 	 */
 	public ArrayList<Produtos> gerarListaProdutosAVencer(LocalDate dataInicial){
+=======
+	
+	public static ArrayList<Produtos> gerarListaProdutosAVencer(LocalDate dataInicial){
+>>>>>>> 47b3913e51c415a1700c6af897cf31ba91aad4d8
 		
 		ArrayList<Produtos> listaProdutosAVencer = new ArrayList<Produtos>();
 		
 		for(Produtos produto:DaoProdutos.getListaProdutos()) {
 			
-			if(dataInicial.compareTo(produto.getValidade()) <= 0) {
+			if(dataInicial.compareTo(produto.getValidade()) >= 0) {
 				
 				listaProdutosAVencer.add(produto);
 				

@@ -6,12 +6,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Produtos;
@@ -53,6 +55,12 @@ public class GerenciamentoProdutosController implements Initializable {
 	private Button botaoExcluir;
 	@FXML
     private Button gerarRelatorioBtn;
+	@FXML
+	private ComboBox<String> comboBoxRelatorios;
+
+	private ArrayList<String> listaProdutosRelatorio = new ArrayList<String>();
+
+	private ObservableList<String> observableProdutosRelatorio;
 
 	private static ObservableList<Produtos> observableListaProdutos;
 	/**
@@ -64,6 +72,7 @@ public class GerenciamentoProdutosController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
 		carregarListaProdutos();
+		carregarComboBoxRelatorio();
 
 		tabelaProdutos.setOnMouseClicked(e -> {
 
@@ -76,6 +85,17 @@ public class GerenciamentoProdutosController implements Initializable {
 			}
 
 		});
+
+	}
+	
+	public void carregarComboBoxRelatorio() {
+
+		listaProdutosRelatorio.add("Produtos geral");
+		listaProdutosRelatorio.add("Produtos a vencer");
+
+		observableProdutosRelatorio = FXCollections.observableArrayList(listaProdutosRelatorio);
+
+		comboBoxRelatorios.setItems(observableProdutosRelatorio);
 
 	}
 	/**
@@ -173,12 +193,24 @@ public class GerenciamentoProdutosController implements Initializable {
 	/**
    	 *M�todo para gerar um relatorio do gerenciamento
    	 *@param  event ActionEvent
+	 * @throws IOException 
    	 */
 	@FXML
-    public void gerarRelatorioAcao(ActionEvent event) {
+    public void gerarRelatorioAcao(ActionEvent event) throws IOException {
 		
+		if(comboBoxRelatorios.getValue() == "Produtos geral") {
+			
+			Relatorio.gerarRelatorioProdutos(DaoProdutos.getListaProdutos());
+			
+			
+		}else {
+			
+			RelatorioDataDadosController.setVisibilidadeDatePickerInicial(true);
+			mudarJanelaSecundaria("/applicationviewcssfxml/RelatorioDataDados.fxml");
+			Relatorio.gerarRelatorioProdutos(DaoProdutos.gerarListaProdutosAVencer(RelatorioDataDadosController.getDataInicial()));
+			
+		}
 		
-		Relatorio.gerarRelatorioProdutos(DaoProdutos.getListaProdutos());
 
     }
 	/**
@@ -193,6 +225,7 @@ public class GerenciamentoProdutosController implements Initializable {
 		mudarJanela("/applicationviewcssfxml/TelaDetalhesProduto.fxml");
 		
 	}
+	
 	/**
    	 *M�todo para criar uma nova janela determinada pelo paranmetro 
    	 *@param urlScene String
@@ -215,6 +248,13 @@ public class GerenciamentoProdutosController implements Initializable {
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
+
+	}
+	
+	public void mudarJanelaSecundaria(String urlScene) throws IOException {
+
+		Main.getStage2().setScene(novaCena(urlScene));
+		Main.getStage2().showAndWait();
 
 	}
 
