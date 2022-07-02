@@ -419,7 +419,7 @@ public class DaoVendas {
 			
 			
 		}
-		return listaVendasPrato;
+		return listaVendas;
 		
 		
 		

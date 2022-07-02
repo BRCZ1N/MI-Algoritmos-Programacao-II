@@ -80,12 +80,12 @@ public class Relatorio {
 			p = new Paragraph(" ");
 			d.add(p);
 
-			p = new Paragraph("Quantidade total de produtos:" + DaoProdutos.qtdTotalProdutos(listaProdutos));
+			p = new Paragraph("Quantidade total de produtos:" + DaoProdutos.qtdTotalProdutos());
 			d.add(p);
 			p = new Paragraph(" ");
 			d.add(p);
 			
-			p = new Paragraph("Quantidade total de produtos expirados:" + DaoProdutos.qtdTotalProdutosExpirados(listaProdutos));
+			p = new Paragraph("Quantidade total de produtos expirados:" + DaoProdutos.qtdTotalProdutosExpirados());
 			d.add(p);
 			
 
@@ -110,7 +110,7 @@ public class Relatorio {
 			tabela.addCell(celulaPDF4);
 			tabela.addCell(celulaPDF5);
 
-			for (Produtos produto : listaProdutos) {
+			for (Produtos produto : DaoProdutos.getListaProdutos()) {
 
 				celulaPDF1 = new PdfPCell(new Paragraph(produto.getId()));
 				celulaPDF1.setHorizontalAlignment(Element.ALIGN_CENTER);
