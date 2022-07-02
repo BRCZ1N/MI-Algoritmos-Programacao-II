@@ -27,7 +27,6 @@ public class DaoFacade {
 	private DaoVendas daoVenda;
 	
 	
-	
 	public void daoInicializar() {
 		
 		daoUsuarios = new DaoUsuarios();

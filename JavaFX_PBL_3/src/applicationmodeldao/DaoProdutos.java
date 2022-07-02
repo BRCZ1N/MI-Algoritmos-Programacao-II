@@ -384,6 +384,25 @@ public class DaoProdutos {
 		return listaIdProdutos;
 
 	}
+	
+	public ArrayList<Produtos> gerarListaProdutosAVencer(LocalDate dataInicial){
+		
+		ArrayList<Produtos> listaProdutosAVencer = new ArrayList<Produtos>();
+		
+		for(Produtos produto:DaoProdutos.getListaProdutos()) {
+			
+			if(dataInicial.compareTo(produto.getValidade()) <= 0) {
+				
+				listaProdutosAVencer.add(produto);
+				
+			}
+			
+			
+		}
+		
+		return listaProdutosAVencer;
+		
+	}
 
 	public static ArrayList<Produtos> gerarListaProdutos(ArrayList<String> listaIdProdutos) {
 
@@ -411,22 +430,6 @@ public class DaoProdutos {
 		}
 
 	}
-
-//	public static ArrayList<Ingredientes> gerarListaIngredientes(ArrayList<Produtos> listaProdutos){
-//		
-//		
-//		ArrayList<Ingredientes> listaIngredientes = new ArrayList<Ingredientes>();
-//		
-//		for(Produtos produto:listaProdutos) {
-//			
-//			Ingredientes ingrediente = new Ingredientes(produto.getId(),produto.getQtdProduto());
-//			listaIngredientes.add(ingrediente);
-//			
-//		}
-//		
-//		return listaIngredientes;
-//		
-//	}
 	public static ArrayList<String> getListaNomeIngredientes(ArrayList<Ingredientes> listaIngredientes) {
 
 		ArrayList<String> listaNomeIngredientes = new ArrayList<String>();
