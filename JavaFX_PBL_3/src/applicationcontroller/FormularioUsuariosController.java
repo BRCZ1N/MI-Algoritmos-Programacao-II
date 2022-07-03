@@ -10,6 +10,8 @@ import javafx.scene.control.TextField;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
@@ -77,7 +79,9 @@ public class FormularioUsuariosController implements Initializable {
 				boolean retorno = Alertas.confirmar();
 				
 				if (retorno) {
+					
 					DaoUsuarios.addEditDados(usuarioNovo, null);
+					
 				}
 	
 			} else {
@@ -85,7 +89,7 @@ public class FormularioUsuariosController implements Initializable {
 				DaoUsuarios.addEditDados(usuarioNovo, usuarioAtual.getId());
 	
 			}
-		}catch(LoginExistenteException e) {
+		}catch(LoginExistenteException | CamposNulosException e) {
 			Alertas.erro(e.getMessage());
 		}
 		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationexeceptions.EstoqueInsuficienteException;
 import applicationmodel.TipoPagamento;
@@ -66,7 +67,7 @@ public class DaoVendasTest {
 	@Test
 	// Testando adicionar venda em rela��o a posi��o ao qual devem ocupar na
 	// lista de vendas
-	public void testaddDadosVendasPosicaoNaLista() throws EstoqueInsuficienteException {
+	public void testaddDadosVendasPosicaoNaLista() throws EstoqueInsuficienteException, CamposNulosException {
 
 		DaoVendas.addEditDados(vendaA, null);
 		DaoVendas.addEditDados(vendaB, null);
@@ -79,7 +80,7 @@ public class DaoVendasTest {
 	@Test
 	// Testando adicionar vendas em rela��o a posi��o ao qual devem ocupar
 	// na lista de vendas
-	public void testAddDadosVendasTamanhoDaLista() throws EstoqueInsuficienteException {
+	public void testAddDadosVendasTamanhoDaLista() throws EstoqueInsuficienteException, CamposNulosException {
 
 		DaoVendas.addEditDados(vendaA, null);
 		DaoVendas.addEditDados(vendaB, null);
@@ -91,7 +92,7 @@ public class DaoVendasTest {
 	@Test
 	// Testando a remoção de vendas se existem na lista de vendas, usando como
 	// base o objeto atual e o objeto antigo
-	public void testRemoverDadosVendasSeExistirNaLista() throws EstoqueInsuficienteException {
+	public void testRemoverDadosVendasSeExistirNaLista() throws EstoqueInsuficienteException, CamposNulosException {
 
 		DaoVendas.addEditDados(vendaA, null);
 		DaoVendas.addEditDados(vendaB, null);
@@ -112,7 +113,7 @@ public class DaoVendasTest {
 	@Test
 	// Testando a remo��o de vendas se existem na lista de vendas pelo tamanho
 	// da lista
-	public void testRemoverDadosDaVendaSeExistirTamanhoDaLista() throws EstoqueInsuficienteException {
+	public void testRemoverDadosDaVendaSeExistirTamanhoDaLista() throws EstoqueInsuficienteException, CamposNulosException {
 
 		DaoVendas.addEditDados(vendaA, null);
 		DaoVendas.addEditDados(vendaB, null);
@@ -129,7 +130,7 @@ public class DaoVendasTest {
 
 	@Test
 	// Testando a edi��o de vendas se existem na lista de vendas
-	public void testEditarVendaNaListaDeVendasCasoExista() throws EstoqueInsuficienteException {
+	public void testEditarVendaNaListaDeVendasCasoExista() throws EstoqueInsuficienteException, CamposNulosException {
 
 		DaoVendas.addEditDados(vendaA, null);
 		DaoVendas.addEditDados(vendaB, null);
@@ -141,7 +142,7 @@ public class DaoVendasTest {
 
 	@Test
 	// Testando a listagem do dados do elemento da lista de vendas
-	public void testListagemDados() throws EstoqueInsuficienteException {
+	public void testListagemDados() throws EstoqueInsuficienteException, CamposNulosException {
 
 		DaoVendas.addEditDados(vendaA, null);
 
@@ -154,7 +155,7 @@ public class DaoVendasTest {
 
 	@Test
 	// Testando realizacao de venda com estoque insuficiente
-	public void testDeEstoqueInsuficienteParaVenda() throws EstoqueInsuficienteException {
+	public void testDeEstoqueInsuficienteParaVenda() throws EstoqueInsuficienteException, CamposNulosException {
 
 		DaoVendas.addEditDados(vendaA, null);
 		ArrayList<String> vendaZ = vendaB.getListaIdItens();

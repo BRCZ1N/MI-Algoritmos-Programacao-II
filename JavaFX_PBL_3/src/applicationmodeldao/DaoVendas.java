@@ -3,6 +3,7 @@ package applicationmodeldao;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.EstoqueInsuficienteException;
 import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
@@ -25,9 +26,10 @@ public class DaoVendas {
 
 	/**
 	 * Construtor para popular a estrutura de dados referente a vendas no menu.
+	 * @throws CamposNulosException 
 	 */
 
-	public DaoVendas() {
+	public DaoVendas(){
 
 		ArrayList<String> listaIdItens = new ArrayList<String>();
 
@@ -44,7 +46,7 @@ public class DaoVendas {
 			addEditDados(vendaB, null);
 			addEditDados(vendaC, null);
 
-		} catch ( EstoqueInsuficienteException  e) {
+		} catch (EstoqueInsuficienteException | CamposNulosException e) {
 
 			e.getMessage();
 		}
@@ -95,10 +97,10 @@ public class DaoVendas {
 	 * @param chaveId String
 	 * @throws IdInvalidoException
 	 * @throws EstoqueInsuficienteException
+	 * @throws CamposNulosException 
 	 * @throws VendaComPratoInvalidoException
 	 */
-	public static void addEditDados(Vendas venda, String chaveId)
-			throws EstoqueInsuficienteException {
+	public static void addEditDados(Vendas venda, String chaveId) throws EstoqueInsuficienteException, CamposNulosException {
 
 		if (chaveId == null) {
 
@@ -117,19 +119,27 @@ public class DaoVendas {
 	 * 
 	 * @param venda Vendas - Objeto do tipo Vendas.
 	 * @throws EstoqueInsuficienteException
+	 * @throws CamposNulosException 
 	 * @throws VendaComPratoInvalidoException
 	 */
 
-	private static void addDados(Vendas venda) throws EstoqueInsuficienteException {
+	private static void addDados(Vendas venda) throws EstoqueInsuficienteException, CamposNulosException {
 
-		if (!verificaPratoInexistente(venda.getListaIdItens())) {
+		if (!vendaCampoVazio(venda)) {
 
 			venda.setId(Integer.toString(idSeq));
 			alterarEstoque(venda);
 			listaVendas.add(venda);
 			idSeq++;
-
-		} 
+			
+		}else {
+			
+			throw new CamposNulosException();
+			
+		}
+	
+			
+		
 
 	}
 
@@ -148,7 +158,7 @@ public class DaoVendas {
 
 			listaVendas.remove(idExiste);
 
-		} 
+		}
 
 	}
 
@@ -157,19 +167,24 @@ public class DaoVendas {
 	 * 
 	 * @param vendaEditada Vendas - Objeto do tipo Vendas
 	 * @param chaveId      String - Id para editar
+	 * @throws CamposNulosException 
 	 * @throws IdInvalidoException
 	 */
 
-	private static void editarDados(Vendas vendaEditada, String chaveId) {
+	private static void editarDados(Vendas vendaEditada, String chaveId) throws CamposNulosException {
 
 		int idExiste = buscarDado(0, listaVendas.size() - 1, chaveId, listaVendas);
-		if (idExiste != -1) {
+		if (idExiste != -1 && !vendaCampoVazio(vendaEditada)) {
 
 			vendaEditada.setId(listaVendas.get(idExiste).getId());
 			removerDados(Integer.toString(idExiste));
 			listaVendas.add(idExiste, vendaEditada);
 
-		} 
+		}else {
+			
+			throw new CamposNulosException();
+			
+		}
 
 	}
 
@@ -241,7 +256,6 @@ public class DaoVendas {
 		}
 
 	}
-	
 
 	/**
 	 * M�todo para definir o valor total da venda
@@ -269,34 +283,37 @@ public class DaoVendas {
 		}
 
 	}
+
 	/**
 	 * metodo que ira obter uma lista de vendas feitas em um determinado periodo
-	 * @param dataInicial LocalDate 
-	 * @param dataFinal LocalDate
+	 * 
+	 * @param dataInicial LocalDate
+	 * @param dataFinal   LocalDate
 	 * @return ArrayList<Vendas> listaVendaP
 	 */
 
-	public static ArrayList<Vendas> getListaVendasPeriodo(LocalDate dataInicial,LocalDate dataFinal) {
-		
+	public static ArrayList<Vendas> getListaVendasPeriodo(LocalDate dataInicial, LocalDate dataFinal) {
+
 		ArrayList<Vendas> listaVendaP = new ArrayList<Vendas>();
-		
-		for(Vendas venda:DaoVendas.getListaVendas()) {
-					//22 							//26
-			if(dataInicial.compareTo(venda.getDiaHorario().toLocalDate()) <= 0 && dataFinal.compareTo(venda.getDiaHorario().toLocalDate()) >= 0) {
-				
+
+		for (Vendas venda : DaoVendas.getListaVendas()) {
+			// 22 //26
+			if (dataInicial.compareTo(venda.getDiaHorario().toLocalDate()) <= 0
+					&& dataFinal.compareTo(venda.getDiaHorario().toLocalDate()) >= 0) {
+
 				listaVendaP.add(venda);
-	
+
 			}
-			
+
 		}
-		
+
 		return listaVendaP;
-		
+
 	}
 
 	/**
-	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do
-	 * objeto caso exista na lista.
+	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do objeto
+	 * caso exista na lista.
 	 * 
 	 * @param inicio      Integer - Index inicial da lista
 	 * @param fim         Integer - Index final da lista
@@ -330,8 +347,6 @@ public class DaoVendas {
 		return -1;
 
 	}
-	
-	
 
 	/**
 	 * Metodo para verificação da existencia de um prato
@@ -380,8 +395,9 @@ public class DaoVendas {
 		}
 
 	}
+
 	/**
-	 * metodo que  criara uma lista de vendas por meio de uma lista de id's
+	 * metodo que criara uma lista de vendas por meio de uma lista de id's
 	 * 
 	 * @param listaIdVenda ArrayList<String> - lista dos ids das vendas
 	 * @return ArrayList<Vendas> vendas
@@ -399,16 +415,16 @@ public class DaoVendas {
 		return vendas;
 
 	}
+
 	/**
-	 * metodo que  criara uma lista de id's de vendas por meio da lista de vendas
+	 * metodo que criara uma lista de id's de vendas por meio da lista de vendas
 	 * 
 	 * @param listaVenda ArrayList<Vendas> - lista das vendas
 	 * @return ArrayList<String> vendas
 	 */
-	
-	public static ArrayList<String> getListaIdVenda(ArrayList<Vendas> listaVenda){
-		
-		
+
+	public static ArrayList<String> getListaIdVenda(ArrayList<Vendas> listaVenda) {
+
 		ArrayList<String> vendas = new ArrayList<String>();
 
 		for (Vendas venda : listaVenda) {
@@ -418,35 +434,33 @@ public class DaoVendas {
 		}
 
 		return vendas;
-		
+
 	}
+
 	/**
-	 * metodo que  criara uma lista de vendas feitas com a composição de um determinado prato 
+	 * metodo que criara uma lista de vendas feitas com a composição de um
+	 * determinado prato
 	 * 
 	 * @param idPrato String - id do prato
 	 * @return ArrayList<Vendas> listaVendas
 	 */
-	public static ArrayList<Vendas> getListaVendasPrato(String idPrato){
-		
+	public static ArrayList<Vendas> getListaVendasPrato(String idPrato) {
+
 		ArrayList<Vendas> listaVendasPrato = new ArrayList<Vendas>();
-		
-		for(Vendas venda:DaoVendas.getListaVendas()) {
-			
-			if(venda.getListaIdItens().contains(idPrato)) {
-				
+
+		for (Vendas venda : DaoVendas.getListaVendas()) {
+
+			if (venda.getListaIdItens().contains(idPrato)) {
+
 				listaVendasPrato.add(venda);
-				
+
 			}
-			
-			
-			
+
 		}
 		return listaVendas;
-		
-		
-		
+
 	}
-	
+
 	/**
 	 * metodo que ira obter uma lista de vendas do tipo Venda
 	 * 
@@ -454,20 +468,32 @@ public class DaoVendas {
 	 * @return Vendas venda
 	 */
 	public static Vendas getVenda(String idVenda) {
-		
-		Vendas venda =  new Vendas();
-		
-		int idExiste = DaoVendas.buscarDado(0, DaoVendas.getListaVendas().size() - 1, idVenda,DaoVendas.getListaVendas());
-	
-		if(idExiste != -1) {
-				
+
+		Vendas venda = new Vendas();
+
+		int idExiste = DaoVendas.buscarDado(0, DaoVendas.getListaVendas().size() - 1, idVenda,
+				DaoVendas.getListaVendas());
+
+		if (idExiste != -1) {
+
 			venda = DaoVendas.getListaVendas().get(idExiste);
-			
+
 		}
-		
+
 		return venda;
-		
+
 	}
-	
+
+	public static boolean vendaCampoVazio(Vendas venda) {
+
+		if (venda.getListaIdItens().isEmpty() || venda.getTipoPagamento().isBlank()) {
+
+			return true;
+
+		}
+
+		return false;
+
+	}
 
 }

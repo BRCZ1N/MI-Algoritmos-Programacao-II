@@ -2,6 +2,8 @@ package applicationmodeldao;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationexeceptions.EstoqueInsuficienteException;
 import applicationmodel.Ingredientes;
@@ -24,6 +26,8 @@ public class DaoProdutos {
 
 	/**
 	 * Construtor para popular a estrutura de dados referente a produtos no menu.
+	 * 
+	 * @throws CamposNulosException
 	 */
 
 	public DaoProdutos() {
@@ -42,7 +46,7 @@ public class DaoProdutos {
 			addEditDados(produtoB, null);
 			addEditDados(produtoC, null);
 
-		} catch (EntidadeComValoresNegativoException e) {
+		} catch (EntidadeComValoresNegativoException | CamposNulosException e) {
 
 			e.getMessage();
 		}
@@ -96,9 +100,11 @@ public class DaoProdutos {
 	 * @param produto Produtos
 	 * @param chaveId String
 	 * @throws EntidadeComValoresNegativoException
+	 * @throws CamposNulosException
 	 * @throws IdInvalidoException
 	 */
-	public static void addEditDados(Produtos produto, String chaveId) throws EntidadeComValoresNegativoException {
+	public static void addEditDados(Produtos produto, String chaveId)
+			throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		if (chaveId == null) {
 
@@ -117,17 +123,22 @@ public class DaoProdutos {
 	 * 
 	 * @param produto Produtos
 	 * @throws EntidadeComValoresNegativoException
+	 * @throws CamposNulosException 
 	 * 
 	 */
 
-	private static void addDados(Produtos produto) throws EntidadeComValoresNegativoException {
+	private static void addDados(Produtos produto) throws EntidadeComValoresNegativoException, CamposNulosException {
 
-		if (produto.getPreco() > 0 && produto.getQtdProduto() > 0) {
+		if (produto.getPreco() > 0 && produto.getQtdProduto() > 0 && !produtoCampoVazio(produto)) {
 
 			produto.setId(Integer.toString(idSeq));
 			listaProdutos.add(produto);
 			idSeq++;
 
+		} else if (produtoCampoVazio(produto)) {
+			
+			throw new CamposNulosException();
+			
 		} else {
 
 			throw new EntidadeComValoresNegativoException();
@@ -159,23 +170,30 @@ public class DaoProdutos {
 	 * 
 	 * @param produtoEditado Produtos - Objeto do tipo Produtos
 	 * @param chaveId        String - Id para editar
+	 * @throws CamposNulosException
 	 * @throws IdInvalidoException
 	 * @throws EntidadeComValoresNegativosException
 	 */
 
 	private static void editarDados(Produtos produtoEditado, String chaveId)
-			throws EntidadeComValoresNegativoException {
+			throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		int idExiste = buscarDado(0, listaProdutos.size() - 1, chaveId, listaProdutos);
-		if (idExiste != -1 && (produtoEditado.getPreco() > 0 && produtoEditado.getQtdProduto() > 0)) {
+		if (idExiste != -1 && (produtoEditado.getPreco() > 0 && produtoEditado.getQtdProduto() > 0)
+				&& !produtoCampoVazio(produtoEditado)) {
 
 			produtoEditado.setId(listaProdutos.get(idExiste).getId());
 			removerDados(Integer.toString(idExiste));
 			listaProdutos.add(idExiste, produtoEditado);
 
-		} else {
+		} else if (idExiste != -1 && (produtoEditado.getPreco() < 0 || produtoEditado.getQtdProduto() < 0)
+				&& !produtoCampoVazio(produtoEditado)) {
 
 			throw new EntidadeComValoresNegativoException();
+
+		} else {
+
+			throw new CamposNulosException();
 
 		}
 
@@ -248,7 +266,6 @@ public class DaoProdutos {
 		}
 
 	}
-
 
 	/*
 	 * M�todo para o retorno dos nomes dos produtos que est�o no prato
@@ -359,24 +376,23 @@ public class DaoProdutos {
 		return listaIdProdutos;
 
 	}
-	
-	public static ArrayList<Produtos> gerarListaProdutosAVencer(LocalDate dataInicial){
-		
+
+	public static ArrayList<Produtos> gerarListaProdutosAVencer(LocalDate dataInicial) {
+
 		ArrayList<Produtos> listaProdutosAVencer = new ArrayList<Produtos>();
-		
-		for(Produtos produto:DaoProdutos.getListaProdutos()) {
-			
-			if(dataInicial.compareTo(produto.getValidade()) >= 0) {
-				
+
+		for (Produtos produto : DaoProdutos.getListaProdutos()) {
+
+			if (dataInicial.compareTo(produto.getValidade()) >= 0) {
+
 				listaProdutosAVencer.add(produto);
-				
+
 			}
-			
-			
+
 		}
-		
+
 		return listaProdutosAVencer;
-		
+
 	}
 
 	public static ArrayList<Produtos> gerarListaProdutos(ArrayList<String> listaIdProdutos) {
@@ -419,6 +435,19 @@ public class DaoProdutos {
 		}
 
 		return produto;
+
+	}
+
+	public static boolean produtoCampoVazio(Produtos produto) {
+
+		if (produto.getNome().isBlank() || produto.getTipoQtd() == null || produto.getValidade() == null
+				|| produto.getPreco().equals(null) || produto.getQtdProduto().equals(null)) {
+
+			return true;
+
+		}
+
+		return false;
 
 	}
 }

@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationmain.Main;
 import applicationmodel.Produtos;
@@ -47,75 +49,82 @@ public class FormularioProdutosController implements Initializable {
 	private ObservableList<String> observableComboBox;
 
 	private static Produtos produtoAtual;
+
 	/**
-	 *M�todo para retorno do conteudo do produto selecionado.
-	 *@return Produtos produtoAtual
+	 * M�todo para retorno do conteudo do produto selecionado.
+	 * 
+	 * @return Produtos produtoAtual
 	 */
 	public static Produtos getProdutoAtual() {
 		return produtoAtual;
 	}
+
 	/**
-	 *M�todo para setar o conteudo do produto selecionado.
-	 *@param produtoAtual Produtos 
+	 * M�todo para setar o conteudo do produto selecionado.
+	 * 
+	 * @param produtoAtual Produtos
 	 */
 	public static void setProdutoAtual(Produtos produtoAtual) {
 		FormularioProdutosController.produtoAtual = produtoAtual;
 	}
-	
+
 	/**
-   	 *M�todo para inicializar o gerenciamento de Fornecedores
-   	 *@param arg0 URL
-   	 *@param arg1 ResourceBundle
-   	 */
+	 * M�todo para inicializar o gerenciamento de Fornecedores
+	 * 
+	 * @param arg0 URL
+	 * @param arg1 ResourceBundle
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
-		textFPreco.textProperty().addListener(new ChangeListener<String>(){
+
+		textFPreco.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				
-				if(!newValue.isEmpty()) {
-					
+
+				if (!newValue.isEmpty()) {
+
 					try {
-						
+
 						Double.parseDouble(newValue);
-						
-					}catch(NumberFormatException e) {
-						
-						Alertas.erro(new NumberFormatException("Atenção esse campo deve ser preenchido no formato: (XX.XX), Ex: (23.45)").getMessage());
+
+					} catch (NumberFormatException e) {
+
+						Alertas.erro(new NumberFormatException("Preencha todos os campos de dados corretamente")
+								.getMessage());
 						textFPreco.setText(oldValue);
-						
+
 					}
-					
+
 				}
-				
+
 			}
-			
+
 		});
-		
-		textFQtd.textProperty().addListener(new ChangeListener<String>(){
+
+		textFQtd.textProperty().addListener(new ChangeListener<String>() {
 
 			@Override
 			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-				
-				if(!newValue.isEmpty()) {
-					
+
+				if (!newValue.isEmpty()) {
+
 					try {
-						
+
 						Double.parseDouble(newValue);
-						
-					}catch(NumberFormatException e) {
-						
-						Alertas.erro(new NumberFormatException("Atenção esse campo deve ser preenchido no formato: (XX.XX), Ex: (23.45)").getMessage());
+
+					} catch (NumberFormatException e) {
+
+						Alertas.erro(new NumberFormatException("Preencha todos os campos de dados corretamente")
+								.getMessage());
 						textFPreco.setText(oldValue);
-						
+
 					}
-					
+
 				}
-				
+
 			}
-			
+
 		});
 
 		if (produtoAtual != null) {
@@ -127,17 +136,17 @@ public class FormularioProdutosController implements Initializable {
 			datePickerProduto.setValue(produtoAtual.getValidade());
 
 		}
-		
-		
+
 		inicializarComboBox();
 
 	}
 
 	/**
-   	 *M�todo para retornar ao gerenciamento de Produtos.
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para retornar ao gerenciamento de Produtos.
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -147,23 +156,28 @@ public class FormularioProdutosController implements Initializable {
 	}
 
 	/**
-   	 *M�todo para salvar o produto apos a confirmação.
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para salvar o produto apos a confirmação.
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void salvarProdutoAcao(ActionEvent event) throws IOException {
 
-		Produtos produtoNovo = new Produtos(textFNome.getText(), datePickerProduto.getValue(),
-				Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()), comboBoxUMedida.getValue());
-
 		try {
 
+			Produtos produtoNovo = new Produtos(textFNome.getText(), datePickerProduto.getValue(),
+					Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()),
+					comboBoxUMedida.getValue());
+
 			if (produtoAtual == null) {
+
 				boolean retorno = Alertas.confirmar();
-				
+
 				if (retorno) {
+
 					DaoProdutos.addEditDados(produtoNovo, null);
+
 				}
 
 			} else {
@@ -171,18 +185,28 @@ public class FormularioProdutosController implements Initializable {
 				DaoProdutos.addEditDados(produtoNovo, produtoAtual.getId());
 
 			}
-		} catch (EntidadeComValoresNegativoException e) {
-			Alertas.erro(e.getMessage());
+		} catch (EntidadeComValoresNegativoException | CamposNulosException | NumberFormatException e) {
+
+			if (e.getMessage().equals("empty String")) {
+
+				Alertas.erro("Preencha todos os campos de dados corretamente");
+
+			} else {
+
+				Alertas.erro(e.getMessage());
+
+			}
+
 		}
 
 		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
 		limparUsuario();
 
 	}
-	
+
 	/**
-   	 *Metodo para inicializar o comboBox da unidade de medida do produto
-   	 */
+	 * Metodo para inicializar o comboBox da unidade de medida do produto
+	 */
 	public void inicializarComboBox() {
 
 		arrayListComboBox.add(UnidadeMedida.getTipoDeUnidade1());
@@ -192,29 +216,34 @@ public class FormularioProdutosController implements Initializable {
 		comboBoxUMedida.setItems(observableComboBox);
 
 	}
+
 	/**
-   	 *Metodo para setar o produto atual como nulo
-   	 */
+	 * Metodo para setar o produto atual como nulo
+	 */
 	public void limparUsuario() {
 
 		produtoAtual = null;
 
 	}
+
 	/**
-   	 *M�todo para mudar para a janela determinada.
-   	 *@param urlScene String
-   	 *@throws IOException
-   	 */
+	 * M�todo para mudar para a janela determinada.
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
+
 	/**
-   	 *M�todo para mudar para a janela determinada.
-   	 *@param urlScene String
-   	 *@throws IOException
-   	 */
+	 * M�todo para mudar para a janela determinada.
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));

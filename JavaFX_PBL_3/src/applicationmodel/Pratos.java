@@ -14,7 +14,7 @@ public class Pratos {
 	private String id;
 	private String nome;
 	private String descricao;
-	private double preco;
+	private Double preco;
 	private String categoria;
 	private ArrayList<Ingredientes> composicaoPrato;
 
@@ -101,7 +101,7 @@ public class Pratos {
 	 *@return Double preco
 	 */
 
-	public double getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 	
@@ -110,7 +110,7 @@ public class Pratos {
 	 *@param preco Double
 	 */
 
-	public void setPreco(double preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 

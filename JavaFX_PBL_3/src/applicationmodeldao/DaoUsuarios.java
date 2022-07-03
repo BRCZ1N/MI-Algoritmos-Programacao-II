@@ -2,11 +2,11 @@ package applicationmodeldao;
 
 import java.util.ArrayList;
 
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmodel.Funcionario;
 import applicationmodel.Gerente;
 import applicationmodel.Usuarios;
-
 
 /**
  * Classe para gerenciamento de objetos do tipo Usuarios.
@@ -24,8 +24,10 @@ public class DaoUsuarios {
 
 	/**
 	 * Construtor para popular a estrutura de dados referente a usuarios no menu.
+	 * 
+	 * @throws CamposNulosException
 	 */
-	
+
 	public DaoUsuarios() {
 
 		Gerente gerente = new Gerente("ADMIN", "ADMIN", "ADMIN");
@@ -36,7 +38,7 @@ public class DaoUsuarios {
 			addEditDados(gerente, null);
 			addEditDados(funcionario, null);
 			addEditDados(funcionarioB, null);
-		} catch ( LoginExistenteException e) {
+		} catch (LoginExistenteException | CamposNulosException e) {
 
 			e.getMessage();
 		}
@@ -80,16 +82,18 @@ public class DaoUsuarios {
 	}
 
 	/**
-	 * Metodo para acessar o m�todo de editar caso exista um usu�rio a ser
-	 * editado, ou ent�o para adicionar um novo usu�rio.
+	 * Metodo para acessar o m�todo de editar caso exista um usu�rio a ser editado,
+	 * ou ent�o para adicionar um novo usu�rio.
 	 * 
 	 * @param usuario Usuarios
 	 * @param chaveId String
 	 * @throws IdInvalidoException
 	 * @throws LoginExistenteException
+	 * @throws CamposNulosException
 	 */
-	
-	public static void addEditDados(Usuarios usuario, String chaveId) throws LoginExistenteException {
+
+	public static void addEditDados(Usuarios usuario, String chaveId)
+			throws LoginExistenteException, CamposNulosException {
 
 		if (chaveId == null) {
 
@@ -108,20 +112,25 @@ public class DaoUsuarios {
 	 * 
 	 * @param usuario Usuarios- Objeto do tipo Usuarios
 	 * @throws LoginExistenteException
+	 * @throws CamposNulosException
 	 */
 
-	private static void addDados(Usuarios usuario) throws LoginExistenteException {
+	private static void addDados(Usuarios usuario) throws LoginExistenteException, CamposNulosException {
 
 		boolean loginExiste = buscarLogin(0, listaUsuarios.size() - 1, usuario.getLoginUsuario());
-		if (!loginExiste) {
+		if (!loginExiste && !usuarioCampoVazio(usuario)) {
 
 			usuario.setId(Integer.toString(idSeq));
 			listaUsuarios.add(usuario);
 			idSeq++;
 
-		} else {
+		} else if (loginExiste) {
 
 			throw new LoginExistenteException();
+
+		} else {
+
+			throw new CamposNulosException();
 
 		}
 
@@ -135,14 +144,14 @@ public class DaoUsuarios {
 	 * 
 	 */
 
-	public static void removerDados(String chaveId)  {
+	public static void removerDados(String chaveId) {
 
 		int idExiste = buscarDado(0, listaUsuarios.size() - 1, chaveId);
 		if (idExiste != -1) {
 
 			listaUsuarios.remove(idExiste);
 
-		} 
+		}
 
 	}
 
@@ -154,10 +163,11 @@ public class DaoUsuarios {
 	 * 
 	 * @throws IdInvalidoException
 	 * @throws LoginExistenteException
+	 * @throws CamposNulosException
 	 */
 
 	private static void editarDados(Usuarios usuarioEditado, String chaveId)
-			throws  LoginExistenteException {
+			throws LoginExistenteException, CamposNulosException {
 
 		int idExiste = buscarDado(0, listaUsuarios.size() - 1, chaveId);
 
@@ -168,18 +178,24 @@ public class DaoUsuarios {
 			usuarioSalvo = listaUsuarios.get(idExiste);
 			removerDados(Integer.toString(idExiste));
 
-			if (buscarLogin(0, listaUsuarios.size() - 1, usuarioEditado.getLoginUsuario()) == false) {
+			if (buscarLogin(0, listaUsuarios.size() - 1, usuarioEditado.getLoginUsuario()) == false
+					&& !usuarioCampoVazio(usuarioEditado)) {
 
 				listaUsuarios.add(idExiste, usuarioEditado);
 
-			} else {
+			} else if (buscarLogin(0, listaUsuarios.size() - 1, usuarioEditado.getLoginUsuario()) == true) {
 
 				listaUsuarios.add(idExiste, usuarioSalvo);
 				throw new LoginExistenteException();
 
+			} else {
+
+				listaUsuarios.add(idExiste, usuarioSalvo);
+				throw new CamposNulosException();
+
 			}
 
-		} 
+		}
 
 	}
 
@@ -209,8 +225,8 @@ public class DaoUsuarios {
 	}
 
 	/**
-	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do
-	 * objeto caso exista na lista.
+	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do objeto
+	 * caso exista na lista.
 	 * 
 	 * @param inicio  Integer - Index inicial da lista
 	 * @param fim     Integer - Index final da lista
@@ -324,5 +340,18 @@ public class DaoUsuarios {
 //		}
 //
 //	}
+
+	public static boolean usuarioCampoVazio(Usuarios usuario) {
+
+		if (usuario.getLoginUsuario().isBlank() || usuario.getNomeUsuario().isBlank()
+				|| usuario.getSenhaUsuario().isBlank()) {
+
+			return true;
+
+		}
+
+		return false;
+
+	}
 
 }

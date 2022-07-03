@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.CnpjJaExisteException;
 import applicationmodel.Fornecedores;
 import applicationmodeldao.DaoFornecedores;
@@ -60,7 +61,7 @@ public class DaoFornecedoresTest {
 	// Testando adicionar fornecedores em relacao a posicao ao qual devem ocupar na
 	// lista de fornecedores
 	public void testAddDadosFornecedorPosicaoNaLista()
-			throws CnpjJaExisteException {
+			throws CnpjJaExisteException, CamposNulosException {
 
 		DaoFornecedores.addEditDados(fornecedorA, null);
 		DaoFornecedores.addEditDados(fornecedorB, null);
@@ -74,7 +75,7 @@ public class DaoFornecedoresTest {
 	// Testando adicionar fornecedores utilizando o tamanho da lista como efeito de
 	// compara��o
 	public void testAddDadosFornecedorTamanhoDaLista()
-			throws CnpjJaExisteException {
+			throws CnpjJaExisteException, CamposNulosException {
 
 		DaoFornecedores.addEditDados(fornecedorA, null);
 		DaoFornecedores.addEditDados(fornecedorB, null);
@@ -96,7 +97,7 @@ public class DaoFornecedoresTest {
 	@Test
 	// Testando a adi��o de v�rios fornecedores que n�o possuem Cnpj
 	public void testAddDadosVariosFornecedoresComCnpjIgualASemCnpj()
-			throws CnpjJaExisteException {
+			throws CnpjJaExisteException, CamposNulosException {
 
 		DaoFornecedores.addEditDados(fornecedorA2, null);
 		DaoFornecedores.addEditDados(fornecedorB, null);
@@ -109,7 +110,7 @@ public class DaoFornecedoresTest {
 	@Test
 	// Testando a remo��o de fornecedores se existem na lista de fornecedores
 	public void testRemoverDadosDoFornecedorSeExistirNaLista()
-		throws CnpjJaExisteException {
+		throws CnpjJaExisteException, CamposNulosException {
 
 		DaoFornecedores.addEditDados(fornecedorA, null);
 		DaoFornecedores.addEditDados(fornecedorB, null);
@@ -135,7 +136,7 @@ public class DaoFornecedoresTest {
 	// Testando a remo��o de fornecedores se existem na lista de fornecedores pelo
 	// tamanho da lista
 	public void testRemoverDadosDoFornecedorSeExistirTamanhoDaLista()
-			throws CnpjJaExisteException {
+			throws CnpjJaExisteException, CamposNulosException {
 
 		DaoFornecedores.addEditDados(fornecedorA, null);
 		DaoFornecedores.addEditDados(fornecedorB, null);
@@ -154,7 +155,7 @@ public class DaoFornecedoresTest {
 	@Test
 	// Testando a edi��o de fornecedores se existem na lista de fornecedores
 	public void testEditarDadosDoFornecedorSeExistirNaLista()
-			throws CnpjJaExisteException {
+			throws CnpjJaExisteException, CamposNulosException {
 
 		DaoFornecedores.addEditDados(fornecedorA, null);
 		DaoFornecedores.addEditDados(fornecedorC, null);
@@ -167,7 +168,7 @@ public class DaoFornecedoresTest {
 	@Test
 	// Testando a listagem do dados do elemento da lista de fornecedor
 	public void testListagemDados()
-			throws CnpjJaExisteException {
+			throws CnpjJaExisteException, CamposNulosException {
 		
 		DaoFornecedores.addEditDados(fornecedorA, null);
 

@@ -12,6 +12,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.EstoqueInsuficienteException;
 import applicationmain.Main;
 import applicationmodel.Pratos;
@@ -193,14 +195,17 @@ public class FormularioVendasController implements Initializable {
 			if (vendaAtual == null) {
 				boolean retorno = Alertas.confirmar();
 				if(retorno) {
+					
 					DaoVendas.addEditDados(novaVenda, null);
+					
 				}
+				
 			} else {
 	
 				DaoVendas.addEditDados(novaVenda, vendaAtual.getId());
 	
 			}
-		}catch( EstoqueInsuficienteException e) {
+		}catch( EstoqueInsuficienteException | CamposNulosException e) {
 			Alertas.erro(e.getMessage());
 		}
 

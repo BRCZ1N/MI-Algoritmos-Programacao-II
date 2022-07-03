@@ -1,6 +1,8 @@
 package applicationmain;
 
 import java.io.IOException;
+
+import applicationexeceptions.CamposNulosException;
 import applicationmodeldao.DaoFacade;
 import javafx.application.Application;
 import javafx.stage.Modality;
@@ -34,7 +36,7 @@ public class Main extends Application {
 	}
 
 	@Override
-	public void start(Stage primaryStage) throws IOException {
+	public void start(Stage primaryStage) throws IOException, CamposNulosException {
 		
 		daoFacade.daoInicializar();
 		stage2 = new Stage();

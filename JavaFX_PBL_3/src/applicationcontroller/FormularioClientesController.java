@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.CpfJaExisteException;
 import applicationmain.Main;
 import applicationmodel.Clientes;
@@ -57,7 +59,7 @@ public class FormularioClientesController implements Initializable {
 	@FXML
 	private TableView<Vendas> tabelaCompraCliente;
 
-	private ArrayList<String> historicoCompras;
+	private ArrayList<String> historicoCompras = new ArrayList<String>();
 
 	private ObservableList<Vendas> observableVendaSistema;
 
@@ -123,15 +125,17 @@ public class FormularioClientesController implements Initializable {
 
 				}
 			}
+			
 
-		} catch (CpfJaExisteException e) {
+		} catch (CpfJaExisteException | CamposNulosException e) {
 
-			Alertas.erro("Esse CPF Já Existe, tente novamente");
+			Alertas.erro(e.getMessage());
 
 		}
-
+		
 		mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 		limparUsuario();
+
 
 	}
 	/**

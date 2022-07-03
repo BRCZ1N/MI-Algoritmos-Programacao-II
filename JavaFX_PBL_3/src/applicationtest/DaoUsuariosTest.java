@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmodel.Usuarios;
 import applicationmodeldao.DaoUsuarios;
@@ -48,7 +49,7 @@ public class DaoUsuariosTest {
 	@Test
 	// Testando adicionar usuario em rela��o a posi��o ao qual devem ocupar
 	// na lista de usuarios
-	public void testAddUsuarioNaListaDeUsuariosPosicaoNaLista() throws LoginExistenteException {
+	public void testAddUsuarioNaListaDeUsuariosPosicaoNaLista() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 		DaoUsuarios.addEditDados(usuarioB, null);
@@ -61,7 +62,7 @@ public class DaoUsuariosTest {
 	@Test
 	// Testando adicionar usuarios utilizando o tamanho da lista como efeito de
 	// compara��o
-	public void testAddDadosUsuariosTamanhoDaLista() throws LoginExistenteException {
+	public void testAddDadosUsuariosTamanhoDaLista() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 		DaoUsuarios.addEditDados(usuarioB, null);
@@ -72,7 +73,7 @@ public class DaoUsuariosTest {
 
 	@Test
 	// Testando a adi��o de usuarios com logins id�nticos
-	public void testAddDadosUsuarioComLoginIgual() throws LoginExistenteException {
+	public void testAddDadosUsuarioComLoginIgual() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 
@@ -84,7 +85,7 @@ public class DaoUsuariosTest {
 	@Test
 	// Testando a remoção de usuarios se existem na lista de usuarios, usando como
 	// base o objeto atual e o objeto antigo
-	public void testRemoverUsuarioNaListaDeusuariosSeExistir() throws LoginExistenteException {
+	public void testRemoverUsuarioNaListaDeusuariosSeExistir() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 		DaoUsuarios.addEditDados(usuarioB, null);
@@ -108,7 +109,7 @@ public class DaoUsuariosTest {
 
 	@Test
 	// Testando a busca de usuarios na lista se o usuario existe
-	public void testBuscaUsuariosSeExiste() throws LoginExistenteException {
+	public void testBuscaUsuariosSeExiste() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 		assertEquals(usuarioA, DaoUsuarios.buscaUsuarioLS("usuarioA", "5879463"));
@@ -117,7 +118,7 @@ public class DaoUsuariosTest {
 
 	@Test
 	// Testando a busca de usuarios na lista se o usuario nao existe
-	public void testBuscaUsuariosSeNaoExiste() throws LoginExistenteException {
+	public void testBuscaUsuariosSeNaoExiste() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 
@@ -128,7 +129,7 @@ public class DaoUsuariosTest {
 	@Test
 	// Testando a remo��o de usuarios se existem na lista de usuarios pelo
 	// tamanho da lista
-	public void testRemoverUsuarioNaListaDeUsuariosSeExistirTamanhoDaLista() throws LoginExistenteException {
+	public void testRemoverUsuarioNaListaDeUsuariosSeExistirTamanhoDaLista() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 		DaoUsuarios.addEditDados(usuarioB, null);
@@ -145,7 +146,7 @@ public class DaoUsuariosTest {
 
 	@Test
 	// Testando a edi��o de usuarios se existem na lista de usuarios
-	public void testEditarUsuarioNaListaDeusuariosCasoExista() throws LoginExistenteException {
+	public void testEditarUsuarioNaListaDeusuariosCasoExista() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 		DaoUsuarios.addEditDados(usuarioB, null);
@@ -157,7 +158,7 @@ public class DaoUsuariosTest {
 
 	@Test
 	// Testando a listagem do dados do elemento da lista de usuario
-	public void testListagemDados() throws LoginExistenteException {
+	public void testListagemDados() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 
@@ -169,7 +170,7 @@ public class DaoUsuariosTest {
 
 	@Test
 	// Testando a edicao de usuarios com login existente na lista de usuarios
-	public void testEditarUsuarioNaListaDeUsuariosCasoExistaComLoginIgual() throws LoginExistenteException {
+	public void testEditarUsuarioNaListaDeUsuariosCasoExistaComLoginIgual() throws LoginExistenteException, CamposNulosException {
 
 		DaoUsuarios.addEditDados(usuarioA, null);
 		DaoUsuarios.addEditDados(usuarioB, null);

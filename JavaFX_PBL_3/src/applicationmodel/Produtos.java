@@ -14,9 +14,9 @@ public class Produtos {
 	private String id;
 	private String nome;
 	private LocalDate validade;
-	private double qtdProduto;
+	private Double qtdProduto;
 	private String tipoQtd;
-	private double preco;
+	private Double preco;
 	
 	/**
 	 *O Construtor da classe Produtos cria um produto a partir de um nome, validade e pre�o, o atributo id receber� valor no gereciamento de produtos.
@@ -27,7 +27,7 @@ public class Produtos {
 	 *@param tipoQtd String - Unidade de medida do produto
 	 */
 	
-	public Produtos(String nome, LocalDate validade, double preco, double qtdProduto, String tipoQtd){
+	public Produtos(String nome, LocalDate validade, Double preco, Double qtdProduto, String tipoQtd){
 		
 		this.nome = nome;
 		this.validade = validade;
@@ -46,7 +46,7 @@ public class Produtos {
 	 *@return Double qtdProduto
 	 */
 	
-	public double getQtdProduto() {
+	public Double getQtdProduto() {
 		return qtdProduto;
 	}
 	/**
@@ -54,7 +54,7 @@ public class Produtos {
 	 *@param qtdProduto Double
 	 */
 
-	public void setQtdProduto(double qtdProduto) {
+	public void setQtdProduto(Double qtdProduto) {
 		this.qtdProduto = qtdProduto;
 	}
 	/**
@@ -133,7 +133,7 @@ public class Produtos {
 	 *@return Double preco
 	 */
 	
-	public double getPreco() {
+	public Double getPreco() {
 		return preco;
 	}
 	
@@ -141,7 +141,7 @@ public class Produtos {
 	 *M�todo para setar o valor de pre�o do produto.
 	 *@param preco Double
 	 */
-	public void setPreco(double preco) {
+	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
 	

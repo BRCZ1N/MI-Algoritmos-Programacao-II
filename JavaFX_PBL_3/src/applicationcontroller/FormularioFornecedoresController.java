@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.CnpjJaExisteException;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
@@ -102,17 +104,22 @@ public class FormularioFornecedoresController implements Initializable {
 				textFEndereco.getText(), DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));
 		try {
 			if (fornecedorAtual == null) {
+				
 				boolean retorno = Alertas.confirmar();
 				if (retorno) {
+					
 					DaoFornecedores.addEditDados(fornecedorNovo, null);
-				}	
+					
+				}
+				
 			}else {
-				DaoFornecedores.addEditDados(fornecedorNovo, fornecedorAtual.getId());
+				
+					DaoFornecedores.addEditDados(fornecedorNovo, fornecedorAtual.getId());
 	
 			}
 	
 			Main.getStage2().close();
-		}catch ( CnpjJaExisteException e) {
+		}catch ( CnpjJaExisteException | CamposNulosException e) {
 			Alertas.erro(e.getMessage());
 		}
 		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");

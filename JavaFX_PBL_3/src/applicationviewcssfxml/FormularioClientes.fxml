@@ -37,7 +37,7 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <TextField fx:id="textFNome" editable="false" promptText="Nome" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" />
+                              <TextField fx:id="textFNome" promptText="Nome" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" />
                               <TextField fx:id="textFTelefone" promptText="Telefone" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                               <TextField fx:id="textFEmail" promptText="Email" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                               <TextField fx:id="textFCpf" alignment="TOP_LEFT" promptText="CPF" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />

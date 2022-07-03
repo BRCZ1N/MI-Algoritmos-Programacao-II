@@ -1,6 +1,8 @@
 package applicationmodeldao;
 
 import java.util.ArrayList;
+
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.CpfJaExisteException;
 import applicationmodel.Clientes;
 import applicationmodel.Vendas;
@@ -21,6 +23,8 @@ public class DaoClientes {
 
 	/**
 	 * Construtor para popular a estrutura de dados referente a clientes no menu.
+	 * 
+	 * @throws CamposNulosException
 	 */
 
 	public DaoClientes() {
@@ -43,7 +47,7 @@ public class DaoClientes {
 			addEditDados(clienteB, null);
 			addEditDados(clienteC, null);
 
-		} catch (CpfJaExisteException e) {
+		} catch (CpfJaExisteException | CamposNulosException e) {
 
 			e.getMessage();
 		}
@@ -95,10 +99,12 @@ public class DaoClientes {
 	 * @param cliente Clientes
 	 * @param chaveId String
 	 * @throws CpfJaExisteException
+	 * @throws CamposNulosException
 	 * @throws IdInvalidoException
 	 * @throws VendaInexistenteException
 	 */
-	public static void addEditDados(Clientes cliente, String chaveId) throws CpfJaExisteException {
+	public static void addEditDados(Clientes cliente, String chaveId)
+			throws CpfJaExisteException, CamposNulosException {
 
 		if (chaveId == null) {
 
@@ -117,17 +123,22 @@ public class DaoClientes {
 	 * 
 	 * @param cliente Clientes- Objeto do tipo Clientes
 	 * @throws CpfJaExisteException
+	 * @throws CamposNulosException
 	 * @throws IdInvalidoException
 	 */
-	private static void addDados(Clientes cliente) throws CpfJaExisteException {
+	private static void addDados(Clientes cliente) throws CpfJaExisteException, CamposNulosException {
 
 		boolean cpfExiste = buscarCpf(0, listaClientes.size() - 1, cliente.getCpf());
 
-		if (!cpfExiste) {
+		if (!cpfExiste && !DaoClientes.clienteCampoVazio(cliente)) {
 
 			cliente.setId(Integer.toString(idSeq));
 			listaClientes.add(cliente);
 			idSeq++;
+
+		} else if (DaoClientes.clienteCampoVazio(cliente)) {
+
+			throw new CamposNulosException();
 
 		} else {
 
@@ -142,30 +153,31 @@ public class DaoClientes {
 	 * @param chaveId        String - Id para editar
 	 * @param clienteEditado Clientes - Cliente a ser editado
 	 * @throws CpfJaExisteException
+	 * @throws CamposNulosException
 	 * @throws IdInvalidoException
 	 */
 
-	private static void editarDados(Clientes clienteEditado, String chaveId) throws CpfJaExisteException {
+	private static void editarDados(Clientes clienteEditado, String chaveId)
+			throws CpfJaExisteException, CamposNulosException {
 
 		int idExiste = buscarDado(0, listaClientes.size() - 1, chaveId);
-		if (idExiste != -1) {
-			Clientes clienteSalvo;
+
+		if (idExiste != -1 && buscarCpf(0, listaClientes.size() - 1, clienteEditado.getCpf()) == false) {
+
 			clienteEditado.setId(listaClientes.get(idExiste).getId());
-			clienteSalvo = listaClientes.get(idExiste);
 			removerDados(Integer.toString(idExiste));
+			listaClientes.add(idExiste, clienteEditado);
 
-			if (buscarCpf(0, listaClientes.size() - 1, clienteEditado.getCpf()) == false) {
+		} else if (DaoClientes.clienteCampoVazio(clienteEditado)) {
 
-				listaClientes.add(idExiste, clienteEditado);
+			throw new CamposNulosException();
 
-			} else {
+		} else {
 
-				listaClientes.add(idExiste, clienteSalvo);
-				throw new CpfJaExisteException(clienteEditado.getCpf());
-
-			}
+			throw new CpfJaExisteException(clienteEditado.getCpf());
 
 		}
+
 	}
 
 	/**
@@ -315,18 +327,17 @@ public class DaoClientes {
 		return clientesLista;
 
 	}
-	
+
 	public static int numTotalPratosCliente(Clientes cliente) {
 
 		int numTotalPratosCliente = 0;
 
-		numTotalPratosCliente += DaoVendas.numTotalPratosVendidos(DaoVendas.getListaVenda(cliente.getIdHistoricoCompras()));
+		numTotalPratosCliente += DaoVendas
+				.numTotalPratosVendidos(DaoVendas.getListaVenda(cliente.getIdHistoricoCompras()));
 
 		return numTotalPratosCliente;
 
 	}
-	
-	
 
 	public static int numTotalPratosClientes(ArrayList<Clientes> listaCliente) {
 
@@ -345,16 +356,28 @@ public class DaoClientes {
 
 	public static Clientes getCliente(String idCliente) {
 
-		
 		int idExiste = buscarDado(0, listaClientes.size() - 1, idCliente);
-		
-		if(idExiste != -1) {
-			
+
+		if (idExiste != -1) {
+
 			return DaoClientes.getListaClientes().get(idExiste);
-			
+
 		}
-		
+
 		return null;
+
+	}
+
+	public static boolean clienteCampoVazio(Clientes cliente) {
+
+		if (cliente.getNome().isBlank() || cliente.getCpf().isBlank() || cliente.getEmail().isBlank()
+				|| cliente.getIdHistoricoCompras().isEmpty()|| cliente.getTelefone().isBlank()) {
+
+			return true;
+
+		}
+
+		return false;
 
 	}
 

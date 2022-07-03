@@ -2,6 +2,7 @@ package applicationmodeldao;
 
 import java.util.ArrayList;
 
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.CnpjJaExisteException;
 import applicationmodel.Fornecedores;
 
@@ -21,8 +22,10 @@ public class DaoFornecedores {
 	/**
 	 * Construtor para popular a estrutura de dados referente a fornecedores no
 	 * menu.
+	 * 
+	 * @throws CamposNulosException
 	 */
-	
+
 	public DaoFornecedores() {
 
 		ArrayList<String> idProdutosFornecedor = new ArrayList<String>();
@@ -31,17 +34,19 @@ public class DaoFornecedores {
 		idProdutosFornecedor.add("1");
 		idProdutosFornecedor.add("2");
 
-		Fornecedores fornecedorA = new Fornecedores("018.236.120/0001-58", "EmpresaALFATest", "Rua UEFSA",idProdutosFornecedor);
+		Fornecedores fornecedorA = new Fornecedores("018.236.120/0001-58", "EmpresaALFATest", "Rua UEFSA",
+				idProdutosFornecedor);
 		Fornecedores fornecedorA2 = new Fornecedores("Sem CNPJ", "EmpresaBETATest", "Rua UEFSA", idProdutosFornecedor);
 		Fornecedores fornecedorB = new Fornecedores("Sem CNPJ", "EmpresaGAMATest", "Rua UEFSB", idProdutosFornecedor);
-		Fornecedores fornecedorC = new Fornecedores("019.579.305/0001-79", "EmpresaZETATest", "Rua UEFSC",idProdutosFornecedor);
+		Fornecedores fornecedorC = new Fornecedores("019.579.305/0001-79", "EmpresaZETATest", "Rua UEFSC",
+				idProdutosFornecedor);
 
 		try {
 			addEditDados(fornecedorA, null);
 			addEditDados(fornecedorA2, null);
 			addEditDados(fornecedorB, null);
 			addEditDados(fornecedorC, null);
-		} catch (CnpjJaExisteException  e) {
+		} catch (CnpjJaExisteException | CamposNulosException e) {
 
 			e.printStackTrace();
 		}
@@ -92,11 +97,12 @@ public class DaoFornecedores {
 	 * @param fornecedor Fornecedores
 	 * @param chaveId    String
 	 * @throws CnpjJaExisteException
+	 * @throws CamposNulosException
 	 * @throws IdInvalidoException
 	 * @throws FornecedorComProdutoInvalidoException
 	 */
 	public static void addEditDados(Fornecedores fornecedor, String chaveId)
-			throws CnpjJaExisteException {
+			throws CnpjJaExisteException, CamposNulosException {
 
 		if (chaveId == null) {
 
@@ -115,14 +121,16 @@ public class DaoFornecedores {
 	 * 
 	 * @param fornecedor Fornecedores - Objeto do tipo Fornecedores
 	 * @throws CnpjJaExisteException
+	 * @throws CamposNulosException
 	 * @throws FornecedorComProdutoInvalidoException
 	 */
 
-	private static void addDados(Fornecedores fornecedor) throws CnpjJaExisteException {
+	private static void addDados(Fornecedores fornecedor) throws CnpjJaExisteException, CamposNulosException {
 
 		boolean cnpjExiste = buscarCnpj(0, listaFornecedores.size() - 1, fornecedor.getCnpj());
 		if ((!cnpjExiste || fornecedor.getCnpj().equals("Sem CNPJ"))
-				&& !verificaProdutoInexistente(fornecedor.getIdProdutosFornecedor())) {
+				&& !verificaProdutoInexistente(fornecedor.getIdProdutosFornecedor())
+				&& !fornecedorCampoVazio(fornecedor)) {
 
 			fornecedor.setId(Integer.toString(idSeq));
 			listaFornecedores.add(fornecedor);
@@ -132,7 +140,11 @@ public class DaoFornecedores {
 
 			throw new CnpjJaExisteException(fornecedor.getCnpj());
 
-		} 
+		} else {
+
+			throw new CamposNulosException();
+
+		}
 
 	}
 
@@ -162,25 +174,31 @@ public class DaoFornecedores {
 	 * @param chaveId           String - Id para editar
 	 * @throws IdInvalidoException
 	 * @throws CnpjJaExisteException
+	 * @throws CamposNulosException
 	 * @throws FornecedorComProdutoInvalidoException
 	 */
 
 	private static void editarDados(Fornecedores fornecedorEditado, String chaveId)
-			throws CnpjJaExisteException {
+			throws CnpjJaExisteException, CamposNulosException {
 
 		boolean cnpjExiste = buscarCnpj(0, listaFornecedores.size() - 1, fornecedorEditado.getCnpj());
 		int idExiste = buscarDado(0, listaFornecedores.size() - 1, chaveId, listaFornecedores);
 
 		if (idExiste != -1 && (!cnpjExiste || fornecedorEditado.getCnpj().equals("Sem CNPJ"))
-				&& !verificaProdutoInexistente(fornecedorEditado.getIdProdutosFornecedor())) {
+				&& !verificaProdutoInexistente(fornecedorEditado.getIdProdutosFornecedor())
+				|| !fornecedorCampoVazio(fornecedorEditado)) {
 
 			fornecedorEditado.setId(listaFornecedores.get(idExiste).getId());
 			removerDados(Integer.toString(idExiste));
 			listaFornecedores.add(idExiste, fornecedorEditado);
 
-		}else if (cnpjExiste && !fornecedorEditado.getCnpj().equals("Sem CNPJ")) {
+		} else if (cnpjExiste && !fornecedorEditado.getCnpj().equals("Sem CNPJ")) {
 
 			throw new CnpjJaExisteException(fornecedorEditado.getCnpj());
+
+		} else {
+
+			throw new CamposNulosException();
 
 		}
 
@@ -228,8 +246,8 @@ public class DaoFornecedores {
 	}
 
 	/**
-	 * M�todo para obter a quantidade total de fornecedores se a lista não
-	 * estiver vazia
+	 * M�todo para obter a quantidade total de fornecedores se a lista não estiver
+	 * vazia
 	 * 
 	 * @return int listaFornecedores.size()
 	 */
@@ -249,8 +267,8 @@ public class DaoFornecedores {
 	}
 
 	/**
-	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do
-	 * objeto caso exista na lista.
+	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do objeto
+	 * caso exista na lista.
 	 * 
 	 * @param inicio  Integer - Index inicial da lista
 	 * @param fim     Integer - Index final da lista
@@ -284,8 +302,8 @@ public class DaoFornecedores {
 	}
 
 	/**
-	 * M�todo de busca para verificar a existencia do cnpj de um fornecedor na
-	 * lista de fornecedores.
+	 * M�todo de busca para verificar a existencia do cnpj de um fornecedor na lista
+	 * de fornecedores.
 	 * 
 	 * @param inicio Integer - Index inicial da lista
 	 * @param fim    Integer - Index final da lista
@@ -313,7 +331,8 @@ public class DaoFornecedores {
 	/**
 	 * Metodo para verificação da existencia de um produto
 	 * 
-	 * @param idProdutosFornecedor ArrayList <String> - Lista de Id dos produtos quenecessitam de analise
+	 * @param idProdutosFornecedor ArrayList <String> - Lista de Id dos produtos
+	 *                             quenecessitam de analise
 	 * 
 	 * @return Boolean <code>true</code> Se o Produto não na lista de Ids dos
 	 *         produtos fornecidos <code>false</code> Se o Produto existe na lista
@@ -336,36 +355,37 @@ public class DaoFornecedores {
 		return false;
 
 	}
+
 	/**
-	 *metodo que ira retornar fornecedores que estão atrelados a um determinado produto
+	 * metodo que ira retornar fornecedores que estão atrelados a um determinado
+	 * produto
 	 * 
-	 * @param idProduto  String
+	 * @param idProduto String
 	 * 
 	 * @return ArrayList<Fornecedores> listaFornecedores
 	 */
-	public static ArrayList<Fornecedores> getListaFornecedoresProduto (String idProduto){
-		
+	public static ArrayList<Fornecedores> getListaFornecedoresProduto(String idProduto) {
+
 		ArrayList<Fornecedores> listaFornecedores = new ArrayList<Fornecedores>();
-		
-		for(Fornecedores fornecedor:DaoFornecedores.getListaFornecedores()) {
-			
-			if(fornecedor.getIdProdutosFornecedor().contains(idProduto)) {
-				
+
+		for (Fornecedores fornecedor : DaoFornecedores.getListaFornecedores()) {
+
+			if (fornecedor.getIdProdutosFornecedor().contains(idProduto)) {
+
 				listaFornecedores.add(fornecedor);
-			
+
 			}
-				
+
 		}
-		
+
 		return listaFornecedores;
-	
+
 	}
-	
-	
+
 	/**
 	 * metodo ira trazer o nome do produto com base no seu id
 	 * 
-	 * @param listaIdFornecedor  ArrayList <String> 
+	 * @param listaIdFornecedor ArrayList <String>
 	 * 
 	 * @return ArrayList<String> listaNomeFornecedor
 	 */
@@ -386,6 +406,19 @@ public class DaoFornecedores {
 		}
 
 		return listaNomeFornecedor;
+
+	}
+
+	public static boolean fornecedorCampoVazio(Fornecedores fornecedor) {
+
+		if (fornecedor.getNome().isBlank() || fornecedor.getCnpj().isBlank() || fornecedor.getEndereco().isBlank()
+				|| fornecedor.getIdProdutosFornecedor().isEmpty()) {
+
+			return true;
+
+		}
+
+		return false;
 
 	}
 }

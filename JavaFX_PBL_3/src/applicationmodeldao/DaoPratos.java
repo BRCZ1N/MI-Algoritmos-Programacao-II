@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 
 /**
@@ -22,6 +23,8 @@ public class DaoPratos {
 
 	/**
 	 * Construtor para popular a estrutura de dados referente a pratos no menu.
+	 * 
+	 * @throws CamposNulosException
 	 */
 
 	public DaoPratos() {
@@ -43,7 +46,7 @@ public class DaoPratos {
 			addEditDados(pratoA, null);
 			addEditDados(pratoB, null);
 			addEditDados(pratoC, null);
-		} catch (EntidadeComValoresNegativoException e) {
+		} catch (EntidadeComValoresNegativoException | CamposNulosException e) {
 
 			e.getMessage();
 		}
@@ -98,9 +101,11 @@ public class DaoPratos {
 	 * @param chaveId String
 	 * @throws IdInvalidoException
 	 * @throws EntidadeComValoresNegativoException
+	 * @throws CamposNulosException
 	 * @throws PratoComProdutoInvalidoException
 	 */
-	public static void addEditDados(Pratos prato, String chaveId) throws EntidadeComValoresNegativoException {
+	public static void addEditDados(Pratos prato, String chaveId)
+			throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		if (chaveId == null) {
 
@@ -119,21 +124,26 @@ public class DaoPratos {
 	 * 
 	 * @param prato Pratos
 	 * @throws EntidadeComValoresNegativoException
+	 * @throws CamposNulosException
 	 * @throws PratoComProdutoInvalidoException
 	 */
 
-	private static void addDados(Pratos prato) throws EntidadeComValoresNegativoException {
+	private static void addDados(Pratos prato) throws EntidadeComValoresNegativoException, CamposNulosException {
 
-		if (prato.getPreco() > 0 && !verificaProdutoInexistente(prato.getComposicaoPrato())) {
+		if (prato.getPreco() > 0 && !verificaProdutoInexistente(prato.getComposicaoPrato())
+				&& !pratoCampoVazio(prato)) {
 
 			prato.setId(Integer.toString(idSeq));
 			listaPratos.add(prato);
 			idSeq++;
 
-		} else if (prato.getPreco() < 0) {
+		} else if ((prato.getPreco() < 0) && !pratoCampoVazio(prato)) {
 
 			throw new EntidadeComValoresNegativoException();
 
+		} else {
+
+			throw new CamposNulosException();
 		}
 	}
 
@@ -161,28 +171,33 @@ public class DaoPratos {
 	 * @param pratoEditado Pratos - Objeto do tipo Pratos
 	 * @param chaveId      String - Id para editar
 	 * @throws EntidadeComValoresNegativoException
+	 * @throws CamposNulosException
 	 * @throws IdInvalidoException
 	 * @throws PratoComProdutoInvalidoException
 	 */
 
-	private static void editarDados(Pratos pratoEditado, String chaveId) throws EntidadeComValoresNegativoException {
+	private static void editarDados(Pratos pratoEditado, String chaveId)
+			throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		int idExiste = buscarDado(0, listaPratos.size() - 1, chaveId, listaPratos);
 
 		if (idExiste != -1 && pratoEditado.getPreco() > 0
-				&& !verificaProdutoInexistente(pratoEditado.getComposicaoPrato())) {
+				&& !verificaProdutoInexistente(pratoEditado.getComposicaoPrato()) && !pratoCampoVazio(pratoEditado)) {
 
 			pratoEditado.setId(listaPratos.get(idExiste).getId());
 			removerDados(Integer.toString(idExiste));
 			listaPratos.add(idExiste, pratoEditado);
 
 		} else if (idExiste != -1 && pratoEditado.getPreco() < 0
-				&& !verificaProdutoInexistente(pratoEditado.getComposicaoPrato())) {
+				&& !verificaProdutoInexistente(pratoEditado.getComposicaoPrato()) && !pratoCampoVazio(pratoEditado)) {
 
 			throw new EntidadeComValoresNegativoException();
 
-		}
+		} else {
 
+			throw new CamposNulosException();
+
+		}
 	}
 
 	/**
@@ -242,26 +257,25 @@ public class DaoPratos {
 		}
 		return listaCategoria;
 	}
+
 	/**
 	 * metodo para gerar uma lista de pratos a depender da categoria
-	 * @param categoria String 
+	 * 
+	 * @param categoria String
 	 * @return ArrayList<Pratos> listaPratosCategoria
 	 */
 	public static ArrayList<Pratos> gerarListaPratosCategoria(String categoria) {
 		ArrayList<Pratos> listaPratosCategoria = new ArrayList<Pratos>();
 		for (Pratos prato : DaoPratos.getListaPratos()) {
-			if(prato.getCategoria().equals(categoria)) {
+			if (prato.getCategoria().equals(categoria)) {
 				listaPratosCategoria.add(prato);
-				
+
 			}
-			
+
 		}
-		
-		
-		
-		
+
 		return listaPratosCategoria;
-	
+
 	}
 
 	/**
@@ -347,8 +361,7 @@ public class DaoPratos {
 //		return pratosVenda;
 //
 //	}
-	
-	
+
 //	public static ArrayList<String> listaIdPratos(ArrayList<Pratos> listaPratosCarrinho){
 //		
 //		ArrayList<String> listaIdPratos = new ArrayList<String>();
@@ -367,7 +380,7 @@ public class DaoPratos {
 	 * 
 	 * @param listIdPratos ArrayList<String> - lista de id's de pratos
 	 * 
-	 * @return ArrayList<Pratos> pratos - lista de pratos 
+	 * @return ArrayList<Pratos> pratos - lista de pratos
 	 */
 	public static ArrayList<Pratos> getListaPratos(ArrayList<String> listaIdPratos) {
 
@@ -382,6 +395,7 @@ public class DaoPratos {
 		return pratos;
 
 	}
+
 	/**
 	 * Metodo para obter a lista de id de pratos
 	 * 
@@ -403,7 +417,6 @@ public class DaoPratos {
 		return pratosId;
 
 	}
-	
 
 	/**
 	 * Metodo para obter as informações de um prato caso ele exista na lista de
@@ -426,5 +439,18 @@ public class DaoPratos {
 		return null;
 
 	}
-	
+
+	public static boolean pratoCampoVazio(Pratos prato) {
+
+		if (prato.getNome().isBlank() || prato.getCategoria().isBlank() || prato.getComposicaoPrato().isEmpty()
+				|| prato.getDescricao().isBlank() || prato.getPreco().equals(null)) {
+
+			return true;
+
+		}
+
+		return false;
+
+	}
+
 }

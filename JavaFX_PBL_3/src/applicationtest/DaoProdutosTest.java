@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationexeceptions.EstoqueInsuficienteException;
 import applicationmodel.Produtos;
@@ -59,7 +60,7 @@ public class DaoProdutosTest {
 	@Test
 	// Testando adicionar um produto em rela��o a posi��o ao qual devem
 	// ocupar na lista de produtos
-	public void testAddProdutoNaListaDeProdutosPosicaoNaLista() throws EntidadeComValoresNegativoException {
+	public void testAddProdutoNaListaDeProdutosPosicaoNaLista() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoProdutos.addEditDados(produtoA, null);
 		DaoProdutos.addEditDados(produtoB, null);
@@ -72,7 +73,7 @@ public class DaoProdutosTest {
 	@Test
 	// Testando adicionar produtos utilizando o tamanho da lista como efeito de
 	// compara��o
-	public void testAddDadosProdutosTamanhoDaLista() throws EntidadeComValoresNegativoException {
+	public void testAddDadosProdutosTamanhoDaLista() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoProdutos.addEditDados(produtoA, null);
 		DaoProdutos.addEditDados(produtoB, null);
@@ -83,7 +84,7 @@ public class DaoProdutosTest {
 
 	@Test
 	// Testando a remo��o de produtos se existem na lista de produtos
-	public void testRemoverProdutoNaListaDeProdutosSeExistir() throws EntidadeComValoresNegativoException {
+	public void testRemoverProdutoNaListaDeProdutosSeExistir() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoProdutos.addEditDados(produtoA, null);
 		DaoProdutos.addEditDados(produtoB, null);
@@ -118,7 +119,7 @@ public class DaoProdutosTest {
 	@Test
 	// Testando a remoção de produtos pelo tamanho para caso ele exista
 	public void testRemoverProdutoNaListaDeProdutosSeExistirTamanhoDaLista()
-			throws EntidadeComValoresNegativoException {
+			throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoProdutos.addEditDados(produtoA, null);
 		DaoProdutos.addEditDados(produtoB, null);
@@ -140,7 +141,7 @@ public class DaoProdutosTest {
 
 	@Test
 	// teste de edição de produto para caso ele existir na lista
-	public void testEditarProdutoNaListaDeProdutosCasoExista() throws EntidadeComValoresNegativoException {
+	public void testEditarProdutoNaListaDeProdutosCasoExista() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoProdutos.addEditDados(produtoA, null);
 		DaoProdutos.addEditDados(produtoB, null);
@@ -152,7 +153,7 @@ public class DaoProdutosTest {
 
 	@Test
 	// teste para listar a lista de produtos
-	public void testListagemDados() throws EntidadeComValoresNegativoException {
+	public void testListagemDados() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoProdutos.addEditDados(produtoA, null);
 
@@ -168,8 +169,8 @@ public class DaoProdutosTest {
 	// teste adicao de produto com valor negativo
 	public void testAddProdutoComValorNegativoNaListaDeProdutos() throws EntidadeComValoresNegativoException {
 
-		produtoA.setPreco(-15);
-		produtoB.setQtdProduto(-20);
+		produtoA.setPreco(-15.0);
+		produtoB.setQtdProduto(-20.0);
 
 		assertThrows(EntidadeComValoresNegativoException.class, () -> DaoProdutos.addEditDados(produtoA, null));
 		assertThrows(EntidadeComValoresNegativoException.class, () -> DaoProdutos.addEditDados(produtoB, null));
@@ -178,12 +179,12 @@ public class DaoProdutosTest {
 
 	@Test
 	// teste de edição de produtos com valor negativo
-	public void testEditProdutosComValorNegativoNaListaDeProdutos() throws EntidadeComValoresNegativoException {
+	public void testEditProdutosComValorNegativoNaListaDeProdutos() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoProdutos.addEditDados(produtoC, null);
 
-		produtoA.setPreco(-15);
-		produtoB.setQtdProduto(-20);
+		produtoA.setPreco(-15.0);
+		produtoB.setQtdProduto(-20.0);
 
 		assertThrows(EntidadeComValoresNegativoException.class, () -> DaoProdutos.addEditDados(produtoA, "0"));
 		assertThrows(EntidadeComValoresNegativoException.class, () -> DaoProdutos.addEditDados(produtoB, "0"));
@@ -193,10 +194,10 @@ public class DaoProdutosTest {
 	@Test
 	// teste de estoque com saldo disponivel
 	public void testAlterarEstoqueComSaldoLivre()
-			throws EntidadeComValoresNegativoException, EstoqueInsuficienteException {
+			throws EntidadeComValoresNegativoException, EstoqueInsuficienteException, CamposNulosException {
 
 		DaoProdutos.addEditDados(produtoA, null);
-		produtoA.setQtdProduto(20);
+		produtoA.setQtdProduto(20.0);
 
 		DaoProdutos.reduzirEstoque("0", 15);
 
@@ -206,10 +207,10 @@ public class DaoProdutosTest {
 
 	@Test
 	// teste de estoque sem saldo disponivel
-	public void testAlterarEstoqueSemSaldoLivre() throws EntidadeComValoresNegativoException {
+	public void testAlterarEstoqueSemSaldoLivre() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoProdutos.addEditDados(produtoA, null);
-		produtoA.setQtdProduto(0);
+		produtoA.setQtdProduto(0.0);
 
 		assertThrows(EstoqueInsuficienteException.class, () -> DaoProdutos.reduzirEstoque("0", 15));
 

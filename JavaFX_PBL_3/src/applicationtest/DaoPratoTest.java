@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
@@ -64,7 +65,7 @@ public class DaoPratoTest {
 	@Test
 	// Testando adicionar um prato em rela��o a posi��o ao qual devem ocupar
 	// na lista de pratos
-	public void testAddPratoPosicaoNaLista() throws EntidadeComValoresNegativoException {
+	public void testAddPratoPosicaoNaLista() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoPratos.addEditDados(pratoA, null);
 		DaoPratos.addEditDados(pratoB, null);
@@ -78,17 +79,17 @@ public class DaoPratoTest {
 	// Testando adicionar um prato com pre�o negativo
 	public void testAddPratoComPrecoNegativoNaLista() throws EntidadeComValoresNegativoException {
 
-		pratoA.setPreco(-15);
+		pratoA.setPreco(-15.0);
 		assertThrows(EntidadeComValoresNegativoException.class, () -> DaoPratos.addEditDados(pratoA, null));
 
 	}
 
 	@Test
 	// Testando editar um prato utilizando um preco negativo
-	public void testEditPratoComPrecoNegativoNaLista() throws EntidadeComValoresNegativoException {
+	public void testEditPratoComPrecoNegativoNaLista() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoPratos.addEditDados(pratoB, null);
-		pratoB.setPreco(-15);
+		pratoB.setPreco(-15.0);
 		assertThrows(EntidadeComValoresNegativoException.class, () -> DaoPratos.addEditDados(pratoB, "0"));
 
 	}
@@ -96,7 +97,7 @@ public class DaoPratoTest {
 	@Test
 	// Testando adicionar pratos utilizando o tamanho da lista como efeito de
 	// compara��o
-	public void testAddDadosPratosTamanhoLista() throws EntidadeComValoresNegativoException {
+	public void testAddDadosPratosTamanhoLista() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoPratos.addEditDados(pratoA, null);
 		DaoPratos.addEditDados(pratoB, null);
@@ -107,7 +108,7 @@ public class DaoPratoTest {
 
 	@Test
 	// Testando a remo��o de prato se existem na lista de pratos
-	public void removerPratoDaListaDePratosSeOPratoExistirNalista() throws EntidadeComValoresNegativoException {
+	public void removerPratoDaListaDePratosSeOPratoExistirNalista() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoPratos.addEditDados(pratoA, null);
 		DaoPratos.addEditDados(pratoB, null);
@@ -135,7 +136,7 @@ public class DaoPratoTest {
 
 	@Test
 	// teste de remoção de pratos pelo tamanho para caso ele exista
-	public void testRemoverDadosDoPratoSeExistirPeloTamanho() throws EntidadeComValoresNegativoException {
+	public void testRemoverDadosDoPratoSeExistirPeloTamanho() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoPratos.addEditDados(pratoA, null);
 		DaoPratos.addEditDados(pratoB, null);
@@ -154,7 +155,7 @@ public class DaoPratoTest {
 
 	@Test
 	// teste de edição de prato para caso ele existir na lista
-	public void testEditarDadosDoPratoSeExistirNaLista() throws EntidadeComValoresNegativoException {
+	public void testEditarDadosDoPratoSeExistirNaLista() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoPratos.addEditDados(pratoA, null);
 		DaoPratos.addEditDados(pratoB, "0");
@@ -166,7 +167,7 @@ public class DaoPratoTest {
 
 	@Test
 	// teste para listar a lista de pratos
-	public void testListagemDados() throws EntidadeComValoresNegativoException {
+	public void testListagemDados() throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		DaoPratos.addEditDados(pratoA, null);
 
