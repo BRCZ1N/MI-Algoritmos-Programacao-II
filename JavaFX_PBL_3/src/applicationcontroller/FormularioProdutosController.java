@@ -61,53 +61,7 @@ public class FormularioProdutosController implements Initializable {
 	public static void setProdutoAtual(Produtos produtoAtual) {
 		FormularioProdutosController.produtoAtual = produtoAtual;
 	}
-
-	/**
-   	 *M�todo para retornar ao gerenciamento de Produtos.
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
-	@FXML
-	public void voltarMenuAcao(ActionEvent event) throws IOException {
-
-		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
-		limparUsuario();
-
-	}
-
-	/**
-   	 *M�todo para salvar o produto apos a confirmação.
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
-	@FXML
-	public void salvarProdutoAcao(ActionEvent event) throws IOException {
-
-		Produtos produtoNovo = new Produtos(textFNome.getText(), datePickerProduto.getValue(),
-				Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()), comboBoxUMedida.getValue());
-
-		try {
-
-			if (produtoAtual == null) {
-				boolean retorno = Alertas.confirmar();
-				
-				if (retorno) {
-					DaoProdutos.addEditDados(produtoNovo, null);
-				}
-
-			} else {
-
-				DaoProdutos.addEditDados(produtoNovo, produtoAtual.getId());
-
-			}
-		} catch (EntidadeComValoresNegativoException e) {
-			Alertas.erro(e.getMessage());
-		}
-
-		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
-		limparUsuario();
-
-	}
+	
 	/**
    	 *M�todo para inicializar o gerenciamento de Fornecedores
    	 *@param arg0 URL
@@ -178,6 +132,54 @@ public class FormularioProdutosController implements Initializable {
 		inicializarComboBox();
 
 	}
+
+	/**
+   	 *M�todo para retornar ao gerenciamento de Produtos.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
+	@FXML
+	public void voltarMenuAcao(ActionEvent event) throws IOException {
+
+		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
+		limparUsuario();
+
+	}
+
+	/**
+   	 *M�todo para salvar o produto apos a confirmação.
+   	 *@param  event ActionEvent
+   	 *@throws IOException
+   	 */
+	@FXML
+	public void salvarProdutoAcao(ActionEvent event) throws IOException {
+
+		Produtos produtoNovo = new Produtos(textFNome.getText(), datePickerProduto.getValue(),
+				Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()), comboBoxUMedida.getValue());
+
+		try {
+
+			if (produtoAtual == null) {
+				boolean retorno = Alertas.confirmar();
+				
+				if (retorno) {
+					DaoProdutos.addEditDados(produtoNovo, null);
+				}
+
+			} else {
+
+				DaoProdutos.addEditDados(produtoNovo, produtoAtual.getId());
+
+			}
+		} catch (EntidadeComValoresNegativoException e) {
+			Alertas.erro(e.getMessage());
+		}
+
+		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
+		limparUsuario();
+
+	}
+	
 	/**
    	 *Metodo para inicializar o comboBox da unidade de medida do produto
    	 */

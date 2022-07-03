@@ -124,6 +124,7 @@ public class DaoClientes {
 		boolean cpfExiste = buscarCpf(0, listaClientes.size() - 1, cliente.getCpf());
 
 		if (!cpfExiste) {
+
 			cliente.setId(Integer.toString(idSeq));
 			listaClientes.add(cliente);
 			idSeq++;
@@ -214,6 +215,7 @@ public class DaoClientes {
 		return false;
 
 	}
+
 	/**
 	 * M�todo de busca bin�ria recursiva pelo id, que retorna a posi��o do objeto
 	 * caso exista na lista.
@@ -247,9 +249,10 @@ public class DaoClientes {
 
 		return -1;
 	}
-	
+
 	/**
 	 * M�todo de soma, para calcular o valor total gasto pelos clientes
+	 * 
 	 * @param listaClientes ArrayList<Clientes>
 	 * @return double valorTotal
 	 */
@@ -266,15 +269,15 @@ public class DaoClientes {
 		return valorTotalVendasClientes;
 
 	}
-	
-	
+
 	public static void limparLista() {
 
 		DaoClientes.listaClientes.clear();
 	}
-	
+
 	/**
 	 * M�todo de soma, para calcular o valor total gasto pelo cliente
+	 * 
 	 * @param listaIdVendas ArrayList<String>
 	 * @return double valorTotal
 	 */
@@ -291,8 +294,11 @@ public class DaoClientes {
 		return valorTotalVendasCliente;
 
 	}
+
 	/**
-	 * M�todo de obtenção do id dos pratos das vendas feitas para determinado cliente
+	 * M�todo de obtenção do id dos pratos das vendas feitas para determinado
+	 * cliente
+	 * 
 	 * @param listaIdVendas ArrayList<String>
 	 * @return ArrayList<String> clientesLista
 	 */
@@ -300,7 +306,7 @@ public class DaoClientes {
 
 		ArrayList<String> clientesLista = new ArrayList<String>();
 
-		for (Vendas venda:DaoVendas.getListaVenda(listaIdVendas)) {
+		for (Vendas venda : DaoVendas.getListaVenda(listaIdVendas)) {
 
 			clientesLista.addAll(venda.getListaIdItens());
 
@@ -310,18 +316,46 @@ public class DaoClientes {
 
 	}
 	
-	public static int numTotalPratosClientes(ArrayList<Clientes> listaCliente) {
-		
+	public static int numTotalPratosCliente(Clientes cliente) {
+
 		int numTotalPratosCliente = 0;
+
+		numTotalPratosCliente += DaoVendas.numTotalPratosVendidos(DaoVendas.getListaVenda(cliente.getIdHistoricoCompras()));
+
+		return numTotalPratosCliente;
+
+	}
+	
+	
+
+	public static int numTotalPratosClientes(ArrayList<Clientes> listaCliente) {
+
+		int numTotalPratosCliente = 0;
+
+		for (Clientes cliente : listaCliente) {
+
+			numTotalPratosCliente += DaoVendas
+					.numTotalPratosVendidos(DaoVendas.getListaVenda(cliente.getIdHistoricoCompras()));
+
+		}
+
+		return numTotalPratosCliente;
+
+	}
+
+	public static Clientes getCliente(String idCliente) {
+
 		
-		for(Clientes cliente:listaClientes) {
+		int idExiste = buscarDado(0, listaClientes.size() - 1, idCliente);
+		
+		if(idExiste != -1) {
 			
-			numTotalPratosCliente += DaoVendas.numTotalPratosVendidos(DaoVendas.getListaVenda(cliente.getIdHistoricoCompras()));
-		
+			return DaoClientes.getListaClientes().get(idExiste);
+			
 		}
 		
-		return numTotalPratosCliente;
-		
+		return null;
+
 	}
 
 }

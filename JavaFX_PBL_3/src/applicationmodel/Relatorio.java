@@ -39,6 +39,7 @@ public class Relatorio {
 	private static int idVendasPdf = 0;
 	private static int idClientesPdf = 0;
 	private static int idClienteNotaCompraPdf = 0;
+	private static DateTimeFormatter dataH = DateTimeFormatter.ofPattern("dd.MM.yyyy - HH:mm:ss");
 
 	/**
 	 * Metodo para definir o dia e o horario do relatorio
@@ -47,7 +48,6 @@ public class Relatorio {
 	 */
 	public static void setDiaHorario(LocalDateTime diaHorario) {
 
-		DateTimeFormatter dataH = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		String dHRelatorio = diaHorario.format(dataH);
 		Relatorio.dHRelatorio = dHRelatorio;
 
@@ -318,7 +318,7 @@ public class Relatorio {
 
 				celulaPDF1 = new PdfPCell(new Paragraph(venda.getId()));
 				celulaPDF1.setHorizontalAlignment(Element.ALIGN_CENTER);
-				celulaPDF2 = new PdfPCell(new Paragraph(venda.getDiaHorario().toString()));
+				celulaPDF2 = new PdfPCell(new Paragraph(venda.getDiaHorario().format(dataH)));
 				celulaPDF2.setHorizontalAlignment(Element.ALIGN_CENTER);
 				celulaPDF3 = new PdfPCell(new Paragraph(Integer.toString(venda.getQtdPratosVenda())));
 				celulaPDF3.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -370,18 +370,16 @@ public class Relatorio {
 
 		setDiaHorario(LocalDateTime.now());
 		Document d = new Document();
-		DateTimeFormatter formatarDHorario = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss");
 
 		try {
 
 			if (idClientesPdf >= 1) {
 
-				PdfWriter.getInstance(d, new FileOutputStream(
-						"NotaCompra(" + idClienteNotaCompraPdf + ").pdf"));
+				PdfWriter.getInstance(d, new FileOutputStream("NotaCompraCliente(" + idClienteNotaCompraPdf + ").pdf"));
 
 			} else {
 
-				PdfWriter.getInstance(d, new FileOutputStream("NotaCompra.pdf"));
+				PdfWriter.getInstance(d, new FileOutputStream("NotaCompraCliente.pdf"));
 
 			}
 
@@ -422,7 +420,10 @@ public class Relatorio {
 			p = new Paragraph(" ");
 			d.add(p);
 			
-			p = new Paragraph("Quantidade de pratos comprados pelo cliente: "+ DaoClientes.numTotalPratosClientes(null));
+			p = new Paragraph("Quantidade de pratos comprados pelo cliente: "+ DaoClientes.numTotalPratosCliente(cliente));
+			d.add(p);
+			
+			p = new Paragraph(" ");
 			d.add(p);
 
 			PdfPTable tabela = new PdfPTable(5);
@@ -450,7 +451,7 @@ public class Relatorio {
 
 				celulaPDF1 = new PdfPCell(new Paragraph(venda.getId()));
 				celulaPDF1.setHorizontalAlignment(Element.ALIGN_CENTER);
-				celulaPDF2 = new PdfPCell(new Paragraph(formatarDHorario.format(venda.getDiaHorario())));
+				celulaPDF2 = new PdfPCell(new Paragraph(dataH.format(venda.getDiaHorario())));
 				celulaPDF2.setHorizontalAlignment(Element.ALIGN_CENTER);
 				celulaPDF3 = new PdfPCell(new Paragraph(Integer.toString(venda.getQtdPratosVenda())));
 				celulaPDF3.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -484,7 +485,7 @@ public class Relatorio {
 			if (idClienteNotaCompraPdf >= 1) {
 
 				Desktop.getDesktop()
-						.open(new File("NotaCompraCliente(" + idClientesPdf + ") - .pdf"));
+						.open(new File("NotaCompraCliente(" + idClientesPdf + ").pdf"));
 
 			} else {
 
@@ -585,6 +586,7 @@ public class Relatorio {
 				tabela.addCell(celulaPDF3);
 				tabela.addCell(celulaPDF4);
 				tabela.addCell(celulaPDF5);
+				tabela.addCell(celulaPDF6);
 
 			}
 

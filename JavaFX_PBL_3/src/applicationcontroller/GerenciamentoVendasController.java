@@ -85,7 +85,6 @@ public class GerenciamentoVendasController implements Initializable {
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
 				exibirDetalhesBtn.setDisable(false);
-				gerarRelatorioBtn.setDisable(false);
 
 			}
 

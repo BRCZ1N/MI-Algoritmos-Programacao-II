@@ -8,10 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Clientes;
@@ -59,6 +61,8 @@ public class GerenciamentoClienteController implements Initializable {
 	private ObservableList<String> observableClientesRelatorio;
 
 	private static ObservableList<Clientes> observableListaClientes;
+	
+	private Optional<String> input;
 
 	/**
 	 * M�todo para inicializar o gerenciamento e ativar a visualização dos botões
@@ -99,7 +103,7 @@ public class GerenciamentoClienteController implements Initializable {
 	public void carregarComboBoxRelatorio() {
 
 		listaClientesRelatorio.add("Clientes geral");
-		listaClientesRelatorio.add("Compras do cliente selecionado");
+		listaClientesRelatorio.add("Notas das compras do cliente");
 
 		observableClientesRelatorio = FXCollections.observableArrayList(listaClientesRelatorio);
 
@@ -208,7 +212,16 @@ public class GerenciamentoClienteController implements Initializable {
 
 		}else {
 			
-			Relatorio.gerarNotaCompra(tabelaClientes.getSelectionModel().getSelectedItem());
+			TextInputDialog textInput = new TextInputDialog();
+			textInput.getDialogPane().setContentText("Digite o id do cliente");
+			input = textInput.showAndWait();
+			
+			
+			if(input.isPresent()) {
+				
+				Relatorio.gerarNotaCompra(DaoClientes.getCliente(input.get()));
+				
+			}
 			
 		}
 
