@@ -101,6 +101,9 @@ public class GerenciamentoProdutosController implements Initializable {
 
 	}
 
+	/**
+	 * M�todo para carregar a comboBox para a escolha da categoria de geração de relatorio
+	 */
 	public void carregarComboBoxRelatorio() {
 
 		listaProdutosRelatorio.add("Produtos geral");
@@ -283,7 +286,12 @@ public class GerenciamentoProdutosController implements Initializable {
 		Main.getStage().centerOnScreen();
 
 	}
-
+	/**
+	 * M�todo para mudar para a janela determinada pelo parametro
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 	public void mudarJanelaSecundaria(String urlScene) throws IOException {
 
 		Main.getStage2().setScene(novaCena(urlScene));
