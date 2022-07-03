@@ -43,39 +43,67 @@ public class RelatorioDataDadosController implements Initializable {
 	private static boolean visibilidadeDatePickerFinal = false;
 	
 	private static boolean visibilidadeTextFim = false;
-	
+	/**
+	 * M�todo para obter o metodo de visibilidadde de um textField
+	 * 
+	 * @return  boolean visibilidadeTextFim
+	 */
 	public static boolean isVisibilidadeTextFim() {
 		return visibilidadeTextFim;
 	}
-
+	/**
+	 * M�todo para setar a visibilidade de um textField
+	 * 
+	 * @param visiblidadeTextFim boolean
+	 */
 	public static void setVisiblidadeTextFim(boolean visiblidadeTextFim) {
 		RelatorioDataDadosController.visibilidadeTextFim = visiblidadeTextFim;
 	}
-	
+	/**
+	 * M�todo para obter o metodo de visibilidadde de um datePicker
+	 * 
+	 * @return  boolean visibilidadeDatePickerFinal
+	 */
 	public static boolean isVisibilidadeDatePickerFinal() {
 
 		return visibilidadeDatePickerFinal;
 
 	}
-
+	/**
+	 * M�todo para setar a visibilidade de um datePicker
+	 * 
+	 * @param visibilidadeDatePickerFinal
+	 */
 	public static void setVisibilidadeDatePickerFinal(boolean visibilidadeDatePickerFinal) {
 
 		RelatorioDataDadosController.visibilidadeDatePickerFinal = visibilidadeDatePickerFinal;
 
 	}
-
+	/**
+	 * M�todo para obter o metodo de visibilidadde de um datePicker
+	 * 
+	 * @return  boolean visibilidadeDatePickerFinal
+	 */
 	public static boolean isVisibilidadeDatePickerInicial() {
 
 		return visibilidadeDatePickerInicial;
 
 	}
-
+	/**
+	 * M�todo para setar a visibilidade de um datePicker
+	 * 
+	 * @param visibilidadeDatePickerFinal
+	 */
 	public static void setVisibilidadeDatePickerInicial(boolean visibilidadeDatePickerInicial) {
 
 		RelatorioDataDadosController.visibilidadeDatePickerInicial = visibilidadeDatePickerInicial;
 
 	}
-
+	/**
+	 * M�todo para obter o uma resposta de alerta
+	 * 
+	 * @return  boolean resposta
+	 */
 	public static boolean isRespostaAlerta() {
 		return resposta;
 	}
@@ -165,7 +193,9 @@ public class RelatorioDataDadosController implements Initializable {
 		Main.getStage2().close();
 
 	}
-
+	/**
+	 * M�todo para resetar a visibilidade de datePickerInicial, datePickerFinal e TextFim
+	 */
 	public static void resetVisible() {
 
 		visibilidadeDatePickerInicial = false;
@@ -173,7 +203,12 @@ public class RelatorioDataDadosController implements Initializable {
 		visibilidadeTextFim = false;
 
 	}
-
+	/**
+	 * M�todo para inicializar o a tela de criação do relatorio de vendas por periodo
+	 * 
+	 * @param arg0 URL
+	 * @param arg1 ResourceBundle
+	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
