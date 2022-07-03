@@ -38,6 +38,7 @@ public class Relatorio {
 	private static int idFornecedoresPdf = 0;
 	private static int idVendasPdf = 0;
 	private static int idClientesPdf = 0;
+	private static int idClienteNotaCompraPdf = 0;
 
 	/**
 	 * Metodo para definir o dia e o horario do relatorio
@@ -376,16 +377,16 @@ public class Relatorio {
 			if (idClientesPdf >= 1) {
 
 				PdfWriter.getInstance(d, new FileOutputStream(
-						"RelatorioCliente(" + idClientesPdf + ") - " + cliente.getNome() + ".pdf"));
+						"NotaCompra(" + idClienteNotaCompraPdf + ").pdf"));
 
 			} else {
 
-				PdfWriter.getInstance(d, new FileOutputStream("RelatorioCliente - " + cliente.getNome() + ".pdf"));
+				PdfWriter.getInstance(d, new FileOutputStream("NotaCompra.pdf"));
 
 			}
 
 			d.open();
-			Paragraph p = new Paragraph("Relatorio de cliente - " + dHRelatorio);
+			Paragraph p = new Paragraph("Nota de compra do cliente - " + dHRelatorio);
 			d.add(p);
 
 			p = new Paragraph(" ");
@@ -404,6 +405,12 @@ public class Relatorio {
 			d.add(p);
 
 			p = new Paragraph("Cpf: " + cliente.getCpf());
+			d.add(p);
+			
+			p = new Paragraph("Email: " + cliente.getEmail());
+			d.add(p);
+			
+			p = new Paragraph("Telefone: " + cliente.getTelefone());
 			d.add(p);
 
 			p = new Paragraph(" ");
@@ -474,17 +481,17 @@ public class Relatorio {
 
 			d.add(tabela);
 			d.close();
-			if (idClientesPdf >= 1) {
+			if (idClienteNotaCompraPdf >= 1) {
 
 				Desktop.getDesktop()
-						.open(new File("RelatorioCliente(" + idClientesPdf + ") - " + cliente.getNome() + ".pdf"));
+						.open(new File("NotaCompraCliente(" + idClientesPdf + ") - .pdf"));
 
 			} else {
 
-				Desktop.getDesktop().open(new File("RelatorioCliente - " + cliente.getNome() + ".pdf"));
+				Desktop.getDesktop().open(new File("NotaCompraCliente.pdf"));
 
 			}
-			idClientesPdf++;
+			idClienteNotaCompraPdf++;
 
 		} catch (Exception e) {
 

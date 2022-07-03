@@ -99,6 +99,7 @@ public class GerenciamentoClienteController implements Initializable {
 	public void carregarComboBoxRelatorio() {
 
 		listaClientesRelatorio.add("Clientes geral");
+		listaClientesRelatorio.add("Compras do cliente selecionado");
 
 		observableClientesRelatorio = FXCollections.observableArrayList(listaClientesRelatorio);
 
@@ -205,7 +206,11 @@ public class GerenciamentoClienteController implements Initializable {
 
 			Relatorio.gerarRelatorioClientes(DaoClientes.getListaClientes());
 
-		} 
+		}else {
+			
+			Relatorio.gerarNotaCompra(tabelaClientes.getSelectionModel().getSelectedItem());
+			
+		}
 
 	}
 
