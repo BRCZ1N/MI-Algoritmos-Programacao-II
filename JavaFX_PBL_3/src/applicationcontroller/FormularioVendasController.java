@@ -69,26 +69,31 @@ public class FormularioVendasController implements Initializable {
 	private ObservableList<String> observableComboBox;
 
 	private static Vendas vendaAtual;
+
 	/**
-	 *M�todo para retorno do conteudo da venda selecionada.
-	 *@return Vendas vendaAtual
+	 * M�todo para retorno do conteudo da venda selecionada.
+	 * 
+	 * @return Vendas vendaAtual
 	 */
-	public static Vendas getVendaAtual() { 
+	public static Vendas getVendaAtual() {
 		return vendaAtual;
 	}
+
 	/**
-	 *M�todo para setar o conteudo da Venda selecionada.
-	 *@param vendaAtual Vendas 
+	 * M�todo para setar o conteudo da Venda selecionada.
+	 * 
+	 * @param vendaAtual Vendas
 	 */
 	public static void setVendaAtual(Vendas vendaAtual) {
 		FormularioVendasController.vendaAtual = vendaAtual;
 	}
 
 	/**
-   	 *M�todo para retornar ao gerenciamento de Vendas.
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para retornar ao gerenciamento de Vendas.
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -96,10 +101,12 @@ public class FormularioVendasController implements Initializable {
 		limparUsuario();
 
 	}
+
 	/**
-   	 *M�todo para adicionar itens para a lista das vendas
-   	 *@param event ActionEvent
-   	 */
+	 * M�todo para adicionar itens para a lista das vendas
+	 * 
+	 * @param event ActionEvent
+	 */
 	@FXML
 	void acaoAdicionarItemVenda(ActionEvent event) {
 
@@ -107,10 +114,12 @@ public class FormularioVendasController implements Initializable {
 		refreshCarrinho();
 
 	}
+
 	/**
-   	 *M�todo para remover itens  da lista de vendas
-   	 *@param event ActionEvent
-   	 */
+	 * M�todo para remover itens da lista de vendas
+	 * 
+	 * @param event ActionEvent
+	 */
 	@FXML
 	void acaoRemoverItemVenda(ActionEvent event) {
 
@@ -119,13 +128,15 @@ public class FormularioVendasController implements Initializable {
 			listaPratosCarrinho.remove(pratoExcluir);
 
 		}
-		
+
 		refreshCarrinho();
 
 	}
+
 	/**
-   	 *M�todo para atualizar o listView do carrinho de venda e formatar o preço total 
-   	 */
+	 * M�todo para atualizar o listView do carrinho de venda e formatar o preço
+	 * total
+	 */
 	public void refreshCarrinho() {
 
 		observablePratoCarrinho = FXCollections.observableArrayList(listaPratosCarrinho);
@@ -151,9 +162,11 @@ public class FormularioVendasController implements Initializable {
 		});
 
 	}
+
 	/**
-   	 *M�todo para atualizar a listView de pratos da classe de pratos e formatar o preço total 
-   	 */
+	 * M�todo para atualizar a listView de pratos da classe de pratos e formatar o
+	 * preço total
+	 */
 	public void refreshSistema() {
 
 		observablePratoSistema = FXCollections.observableArrayList(DaoPratos.getListaPratos());
@@ -181,47 +194,50 @@ public class FormularioVendasController implements Initializable {
 	}
 
 	/**
-   	 *M�todo para salvar a venda apos a confirmação.
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para salvar a venda apos a confirmação.
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
-	public void salvarVendaAcao(ActionEvent event)
-			throws IOException, EstoqueInsuficienteException {
+	public void salvarVendaAcao(ActionEvent event) throws IOException, EstoqueInsuficienteException {
 
 		Vendas novaVenda = new Vendas(DaoPratos.getListaIdPratos(listaPratosCarrinho), comboBoxPagamento.getValue());
 		try {
-			
+
 			if (vendaAtual == null) {
 				boolean retorno = Alertas.confirmar();
-				if(retorno) {
-					
+				if (retorno) {
+
 					DaoVendas.addEditDados(novaVenda, null);
-					
+
 				}
-				
+
 			} else {
-	
+
 				DaoVendas.addEditDados(novaVenda, vendaAtual.getId());
-	
+
 			}
-		}catch( EstoqueInsuficienteException | CamposNulosException e) {
+
+			mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
+			limparUsuario();
+
+		} catch (EstoqueInsuficienteException | CamposNulosException e) {
 			Alertas.erro(e.getMessage());
 		}
 
-		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
-		limparUsuario();
-
 	}
+
 	/**
-   	 *M�todo para inicializar o gerenciamento de vendas
-   	 *@param arg0 URL
-   	 *@param arg1 ResourceBundle
-   	 */
+	 * M�todo para inicializar o gerenciamento de vendas
+	 * 
+	 * @param arg0 URL
+	 * @param arg1 ResourceBundle
+	 */
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		
+
 		if (vendaAtual != null) {
 
 			comboBoxPagamento.setValue(vendaAtual.getTipoPagamento());
@@ -236,30 +252,35 @@ public class FormularioVendasController implements Initializable {
 		tabelaCarrinho.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 	}
+
 	/**
-   	 *Metodo para setar o venda atual como nula
-   	 */
+	 * Metodo para setar o venda atual como nula
+	 */
 	public void limparUsuario() {
 
 		vendaAtual = null;
 
 	}
+
 	/**
-   	 *M�todo para mudar para a janela determinada.
-   	 *@param urlScene String
-   	 *@throws IOException
-   	 */
+	 * M�todo para mudar para a janela determinada.
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 		;
 	}
+
 	/**
-   	 *M�todo para criar uma nova janela determinada
-   	 *@param urlScene String
-   	 *@throws IOException
-   	 */
+	 * M�todo para criar uma nova janela determinada
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));
@@ -269,9 +290,10 @@ public class FormularioVendasController implements Initializable {
 		return scene;
 
 	}
+
 	/**
-   	 *Metodo para inicializar a comboBox com as opções de pagamento
-   	 */
+	 * Metodo para inicializar a comboBox com as opções de pagamento
+	 */
 	public void inicializarComboBox() {
 
 		arrayListComboBox.add(TipoPagamento.getTipoDePagamento1());

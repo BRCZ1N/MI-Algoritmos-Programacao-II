@@ -25,8 +25,6 @@ import applicationmain.Main;
 import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
 import applicationmodel.Produtos;
-import applicationmodel.Relatorio;
-import applicationmodeldao.DaoClientes;
 import applicationmodeldao.DaoPratos;
 import applicationmodeldao.DaoProdutos;
 import javafx.beans.value.ChangeListener;
@@ -75,7 +73,7 @@ public class FormularioPratosController implements Initializable {
 	private ArrayList<Ingredientes> listaProdutosCarrinho = new ArrayList<Ingredientes>();
 
 	private static Pratos pratoAtual;
-	
+
 	private Optional<String> input;
 
 	/**
@@ -134,7 +132,8 @@ public class FormularioPratosController implements Initializable {
 			if (input.isPresent()) {
 
 				qtdProdutoPrato = Double.parseDouble(input.get());
-				Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),qtdProdutoPrato);
+				Ingredientes ingrediente = new Ingredientes(
+						tabelaProdutos.getSelectionModel().getSelectedItem().getId(), qtdProdutoPrato);
 				listaProdutosCarrinho.add(ingrediente);
 				observableProdutoCarrinho = FXCollections.observableArrayList(listaProdutosCarrinho);
 				refreshCarrinho();
@@ -144,9 +143,8 @@ public class FormularioPratosController implements Initializable {
 		} catch (NumberFormatException e) {
 
 			Alertas.erro("Preencha o campo de dado com uma quantidade válida");
-			
+
 		}
-		
 
 	}
 
@@ -255,22 +253,23 @@ public class FormularioPratosController implements Initializable {
 				DaoPratos.addEditDados(pratoNovo, pratoAtual.getId());
 
 			}
+
+			mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
+			limparPrato();
+
 		} catch (EntidadeComValoresNegativoException | CamposNulosException | NumberFormatException e) {
 
-			if(e.getMessage().equals("empty String")) {
-				
+			if (e.getMessage().equals("empty String")) {
+
 				Alertas.erro("Preencha todos os campos de dados corretamente");
-				
-			}else {
-				
+
+			} else {
+
 				Alertas.erro(e.getMessage());
-				
+
 			}
-			
 
 		}
-		mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
-		limparPrato();
 
 	}
 
@@ -341,20 +340,6 @@ public class FormularioPratosController implements Initializable {
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
-
-	}
-
-	/**
-	 * M�todo para mudar para abrir a janela que sera utilizada na adição de
-	 * quantidade
-	 * 
-	 * @param urlScene String
-	 * @throws IOException
-	 */
-	public void abrirJanelaSecundaria(String urlScene) throws IOException {
-
-		Main.getStage2().setScene(novaCena(urlScene));
-		Main.getStage2().showAndWait();
 
 	}
 

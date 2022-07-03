@@ -117,7 +117,7 @@ public class FormularioProdutosController implements Initializable {
 
 						Alertas.erro(new NumberFormatException("Preencha todos os campos de dados corretamente")
 								.getMessage());
-						
+
 						textFQtd.setText(newValue.replaceAll(newValue, ""));
 
 					}
@@ -186,6 +186,10 @@ public class FormularioProdutosController implements Initializable {
 				DaoProdutos.addEditDados(produtoNovo, produtoAtual.getId());
 
 			}
+
+			mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
+			limparUsuario();
+
 		} catch (EntidadeComValoresNegativoException | CamposNulosException | NumberFormatException e) {
 
 			if (e.getMessage().equals("empty String")) {
@@ -199,9 +203,6 @@ public class FormularioProdutosController implements Initializable {
 			}
 
 		}
-
-		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
-		limparUsuario();
 
 	}
 
