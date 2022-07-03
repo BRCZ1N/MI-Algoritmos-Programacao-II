@@ -6,7 +6,6 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -36,13 +35,8 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="700.0" style="-fx-background-color: #00b4cc;">
                            <children>
-                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../applicationviewimages/511943_find_loupe_magnifying%20glass_search_icon.png" />
-                                 </image></ImageView>
-                              <TextField fx:id="pesquisarCliente" prefHeight="25.0" prefWidth="292.0" promptText="Nome do cliente" styleClass="textfieldMenu" stylesheets="@EfeitosAnimacoes.css" />
-                           </children>
-                        </HBox>
+                              <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="700.0" text="Para realizar uma ação, selecione uma celula da tabela e a opção de ação desejada." textFill="WHITE" />
+                           </children></HBox>
                         <ScrollPane prefHeight="327.0" prefWidth="705.0" GridPane.rowIndex="1" GridPane.rowSpan="2147483647">
                           <content>
                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="701.0">
