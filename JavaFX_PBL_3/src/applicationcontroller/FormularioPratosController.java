@@ -209,7 +209,7 @@ public class FormularioPratosController implements Initializable {
 				Double.parseDouble(textFPreco.getText()), textFCategoria.getText(), listaProdutosCarrinho);
 		try {
 			if (pratoAtual == null) {
-				boolean retorno = Alertas.confirmar("prato");
+				boolean retorno = Alertas.confirmar();
 				if (retorno) {
 					DaoPratos.addEditDados(pratoNovo, null);
 				}

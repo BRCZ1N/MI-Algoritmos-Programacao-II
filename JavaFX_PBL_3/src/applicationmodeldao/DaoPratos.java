@@ -328,9 +328,7 @@ public class DaoPratos {
 
 	/**
 	 * M�todo para obter a lista de pratos da venda
-	 * 
-	 * idPratoVenda
-	 * 
+	 *
 	 * @param idPratoVenda ArrayList<String> - lista de id's de pratos da venda
 	 * 
 	 * @return ArrayList<Pratos> pratosVenda - lista de pratos da venda
@@ -349,8 +347,8 @@ public class DaoPratos {
 //		return pratosVenda;
 //
 //	}
-//	
-//	
+	
+	
 //	public static ArrayList<String> listaIdPratos(ArrayList<Pratos> listaPratosCarrinho){
 //		
 //		ArrayList<String> listaIdPratos = new ArrayList<String>();

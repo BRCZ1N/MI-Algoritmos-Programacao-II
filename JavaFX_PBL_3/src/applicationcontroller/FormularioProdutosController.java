@@ -89,7 +89,7 @@ public class FormularioProdutosController implements Initializable {
 		try {
 
 			if (produtoAtual == null) {
-				boolean retorno = Alertas.confirmar("produto");
+				boolean retorno = Alertas.confirmar();
 				
 				if (retorno) {
 					DaoProdutos.addEditDados(produtoNovo, null);

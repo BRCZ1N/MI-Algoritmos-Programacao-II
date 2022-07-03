@@ -8,18 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Clientes;
 import applicationmodel.Relatorio;
 import applicationmodeldao.DaoClientes;
-import applicationmodeldao.DaoFornecedores;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -62,8 +59,6 @@ public class GerenciamentoClienteController implements Initializable {
 	private ObservableList<String> observableClientesRelatorio;
 
 	private static ObservableList<Clientes> observableListaClientes;
-	
-	private Optional<String> input;
 
 	/**
 	 * M�todo para inicializar o gerenciamento e ativar a visualização dos botões
@@ -100,11 +95,10 @@ public class GerenciamentoClienteController implements Initializable {
 		});
 
 	}
-	
+
 	public void carregarComboBoxRelatorio() {
 
-		listaClientesRelatorio.add("Fornecedores geral");
-		listaClientesRelatorio.add("Fornecedores por produto");
+		listaClientesRelatorio.add("Clientes geral");
 
 		observableClientesRelatorio = FXCollections.observableArrayList(listaClientesRelatorio);
 
@@ -177,12 +171,11 @@ public class GerenciamentoClienteController implements Initializable {
 	 */
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-		boolean retorno = Alertas.confirmar("cliente");
+		boolean retorno = Alertas.confirmar();
 		if (retorno) {
 			DaoClientes.removerDados(tabelaClientes.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
 		}
-		
 
 	}
 
@@ -206,26 +199,13 @@ public class GerenciamentoClienteController implements Initializable {
 	 * @param event ActionEvent
 	 */
 	@FXML
-	void gerarRelatorioAcao(ActionEvent event) {
-		
-		if (comboBoxRelatorios.getValue() == "Clientes geral") {
+	public void gerarRelatorioAcao(ActionEvent event) {
+
+		if (comboBoxRelatorios.getValue().equals("Clientes geral")) {
 
 			Relatorio.gerarRelatorioClientes(DaoClientes.getListaClientes());
 
-		} else {
-
-			TextInputDialog textInput = new TextInputDialog();
-			textInput.getDialogPane().setContentText("Digite o id do produto");
-			input = textInput.showAndWait();
-
-			if(input.isPresent()) {
-				
-				Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedoresProduto(input.get()));
-
-			}
-
-		}
-		Relatorio.gerarRelatorioClientes(tabelaClientes.getSelectionModel().getSelectedItem());
+		} 
 
 	}
 

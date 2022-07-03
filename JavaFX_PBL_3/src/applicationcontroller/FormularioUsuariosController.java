@@ -74,7 +74,7 @@ public class FormularioUsuariosController implements Initializable {
 		Usuarios usuarioNovo = new Usuarios(textFLogin.getText(), textFSenha.getText(), textFNome.getText());
 		try {
 			if (usuarioAtual == null) {
-				boolean retorno = Alertas.confirmar("usuario");
+				boolean retorno = Alertas.confirmar();
 				
 				if (retorno) {
 					DaoUsuarios.addEditDados(usuarioNovo, null);

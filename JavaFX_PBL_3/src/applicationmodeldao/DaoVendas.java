@@ -220,7 +220,7 @@ public class DaoVendas {
 	 * @return int numTotalPVendidos - numero total de vendas
 	 */
 
-	public static int numTotalPratosVendidos() {
+	public static int numTotalPratosVendidos(ArrayList<Vendas> listaVendas) {
 
 		int numTotalPVendidos = 0;
 
@@ -241,13 +241,14 @@ public class DaoVendas {
 		}
 
 	}
+	
 
 	/**
 	 * M�todo para definir o valor total da venda
 	 * 
 	 * @return double valorVendas - valor total da venda
 	 */
-	public static double valorTotalVendas() {
+	public static double valorTotalVendas(ArrayList<Vendas> listaVendas) {
 
 		double valorVendas = 0;
 

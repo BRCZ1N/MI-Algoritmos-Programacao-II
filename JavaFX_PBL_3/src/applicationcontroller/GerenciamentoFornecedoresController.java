@@ -179,7 +179,7 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	 */
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-		boolean retorno = Alertas.confirmar("cliente");
+		boolean retorno = Alertas.confirmar();
 		if(retorno) {
 			DaoFornecedores.removerDados(tabelaFornecedores.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
@@ -196,7 +196,7 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	@FXML
 	public void gerarRelatorioAcao(ActionEvent event) {
 
-		if (comboBoxRelatorios.getValue() == "Fornecedores geral") {
+		if (comboBoxRelatorios.getValue().equals("Fornecedores geral")) {
 
 			Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedores());
 

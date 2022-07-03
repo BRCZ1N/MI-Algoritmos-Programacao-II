@@ -24,7 +24,7 @@ public class Alertas {
 	 *@return  Boolean <code>true</code> Se o botão representativo do sim for acionado
 	 *         <code>false</code> Se o botão representativo do não for acionado
 	 */
-	public static boolean confirmar(String tipo) {
+	public static boolean confirmar() {
         Alert alerta = new Alert(Alert.AlertType.CONFIRMATION);
         ButtonType buttonSim = new ButtonType("Sim");
         ButtonType buttonNao = new ButtonType("Não", ButtonBar.ButtonData.CANCEL_CLOSE);

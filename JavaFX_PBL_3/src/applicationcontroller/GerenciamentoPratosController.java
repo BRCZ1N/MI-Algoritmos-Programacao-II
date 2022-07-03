@@ -142,7 +142,7 @@ public class GerenciamentoPratosController implements Initializable {
 	
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-		boolean retorno = Alertas.confirmar("cliente");
+		boolean retorno = Alertas.confirmar();
 		if (retorno) {
 			DaoPratos.removerDados(tabelaPratos.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");

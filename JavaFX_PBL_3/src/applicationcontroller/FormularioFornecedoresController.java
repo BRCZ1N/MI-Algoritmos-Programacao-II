@@ -102,7 +102,7 @@ public class FormularioFornecedoresController implements Initializable {
 				textFEndereco.getText(), DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));
 		try {
 			if (fornecedorAtual == null) {
-				boolean retorno = Alertas.confirmar("fornecedor");
+				boolean retorno = Alertas.confirmar();
 				if (retorno) {
 					DaoFornecedores.addEditDados(fornecedorNovo, null);
 				}	

@@ -215,7 +215,7 @@ public class GerenciamentoVendasController implements Initializable {
 
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-		boolean retorno = Alertas.confirmar("cliente");
+		boolean retorno = Alertas.confirmar();
 		if(retorno) {
 			DaoVendas.removerDados(tabelaVendas.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
@@ -247,11 +247,11 @@ public class GerenciamentoVendasController implements Initializable {
 	@FXML
 	void gerarRelatorioAcao(ActionEvent event) throws IOException {
 
-		if (comboBoxRelatorios.getValue() == "Vendas geral") {
+		if (comboBoxRelatorios.getValue().equals("Vendas geral")) {
 
 			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendas());
 
-		} else if (comboBoxRelatorios.getValue() == "Vendas por periodo") {
+		} else if (comboBoxRelatorios.getValue().equals("Vendas por periodo")) {
 
 			RelatorioDataDadosController.setVisibilidadeDatePickerInicial(true);
 			RelatorioDataDadosController.setVisibilidadeDatePickerFinal(true);

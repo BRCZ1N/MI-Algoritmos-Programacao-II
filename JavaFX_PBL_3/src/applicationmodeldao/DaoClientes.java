@@ -247,11 +247,32 @@ public class DaoClientes {
 
 		return -1;
 	}
+	
+	/**
+	 * M�todo de soma, para calcular o valor total gasto pelos clientes
+	 * @param listaClientes ArrayList<Clientes>
+	 * @return double valorTotal
+	 */
+	public static double valorTotalVendasClientes(ArrayList<Clientes> listaClientes) {
 
+		double valorTotalVendasClientes = 0;
+
+		for (Clientes cliente : listaClientes) {
+
+			valorTotalVendasClientes += valorTotalVendasCliente(cliente.getIdHistoricoCompras());
+
+		}
+
+		return valorTotalVendasClientes;
+
+	}
+	
+	
 	public static void limparLista() {
 
 		DaoClientes.listaClientes.clear();
 	}
+	
 	/**
 	 * M�todo de soma, para calcular o valor total gasto pelo cliente
 	 * @param listaIdVendas ArrayList<String>
@@ -259,19 +280,19 @@ public class DaoClientes {
 	 */
 	public static double valorTotalVendasCliente(ArrayList<String> listaIdVendas) {
 
-		double valorTotal = 0;
+		double valorTotalVendasCliente = 0;
 
 		for (Vendas venda : DaoVendas.getListaVenda(listaIdVendas)) {
 
-			valorTotal += venda.getPrecoTotal();
+			valorTotalVendasCliente += venda.getPrecoTotal();
 
 		}
 
-		return valorTotal;
+		return valorTotalVendasCliente;
 
 	}
 	/**
-	 * M�todo de obtenção do id das vendas feitas para determinado cliente
+	 * M�todo de obtenção do id dos pratos das vendas feitas para determinado cliente
 	 * @param listaIdVendas ArrayList<String>
 	 * @return ArrayList<String> clientesLista
 	 */
@@ -287,6 +308,20 @@ public class DaoClientes {
 
 		return clientesLista;
 
+	}
+	
+	public static int numTotalPratosClientes(ArrayList<Clientes> listaCliente) {
+		
+		int numTotalPratosCliente = 0;
+		
+		for(Clientes cliente:listaClientes) {
+			
+			numTotalPratosCliente += DaoVendas.numTotalPratosVendidos(DaoVendas.getListaVenda(cliente.getIdHistoricoCompras()));
+		
+		}
+		
+		return numTotalPratosCliente;
+		
 	}
 
 }

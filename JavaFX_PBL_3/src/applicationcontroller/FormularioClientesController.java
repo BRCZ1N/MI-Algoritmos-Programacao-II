@@ -107,7 +107,7 @@ public class FormularioClientesController implements Initializable {
 		try {
 			if (clienteAtual == null) {
 
-				boolean retorno = Alertas.confirmar("cliente");
+				boolean retorno = Alertas.confirmar();
 				if (retorno) {
 
 					DaoClientes.addEditDados(clienteNovo, null);
@@ -116,7 +116,7 @@ public class FormularioClientesController implements Initializable {
 
 			} else {
 
-				boolean retorno = Alertas.confirmar("cliente");
+				boolean retorno = Alertas.confirmar();
 				if (retorno) {
 
 					DaoClientes.addEditDados(clienteNovo, clienteAtual.getId());

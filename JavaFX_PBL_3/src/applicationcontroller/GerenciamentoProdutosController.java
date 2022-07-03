@@ -210,7 +210,7 @@ public class GerenciamentoProdutosController implements Initializable {
 	 */
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-		boolean retorno = Alertas.confirmar("cliente");
+		boolean retorno = Alertas.confirmar();
 		if (retorno){
 			DaoProdutos.removerDados(tabelaProdutos.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
@@ -227,7 +227,7 @@ public class GerenciamentoProdutosController implements Initializable {
 	@FXML
 	public void gerarRelatorioAcao(ActionEvent event) throws IOException {
 
-		if (comboBoxRelatorios.getValue() == "Produtos geral") {
+		if (comboBoxRelatorios.getValue().equals("Produtos geral")) {
 
 			Relatorio.gerarRelatorioProdutos(DaoProdutos.getListaProdutos());
 
