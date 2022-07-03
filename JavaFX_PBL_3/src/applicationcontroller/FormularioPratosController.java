@@ -11,10 +11,12 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 import applicationexeceptions.CamposNulosException;
@@ -23,6 +25,8 @@ import applicationmain.Main;
 import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
 import applicationmodel.Produtos;
+import applicationmodel.Relatorio;
+import applicationmodeldao.DaoClientes;
 import applicationmodeldao.DaoPratos;
 import applicationmodeldao.DaoProdutos;
 import javafx.beans.value.ChangeListener;
@@ -71,6 +75,8 @@ public class FormularioPratosController implements Initializable {
 	private ArrayList<Ingredientes> listaProdutosCarrinho = new ArrayList<Ingredientes>();
 
 	private static Pratos pratoAtual;
+	
+	private Optional<String> input;
 
 	/**
 	 * M�todo para retorno do conteudo do prato selecionado.
@@ -113,12 +119,34 @@ public class FormularioPratosController implements Initializable {
 	@FXML
 	void acaoAdicionarProdutoPrato(ActionEvent event) throws IOException {
 
-		abrirJanelaSecundaria("/applicationviewcssfxml/QuantidadeProduto.fxml");
-		Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),
-				QuantidadeProdutoController.getQuantidade());
-		listaProdutosCarrinho.add(ingrediente);
-		observableProdutoCarrinho = FXCollections.observableArrayList(listaProdutosCarrinho);
-		refreshCarrinho();
+		TextInputDialog textInput = new TextInputDialog();
+		textInput.getDialogPane().setContentText("A quantidade do produto");
+		textInput.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+			if (!newValue.matches("\\f*"))
+				textInput.getEditor().setText(newValue.replaceAll("\\f+", ""));
+		});
+
+		input = textInput.showAndWait();
+		double qtdProdutoPrato = 0;
+
+		try {
+
+			if (input.isPresent()) {
+
+				qtdProdutoPrato = Double.parseDouble(input.get());
+				Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),qtdProdutoPrato);
+				listaProdutosCarrinho.add(ingrediente);
+				observableProdutoCarrinho = FXCollections.observableArrayList(listaProdutosCarrinho);
+				refreshCarrinho();
+
+			}
+
+		} catch (NumberFormatException e) {
+
+			Alertas.erro("Preencha o campo de dado com uma quantidade válida");
+			
+		}
+		
 
 	}
 
@@ -269,7 +297,7 @@ public class FormularioPratosController implements Initializable {
 					} catch (NumberFormatException e) {
 
 						Alertas.erro("Preencha todos os campos de dados corretamente");
-						textFPreco.clear();
+						textFPreco.setText(newValue.replace(newValue, ""));
 
 					}
 

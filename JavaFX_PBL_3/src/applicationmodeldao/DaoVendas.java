@@ -486,7 +486,7 @@ public class DaoVendas {
 
 	public static boolean vendaCampoVazio(Vendas venda) {
 
-		if (venda.getListaIdItens().isEmpty() || venda.getTipoPagamento().isBlank()) {
+		if (venda.getListaIdItens().isEmpty() || venda.getTipoPagamento() == null) {
 
 			return true;
 

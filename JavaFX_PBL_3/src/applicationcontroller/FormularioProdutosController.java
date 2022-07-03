@@ -92,7 +92,7 @@ public class FormularioProdutosController implements Initializable {
 
 						Alertas.erro(new NumberFormatException("Preencha todos os campos de dados corretamente")
 								.getMessage());
-						textFPreco.clear();
+						textFPreco.setText(newValue.replaceAll(newValue, ""));
 
 					}
 
@@ -117,7 +117,8 @@ public class FormularioProdutosController implements Initializable {
 
 						Alertas.erro(new NumberFormatException("Preencha todos os campos de dados corretamente")
 								.getMessage());
-						textFQtd.clear();
+						
+						textFQtd.setText(newValue.replaceAll(newValue, ""));
 
 					}
 
