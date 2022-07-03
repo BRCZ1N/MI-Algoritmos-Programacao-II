@@ -142,6 +142,7 @@ public class FormularioClientesController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		
 		if (clienteAtual != null) {
 
 			textFNome.setText(clienteAtual.getNome());

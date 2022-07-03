@@ -17,6 +17,8 @@ import applicationmain.Main;
 import applicationmodel.Produtos;
 import applicationmodel.UnidadeMedida;
 import applicationmodeldao.DaoProdutos;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -113,6 +115,54 @@ public class FormularioProdutosController implements Initializable {
    	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		
+		textFPreco.textProperty().addListener(new ChangeListener<String>(){
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				
+				if(!newValue.isEmpty()) {
+					
+					try {
+						
+						Double.parseDouble(newValue);
+						
+					}catch(NumberFormatException e) {
+						
+						Alertas.erro(new NumberFormatException("Atenção esse campo deve ser preenchido no formato: (XX.XX), Ex: (23.45)").getMessage());
+						textFPreco.setText(oldValue);
+						
+					}
+					
+				}
+				
+			}
+			
+		});
+		
+		textFQtd.textProperty().addListener(new ChangeListener<String>(){
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				
+				if(!newValue.isEmpty()) {
+					
+					try {
+						
+						Double.parseDouble(newValue);
+						
+					}catch(NumberFormatException e) {
+						
+						Alertas.erro(new NumberFormatException("Atenção esse campo deve ser preenchido no formato: (XX.XX), Ex: (23.45)").getMessage());
+						textFPreco.setText(oldValue);
+						
+					}
+					
+				}
+				
+			}
+			
+		});
 
 		if (produtoAtual != null) {
 

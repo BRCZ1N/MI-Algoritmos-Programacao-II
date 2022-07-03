@@ -126,7 +126,7 @@ public class FormularioFornecedoresController implements Initializable {
    	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
 		if (fornecedorAtual != null) {
 
 			textFCnpj.setText(fornecedorAtual.getCnpj());

@@ -23,6 +23,8 @@ import applicationmodel.Pratos;
 import applicationmodel.Produtos;
 import applicationmodeldao.DaoPratos;
 import applicationmodeldao.DaoProdutos;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -67,25 +69,31 @@ public class FormularioPratosController implements Initializable {
 	private ArrayList<Ingredientes> listaProdutosCarrinho = new ArrayList<Ingredientes>();
 
 	private static Pratos pratoAtual;
+
 	/**
-	 *M�todo para retorno do conteudo do prato selecionado.
-	 *@return Pratos pratoAtual
+	 * M�todo para retorno do conteudo do prato selecionado.
+	 * 
+	 * @return Pratos pratoAtual
 	 */
 	public static Pratos getPratoAtual() {
 		return pratoAtual;
 	}
+
 	/**
-	 *M�todo para setar o conteudo do Prato selecionado.
-	 *@param pratoAtual Pratos 
+	 * M�todo para setar o conteudo do Prato selecionado.
+	 * 
+	 * @param pratoAtual Pratos
 	 */
 	public static void setPratoAtual(Pratos pratoAtual) {
 		FormularioPratosController.pratoAtual = pratoAtual;
 	}
+
 	/**
-   	 *M�todo para retornar ao gerenciamento de Pratos.
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para retornar ao gerenciamento de Pratos.
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void voltarMenuAcao(ActionEvent event) throws IOException {
 
@@ -93,23 +101,29 @@ public class FormularioPratosController implements Initializable {
 		limparPrato();
 
 	}
+
 	/**
-   	 *M�todo para adicionar o id dos produtos na lista do prato a qual eles fazem parte
-   	 *@param event ActionEvent
-   	 */
+	 * M�todo para adicionar o id dos produtos na lista do prato a qual eles fazem
+	 * parte
+	 * 
+	 * @param event ActionEvent
+	 */
 	@FXML
 	void acaoAdicionarProdutoPrato(ActionEvent event) throws IOException {
 
 		abrirJanelaSecundaria("/applicationviewcssfxml/QuantidadeProduto.fxml");
-		Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),QuantidadeProdutoController.getQuantidade());
+		Ingredientes ingrediente = new Ingredientes(tabelaProdutos.getSelectionModel().getSelectedItem().getId(),
+				QuantidadeProdutoController.getQuantidade());
 		listaProdutosCarrinho.add(ingrediente);
 		observableProdutoCarrinho = FXCollections.observableArrayList(listaProdutosCarrinho);
 		refreshCarrinho();
 
 	}
+
 	/**
-   	 *M�todo para atualizar o listView do carrinho de produtos presentes em um prato 
-   	 */
+	 * M�todo para atualizar o listView do carrinho de produtos presentes em um
+	 * prato
+	 */
 	public void refreshCarrinho() {
 
 		observableProdutoCarrinho = FXCollections.observableArrayList(listaProdutosCarrinho);
@@ -134,9 +148,10 @@ public class FormularioPratosController implements Initializable {
 		});
 
 	}
+
 	/**
-   	 *M�todo para atualizar o listView dos produtos presentes no sistema
-   	 */
+	 * M�todo para atualizar o listView dos produtos presentes no sistema
+	 */
 	public void refreshSistema() {
 
 		observableProdutoSistema = FXCollections.observableArrayList(DaoProdutos.getListaProdutos());
@@ -162,10 +177,13 @@ public class FormularioPratosController implements Initializable {
 		});
 
 	}
+
 	/**
-   	 *M�todo para remover o id dos produtos na lista do prato a qual eles fazem parte
-   	 *@param event ActionEvent
-   	 */
+	 * M�todo para remover o id dos produtos na lista do prato a qual eles fazem
+	 * parte
+	 * 
+	 * @param event ActionEvent
+	 */
 	@FXML
 	void acaoRemoverProdutoPrato(ActionEvent event) {
 
@@ -179,10 +197,11 @@ public class FormularioPratosController implements Initializable {
 	}
 
 	/**
-   	 *M�todo para salvar o Prato apos a confirmação.
-   	 *@param  event ActionEvent
-   	 *@throws IOException
-   	 */
+	 * M�todo para salvar o Prato apos a confirmação.
+	 * 
+	 * @param event ActionEvent
+	 * @throws IOException
+	 */
 	@FXML
 	public void salvarPratoAcao(ActionEvent event) throws IOException {
 
@@ -194,20 +213,20 @@ public class FormularioPratosController implements Initializable {
 				if (retorno) {
 					DaoPratos.addEditDados(pratoNovo, null);
 				}
-				
-	
+
 			} else {
-	
+
 				DaoPratos.addEditDados(pratoNovo, pratoAtual.getId());
-	
+
 			}
-		}catch(EntidadeComValoresNegativoException e) {
+		} catch (EntidadeComValoresNegativoException e) {
 			Alertas.erro(e.getMessage());
 		}
 		mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
 		limparPrato();
 
 	}
+
 	/**
    	 *M�todo para inicializar o gerenciamento de pratos
    	 *@param arg0 URL
@@ -216,6 +235,31 @@ public class FormularioPratosController implements Initializable {
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 
+		textFPreco.textProperty().addListener(new ChangeListener<String>(){
+
+			@Override
+			public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+				
+				if(!newValue.isEmpty()) {
+					
+					try {
+						
+						Double.parseDouble(newValue);
+						
+					}catch(NumberFormatException e) {
+						
+						Alertas.erro(new NumberFormatException("Atenção esse campo deve ser preenchido no formato: (XX.XX), Ex: (23.45)").getMessage());
+						textFPreco.setText(oldValue);
+						
+					}
+					
+				}
+				
+			}
+			
+		});
+		    
+		
 		if (pratoAtual != null) {
 
 			textFNome.setText(pratoAtual.getNome());
@@ -231,40 +275,48 @@ public class FormularioPratosController implements Initializable {
 		tabelaCarrinho.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
 	}
+
 	/**
-   	 *Metodo para setar o fornecedor atual como nulo
-   	 */
+	 * Metodo para setar o fornecedor atual como nulo
+	 */
 	public void limparPrato() {
 
 		pratoAtual = null;
 
 	}
+
 	/**
-   	 *M�todo para mudar para a janela determinada.
-   	 *@param urlScene String
-   	 *@throws IOException
-   	 */
+	 * M�todo para mudar para a janela determinada.
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
+
 	/**
-   	 *M�todo para mudar para abrir a janela que sera utilizada na adição de quantidade
-   	 *@param urlScene String
-   	 *@throws IOException
-   	 */
+	 * M�todo para mudar para abrir a janela que sera utilizada na adição de
+	 * quantidade
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 	public void abrirJanelaSecundaria(String urlScene) throws IOException {
 
 		Main.getStage2().setScene(novaCena(urlScene));
 		Main.getStage2().showAndWait();
 
 	}
+
 	/**
-   	 *M�todo para criar uma nova janela determinada
-   	 *@param urlScene String
-   	 *@throws IOException
-   	 */
+	 * M�todo para criar uma nova janela determinada
+	 * 
+	 * @param urlScene String
+	 * @throws IOException
+	 */
 	public Scene novaCena(String urlScene) throws IOException {
 
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(urlScene));

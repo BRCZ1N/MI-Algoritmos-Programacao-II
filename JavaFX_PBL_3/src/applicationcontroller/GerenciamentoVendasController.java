@@ -18,6 +18,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
 import applicationmain.Main;
 import applicationmodel.Relatorio;
 import applicationmodel.Vendas;

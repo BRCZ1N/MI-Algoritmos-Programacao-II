@@ -216,7 +216,7 @@ public class FormularioVendasController implements Initializable {
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-
+		
 		if (vendaAtual != null) {
 
 			comboBoxPagamento.setValue(vendaAtual.getTipoPagamento());
