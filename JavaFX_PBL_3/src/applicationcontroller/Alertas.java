@@ -29,7 +29,7 @@ public class Alertas {
         ButtonType buttonSim = new ButtonType("Sim");
         ButtonType buttonNao = new ButtonType("Não", ButtonBar.ButtonData.CANCEL_CLOSE);
         alerta.setTitle("Confirmação");
-        alerta.setHeaderText("Você deseja salvar esse" + tipo + "?");
+        alerta.setHeaderText("Você deseja continuar essa ação?");
         alerta.setContentText("Escolha a sua opção:");
         alerta.getButtonTypes().setAll(buttonSim, buttonNao);
         Optional<ButtonType> opcao = alerta.showAndWait();
