@@ -269,7 +269,7 @@ public class FormularioPratosController implements Initializable {
 					} catch (NumberFormatException e) {
 
 						Alertas.erro("Preencha todos os campos de dados corretamente");
-						textFPreco.setText(oldValue);
+						textFPreco.clear();
 
 					}
 

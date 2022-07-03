@@ -37,7 +37,7 @@
                         <TextField fx:id="textFNome" promptText="Nome" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" />
                         <TextField fx:id="textFPreco" promptText="Preço" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="textFQtd" promptText="Quantidade" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <DatePicker fx:id="datePickerProduto" prefHeight="25.0" prefWidth="303.0" promptText="Validade" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <DatePicker fx:id="datePickerProduto" editable="false" prefHeight="25.0" prefWidth="303.0" promptText="Validade" styleClass="textfield" stylesheets="@EfeitosAnimacoes.css" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                            <image>
                               <Image url="@../applicationviewimages/372903_username_name_full_user_round_icon.png" />
@@ -70,7 +70,7 @@
                               <Insets />
                            </GridPane.margin>
                         </ImageView>
-                        <ComboBox fx:id="comboBoxUMedida" editable="true" prefHeight="25.0" prefWidth="314.0" promptText="Unidade de medida" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <ComboBox fx:id="comboBoxUMedida" prefHeight="25.0" prefWidth="314.0" promptText="Unidade de medida" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.rowIndex="4">
                            <image>
                               <Image url="@../applicationviewimages/3615743_measuring_package_scale_shipping_weigh_icon.png" />

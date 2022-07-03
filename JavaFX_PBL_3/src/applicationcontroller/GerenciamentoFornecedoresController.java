@@ -85,22 +85,22 @@ public class GerenciamentoFornecedoresController implements Initializable {
 			}
 
 		});
-		
-		comboBoxRelatorios.setOnAction(e ->{
-			
-			if(!comboBoxRelatorios.getSelectionModel().isEmpty()) {
-				
+
+		comboBoxRelatorios.setOnAction(e -> {
+
+			if (!comboBoxRelatorios.getSelectionModel().isEmpty()) {
+
 				gerarRelatorioBtn.setDisable(false);
-				
+
 			}
 
 		});
 
 	}
+
 	/**
 	 * M�todo para carregar a comboBox para gerar relatorio
 	 */
-
 
 	public void carregarComboBoxRelatorio() {
 
@@ -179,11 +179,10 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 		boolean retorno = Alertas.confirmar();
-		if(retorno) {
+		if (retorno) {
 			DaoFornecedores.removerDados(tabelaFornecedores.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
 		}
-		
 
 	}
 
@@ -194,24 +193,41 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	 */
 	@FXML
 	public void gerarRelatorioAcao(ActionEvent event) {
+			
+			if (comboBoxRelatorios.getValue().equals("Fornecedores geral")) {
 
-		if (comboBoxRelatorios.getValue().equals("Fornecedores geral")) {
+				Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedores());
 
-			Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedores());
+			} else {
 
-		} else {
+				TextInputDialog textInput = new TextInputDialog();
+				textInput.getDialogPane().setContentText("Digite o id do produto");
+				textInput.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+					   if(!newValue.matches("\\d*"))
+						   textInput.getEditor().setText(newValue.replaceAll("\\D+", ""));
+				});
 
-			TextInputDialog textInput = new TextInputDialog();
-			textInput.getDialogPane().setContentText("Digite o id do produto");
-			input = textInput.showAndWait();
+				input = textInput.showAndWait();
 
-			if(input.isPresent()) {
+				try {
+					
+					if(input.isPresent()) {
+						
+						int idFornecedor = Integer.parseInt(input.get());
+						Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedoresProduto(input.get()));
+
+					}
+					
+				}catch(NumberFormatException e) {
+					
+					Alertas.erro("Preencha o campo de dado com um numero inteiro");
+					
+				}
 				
-				Relatorio.gerarRelatorioFornecedores(DaoFornecedores.getListaFornecedoresProduto(input.get()));
 
 			}
-
-		}
+			
+		
 
 	}
 

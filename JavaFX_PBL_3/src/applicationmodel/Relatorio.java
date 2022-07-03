@@ -177,7 +177,7 @@ public class Relatorio {
 			p = new Paragraph(" ");
 			d.add(p);
 
-			p = new Paragraph("Quantidade total de fornecedores:" + DaoFornecedores.getQtdTotalFornecedores());
+			p = new Paragraph("Quantidade total de fornecedores:" + DaoFornecedores.getQtdTotalFornecedores(listaFornecedores));
 			d.add(p);
 
 			p = new Paragraph(" ");

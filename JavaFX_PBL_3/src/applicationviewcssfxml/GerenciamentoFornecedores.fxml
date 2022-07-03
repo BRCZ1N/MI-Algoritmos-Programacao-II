@@ -97,7 +97,7 @@
                      <children>
                         <Pane prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: #00b4cc;">
                            <children>
-                              <ComboBox fx:id="comboBoxRelatorios" editable="true" layoutX="8.0" layoutY="7.0" prefHeight="25.0" prefWidth="195.0" promptText="Escolha o relatorio" />
+                              <ComboBox fx:id="comboBoxRelatorios" layoutX="8.0" layoutY="7.0" prefHeight="25.0" prefWidth="195.0" promptText="Escolha o relatorio" />
                            </children>
                         </Pane>
                         <Pane prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #343838;">

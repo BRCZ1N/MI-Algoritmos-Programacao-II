@@ -42,7 +42,7 @@
                                     <Insets />
                                  </GridPane.margin>
                               </ImageView>
-                              <ComboBox fx:id="comboBoxPagamento" editable="true" prefHeight="25.0" prefWidth="257.0" promptText="Escolha o metodo de pagamento" GridPane.columnIndex="1" />
+                              <ComboBox fx:id="comboBoxPagamento" prefHeight="25.0" prefWidth="257.0" promptText="Escolha o metodo de pagamento" GridPane.columnIndex="1" />
                            </children>
                         </GridPane>
                         <Pane prefHeight="342.0" prefWidth="20.0" />

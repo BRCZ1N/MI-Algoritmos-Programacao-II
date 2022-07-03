@@ -252,7 +252,7 @@ public class DaoFornecedores {
 	 * @return int listaFornecedores.size()
 	 */
 
-	public static int getQtdTotalFornecedores() {
+	public static int getQtdTotalFornecedores(ArrayList<Fornecedores> listaFornecedores) {
 
 		if (listaFornecedores.isEmpty()) {
 

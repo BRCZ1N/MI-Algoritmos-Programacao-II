@@ -61,7 +61,7 @@ public class GerenciamentoClienteController implements Initializable {
 	private ObservableList<String> observableClientesRelatorio;
 
 	private static ObservableList<Clientes> observableListaClientes;
-	
+
 	private Optional<String> input;
 
 	/**
@@ -210,19 +210,32 @@ public class GerenciamentoClienteController implements Initializable {
 
 			Relatorio.gerarRelatorioClientes(DaoClientes.getListaClientes());
 
-		}else {
-			
+		} else {
+
 			TextInputDialog textInput = new TextInputDialog();
 			textInput.getDialogPane().setContentText("Digite o id do cliente");
+			textInput.getEditor().textProperty().addListener((observable, oldValue, newValue) -> {
+				if (!newValue.matches("\\d*"))
+					textInput.getEditor().setText(newValue.replaceAll("\\D+", ""));
+			});
+
 			input = textInput.showAndWait();
-			
-			
-			if(input.isPresent()) {
-				
-				Relatorio.gerarNotaCompra(DaoClientes.getCliente(input.get()));
+
+			try {
+
+				if (input.isPresent()) {
+
+					int idCliente = Integer.parseInt(input.get());
+					Relatorio.gerarNotaCompra(DaoClientes.getCliente(input.get()));
+
+				}
+
+			} catch (NumberFormatException e) {
+
+				Alertas.erro("Preencha o campo de dado com um inteiro");
 				
 			}
-			
+
 		}
 
 	}
