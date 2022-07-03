@@ -179,9 +179,12 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	 */
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-
-		DaoFornecedores.removerDados(tabelaFornecedores.getSelectionModel().getSelectedItem().getId());
-		mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
+		boolean retorno = Alertas.confirmar("cliente");
+		if(retorno) {
+			DaoFornecedores.removerDados(tabelaFornecedores.getSelectionModel().getSelectedItem().getId());
+			mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
+		}
+		
 
 	}
 
