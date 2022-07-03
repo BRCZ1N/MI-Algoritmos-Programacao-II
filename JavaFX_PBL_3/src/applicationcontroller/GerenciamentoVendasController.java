@@ -215,9 +215,12 @@ public class GerenciamentoVendasController implements Initializable {
 
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-
-		DaoVendas.removerDados(tabelaVendas.getSelectionModel().getSelectedItem().getId());
-		mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
+		boolean retorno = Alertas.confirmar("cliente");
+		if(retorno) {
+			DaoVendas.removerDados(tabelaVendas.getSelectionModel().getSelectedItem().getId());
+			mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
+		}
+		
 
 	}
 

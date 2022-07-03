@@ -142,9 +142,12 @@ public class GerenciamentoPratosController implements Initializable {
 	
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-
-		DaoPratos.removerDados(tabelaPratos.getSelectionModel().getSelectedItem().getId());
-		mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
+		boolean retorno = Alertas.confirmar("cliente");
+		if (retorno) {
+			DaoPratos.removerDados(tabelaPratos.getSelectionModel().getSelectedItem().getId());
+			mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
+		}
+		
 		
 	}
 	/**

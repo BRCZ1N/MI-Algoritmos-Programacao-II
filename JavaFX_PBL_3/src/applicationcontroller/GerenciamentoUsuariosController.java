@@ -128,9 +128,12 @@ public class GerenciamentoUsuariosController implements Initializable {
    	 */
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-
-		DaoUsuarios.removerDados(tabelaUsuarios.getSelectionModel().getSelectedItem().getId());
-		mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
+		boolean retorno = Alertas.confirmar("cliente");
+		if(retorno) {
+			DaoUsuarios.removerDados(tabelaUsuarios.getSelectionModel().getSelectedItem().getId());
+			mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
+		}
+		
 		
 	}
 	/**

@@ -210,9 +210,12 @@ public class GerenciamentoProdutosController implements Initializable {
 	 */
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
-
-		DaoProdutos.removerDados(tabelaProdutos.getSelectionModel().getSelectedItem().getId());
-		mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
+		boolean retorno = Alertas.confirmar("cliente");
+		if (retorno){
+			DaoProdutos.removerDados(tabelaProdutos.getSelectionModel().getSelectedItem().getId());
+			mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
+		}
+		
 
 	}
 
