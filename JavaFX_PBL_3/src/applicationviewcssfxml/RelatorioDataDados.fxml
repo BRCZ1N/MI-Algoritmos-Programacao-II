@@ -34,10 +34,10 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <DatePicker fx:id="datePickerInicial" GridPane.columnIndex="1" />
-                  <DatePicker fx:id="datePickerFinal" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="De:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Até" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <DatePicker fx:id="datePickerInicial" visible="false" GridPane.columnIndex="1" />
+                  <DatePicker fx:id="datePickerFinal" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text fx:id="textInicio" strokeType="OUTSIDE" strokeWidth="0.0" text="Inicio:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Text fx:id="textFim" strokeType="OUTSIDE" strokeWidth="0.0" text="Fim:" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                </children>
             </GridPane>
             <Pane prefHeight="63.0" prefWidth="784.0" style="-fx-background-color: #343838;">

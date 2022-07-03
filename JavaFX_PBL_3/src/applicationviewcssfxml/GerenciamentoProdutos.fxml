@@ -112,7 +112,7 @@
                         </Pane>
                         <Pane prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: #343838;">
                            <children>
-                              <Button fx:id="gerarRelatorioBtn" alignment="CENTER" mnemonicParsing="false" onAction="#gerarRelatorioAcao" prefHeight="39.0" prefWidth="100.0" stylesheets="@EfeitosAnimacoes.css" text="Gerar relatório" textFill="WHITE" />
+                              <Button fx:id="gerarRelatorioBtn" alignment="CENTER" disable="true" mnemonicParsing="false" onAction="#gerarRelatorioAcao" prefHeight="39.0" prefWidth="100.0" stylesheets="@EfeitosAnimacoes.css" text="Gerar relatório" textFill="WHITE" />
                            </children>
                         </Pane>
                         <Pane prefHeight="38.0" prefWidth="70.0" style="-fx-background-color: #00b4cc;" />

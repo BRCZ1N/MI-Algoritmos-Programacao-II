@@ -81,7 +81,18 @@ public class GerenciamentoFornecedoresController implements Initializable {
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
 				exibirDetalhesBtn.setDisable(false);
+				gerarRelatorioBtn.setDisable(false);
 
+			}
+
+		});
+		
+		comboBoxRelatorios.setOnAction(e ->{
+			
+			if(!comboBoxRelatorios.getSelectionModel().isEmpty()) {
+				
+				gerarRelatorioBtn.setDisable(false);
+				
 			}
 
 		});

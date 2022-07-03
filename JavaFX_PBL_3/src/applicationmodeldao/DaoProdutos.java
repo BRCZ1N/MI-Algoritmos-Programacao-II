@@ -392,19 +392,6 @@ public class DaoProdutos {
 
 	}
 
-	public static int getQtdTotalProdutos() {
-
-		if (listaProdutos.isEmpty()) {
-
-			return 0;
-
-		} else {
-
-			return listaProdutos.size();
-
-		}
-
-	}
 	public static ArrayList<String> getListaNomeIngredientes(ArrayList<Ingredientes> listaIngredientes) {
 
 		ArrayList<String> listaNomeIngredientes = new ArrayList<String>();

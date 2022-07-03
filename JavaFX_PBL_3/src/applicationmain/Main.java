@@ -3,6 +3,7 @@ package applicationmain;
 import java.io.IOException;
 import applicationmodeldao.DaoFacade;
 import javafx.application.Application;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -37,6 +38,7 @@ public class Main extends Application {
 		
 		daoFacade.daoInicializar();
 		stage2 = new Stage();
+		stage2.initModality(Modality.APPLICATION_MODAL);
 		stage2.centerOnScreen();
 		String url = "/applicationviewcssfxml/LoginMenu.fxml";
 		FXMLLoader fxml = new FXMLLoader(getClass().getResource(url));

@@ -62,7 +62,7 @@ public class GerenciamentoVendasController implements Initializable {
 	private ObservableList<String> observableVendasRelatorio;
 
 	private static ObservableList<Vendas> observableListaVendas;
-	
+
 	private Optional<String> input;
 
 	/**
@@ -84,12 +84,24 @@ public class GerenciamentoVendasController implements Initializable {
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
 				exibirDetalhesBtn.setDisable(false);
+				gerarRelatorioBtn.setDisable(false);
+
+			}
+
+		});
+
+		comboBoxRelatorios.setOnAction(e -> {
+
+			if (!comboBoxRelatorios.getSelectionModel().isEmpty()) {
+
+				gerarRelatorioBtn.setDisable(false);
 
 			}
 
 		});
 
 	}
+
 	/**
 	 * M�todo para carregar uma comboBox de geração de relatorio
 	 */
@@ -226,7 +238,7 @@ public class GerenciamentoVendasController implements Initializable {
 	 * M�todo para gerar um relatorio do gerenciamento
 	 * 
 	 * @param event ActionEvent
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	@FXML
 	void gerarRelatorioAcao(ActionEvent event) throws IOException {
@@ -236,23 +248,30 @@ public class GerenciamentoVendasController implements Initializable {
 			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendas());
 
 		} else if (comboBoxRelatorios.getValue() == "Vendas por periodo") {
-		
-			mudarJanelaSecundaria("/applicationviewcssfxml/RelatorioDataDados.fxml");
+
 			RelatorioDataDadosController.setVisibilidadeDatePickerInicial(true);
 			RelatorioDataDadosController.setVisibilidadeDatePickerFinal(true);
-			Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPeriodo(RelatorioDataDadosController.getDataInicial(), RelatorioDataDadosController.getDataFinal()));
-			
+			RelatorioDataDadosController.setVisiblidadeTextFim(true);
+			mudarJanelaSecundaria("/applicationviewcssfxml/RelatorioDataDados.fxml");
+			RelatorioDataDadosController.resetVisible();
+			if (RelatorioDataDadosController.isRespostaAlerta()) {
+
+				Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPeriodo(
+						RelatorioDataDadosController.getDataInicial(), RelatorioDataDadosController.getDataFinal()));
+
+			}
+
 		} else {
-			
+
 			TextInputDialog textInput = new TextInputDialog();
 			textInput.getDialogPane().setContentText("Digite o id do prato");
 			input = textInput.showAndWait();
 
-			if(input.isPresent()) {
-				
+			if (input.isPresent()) {
+
 				Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPrato(input.get()));
 			}
-			
+
 		}
 
 	}
@@ -284,11 +303,12 @@ public class GerenciamentoVendasController implements Initializable {
 		Main.getStage().setScene(novaCena(urlScene));
 
 	}
-	
+
 	public void mudarJanelaSecundaria(String urlScene) throws IOException {
 
 		Main.getStage2().setScene(novaCena(urlScene));
 		Main.getStage2().showAndWait();
+		Main.getStage2().centerOnScreen();
 
 	}
 

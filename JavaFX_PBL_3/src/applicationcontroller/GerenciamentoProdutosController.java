@@ -83,6 +83,17 @@ public class GerenciamentoProdutosController implements Initializable {
 				botaoEditar.setDisable(false);
 				botaoExcluir.setDisable(false);
 				exibirDetalhesBtn.setDisable(false);
+				gerarRelatorioBtn.setDisable(false);
+
+			}
+
+		});
+
+		comboBoxRelatorios.setOnAction(e -> {
+
+			if (!comboBoxRelatorios.getSelectionModel().isEmpty()) {
+
+				gerarRelatorioBtn.setDisable(false);
 
 			}
 
@@ -210,8 +221,6 @@ public class GerenciamentoProdutosController implements Initializable {
 	@FXML
 	public void gerarRelatorioAcao(ActionEvent event) throws IOException {
 
-		Relatorio.gerarRelatorioProdutos(DaoProdutos.getListaProdutos());
-
 		if (comboBoxRelatorios.getValue() == "Produtos geral") {
 
 			Relatorio.gerarRelatorioProdutos(DaoProdutos.getListaProdutos());
@@ -220,8 +229,13 @@ public class GerenciamentoProdutosController implements Initializable {
 
 			RelatorioDataDadosController.setVisibilidadeDatePickerInicial(true);
 			mudarJanelaSecundaria("/applicationviewcssfxml/RelatorioDataDados.fxml");
-			Relatorio.gerarRelatorioProdutos(
-					DaoProdutos.gerarListaProdutosAVencer(RelatorioDataDadosController.getDataInicial()));
+			RelatorioDataDadosController.resetVisible();
+			if (RelatorioDataDadosController.isRespostaAlerta() == true) {
+
+				Relatorio.gerarRelatorioProdutos(
+						DaoProdutos.gerarListaProdutosAVencer(RelatorioDataDadosController.getDataInicial()));
+
+			}
 
 		}
 
@@ -266,13 +280,15 @@ public class GerenciamentoProdutosController implements Initializable {
 	public void mudarJanela(String urlScene) throws IOException {
 
 		Main.getStage().setScene(novaCena(urlScene));
+		Main.getStage().centerOnScreen();
 
 	}
-	
+
 	public void mudarJanelaSecundaria(String urlScene) throws IOException {
 
 		Main.getStage2().setScene(novaCena(urlScene));
 		Main.getStage2().showAndWait();
+		Main.getStage2().centerOnScreen();
 
 	}
 
