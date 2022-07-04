@@ -24,7 +24,6 @@ public class DaoPratos {
 	/**
 	 * Construtor para popular a estrutura de dados referente a pratos no menu.
 	 * 
-	 * @throws CamposNulosException
 	 */
 
 	public DaoPratos() {
@@ -340,13 +339,13 @@ public class DaoPratos {
 
 	}
 
-	/**
-	 * M�todo para obter a lista de pratos da venda
-	 *
-	 * @param idPratoVenda ArrayList<String> - lista de id's de pratos da venda
-	 * 
-	 * @return ArrayList<Pratos> pratosVenda - lista de pratos da venda
-	 */
+//	/**
+//	 * M�todo para obter a lista de pratos da venda
+//	 *
+//	 * @param idPratoVenda ArrayList<String> - lista de id's de pratos da venda
+//	 * 
+//	 * @return ArrayList<Pratos> pratosVenda - lista de pratos da venda
+//	 */
 
 //	public static ArrayList<Pratos> getListaPratosVenda(ArrayList<String> idPratoVenda) {
 //
@@ -439,6 +438,14 @@ public class DaoPratos {
 		return null;
 
 	}
+
+	/**
+	 * Verificar se o objeto possui um campo vazio
+	 * 
+	 * @param prato Pratos
+	 * @return Boolean <code>true</code> - Se existir um campo vazio
+	 *         <code>false</code> - Se não existir um campo vazio
+	 */
 
 	public static boolean pratoCampoVazio(Pratos prato) {
 

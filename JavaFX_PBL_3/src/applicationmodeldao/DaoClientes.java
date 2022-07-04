@@ -23,8 +23,7 @@ public class DaoClientes {
 
 	/**
 	 * Construtor para popular a estrutura de dados referente a clientes no menu.
-	 * 
-	 * @throws CamposNulosException
+	 *
 	 */
 
 	public DaoClientes() {
@@ -328,6 +327,13 @@ public class DaoClientes {
 
 	}
 
+	/**
+	 * M�todo de obtenção do id dos pratos das vendas feitas para determinado
+	 * cliente
+	 * 
+	 * @param listaIdVendas ArrayList<String>
+	 * @return ArrayList<String> clientesLista
+	 */
 	public static int numTotalPratosCliente(Clientes cliente) {
 
 		int numTotalPratosCliente = 0;
@@ -339,6 +345,12 @@ public class DaoClientes {
 
 	}
 
+	/**
+	 * M�todo de obtenção do número total de pratos do cliente
+	 * 
+	 * @param listaCliente ArrayList<String>
+	 * @return Integer numeroTotalPratosCliente
+	 */
 	public static int numTotalPratosClientes(ArrayList<Clientes> listaCliente) {
 
 		int numTotalPratosCliente = 0;
@@ -354,6 +366,13 @@ public class DaoClientes {
 
 	}
 
+	/**
+	 * M�todo de obtenção de um cliente a partir do seu id
+	 * 
+	 * @param idCliente String
+	 * @return Clientes clientesLista
+	 */
+
 	public static Clientes getCliente(String idCliente) {
 
 		int idExiste = buscarDado(0, listaClientes.size() - 1, idCliente);
@@ -368,6 +387,13 @@ public class DaoClientes {
 
 	}
 
+	/**
+	 * Verificar se o objeto possui um campo vazio
+	 * 
+	 * @param cliente Clientes
+	 * @return Boolean <code>true</code> - Se existir um campo vazio
+	 *         <code>false</code> - Se não existir um campo vazio
+	 */
 	public static boolean clienteCampoVazio(Clientes cliente) {
 
 		if (cliente.getNome().isBlank() || cliente.getCpf().isBlank() || cliente.getEmail().isBlank()
@@ -376,7 +402,7 @@ public class DaoClientes {
 			return true;
 
 		}
-		
+
 		return false;
 
 	}

@@ -22,8 +22,6 @@ public class DaoFornecedores {
 	/**
 	 * Construtor para popular a estrutura de dados referente a fornecedores no
 	 * menu.
-	 * 
-	 * @throws CamposNulosException
 	 */
 
 	public DaoFornecedores() {
@@ -408,6 +406,14 @@ public class DaoFornecedores {
 		return listaNomeFornecedor;
 
 	}
+
+	/**
+	 * Verificar se o objeto possui um campo vazio
+	 * 
+	 * @param fornecedor Fornecedores
+	 * @return Boolean <code>true</code> - Se existir um campo vazio
+	 *         <code>false</code> - Se não existir um campo vazio
+	 */
 
 	public static boolean fornecedorCampoVazio(Fornecedores fornecedor) {
 

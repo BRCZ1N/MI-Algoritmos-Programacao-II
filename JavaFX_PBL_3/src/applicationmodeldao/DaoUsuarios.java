@@ -24,8 +24,7 @@ public class DaoUsuarios {
 
 	/**
 	 * Construtor para popular a estrutura de dados referente a usuarios no menu.
-	 * 
-	 * @throws CamposNulosException
+	 *
 	 */
 
 	public DaoUsuarios() {
@@ -341,6 +340,13 @@ public class DaoUsuarios {
 //
 //	}
 
+	
+	/**
+	 * Verificar se o objeto possui um campo vazio
+	 * @param usuario Usuarios
+	 * @return Boolean <code>true</code> - Se existir um campo vazio
+	 *         <code>false</code> - Se não existir um campo vazio
+	 */
 	public static boolean usuarioCampoVazio(Usuarios usuario) {
 
 		if (usuario.getLoginUsuario().isBlank() || usuario.getNomeUsuario().isBlank()

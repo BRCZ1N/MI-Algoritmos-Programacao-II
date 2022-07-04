@@ -138,8 +138,6 @@ public class DaoVendas {
 			
 		}
 	
-			
-		
 
 	}
 
@@ -484,6 +482,12 @@ public class DaoVendas {
 
 	}
 
+	/**
+	 * Verificar se o objeto possui um campo vazio
+	 * @param venda Vendas
+	 * @return Boolean <code>true</code> - Se existir um campo vazio
+	 *         <code>false</code> - Se não existir um campo vazio
+	 */
 	public static boolean vendaCampoVazio(Vendas venda) {
 
 		if (venda.getListaIdItens().isEmpty() || venda.getTipoPagamento() == null) {

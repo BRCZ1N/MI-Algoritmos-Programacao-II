@@ -27,7 +27,6 @@ public class DaoProdutos {
 	/**
 	 * Construtor para popular a estrutura de dados referente a produtos no menu.
 	 * 
-	 * @throws CamposNulosException
 	 */
 
 	public DaoProdutos() {
@@ -123,7 +122,7 @@ public class DaoProdutos {
 	 * 
 	 * @param produto Produtos
 	 * @throws EntidadeComValoresNegativoException
-	 * @throws CamposNulosException 
+	 * @throws CamposNulosException
 	 * 
 	 */
 
@@ -136,9 +135,9 @@ public class DaoProdutos {
 			idSeq++;
 
 		} else if (produtoCampoVazio(produto)) {
-			
+
 			throw new CamposNulosException();
-			
+
 		} else {
 
 			throw new EntidadeComValoresNegativoException();
@@ -363,6 +362,13 @@ public class DaoProdutos {
 
 	}
 
+	/**
+	 * M�todo para gerar uma lista de id's de produtos
+	 * 
+	 * @param listaProdutos ArrayList<Produtos> - lista de produtos
+	 * @return ArrayList<String> listaIdProdutos - lista de id's de produtos
+	 */
+
 	public static ArrayList<String> gerarListaIdProdutos(ArrayList<Produtos> listaProdutos) {
 
 		ArrayList<String> listaIdProdutos = new ArrayList<String>();
@@ -376,6 +382,13 @@ public class DaoProdutos {
 		return listaIdProdutos;
 
 	}
+
+	/**
+	 * M�todo para gerar uma lista de produtos a partir de uma data
+	 * 
+	 * @param dataInicial LocalDate - data inicial da referencia da pesquisa
+	 * @return ArrayList<Produtos> listaProdutosAVencer - lista de id's de produtos
+	 */
 
 	public static ArrayList<Produtos> gerarListaProdutosAVencer(LocalDate dataInicial) {
 
@@ -395,6 +408,13 @@ public class DaoProdutos {
 
 	}
 
+	/**
+	 * M�todo para gerar uma lista de produtos
+	 * 
+	 * @param listaIdProdutos ArrayList<String> - lista de produtos
+	 * @return ArrayList<Produtos> listaProdutos - lista de id's de produtos
+	 */
+
 	public static ArrayList<Produtos> gerarListaProdutos(ArrayList<String> listaIdProdutos) {
 
 		ArrayList<Produtos> listaProdutos = new ArrayList<Produtos>();
@@ -407,6 +427,13 @@ public class DaoProdutos {
 		return listaProdutos;
 
 	}
+
+	/**
+	 * M�todo para gerar uma lista de nomes de Ingredientes
+	 * 
+	 * @param listaIngredientes ArrayList<Ingredientes> - lista de ingredientes
+	 * @return ArrayList<String> listaNomeIngredientes - lista com nome dos produtos
+	 */
 
 	public static ArrayList<String> getListaNomeIngredientes(ArrayList<Ingredientes> listaIngredientes) {
 
@@ -422,6 +449,12 @@ public class DaoProdutos {
 
 	}
 
+	/**
+	 * M�todo para selecionar um produto a partir de um id
+	 * 
+	 * @param idProduto String - id do produto
+	 * @return Produtos produto - objeto produto
+	 */
 	public static Produtos getProduto(String idProduto) {
 
 		Produtos produto = new Produtos();
@@ -437,6 +470,14 @@ public class DaoProdutos {
 		return produto;
 
 	}
+
+	/**
+	 * Verificar se o objeto possui um campo vazio
+	 * 
+	 * @param produto Produtos
+	 * @return Boolean <code>true</code> - Se existir um campo vazio
+	 *         <code>false</code> - Se não existir um campo vazio
+	 */
 
 	public static boolean produtoCampoVazio(Produtos produto) {
 
