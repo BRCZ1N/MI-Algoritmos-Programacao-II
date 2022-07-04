@@ -73,19 +73,6 @@ public class Vendas {
 		return diaHorario;
 	}
 
-//	/**
-//	 * M�todo para formatar a data de vendas
-//	 * 
-//	 * @return String diaHString
-//	 */
-//	public String getDiaHorarioString() {
-//
-//		DateFormat dataH = DateFormat.getInstance();
-//		String diaHString = dataH.format(this.diaHorario.getTime());
-//		return diaHString;
-//
-//	}
-
 	/**
 	 * M�todo para retorno da lista de itens da venda.
 	 * 
