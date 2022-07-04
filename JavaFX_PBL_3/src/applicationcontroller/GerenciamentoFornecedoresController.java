@@ -1,6 +1,7 @@
 package applicationcontroller;
 
 import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -25,6 +26,15 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
+
+/**
+ * Classe controlador do gerenciamento de fornecedores
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
 
 public class GerenciamentoFornecedoresController implements Initializable {
 

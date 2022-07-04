@@ -1,6 +1,7 @@
 package applicationcontroller;
 
 import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 
@@ -16,6 +17,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
+
+/**
+ * Classe controlador do menu de login
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
+
 
 public class LoginMenuController {
 	@FXML

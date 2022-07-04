@@ -21,6 +21,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+/**
+ * Classe controlador da tela de detalhes do fornecedor
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
 public class TelasDetalhesFornecedorController implements Initializable {
     @FXML
     private TableColumn<Produtos, Double> columnProdutosFornecidosId;

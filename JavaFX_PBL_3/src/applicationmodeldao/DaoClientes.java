@@ -99,8 +99,6 @@ public class DaoClientes {
 	 * @param chaveId String
 	 * @throws CpfJaExisteException
 	 * @throws CamposNulosException
-	 * @throws IdInvalidoException
-	 * @throws VendaInexistenteException
 	 */
 	public static void addEditDados(Clientes cliente, String chaveId)
 			throws CpfJaExisteException, CamposNulosException {
@@ -123,7 +121,6 @@ public class DaoClientes {
 	 * @param cliente Clientes- Objeto do tipo Clientes
 	 * @throws CpfJaExisteException
 	 * @throws CamposNulosException
-	 * @throws IdInvalidoException
 	 */
 	private static void addDados(Clientes cliente) throws CpfJaExisteException, CamposNulosException {
 
@@ -153,7 +150,6 @@ public class DaoClientes {
 	 * @param clienteEditado Clientes - Cliente a ser editado
 	 * @throws CpfJaExisteException
 	 * @throws CamposNulosException
-	 * @throws IdInvalidoException
 	 */
 
 	private static void editarDados(Clientes clienteEditado, String chaveId)
@@ -199,13 +195,13 @@ public class DaoClientes {
 	}
 
 	/**
-	 * M�todo de busca bin�ria recursiva pelo cpf, que retorna a posi��o do objeto
-	 * caso exista na lista.
+	 * M�todo de busca do cpf, que retorna a posi��o do objeto caso exista na lista.
 	 * 
-	 * @param inicio  Integer - Index inicial da lista
-	 * @param fim     Integer - Index final da lista
-	 * @param chaveId String - Id a ser buscado
-	 * @return Integer - Posi��o do objeto buscado na lista
+	 * @param inicio Integer - Index inicial da lista
+	 * @param fim    Integer - Index final da lista
+	 * @param cpf    String - Id a ser buscado
+	 * @return Boolean <code>true</code> Se o cpf existir na lista de fornecedores
+	 *         <code>false</code> Se o cpf não existir na lista de fornecedores
 	 */
 	public static boolean buscarCpf(int inicio, int fim, String cpf) {
 
@@ -328,11 +324,10 @@ public class DaoClientes {
 	}
 
 	/**
-	 * M�todo de obtenção do id dos pratos das vendas feitas para determinado
-	 * cliente
+	 * M�todo de obtenção do número total de pratos do cliente
 	 * 
-	 * @param listaIdVendas ArrayList<String>
-	 * @return ArrayList<String> clientesLista
+	 * @param cliente Cliente
+	 * @return Integer clientesLista
 	 */
 	public static int numTotalPratosCliente(Clientes cliente) {
 
@@ -346,7 +341,7 @@ public class DaoClientes {
 	}
 
 	/**
-	 * M�todo de obtenção do número total de pratos do cliente
+	 * M�todo de obtenção do número total de pratos dos clientes
 	 * 
 	 * @param listaCliente ArrayList<String>
 	 * @return Integer numeroTotalPratosCliente

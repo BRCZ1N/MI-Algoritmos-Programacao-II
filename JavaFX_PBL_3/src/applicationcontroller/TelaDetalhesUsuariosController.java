@@ -1,6 +1,7 @@
 package applicationcontroller;
 
 import java.io.IOException;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -16,6 +17,15 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+
+/**
+ * Classe controlador da tela de detalhes do usuario
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
 public class TelaDetalhesUsuariosController implements Initializable {
 
     @FXML

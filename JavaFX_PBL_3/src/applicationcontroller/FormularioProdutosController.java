@@ -27,6 +27,15 @@ import javafx.event.ActionEvent;
 
 import javafx.scene.control.DatePicker;
 
+/**
+ * Classe controlador do formulario de produtos
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
+
 public class FormularioProdutosController implements Initializable {
 
 	@FXML

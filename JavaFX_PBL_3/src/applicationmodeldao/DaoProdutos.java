@@ -100,7 +100,6 @@ public class DaoProdutos {
 	 * @param chaveId String
 	 * @throws EntidadeComValoresNegativoException
 	 * @throws CamposNulosException
-	 * @throws IdInvalidoException
 	 */
 	public static void addEditDados(Produtos produto, String chaveId)
 			throws EntidadeComValoresNegativoException, CamposNulosException {
@@ -150,7 +149,6 @@ public class DaoProdutos {
 	 * M�todo para remover um produto na lista de produtos.
 	 * 
 	 * @param chaveId String - Id para remover
-	 * @throws IdInvalidoException
 	 */
 
 	public static void removerDados(String chaveId) {
@@ -170,7 +168,6 @@ public class DaoProdutos {
 	 * @param produtoEditado Produtos - Objeto do tipo Produtos
 	 * @param chaveId        String - Id para editar
 	 * @throws CamposNulosException
-	 * @throws IdInvalidoException
 	 * @throws EntidadeComValoresNegativosException
 	 */
 
@@ -266,7 +263,7 @@ public class DaoProdutos {
 
 	}
 
-	/*
+	/**
 	 * M�todo para o retorno dos nomes dos produtos que est�o no prato
 	 * 
 	 * @param listaIdProdutos Arraylist<String> - lista com o Id dos produtos

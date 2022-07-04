@@ -159,8 +159,6 @@ public class DaoUsuarios {
 	 * 
 	 * @param chaveId        String - Id para editar
 	 * @param usuarioEditado Usuarios - Usu�rio a ser editado
-	 * 
-	 * @throws IdInvalidoException
 	 * @throws LoginExistenteException
 	 * @throws CamposNulosException
 	 */
@@ -340,9 +338,9 @@ public class DaoUsuarios {
 //
 //	}
 
-	
 	/**
 	 * Verificar se o objeto possui um campo vazio
+	 * 
 	 * @param usuario Usuarios
 	 * @return Boolean <code>true</code> - Se existir um campo vazio
 	 *         <code>false</code> - Se não existir um campo vazio

@@ -247,7 +247,8 @@ public class DaoFornecedores {
 	 * M�todo para obter a quantidade total de fornecedores se a lista não estiver
 	 * vazia
 	 * 
-	 * @return int listaFornecedores.size()
+	 * @param listaFornecedores ArrayList<Fornecedores> - lista de fornecedores
+	 * @return Integer
 	 */
 
 	public static int getQtdTotalFornecedores(ArrayList<Fornecedores> listaFornecedores) {
@@ -271,6 +272,7 @@ public class DaoFornecedores {
 	 * @param inicio  Integer - Index inicial da lista
 	 * @param fim     Integer - Index final da lista
 	 * @param chaveId String - Id a ser buscado
+	 * @param chaveId ArrayList<Fornecedores> - lista de referencia
 	 * @return Integer - Posi��o do objeto buscado na lista
 	 */
 

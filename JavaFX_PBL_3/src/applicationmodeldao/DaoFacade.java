@@ -39,7 +39,7 @@ public class DaoFacade {
 	/**
 	 * Metodo para adição ou edição de um cliente por meio do facade
 	 * 
-	 * @param nome               String - nome do cliente
+	 * @param id                 String - Id do cliente
 	 * @param cpf                String - Cpf do cliente
 	 * @param email              String - Email do cliente
 	 * @param telefone           String - telefone do cliente
@@ -59,7 +59,8 @@ public class DaoFacade {
 	/**
 	 * Metodo para adição ou edição de um usuario por meio do facade
 	 * 
-	 * @param loginUsuario String - Nome do fornecedor
+	 * @param id           String - Id do usuario
+	 * @param loginUsuario String - Nome do usuario
 	 * @param senhaUsuario String - Senha do usuario
 	 * @param nomeUsuario  String - Nome do usuario
 	 * @throws CamposNulosException
@@ -75,6 +76,7 @@ public class DaoFacade {
 	/**
 	 * Metodo para adição ou edição de um fornecedores por meio do facade
 	 * 
+	 * @param id                   String - Id do fornecedor
 	 * @param cnpj                 String - Cnpj do fornecedor
 	 * @param nome                 String - Nome do fornecedor
 	 * @param endereco             String - Endere�o do fornecedor
@@ -92,6 +94,7 @@ public class DaoFacade {
 	/**
 	 * Metodo para adição ou edição de um produtos por meio do facade
 	 * 
+	 * @param id         String - Id do produto
 	 * @param nome       String - Nome do produto.
 	 * @param validade   String - Validade do produto.
 	 * @param preco      Double - Pre�o do produto
@@ -109,6 +112,7 @@ public class DaoFacade {
 	/**
 	 * Metodo para adição ou edição de um prato por meio do facade
 	 * 
+	 * @param id              String - Id do prato
 	 * @param nome            String - Nome do prato
 	 * @param descricao       String - Descri��o do prato
 	 * @param preco           Double - Pre�o do prato
@@ -128,15 +132,14 @@ public class DaoFacade {
 	/**
 	 * Metodo para adição ou edição de uma venda por meio do facade
 	 * 
-	 * @param precoTotal    double
-	 * @param diaHorario    LocalDateTime
+	 * @param id            String - Id da venda
 	 * @param tipoPagamento String - Tipo de pagamento da venda.
 	 * @param listaIdItens  ArrayList<String> - Itens da venda
 	 * @throws CamposNulosException
 	 */
 
-	public static void addEditVendas(String id, ArrayList<String> listaIdItens,
-			String tipoPagamento) throws EstoqueInsuficienteException, CamposNulosException {
+	public static void addEditVendas(String id, ArrayList<String> listaIdItens, String tipoPagamento)
+			throws EstoqueInsuficienteException, CamposNulosException {
 
 		Vendas venda = new Vendas(listaIdItens, tipoPagamento);
 		DaoVendas.addEditDados(venda, id);
@@ -146,7 +149,7 @@ public class DaoFacade {
 	/**
 	 * M�todo para remover um cliente na lista de clientes por meio do facade
 	 * 
-	 * @param chaveId String - Id para remover
+	 * @param id String - Id para remover
 	 * 
 	 * 
 	 */
@@ -157,7 +160,7 @@ public class DaoFacade {
 	/**
 	 * M�todo para remover um usuario na lista de usuarios por meio do facade
 	 * 
-	 * @param chaveId String - Id para remover
+	 * @param id String - Id para remover
 	 * 
 	 * 
 	 */
@@ -168,7 +171,7 @@ public class DaoFacade {
 	/**
 	 * M�todo para remover um fornecedor na lista de fornecedores por meio do facade
 	 * 
-	 * @param chaveId String - Id para remover
+	 * @param id String - Id para remover
 	 * 
 	 * 
 	 */
@@ -179,7 +182,7 @@ public class DaoFacade {
 	/**
 	 * M�todo para remover um produto na lista de produtos por meio do facade
 	 * 
-	 * @param chaveId String - Id para remover
+	 * @param id String - Id para remover
 	 * 
 	 * 
 	 */
@@ -190,7 +193,7 @@ public class DaoFacade {
 	/**
 	 * M�todo para remover um prato na lista de pratos por meio do facade
 	 * 
-	 * @param chaveId String - Id para remover
+	 * @param id String - Id para remover
 	 * 
 	 * 
 	 */
@@ -201,7 +204,7 @@ public class DaoFacade {
 	/**
 	 * M�todo para remover uma venda na lista de vendas por meio do facade
 	 * 
-	 * @param chaveId String - Id para remover
+	 * @param id String - Id para remover
 	 * 
 	 * 
 	 */

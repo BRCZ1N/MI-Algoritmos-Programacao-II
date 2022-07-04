@@ -98,10 +98,8 @@ public class DaoPratos {
 	 * 
 	 * @param prato   Pratos
 	 * @param chaveId String
-	 * @throws IdInvalidoException
 	 * @throws EntidadeComValoresNegativoException
 	 * @throws CamposNulosException
-	 * @throws PratoComProdutoInvalidoException
 	 */
 	public static void addEditDados(Pratos prato, String chaveId)
 			throws EntidadeComValoresNegativoException, CamposNulosException {
@@ -124,7 +122,6 @@ public class DaoPratos {
 	 * @param prato Pratos
 	 * @throws EntidadeComValoresNegativoException
 	 * @throws CamposNulosException
-	 * @throws PratoComProdutoInvalidoException
 	 */
 
 	private static void addDados(Pratos prato) throws EntidadeComValoresNegativoException, CamposNulosException {
@@ -171,8 +168,6 @@ public class DaoPratos {
 	 * @param chaveId      String - Id para editar
 	 * @throws EntidadeComValoresNegativoException
 	 * @throws CamposNulosException
-	 * @throws IdInvalidoException
-	 * @throws PratoComProdutoInvalidoException
 	 */
 
 	private static void editarDados(Pratos pratoEditado, String chaveId)
@@ -374,10 +369,11 @@ public class DaoPratos {
 //		return listaIdPratos;
 //		
 //	}
+	
 	/**
 	 * M�todo para obter a lista de pratos
 	 * 
-	 * @param listIdPratos ArrayList<String> - lista de id's de pratos
+	 * @param listaIdPratos ArrayList<String> - lista de id's de pratos
 	 * 
 	 * @return ArrayList<Pratos> pratos - lista de pratos
 	 */

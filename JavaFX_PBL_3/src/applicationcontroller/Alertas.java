@@ -5,6 +5,15 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
+/**
+ * Classe para alertas do sistema
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
+
 public class Alertas {
 	/**
 	 * Metodo que ira exibir um Balão que representa algum erro previsto pelo programa 
@@ -20,7 +29,6 @@ public class Alertas {
 	}
 	/**
 	 * Metodo que ira exibir um Balão que representa a solicitação de confirmação do usuario 
-	 *@param tipo String - Tipo de classe que pedir a confirmação
 	 *@return  Boolean <code>true</code> Se o botão representativo do sim for acionado
 	 *         <code>false</code> Se o botão representativo do não for acionado
 	 */

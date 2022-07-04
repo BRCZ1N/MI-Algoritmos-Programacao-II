@@ -27,6 +27,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
+/**
+ * Classe controlador do formulario de fornecedores
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
+
 public class FormularioFornecedoresController implements Initializable {
 	@FXML
 	private TextField textFNome;

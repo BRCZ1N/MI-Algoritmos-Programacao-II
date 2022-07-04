@@ -1,6 +1,7 @@
 package applicationcontroller;
 
 import javafx.fxml.FXML;
+
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -19,6 +20,15 @@ import applicationmodeldao.DaoFacade;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+
+/**
+ * Classe controlador do formulario de usuarios
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
 
 public class FormularioUsuariosController implements Initializable {
 	@FXML

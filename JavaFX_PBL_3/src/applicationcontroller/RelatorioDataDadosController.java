@@ -1,6 +1,7 @@
 package applicationcontroller;
 
 import java.net.URL;
+
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -12,17 +13,26 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.text.Text;
 
+/**
+ * Classe controlador do dados de data e horário
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
+
 public class RelatorioDataDadosController implements Initializable {
 
 	@FXML
 	private Button botaoCancelar;
-	
+
 	@FXML
 	private Button botaoConfirmar;
-	
+
 	@FXML
 	private DatePicker datePickerFinal;
-	
+
 	@FXML
 	private DatePicker datePickerInicial;
 
@@ -41,16 +51,18 @@ public class RelatorioDataDadosController implements Initializable {
 	private static boolean visibilidadeDatePickerInicial = false;
 
 	private static boolean visibilidadeDatePickerFinal = false;
-	
+
 	private static boolean visibilidadeTextFim = false;
+
 	/**
 	 * M�todo para obter o metodo de visibilidadde de um textField
 	 * 
-	 * @return  boolean visibilidadeTextFim
+	 * @return boolean visibilidadeTextFim
 	 */
 	public static boolean isVisibilidadeTextFim() {
 		return visibilidadeTextFim;
 	}
+
 	/**
 	 * M�todo para setar a visibilidade de um textField
 	 * 
@@ -59,16 +71,18 @@ public class RelatorioDataDadosController implements Initializable {
 	public static void setVisiblidadeTextFim(boolean visiblidadeTextFim) {
 		RelatorioDataDadosController.visibilidadeTextFim = visiblidadeTextFim;
 	}
+
 	/**
 	 * M�todo para obter o metodo de visibilidadde de um datePicker
 	 * 
-	 * @return  boolean visibilidadeDatePickerFinal
+	 * @return boolean visibilidadeDatePickerFinal
 	 */
 	public static boolean isVisibilidadeDatePickerFinal() {
 
 		return visibilidadeDatePickerFinal;
 
 	}
+
 	/**
 	 * M�todo para setar a visibilidade de um datePicker
 	 * 
@@ -79,30 +93,33 @@ public class RelatorioDataDadosController implements Initializable {
 		RelatorioDataDadosController.visibilidadeDatePickerFinal = visibilidadeDatePickerFinal;
 
 	}
+
 	/**
 	 * M�todo para obter o metodo de visibilidadde de um datePicker
 	 * 
-	 * @return  boolean visibilidadeDatePickerFinal
+	 * @return boolean visibilidadeDatePickerFinal
 	 */
 	public static boolean isVisibilidadeDatePickerInicial() {
 
 		return visibilidadeDatePickerInicial;
 
 	}
+
 	/**
 	 * M�todo para setar a visibilidade de um datePicker
 	 * 
-	 * @param visibilidadeDatePickerFinal
+	 * @param boolean visibilidadeDatePickerFinal
 	 */
 	public static void setVisibilidadeDatePickerInicial(boolean visibilidadeDatePickerInicial) {
 
 		RelatorioDataDadosController.visibilidadeDatePickerInicial = visibilidadeDatePickerInicial;
 
 	}
+
 	/**
 	 * M�todo para obter o uma resposta de alerta
 	 * 
-	 * @return  boolean resposta
+	 * @return boolean resposta
 	 */
 	public static boolean isRespostaAlerta() {
 		return resposta;
@@ -193,8 +210,10 @@ public class RelatorioDataDadosController implements Initializable {
 		Main.getStage2().close();
 
 	}
+
 	/**
-	 * M�todo para resetar a visibilidade de datePickerInicial, datePickerFinal e TextFim
+	 * M�todo para resetar a visibilidade de datePickerInicial, datePickerFinal e
+	 * TextFim
 	 */
 	public static void resetVisible() {
 
@@ -203,8 +222,10 @@ public class RelatorioDataDadosController implements Initializable {
 		visibilidadeTextFim = false;
 
 	}
+
 	/**
-	 * M�todo para inicializar o a tela de criação do relatorio de vendas por periodo
+	 * M�todo para inicializar o a tela de criação do relatorio de vendas por
+	 * periodo
 	 * 
 	 * @param arg0 URL
 	 * @param arg1 ResourceBundle

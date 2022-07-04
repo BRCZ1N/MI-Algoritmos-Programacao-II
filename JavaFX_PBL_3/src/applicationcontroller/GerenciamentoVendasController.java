@@ -30,6 +30,14 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TableColumn;
 
+/**
+ * Classe controlador do gerenciamento de vendas
+ * 
+ * @author Bruno Campos de Oliveira Rocha
+ * @author Alex da Fonseca Dantas Junior
+ * @version 1.0
+ * @since 2022
+ */
 public class GerenciamentoVendasController implements Initializable {
 
 	@FXML

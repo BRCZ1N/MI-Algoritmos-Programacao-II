@@ -95,10 +95,8 @@ public class DaoVendas {
 	 * 
 	 * @param venda   Vendas
 	 * @param chaveId String
-	 * @throws IdInvalidoException
 	 * @throws EstoqueInsuficienteException
 	 * @throws CamposNulosException 
-	 * @throws VendaComPratoInvalidoException
 	 */
 	public static void addEditDados(Vendas venda, String chaveId) throws EstoqueInsuficienteException, CamposNulosException {
 
@@ -120,7 +118,6 @@ public class DaoVendas {
 	 * @param venda Vendas - Objeto do tipo Vendas.
 	 * @throws EstoqueInsuficienteException
 	 * @throws CamposNulosException 
-	 * @throws VendaComPratoInvalidoException
 	 */
 
 	private static void addDados(Vendas venda) throws EstoqueInsuficienteException, CamposNulosException {
@@ -146,7 +143,6 @@ public class DaoVendas {
 	 * 
 	 * @param chaveId String - Id para remover
 	 * 
-	 * @throws IdInvalidoException
 	 */
 
 	public static void removerDados(String chaveId) {
@@ -166,7 +162,6 @@ public class DaoVendas {
 	 * @param vendaEditada Vendas - Objeto do tipo Vendas
 	 * @param chaveId      String - Id para editar
 	 * @throws CamposNulosException 
-	 * @throws IdInvalidoException
 	 */
 
 	private static void editarDados(Vendas vendaEditada, String chaveId) throws CamposNulosException {
@@ -460,9 +455,9 @@ public class DaoVendas {
 	}
 
 	/**
-	 * metodo que ira obter uma lista de vendas do tipo Venda
+	 * Metodo que ira obter uma venda a partir do id de uma venda
 	 * 
-	 * @param idPrato String - id do prato
+	 * @param idVenda String - id do prato
 	 * @return Vendas venda
 	 */
 	public static Vendas getVenda(String idVenda) {
