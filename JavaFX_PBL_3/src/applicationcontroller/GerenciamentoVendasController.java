@@ -271,8 +271,7 @@ public class GerenciamentoVendasController implements Initializable {
 			RelatorioDataDadosController.resetVisible();
 			if (RelatorioDataDadosController.isRespostaAlerta()) {
 
-				Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPeriodo(
-						RelatorioDataDadosController.getDataInicial(), RelatorioDataDadosController.getDataFinal()));
+				Relatorio.gerarRelatorioVendas(DaoVendas.getListaVendasPeriodo(RelatorioDataDadosController.getDataInicial(), RelatorioDataDadosController.getDataFinal()));
 
 			}
 

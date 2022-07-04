@@ -373,7 +373,7 @@ public class Relatorio {
 
 		try {
 
-			if (idClientesPdf >= 1) {
+			if (idClienteNotaCompraPdf >= 1) {
 
 				PdfWriter.getInstance(d, new FileOutputStream("NotaCompraCliente(" + idClienteNotaCompraPdf + ").pdf"));
 
@@ -485,7 +485,7 @@ public class Relatorio {
 			if (idClienteNotaCompraPdf >= 1) {
 
 				Desktop.getDesktop()
-						.open(new File("NotaCompraCliente(" + idClientesPdf + ").pdf"));
+						.open(new File("NotaCompraCliente(" + idClienteNotaCompraPdf + ").pdf"));
 
 			} else {
 
@@ -606,7 +606,6 @@ public class Relatorio {
 
 		} catch (Exception e) {
 			
-			System.out.println(e.getMessage());
 
 		}
 

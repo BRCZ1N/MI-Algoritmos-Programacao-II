@@ -450,7 +450,7 @@ public class DaoVendas {
 			}
 
 		}
-		return listaVendas;
+		return listaVendasPrato;
 
 	}
 

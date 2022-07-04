@@ -114,7 +114,7 @@ public class GerenciamentoClienteController implements Initializable {
 	public void carregarComboBoxRelatorio() {
 
 		listaClientesRelatorio.add("Clientes geral");
-		listaClientesRelatorio.add("Notas das compras do cliente");
+		listaClientesRelatorio.add("Nota das compras do cliente");
 
 		observableClientesRelatorio = FXCollections.observableArrayList(listaClientesRelatorio);
 
