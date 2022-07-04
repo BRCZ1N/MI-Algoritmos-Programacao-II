@@ -22,7 +22,7 @@ import applicationexeceptions.CpfJaExisteException;
 import applicationmain.Main;
 import applicationmodel.Clientes;
 import applicationmodel.Vendas;
-import applicationmodeldao.DaoClientes;
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoVendas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,8 +58,6 @@ public class FormularioClientesController implements Initializable {
 	private TableView<Vendas> tabelaVendas;
 	@FXML
 	private TableView<Vendas> tabelaCompraCliente;
-
-	private ArrayList<String> historicoCompras = new ArrayList<String>();
 
 	private ObservableList<Vendas> observableVendaSistema;
 
@@ -110,27 +108,20 @@ public class FormularioClientesController implements Initializable {
 	@FXML
 	public void salvarClienteAcao(ActionEvent event) throws IOException {
 
-		Clientes clienteNovo = new Clientes(textFNome.getText(), textFCpf.getText(), textFEmail.getText(),
-				textFTelefone.getText(), historicoCompras);
-
 		try {
+			
 			if (clienteAtual == null) {
 
-				boolean retorno = Alertas.confirmar();
-				if (retorno) {
-
-					DaoClientes.addEditDados(clienteNovo, null);
-
-				}
+				DaoFacade.addEditCliente(null, textFNome.getText(), textFCpf.getText(), textFEmail.getText(),
+						textFTelefone.getText(), DaoVendas.getListaIdVenda(listaVendasCarrinho));
+				// DaoClientes.addEditDados(clienteNovo, null);
 
 			} else {
 
-				boolean retorno = Alertas.confirmar();
-				if (retorno) {
+				DaoFacade.addEditCliente(clienteAtual.getId(), textFNome.getText(), textFCpf.getText(),
+						textFEmail.getText(), textFTelefone.getText(), DaoVendas.getListaIdVenda(listaVendasCarrinho));
+				// DaoClientes.addEditDados(clienteNovo, clienteAtual.getId());
 
-					DaoClientes.addEditDados(clienteNovo, clienteAtual.getId());
-
-				}
 			}
 
 			mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");

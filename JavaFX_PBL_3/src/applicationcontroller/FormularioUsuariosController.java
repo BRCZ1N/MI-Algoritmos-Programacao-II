@@ -15,7 +15,7 @@ import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.LoginExistenteException;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
-import applicationmodeldao.DaoUsuarios;
+import applicationmodeldao.DaoFacade;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -81,20 +81,17 @@ public class FormularioUsuariosController implements Initializable {
 	@FXML
 	public void salvarUsuarioAcao(ActionEvent event) throws IOException, LoginExistenteException {
 
-		Usuarios usuarioNovo = new Usuarios(textFLogin.getText(), textFSenha.getText(), textFNome.getText());
 		try {
 			if (usuarioAtual == null) {
-				boolean retorno = Alertas.confirmar();
 
-				if (retorno) {
-
-					DaoUsuarios.addEditDados(usuarioNovo, null);
-
-				}
+				DaoFacade.addEditUsuarios(null, textFLogin.getText(), textFSenha.getText(), textFNome.getText());
+				// DaoUsuarios.addEditDados(usuarioNovo, null);
 
 			} else {
 
-				DaoUsuarios.addEditDados(usuarioNovo, usuarioAtual.getId());
+				DaoFacade.addEditUsuarios(usuarioAtual.getId(), textFLogin.getText(), textFSenha.getText(),
+						textFNome.getText());
+				// DaoUsuarios.addEditDados(usuarioNovo, usuarioAtual.getId());
 
 			}
 

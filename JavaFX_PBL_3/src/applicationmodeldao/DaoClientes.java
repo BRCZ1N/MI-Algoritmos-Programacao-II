@@ -371,12 +371,12 @@ public class DaoClientes {
 	public static boolean clienteCampoVazio(Clientes cliente) {
 
 		if (cliente.getNome().isBlank() || cliente.getCpf().isBlank() || cliente.getEmail().isBlank()
-				|| cliente.getIdHistoricoCompras().isEmpty()|| cliente.getTelefone().isBlank()) {
+				|| cliente.getIdHistoricoCompras().isEmpty() || cliente.getTelefone().isBlank()) {
 
 			return true;
 
 		}
-
+		
 		return false;
 
 	}

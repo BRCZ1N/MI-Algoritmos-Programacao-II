@@ -22,6 +22,7 @@ import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Relatorio;
 import applicationmodel.Vendas;
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoVendas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -216,8 +217,11 @@ public class GerenciamentoVendasController implements Initializable {
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 		boolean retorno = Alertas.confirmar();
 		if(retorno) {
-			DaoVendas.removerDados(tabelaVendas.getSelectionModel().getSelectedItem().getId());
+			
+			DaoFacade.removerDadosVendas(tabelaVendas.getSelectionModel().getSelectedItem().getId());
+			//DaoVendas.removerDados(tabelaVendas.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoVendas.fxml");
+			
 		}
 		
 

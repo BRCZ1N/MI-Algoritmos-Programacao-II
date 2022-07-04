@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Usuarios;
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoUsuarios;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -130,8 +131,11 @@ public class GerenciamentoUsuariosController implements Initializable {
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 		boolean retorno = Alertas.confirmar();
 		if(retorno) {
-			DaoUsuarios.removerDados(tabelaUsuarios.getSelectionModel().getSelectedItem().getId());
+			
+			DaoFacade.removerDadosUsuarios(tabelaUsuarios.getSelectionModel().getSelectedItem().getId());
+			//DaoUsuarios.removerDados(tabelaUsuarios.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoUsuarios.fxml");
+			
 		}
 		
 		

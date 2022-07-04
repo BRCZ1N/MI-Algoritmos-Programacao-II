@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
 import applicationmodel.Relatorio;
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoFornecedores;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -180,8 +181,11 @@ public class GerenciamentoFornecedoresController implements Initializable {
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 		boolean retorno = Alertas.confirmar();
 		if (retorno) {
-			DaoFornecedores.removerDados(tabelaFornecedores.getSelectionModel().getSelectedItem().getId());
+			
+			DaoFacade.removerDadosFornecedores(tabelaFornecedores.getSelectionModel().getSelectedItem().getId());
+			//DaoFornecedores.removerDados(tabelaFornecedores.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoFornecedores.fxml");
+			
 		}
 
 	}

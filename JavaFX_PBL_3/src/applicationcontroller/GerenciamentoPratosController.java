@@ -14,6 +14,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Pratos;
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoPratos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -144,8 +145,11 @@ public class GerenciamentoPratosController implements Initializable {
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 		boolean retorno = Alertas.confirmar();
 		if (retorno) {
-			DaoPratos.removerDados(tabelaPratos.getSelectionModel().getSelectedItem().getId());
+			
+			DaoFacade.removerDadosPratos(tabelaPratos.getSelectionModel().getSelectedItem().getId());
+			//DaoPratos.removerDados(tabelaPratos.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoPratos.fxml");
+			
 		}
 		
 		

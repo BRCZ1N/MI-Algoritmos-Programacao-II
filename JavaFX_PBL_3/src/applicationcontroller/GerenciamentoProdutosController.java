@@ -18,6 +18,7 @@ import java.util.ResourceBundle;
 import applicationmain.Main;
 import applicationmodel.Produtos;
 import applicationmodel.Relatorio;
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoProdutos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -211,8 +212,11 @@ public class GerenciamentoProdutosController implements Initializable {
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 		boolean retorno = Alertas.confirmar();
 		if (retorno){
-			DaoProdutos.removerDados(tabelaProdutos.getSelectionModel().getSelectedItem().getId());
+			
+			DaoFacade.removerDadosProdutos(tabelaProdutos.getSelectionModel().getSelectedItem().getId());
+			//DaoProdutos.removerDados(tabelaProdutos.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoProdutos.fxml");
+			
 		}
 		
 

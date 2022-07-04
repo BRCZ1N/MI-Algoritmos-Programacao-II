@@ -25,7 +25,7 @@ import applicationmain.Main;
 import applicationmodel.Ingredientes;
 import applicationmodel.Pratos;
 import applicationmodel.Produtos;
-import applicationmodeldao.DaoPratos;
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoProdutos;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -235,22 +235,17 @@ public class FormularioPratosController implements Initializable {
 
 		try {
 
-			Pratos pratoNovo = new Pratos(textFNome.getText(), textFDescricao.getText(),
-					Double.parseDouble(textFPreco.getText()), textFCategoria.getText(), listaProdutosCarrinho);
-
 			if (pratoAtual == null) {
 
-				boolean retorno = Alertas.confirmar();
-
-				if (retorno) {
-
-					DaoPratos.addEditDados(pratoNovo, null);
-
-				}
+				DaoFacade.addEditPratos(null, textFNome.getText(), textFDescricao.getText(),
+						Double.parseDouble(textFPreco.getText()), textFCategoria.getText(), listaProdutosCarrinho);
+				// DaoPratos.addEditDados(pratoNovo, null);
 
 			} else {
 
-				DaoPratos.addEditDados(pratoNovo, pratoAtual.getId());
+				DaoFacade.addEditPratos(pratoAtual.getId(), textFNome.getText(), textFDescricao.getText(),
+						Double.parseDouble(textFPreco.getText()), textFCategoria.getText(), listaProdutosCarrinho);
+				// DaoPratos.addEditDados(pratoNovo, pratoAtual.getId());
 
 			}
 

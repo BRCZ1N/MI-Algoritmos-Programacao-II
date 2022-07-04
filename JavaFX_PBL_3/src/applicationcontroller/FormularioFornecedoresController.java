@@ -21,7 +21,7 @@ import applicationexeceptions.CnpjJaExisteException;
 import applicationmain.Main;
 import applicationmodel.Fornecedores;
 import applicationmodel.Produtos;
-import applicationmodeldao.DaoFornecedores;
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoProdutos;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -105,21 +105,19 @@ public class FormularioFornecedoresController implements Initializable {
 	@FXML
 	public void salvarFornecedorAcao(ActionEvent event) throws IOException {
 
-		Fornecedores fornecedorNovo = new Fornecedores(textFCnpj.getText(), textFNome.getText(),
-				textFEndereco.getText(), DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));
 		try {
+
 			if (fornecedorAtual == null) {
 
-				boolean retorno = Alertas.confirmar();
-				if (retorno) {
-
-					DaoFornecedores.addEditDados(fornecedorNovo, null);
-
-				}
+				DaoFacade.addEditFornecedores(null, textFCnpj.getText(), textFNome.getText(), textFEndereco.getText(),
+						DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));
+				// DaoFornecedores.addEditDados(fornecedorNovo, null);
 
 			} else {
 
-				DaoFornecedores.addEditDados(fornecedorNovo, fornecedorAtual.getId());
+				DaoFacade.addEditFornecedores(fornecedorAtual.getId(), textFCnpj.getText(), textFNome.getText(),
+						textFEndereco.getText(), DaoProdutos.gerarListaIdProdutos(listaProdutosFornecidos));
+				// DaoFornecedores.addEditDados(fornecedorNovo, fornecedorAtual.getId());
 
 			}
 

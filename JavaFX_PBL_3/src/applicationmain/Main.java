@@ -38,7 +38,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws IOException, CamposNulosException {
 		
-		daoFacade.daoInicializar();
+		daoFacade.daoInicializarSubsistemas();
 		stage2 = new Stage();
 		stage2.initModality(Modality.APPLICATION_MODAL);
 		stage2.centerOnScreen();

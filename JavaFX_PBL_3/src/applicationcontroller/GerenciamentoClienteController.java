@@ -19,6 +19,7 @@ import applicationmain.Main;
 import applicationmodel.Clientes;
 import applicationmodel.Relatorio;
 import applicationmodeldao.DaoClientes;
+import applicationmodeldao.DaoFacade;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -177,9 +178,13 @@ public class GerenciamentoClienteController implements Initializable {
 	@FXML
 	public void abrirAcaoExcluir(ActionEvent event) throws IOException {
 		boolean retorno = Alertas.confirmar();
+		
 		if (retorno) {
-			DaoClientes.removerDados(tabelaClientes.getSelectionModel().getSelectedItem().getId());
+			
+			DaoFacade.removerDadosCliente(tabelaClientes.getSelectionModel().getSelectedItem().getId());
+			//DaoClientes.removerDados(tabelaClientes.getSelectionModel().getSelectedItem().getId());
 			mudarJanela("/applicationviewcssfxml/GerenciamentoCliente.fxml");
+			
 		}
 
 	}

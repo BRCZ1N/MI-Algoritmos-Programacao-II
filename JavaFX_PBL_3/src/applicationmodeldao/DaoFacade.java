@@ -1,9 +1,7 @@
 package applicationmodeldao;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import applicationexeceptions.CamposNulosException;
 import applicationexeceptions.CnpjJaExisteException;
 import applicationexeceptions.CpfJaExisteException;
@@ -27,7 +25,7 @@ public class DaoFacade {
 	private DaoProdutos daoProduto;
 	private DaoVendas daoVenda;
 
-	public void daoInicializar() {
+	public void daoInicializarSubsistemas() {
 
 		daoUsuarios = new DaoUsuarios();
 		daoProduto = new DaoProdutos();
@@ -50,7 +48,7 @@ public class DaoFacade {
 	 * @throws CamposNulosException
 	 * @throws CpfJaExisteException
 	 */
-	public void addEditCliente(String id, String nome, String cpf, String email, String telefone,
+	public static void addEditCliente(String id, String nome, String cpf, String email, String telefone,
 			ArrayList<String> idHistoricoCompras) throws CpfJaExisteException, CamposNulosException {
 
 		Clientes cliente = new Clientes(nome, cpf, email, telefone, idHistoricoCompras);
@@ -66,7 +64,7 @@ public class DaoFacade {
 	 * @param nomeUsuario  String - Nome do usuario
 	 * @throws CamposNulosException
 	 */
-	public void addEditUsuarios(String id, String loginUsuario, String senhaUsuario, String nomeUsuario)
+	public static void addEditUsuarios(String id, String loginUsuario, String senhaUsuario, String nomeUsuario)
 			throws LoginExistenteException, CamposNulosException {
 
 		Usuarios usuario = new Usuarios(loginUsuario, senhaUsuario, nomeUsuario);
@@ -84,7 +82,7 @@ public class DaoFacade {
 	 *                             fornecedor
 	 * @throws CamposNulosException
 	 */
-	public void addEditFornecedores(String id, String cnpj, String nome, String endereco,
+	public static void addEditFornecedores(String id, String cnpj, String nome, String endereco,
 			ArrayList<String> idProdutosFornecedor) throws CnpjJaExisteException, CamposNulosException {
 
 		Fornecedores fornecedor = new Fornecedores(cnpj, nome, endereco, idProdutosFornecedor);
@@ -101,7 +99,7 @@ public class DaoFacade {
 	 * @param tipoQtd    String - Unidade de medida do produto
 	 * @throws CamposNulosException
 	 */
-	public void addEditProdutos(String id, String nome, LocalDate validade, double preco, double qtdProduto,
+	public static void addEditProdutos(String id, String nome, LocalDate validade, double preco, double qtdProduto,
 			String tipoQtd) throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		Produtos produtos = new Produtos(nome, validade, preco, qtdProduto, tipoQtd);
@@ -119,7 +117,7 @@ public class DaoFacade {
 	 * @throws CamposNulosException
 	 */
 
-	public void addEditPratos(String id, String nome, String descricao, double preco, String categoria,
+	public static void addEditPratos(String id, String nome, String descricao, double preco, String categoria,
 			ArrayList<Ingredientes> composicaoPrato) throws EntidadeComValoresNegativoException, CamposNulosException {
 
 		Pratos prato = new Pratos(nome, descricao, preco, categoria, composicaoPrato);
@@ -137,7 +135,7 @@ public class DaoFacade {
 	 * @throws CamposNulosException
 	 */
 
-	public void addEditVendas(String id, LocalDateTime diaHorario, ArrayList<String> listaIdItens, double precoTotal,
+	public static void addEditVendas(String id, ArrayList<String> listaIdItens,
 			String tipoPagamento) throws EstoqueInsuficienteException, CamposNulosException {
 
 		Vendas venda = new Vendas(listaIdItens, tipoPagamento);
@@ -152,7 +150,7 @@ public class DaoFacade {
 	 * 
 	 * 
 	 */
-	public void removerDadosCliente(String id) {
+	public static void removerDadosCliente(String id) {
 		DaoClientes.removerDados(id);
 	}
 
@@ -163,7 +161,7 @@ public class DaoFacade {
 	 * 
 	 * 
 	 */
-	public void removerDadosUsuarios(String id) {
+	public static void removerDadosUsuarios(String id) {
 		DaoUsuarios.removerDados(id);
 	}
 
@@ -174,7 +172,7 @@ public class DaoFacade {
 	 * 
 	 * 
 	 */
-	public void removerDadosFornecedores(String id) {
+	public static void removerDadosFornecedores(String id) {
 		DaoFornecedores.removerDados(id);
 	}
 
@@ -185,7 +183,7 @@ public class DaoFacade {
 	 * 
 	 * 
 	 */
-	public void removerDadosProdutos(String id) {
+	public static void removerDadosProdutos(String id) {
 		DaoProdutos.removerDados(id);
 	}
 
@@ -196,7 +194,7 @@ public class DaoFacade {
 	 * 
 	 * 
 	 */
-	public void removerDadosPratos(String id) {
+	public static void removerDadosPratos(String id) {
 		DaoPratos.removerDados(id);
 	}
 
@@ -207,7 +205,7 @@ public class DaoFacade {
 	 * 
 	 * 
 	 */
-	public void removerDadosVendas(String id) {
+	public static void removerDadosVendas(String id) {
 		DaoVendas.removerDados(id);
 	}
 

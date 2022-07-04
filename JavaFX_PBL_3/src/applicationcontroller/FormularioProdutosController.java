@@ -18,7 +18,7 @@ import applicationexeceptions.EntidadeComValoresNegativoException;
 import applicationmain.Main;
 import applicationmodel.Produtos;
 import applicationmodel.UnidadeMedida;
-import applicationmodeldao.DaoProdutos;
+import applicationmodeldao.DaoFacade;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -167,23 +167,19 @@ public class FormularioProdutosController implements Initializable {
 
 		try {
 
-			Produtos produtoNovo = new Produtos(textFNome.getText(), datePickerProduto.getValue(),
-					Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()),
-					comboBoxUMedida.getValue());
-
 			if (produtoAtual == null) {
 
-				boolean retorno = Alertas.confirmar();
-
-				if (retorno) {
-
-					DaoProdutos.addEditDados(produtoNovo, null);
-
-				}
+				DaoFacade.addEditProdutos(null, textFNome.getText(), datePickerProduto.getValue(),
+						Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()),
+						comboBoxUMedida.getValue());
+				// DaoProdutos.addEditDados(produtoNovo, null);
 
 			} else {
 
-				DaoProdutos.addEditDados(produtoNovo, produtoAtual.getId());
+				DaoFacade.addEditProdutos(produtoAtual.getId(), textFNome.getText(), datePickerProduto.getValue(),
+						Double.parseDouble(textFPreco.getText()), Double.parseDouble(textFQtd.getText()),
+						comboBoxUMedida.getValue());
+				// DaoProdutos.addEditDados(produtoNovo, produtoAtual.getId());
 
 			}
 

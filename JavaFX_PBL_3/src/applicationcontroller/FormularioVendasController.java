@@ -19,8 +19,8 @@ import applicationmain.Main;
 import applicationmodel.Pratos;
 import applicationmodel.TipoPagamento;
 import applicationmodel.Vendas;
+import applicationmodeldao.DaoFacade;
 import applicationmodeldao.DaoPratos;
-import applicationmodeldao.DaoVendas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -202,20 +202,19 @@ public class FormularioVendasController implements Initializable {
 	@FXML
 	public void salvarVendaAcao(ActionEvent event) throws IOException, EstoqueInsuficienteException {
 
-		Vendas novaVenda = new Vendas(DaoPratos.getListaIdPratos(listaPratosCarrinho), comboBoxPagamento.getValue());
 		try {
 
 			if (vendaAtual == null) {
-				boolean retorno = Alertas.confirmar();
-				if (retorno) {
 
-					DaoVendas.addEditDados(novaVenda, null);
-
-				}
+				DaoFacade.addEditVendas(null, DaoPratos.getListaIdPratos(listaPratosCarrinho),
+						comboBoxPagamento.getValue());
+				// DaoVendas.addEditDados(novaVenda, null);
 
 			} else {
 
-				DaoVendas.addEditDados(novaVenda, vendaAtual.getId());
+				DaoFacade.addEditVendas(vendaAtual.getId(), DaoPratos.getListaIdPratos(listaPratosCarrinho),
+						comboBoxPagamento.getValue());
+				// DaoVendas.addEditDados(novaVenda, vendaAtual.getId());
 
 			}
 
