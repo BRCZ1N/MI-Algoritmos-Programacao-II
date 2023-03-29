@@ -1,4 +1,4 @@
-module JavaFX_PBL_3 {
+module MI_Programacao{
 	
 	requires javafx.controls;
 	requires javafx.fxml;
